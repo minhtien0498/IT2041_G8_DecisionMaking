@@ -1,0 +1,829 @@
+[
+  {
+    "scenario": {
+      "scenario_id": "family_01",
+      "name": "Gia đình có con nhỏ",
+      "description": "Gia đình 4 người, có 2 con nhỏ đang học cấp 1. Ngân sách dưới 8 tỷ, cần ít nhất 3 phòng ngủ. Ưu tiên gần trường học và công viên, gần siêu thị tiện mua sắm.",
+      "hard_constraints": {
+        "budget_max_million": 8000,
+        "min_bedrooms": 3
+      },
+      "soft_preferences": {
+        "price": {
+          "direction": "lower_better",
+          "weight": 0.25,
+          "threshold_min": 3000,
+          "threshold_max": 8000
+        },
+        "distance_to_nearest_school_m": {
+          "direction": "lower_better",
+          "weight": 0.25,
+          "threshold_min": 0,
+          "threshold_max": 2000
+        },
+        "distance_to_nearest_park_m": {
+          "direction": "lower_better",
+          "weight": 0.2,
+          "threshold_min": 0,
+          "threshold_max": 2000
+        },
+        "distance_to_nearest_supermarket_m": {
+          "direction": "lower_better",
+          "weight": 0.15,
+          "threshold_min": 0,
+          "threshold_max": 1500
+        },
+        "area_m2": {
+          "direction": "higher_better",
+          "weight": 0.15,
+          "threshold_min": 30,
+          "threshold_max": 150
+        }
+      }
+    },
+    "total_properties": 37,
+    "after_filtering": 13,
+    "rejected_count": 24,
+    "top5": [
+      {
+        "rank": 1,
+        "property_id": "GV_008",
+        "title": "SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN CITYLAND NGUYỄN VĂN LƯỢNG",
+        "price_billion_vnd": 4.55,
+        "area_m2": 60.0,
+        "bedrooms": 3,
+        "bathrooms": 3,
+        "total_score": 0.6558,
+        "attributes": {
+          "price": {
+            "value": 4550.0,
+            "normalized_score": 0.69,
+            "weight": 0.25,
+            "contribution_score": 0.1725,
+            "direction": "lower_better"
+          },
+          "distance_to_nearest_school_m": {
+            "value": 614,
+            "normalized_score": 0.693,
+            "weight": 0.25,
+            "contribution_score": 0.1732,
+            "direction": "lower_better"
+          },
+          "distance_to_nearest_park_m": {
+            "value": 588,
+            "normalized_score": 0.706,
+            "weight": 0.2,
+            "contribution_score": 0.1412,
+            "direction": "lower_better"
+          },
+          "distance_to_nearest_supermarket_m": {
+            "value": 186,
+            "normalized_score": 0.876,
+            "weight": 0.15,
+            "contribution_score": 0.1314,
+            "direction": "lower_better"
+          },
+          "area_m2": {
+            "value": 60.0,
+            "normalized_score": 0.25,
+            "weight": 0.15,
+            "contribution_score": 0.0375,
+            "direction": "higher_better"
+          }
+        },
+        "distance_to_nearest_school_m": 614,
+        "distance_to_nearest_park_m": 588,
+        "distance_to_nearest_hospital_m": 313,
+        "distance_to_nearest_supermarket_m": 186
+      },
+      {
+        "rank": 2,
+        "property_id": "GV_031",
+        "title": "Bán nhà đẹp 3 tầng đường Bùi Quang Là, Phường 12, Quận Gò Vấp",
+        "price_billion_vnd": 4.72,
+        "area_m2": 40.0,
+        "bedrooms": 4,
+        "bathrooms": 4,
+        "total_score": 0.6383,
+        "attributes": {
+          "price": {
+            "value": 4720.0,
+            "normalized_score": 0.656,
+            "weight": 0.25,
+            "contribution_score": 0.164,
+            "direction": "lower_better"
+          },
+          "distance_to_nearest_school_m": {
+            "value": 711,
+            "normalized_score": 0.644,
+            "weight": 0.25,
+            "contribution_score": 0.1611,
+            "direction": "lower_better"
+          },
+          "distance_to_nearest_park_m": {
+            "value": 121,
+            "normalized_score": 0.94,
+            "weight": 0.2,
+            "contribution_score": 0.1879,
+            "direction": "lower_better"
+          },
+          "distance_to_nearest_supermarket_m": {
+            "value": 372,
+            "normalized_score": 0.752,
+            "weight": 0.15,
+            "contribution_score": 0.1128,
+            "direction": "lower_better"
+          },
+          "area_m2": {
+            "value": 40.0,
+            "normalized_score": 0.083,
+            "weight": 0.15,
+            "contribution_score": 0.0125,
+            "direction": "higher_better"
+          }
+        },
+        "distance_to_nearest_school_m": 711,
+        "distance_to_nearest_park_m": 121,
+        "distance_to_nearest_hospital_m": 1236,
+        "distance_to_nearest_supermarket_m": 372
+      },
+      {
+        "rank": 3,
+        "property_id": "GV_035",
+        "title": "Nhà Lô góc SHR 2 tầng HXH 33m2 – Quang Trung Gò Vấp",
+        "price_billion_vnd": 4.1,
+        "area_m2": 33.0,
+        "bedrooms": 3,
+        "bathrooms": 2,
+        "total_score": 0.6322,
+        "attributes": {
+          "price": {
+            "value": 4100.0,
+            "normalized_score": 0.78,
+            "weight": 0.25,
+            "contribution_score": 0.195,
+            "direction": "lower_better"
+          },
+          "distance_to_nearest_school_m": {
+            "value": 110,
+            "normalized_score": 0.945,
+            "weight": 0.25,
+            "contribution_score": 0.2362,
+            "direction": "lower_better"
+          },
+          "distance_to_nearest_park_m": {
+            "value": 915,
+            "normalized_score": 0.542,
+            "weight": 0.2,
+            "contribution_score": 0.1085,
+            "direction": "lower_better"
+          },
+          "distance_to_nearest_supermarket_m": {
+            "value": 613,
+            "normalized_score": 0.591,
+            "weight": 0.15,
+            "contribution_score": 0.0887,
+            "direction": "lower_better"
+          },
+          "area_m2": {
+            "value": 33.0,
+            "normalized_score": 0.025,
+            "weight": 0.15,
+            "contribution_score": 0.0037,
+            "direction": "higher_better"
+          }
+        },
+        "distance_to_nearest_school_m": 110,
+        "distance_to_nearest_park_m": 915,
+        "distance_to_nearest_hospital_m": 975,
+        "distance_to_nearest_supermarket_m": 613
+      },
+      {
+        "rank": 4,
+        "property_id": "GV_007",
+        "title": "Bán nhà 42.6m² 4.8 tỷ tại 2 Tầng 3PN Phường 12 Quận Gò Vấp",
+        "price_billion_vnd": 4.8,
+        "area_m2": 42.6,
+        "bedrooms": 3,
+        "bathrooms": 2,
+        "total_score": 0.6222,
+        "attributes": {
+          "price": {
+            "value": 4800.0,
+            "normalized_score": 0.64,
+            "weight": 0.25,
+            "contribution_score": 0.16,
+            "direction": "lower_better"
+          },
+          "distance_to_nearest_school_m": {
+            "value": 772,
+            "normalized_score": 0.614,
+            "weight": 0.25,
+            "contribution_score": 0.1535,
+            "direction": "lower_better"
+          },
+          "distance_to_nearest_park_m": {
+            "value": 488,
+            "normalized_score": 0.756,
+            "weight": 0.2,
+            "contribution_score": 0.1512,
+            "direction": "lower_better"
+          },
+          "distance_to_nearest_supermarket_m": {
+            "value": 83,
+            "normalized_score": 0.945,
+            "weight": 0.15,
+            "contribution_score": 0.1417,
+            "direction": "lower_better"
+          },
+          "area_m2": {
+            "value": 42.6,
+            "normalized_score": 0.105,
+            "weight": 0.15,
+            "contribution_score": 0.0158,
+            "direction": "higher_better"
+          }
+        },
+        "distance_to_nearest_school_m": 772,
+        "distance_to_nearest_park_m": 488,
+        "distance_to_nearest_hospital_m": 1504,
+        "distance_to_nearest_supermarket_m": 83
+      },
+      {
+        "rank": 5,
+        "property_id": "GV_029",
+        "title": "Bán nhà 49m² 2 tầng quang trung 3m5×14m² Phường 14 Quận Gò Vấp",
+        "price_billion_vnd": 5.28,
+        "area_m2": 49.0,
+        "bedrooms": 3,
+        "bathrooms": 2,
+        "total_score": 0.6053,
+        "attributes": {
+          "price": {
+            "value": 5280.0,
+            "normalized_score": 0.544,
+            "weight": 0.25,
+            "contribution_score": 0.136,
+            "direction": "lower_better"
+          },
+          "distance_to_nearest_school_m": {
+            "value": 197,
+            "normalized_score": 0.901,
+            "weight": 0.25,
+            "contribution_score": 0.2254,
+            "direction": "lower_better"
+          },
+          "distance_to_nearest_park_m": {
+            "value": 1043,
+            "normalized_score": 0.478,
+            "weight": 0.2,
+            "contribution_score": 0.0957,
+            "direction": "lower_better"
+          },
+          "distance_to_nearest_supermarket_m": {
+            "value": 255,
+            "normalized_score": 0.83,
+            "weight": 0.15,
+            "contribution_score": 0.1245,
+            "direction": "lower_better"
+          },
+          "area_m2": {
+            "value": 49.0,
+            "normalized_score": 0.158,
+            "weight": 0.15,
+            "contribution_score": 0.0237,
+            "direction": "higher_better"
+          }
+        },
+        "distance_to_nearest_school_m": 197,
+        "distance_to_nearest_park_m": 1043,
+        "distance_to_nearest_hospital_m": 168,
+        "distance_to_nearest_supermarket_m": 255
+      }
+    ]
+  },
+  {
+    "scenario": {
+      "scenario_id": "young_pro_01",
+      "name": "Người trẻ độc thân",
+      "description": "Nhân viên văn phòng 28 tuổi, ngân sách dưới 5.5 tỷ, cần ít nhất 2 phòng ngủ. Ưu tiên giá rẻ, gần siêu thị, gần trục đường lớn để tiện di chuyển.",
+      "hard_constraints": {
+        "budget_max_million": 5500,
+        "min_bedrooms": 2
+      },
+      "soft_preferences": {
+        "price": {
+          "direction": "lower_better",
+          "weight": 0.35,
+          "threshold_min": 2000,
+          "threshold_max": 5500
+        },
+        "distance_to_nearest_supermarket_m": {
+          "direction": "lower_better",
+          "weight": 0.25,
+          "threshold_min": 0,
+          "threshold_max": 1500
+        },
+        "distance_to_nearest_boulevard_m": {
+          "direction": "lower_better",
+          "weight": 0.2,
+          "threshold_min": 0,
+          "threshold_max": 2000
+        },
+        "area_m2": {
+          "direction": "higher_better",
+          "weight": 0.2,
+          "threshold_min": 20,
+          "threshold_max": 100
+        }
+      }
+    },
+    "total_properties": 37,
+    "after_filtering": 14,
+    "rejected_count": 23,
+    "top5": [
+      {
+        "rank": 1,
+        "property_id": "GV_037",
+        "title": "⭐️ Giảm 50tr! Nhà Vuông SHR 2 tầng 26m2 – Quang Trung Gò Vấp",
+        "price_billion_vnd": 2.85,
+        "area_m2": 26.0,
+        "bedrooms": 2,
+        "bathrooms": 1,
+        "total_score": 0.638,
+        "attributes": {
+          "price": {
+            "value": 2850.0,
+            "normalized_score": 0.757,
+            "weight": 0.35,
+            "contribution_score": 0.265,
+            "direction": "lower_better"
+          },
+          "distance_to_nearest_supermarket_m": {
+            "value": 269,
+            "normalized_score": 0.821,
+            "weight": 0.25,
+            "contribution_score": 0.2052,
+            "direction": "lower_better"
+          },
+          "distance_to_nearest_boulevard_m": {
+            "value": 472,
+            "normalized_score": 0.764,
+            "weight": 0.2,
+            "contribution_score": 0.1528,
+            "direction": "lower_better"
+          },
+          "area_m2": {
+            "value": 26.0,
+            "normalized_score": 0.075,
+            "weight": 0.2,
+            "contribution_score": 0.015,
+            "direction": "higher_better"
+          }
+        },
+        "distance_to_nearest_school_m": 516,
+        "distance_to_nearest_park_m": 1022,
+        "distance_to_nearest_hospital_m": 645,
+        "distance_to_nearest_supermarket_m": 269
+      },
+      {
+        "rank": 2,
+        "property_id": "GV_008",
+        "title": "SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN CITYLAND NGUYỄN VĂN LƯỢNG",
+        "price_billion_vnd": 4.55,
+        "area_m2": 60.0,
+        "bedrooms": 3,
+        "bathrooms": 3,
+        "total_score": 0.5413,
+        "attributes": {
+          "price": {
+            "value": 4550.0,
+            "normalized_score": 0.271,
+            "weight": 0.35,
+            "contribution_score": 0.095,
+            "direction": "lower_better"
+          },
+          "distance_to_nearest_supermarket_m": {
+            "value": 186,
+            "normalized_score": 0.876,
+            "weight": 0.25,
+            "contribution_score": 0.219,
+            "direction": "lower_better"
+          },
+          "distance_to_nearest_boulevard_m": {
+            "value": 727,
+            "normalized_score": 0.636,
+            "weight": 0.2,
+            "contribution_score": 0.1273,
+            "direction": "lower_better"
+          },
+          "area_m2": {
+            "value": 60.0,
+            "normalized_score": 0.5,
+            "weight": 0.2,
+            "contribution_score": 0.1,
+            "direction": "higher_better"
+          }
+        },
+        "distance_to_nearest_school_m": 614,
+        "distance_to_nearest_park_m": 588,
+        "distance_to_nearest_hospital_m": 313,
+        "distance_to_nearest_supermarket_m": 186
+      },
+      {
+        "rank": 3,
+        "property_id": "GV_034",
+        "title": "Giảm 100tr! Nhà Nở hậu SHR 2 tầng HXH 38m2 – Thống Nhất Gò Vấp",
+        "price_billion_vnd": 4.55,
+        "area_m2": 38.0,
+        "bedrooms": 2,
+        "bathrooms": 2,
+        "total_score": 0.4967,
+        "attributes": {
+          "price": {
+            "value": 4550.0,
+            "normalized_score": 0.271,
+            "weight": 0.35,
+            "contribution_score": 0.095,
+            "direction": "lower_better"
+          },
+          "distance_to_nearest_supermarket_m": {
+            "value": 149,
+            "normalized_score": 0.901,
+            "weight": 0.25,
+            "contribution_score": 0.2252,
+            "direction": "lower_better"
+          },
+          "distance_to_nearest_boulevard_m": {
+            "value": 685,
+            "normalized_score": 0.657,
+            "weight": 0.2,
+            "contribution_score": 0.1315,
+            "direction": "lower_better"
+          },
+          "area_m2": {
+            "value": 38.0,
+            "normalized_score": 0.225,
+            "weight": 0.2,
+            "contribution_score": 0.045,
+            "direction": "higher_better"
+          }
+        },
+        "distance_to_nearest_school_m": 659,
+        "distance_to_nearest_park_m": 670,
+        "distance_to_nearest_hospital_m": 252,
+        "distance_to_nearest_supermarket_m": 149
+      },
+      {
+        "rank": 4,
+        "property_id": "GV_007",
+        "title": "Bán nhà 42.6m² 4.8 tỷ tại 2 Tầng 3PN Phường 12 Quận Gò Vấp",
+        "price_billion_vnd": 4.8,
+        "area_m2": 42.6,
+        "bedrooms": 3,
+        "bathrooms": 2,
+        "total_score": 0.4551,
+        "attributes": {
+          "price": {
+            "value": 4800.0,
+            "normalized_score": 0.2,
+            "weight": 0.35,
+            "contribution_score": 0.07,
+            "direction": "lower_better"
+          },
+          "distance_to_nearest_supermarket_m": {
+            "value": 83,
+            "normalized_score": 0.945,
+            "weight": 0.25,
+            "contribution_score": 0.2362,
+            "direction": "lower_better"
+          },
+          "distance_to_nearest_boulevard_m": {
+            "value": 1076,
+            "normalized_score": 0.462,
+            "weight": 0.2,
+            "contribution_score": 0.0924,
+            "direction": "lower_better"
+          },
+          "area_m2": {
+            "value": 42.6,
+            "normalized_score": 0.283,
+            "weight": 0.2,
+            "contribution_score": 0.0565,
+            "direction": "higher_better"
+          }
+        },
+        "distance_to_nearest_school_m": 772,
+        "distance_to_nearest_park_m": 488,
+        "distance_to_nearest_hospital_m": 1504,
+        "distance_to_nearest_supermarket_m": 83
+      },
+      {
+        "rank": 5,
+        "property_id": "GV_029",
+        "title": "Bán nhà 49m² 2 tầng quang trung 3m5×14m² Phường 14 Quận Gò Vấp",
+        "price_billion_vnd": 5.28,
+        "area_m2": 49.0,
+        "bedrooms": 3,
+        "bathrooms": 2,
+        "total_score": 0.4536,
+        "attributes": {
+          "price": {
+            "value": 5280.0,
+            "normalized_score": 0.063,
+            "weight": 0.35,
+            "contribution_score": 0.022,
+            "direction": "lower_better"
+          },
+          "distance_to_nearest_supermarket_m": {
+            "value": 255,
+            "normalized_score": 0.83,
+            "weight": 0.25,
+            "contribution_score": 0.2075,
+            "direction": "lower_better"
+          },
+          "distance_to_nearest_boulevard_m": {
+            "value": 484,
+            "normalized_score": 0.758,
+            "weight": 0.2,
+            "contribution_score": 0.1516,
+            "direction": "lower_better"
+          },
+          "area_m2": {
+            "value": 49.0,
+            "normalized_score": 0.362,
+            "weight": 0.2,
+            "contribution_score": 0.0725,
+            "direction": "higher_better"
+          }
+        },
+        "distance_to_nearest_school_m": 197,
+        "distance_to_nearest_park_m": 1043,
+        "distance_to_nearest_hospital_m": 168,
+        "distance_to_nearest_supermarket_m": 255
+      }
+    ]
+  },
+  {
+    "scenario": {
+      "scenario_id": "investor_01",
+      "name": "Nhà đầu tư",
+      "description": "Nhà đầu tư BĐS, ngân sách dưới 15 tỷ. Ưu tiên giá/m² thấp (tiềm năng tăng giá), gần trục đường lớn, diện tích rộng, nhiều tiện ích xung quanh.",
+      "hard_constraints": {
+        "budget_max_million": 15000,
+        "min_bedrooms": 1
+      },
+      "soft_preferences": {
+        "price_per_m2": {
+          "direction": "lower_better",
+          "weight": 0.3,
+          "threshold_min": 30,
+          "threshold_max": 200
+        },
+        "distance_to_nearest_boulevard_m": {
+          "direction": "lower_better",
+          "weight": 0.25,
+          "threshold_min": 0,
+          "threshold_max": 2000
+        },
+        "area_m2": {
+          "direction": "higher_better",
+          "weight": 0.25,
+          "threshold_min": 30,
+          "threshold_max": 250
+        },
+        "distance_to_nearest_supermarket_m": {
+          "direction": "lower_better",
+          "weight": 0.2,
+          "threshold_min": 0,
+          "threshold_max": 1500
+        }
+      }
+    },
+    "total_properties": 37,
+    "after_filtering": 31,
+    "rejected_count": 6,
+    "top5": [
+      {
+        "rank": 1,
+        "property_id": "GV_008",
+        "title": "SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN CITYLAND NGUYỄN VĂN LƯỢNG",
+        "price_billion_vnd": 4.55,
+        "area_m2": 60.0,
+        "bedrooms": 3,
+        "bathrooms": 3,
+        "total_score": 0.5875,
+        "attributes": {
+          "price_per_m2": {
+            "value": 75.8,
+            "normalized_score": 0.73,
+            "weight": 0.3,
+            "contribution_score": 0.2191,
+            "direction": "lower_better"
+          },
+          "distance_to_nearest_boulevard_m": {
+            "value": 727,
+            "normalized_score": 0.636,
+            "weight": 0.25,
+            "contribution_score": 0.1591,
+            "direction": "lower_better"
+          },
+          "area_m2": {
+            "value": 60.0,
+            "normalized_score": 0.136,
+            "weight": 0.25,
+            "contribution_score": 0.0341,
+            "direction": "higher_better"
+          },
+          "distance_to_nearest_supermarket_m": {
+            "value": 186,
+            "normalized_score": 0.876,
+            "weight": 0.2,
+            "contribution_score": 0.1752,
+            "direction": "lower_better"
+          }
+        },
+        "distance_to_nearest_school_m": 614,
+        "distance_to_nearest_park_m": 588,
+        "distance_to_nearest_hospital_m": 313,
+        "distance_to_nearest_supermarket_m": 186
+      },
+      {
+        "rank": 2,
+        "property_id": "GV_011",
+        "title": "Bán nhà 5 tầng mt đường Thống Nhất. P 11 Gò Vấp giá rẽ",
+        "price_billion_vnd": 10.5,
+        "area_m2": 88.0,
+        "bedrooms": 6,
+        "bathrooms": 7,
+        "total_score": 0.5727,
+        "attributes": {
+          "price_per_m2": {
+            "value": 119.3,
+            "normalized_score": 0.475,
+            "weight": 0.3,
+            "contribution_score": 0.1424,
+            "direction": "lower_better"
+          },
+          "distance_to_nearest_boulevard_m": {
+            "value": 574,
+            "normalized_score": 0.713,
+            "weight": 0.25,
+            "contribution_score": 0.1782,
+            "direction": "lower_better"
+          },
+          "area_m2": {
+            "value": 88.0,
+            "normalized_score": 0.264,
+            "weight": 0.25,
+            "contribution_score": 0.0659,
+            "direction": "higher_better"
+          },
+          "distance_to_nearest_supermarket_m": {
+            "value": 104,
+            "normalized_score": 0.931,
+            "weight": 0.2,
+            "contribution_score": 0.1861,
+            "direction": "lower_better"
+          }
+        },
+        "distance_to_nearest_school_m": 583,
+        "distance_to_nearest_park_m": 744,
+        "distance_to_nearest_hospital_m": 441,
+        "distance_to_nearest_supermarket_m": 104
+      },
+      {
+        "rank": 3,
+        "property_id": "GV_029",
+        "title": "Bán nhà 49m² 2 tầng quang trung 3m5×14m² Phường 14 Quận Gò Vấp",
+        "price_billion_vnd": 5.28,
+        "area_m2": 49.0,
+        "bedrooms": 3,
+        "bathrooms": 2,
+        "total_score": 0.5399,
+        "attributes": {
+          "price_per_m2": {
+            "value": 107.8,
+            "normalized_score": 0.543,
+            "weight": 0.3,
+            "contribution_score": 0.1628,
+            "direction": "lower_better"
+          },
+          "distance_to_nearest_boulevard_m": {
+            "value": 484,
+            "normalized_score": 0.758,
+            "weight": 0.25,
+            "contribution_score": 0.1895,
+            "direction": "lower_better"
+          },
+          "area_m2": {
+            "value": 49.0,
+            "normalized_score": 0.086,
+            "weight": 0.25,
+            "contribution_score": 0.0216,
+            "direction": "higher_better"
+          },
+          "distance_to_nearest_supermarket_m": {
+            "value": 255,
+            "normalized_score": 0.83,
+            "weight": 0.2,
+            "contribution_score": 0.166,
+            "direction": "lower_better"
+          }
+        },
+        "distance_to_nearest_school_m": 197,
+        "distance_to_nearest_park_m": 1043,
+        "distance_to_nearest_hospital_m": 168,
+        "distance_to_nearest_supermarket_m": 255
+      },
+      {
+        "rank": 4,
+        "property_id": "GV_003",
+        "title": "Bán nhà 3/713 đường Lê Đức Thọ,P16, Quận gò vấp",
+        "price_billion_vnd": 8.95,
+        "area_m2": 95.0,
+        "bedrooms": 1,
+        "bathrooms": 1,
+        "total_score": 0.5275,
+        "attributes": {
+          "price_per_m2": {
+            "value": 94.2,
+            "normalized_score": 0.622,
+            "weight": 0.3,
+            "contribution_score": 0.1867,
+            "direction": "lower_better"
+          },
+          "distance_to_nearest_boulevard_m": {
+            "value": 782,
+            "normalized_score": 0.609,
+            "weight": 0.25,
+            "contribution_score": 0.1522,
+            "direction": "lower_better"
+          },
+          "area_m2": {
+            "value": 95.0,
+            "normalized_score": 0.295,
+            "weight": 0.25,
+            "contribution_score": 0.0739,
+            "direction": "higher_better"
+          },
+          "distance_to_nearest_supermarket_m": {
+            "value": 640,
+            "normalized_score": 0.573,
+            "weight": 0.2,
+            "contribution_score": 0.1147,
+            "direction": "lower_better"
+          }
+        },
+        "distance_to_nearest_school_m": 497,
+        "distance_to_nearest_park_m": 1155,
+        "distance_to_nearest_hospital_m": 667,
+        "distance_to_nearest_supermarket_m": 640
+      },
+      {
+        "rank": 5,
+        "property_id": "GV_010",
+        "title": "Bán nhà 3 tầng mt đường số 1 .đường Thống Nhất Gò Vấp giá rẽ",
+        "price_billion_vnd": 13.5,
+        "area_m2": 119.1,
+        "bedrooms": 5,
+        "bathrooms": 3,
+        "total_score": 0.5261,
+        "attributes": {
+          "price_per_m2": {
+            "value": 113.3,
+            "normalized_score": 0.51,
+            "weight": 0.3,
+            "contribution_score": 0.1529,
+            "direction": "lower_better"
+          },
+          "distance_to_nearest_boulevard_m": {
+            "value": 861,
+            "normalized_score": 0.57,
+            "weight": 0.25,
+            "contribution_score": 0.1424,
+            "direction": "lower_better"
+          },
+          "area_m2": {
+            "value": 119.1,
+            "normalized_score": 0.405,
+            "weight": 0.25,
+            "contribution_score": 0.1012,
+            "direction": "higher_better"
+          },
+          "distance_to_nearest_supermarket_m": {
+            "value": 528,
+            "normalized_score": 0.648,
+            "weight": 0.2,
+            "contribution_score": 0.1296,
+            "direction": "lower_better"
+          }
+        },
+        "distance_to_nearest_school_m": 689,
+        "distance_to_nearest_park_m": 475,
+        "distance_to_nearest_hospital_m": 136,
+        "distance_to_nearest_supermarket_m": 528
+      }
+    ]
+  }
+]
