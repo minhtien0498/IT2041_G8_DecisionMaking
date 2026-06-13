@@ -1,0 +1,78 @@
+[
+  {
+    "scenario_id": "VAL_01",
+    "name": "Gia đình trẻ có con nhỏ",
+    "hard_constraints": {
+      "budget_max_million": 8000,
+      "min_bedrooms": 3
+    },
+    "soft_preferences": {
+      "price": {"weight": 0.25, "direction": "lower_better", "min": 3000, "max": 8000},
+      "distance_to_nearest_school_m": {"weight": 0.25, "direction": "lower_better", "min": 0, "max": 2000},
+      "distance_to_nearest_park_m": {"weight": 0.20, "direction": "lower_better", "min": 0, "max": 2000},
+      "distance_to_nearest_supermarket_m": {"weight": 0.15, "direction": "lower_better", "min": 0, "max": 1500},
+      "area_m2": {"weight": 0.15, "direction": "higher_better", "min": 30, "max": 150}
+    },
+    "ground_truth_top5": ["GV_008", "GV_031", "GV_035", "GV_007", "GV_029"]
+  },
+  {
+    "scenario_id": "VAL_02",
+    "name": "Người trẻ độc thân",
+    "hard_constraints": {
+      "budget_max_million": 5500,
+      "min_bedrooms": 2
+    },
+    "soft_preferences": {
+      "price": {"weight": 0.35, "direction": "lower_better", "min": 2000, "max": 5500},
+      "distance_to_nearest_supermarket_m": {"weight": 0.25, "direction": "lower_better", "min": 0, "max": 1500},
+      "distance_to_nearest_boulevard_m": {"weight": 0.20, "direction": "lower_better", "min": 0, "max": 2000},
+      "area_m2": {"weight": 0.20, "direction": "higher_better", "min": 20, "max": 100}
+    },
+    "ground_truth_top5": ["GV_037", "GV_008", "GV_034", "GV_007", "GV_029"]
+  },
+  {
+    "scenario_id": "VAL_03",
+    "name": "Nhà đầu tư lướt sóng",
+    "hard_constraints": {
+      "budget_max_million": 15000,
+      "min_bedrooms": 1
+    },
+    "soft_preferences": {
+      "price_per_m2": {"weight": 0.30, "direction": "lower_better", "min": 30, "max": 200},
+      "distance_to_nearest_boulevard_m": {"weight": 0.25, "direction": "lower_better", "min": 0, "max": 2000},
+      "area_m2": {"weight": 0.25, "direction": "higher_better", "min": 30, "max": 250},
+      "distance_to_nearest_supermarket_m": {"weight": 0.20, "direction": "lower_better", "min": 0, "max": 1500}
+    },
+    "ground_truth_top5": ["GV_008", "GV_011", "GV_029", "GV_003", "GV_010"]
+  },
+  {
+    "scenario_id": "VAL_04",
+    "name": "Người cao tuổi nghỉ hưu",
+    "hard_constraints": {
+      "budget_max_million": 10000,
+      "min_bedrooms": 2
+    },
+    "soft_preferences": {
+      "distance_to_nearest_hospital_m": {"weight": 0.40, "direction": "lower_better", "min": 0, "max": 2500},
+      "distance_to_nearest_park_m": {"weight": 0.30, "direction": "lower_better", "min": 0, "max": 2000},
+      "price": {"weight": 0.20, "direction": "lower_better", "min": 3000, "max": 10000},
+      "area_m2": {"weight": 0.10, "direction": "higher_better", "min": 30, "max": 150}
+    },
+    "ground_truth_top5": ["GV_030", "GV_008", "GV_034", "GV_020", "GV_029"]
+  },
+  {
+    "scenario_id": "VAL_05",
+    "name": "Cặp đôi mới cưới",
+    "hard_constraints": {
+      "budget_max_million": 6000,
+      "min_bedrooms": 2
+    },
+    "soft_preferences": {
+      "price": {"weight": 0.30, "direction": "lower_better", "min": 2500, "max": 6000},
+      "distance_to_nearest_supermarket_m": {"weight": 0.30, "direction": "lower_better", "min": 0, "max": 1500},
+      "distance_to_nearest_school_m": {"weight": 0.20, "direction": "lower_better", "min": 0, "max": 2000},
+      "area_m2": {"weight": 0.20, "direction": "higher_better", "min": 25, "max": 120}
+    },
+    "ground_truth_top5": ["GV_037", "GV_008", "GV_034", "GV_035", "GV_007"]
+  }
+]

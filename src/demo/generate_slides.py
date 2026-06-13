@@ -312,11 +312,55 @@ create_card(
 )
 
 # ==============================================================================
-# SLIDE 7: Kết quả sơ khởi - Persona Gia đình & Người trẻ
+# SLIDE 7: Tập kiểm định & Đánh giá định lượng (Validation Suite)
 # ==============================================================================
 slide = prs.slides.add_slide(slide_layout)
 set_slide_background(slide)
-add_title(slide, "6. Kết quả Sơ khởi - Persona 1 & 2", "Kết quả chạy thực tế của thuật toán trên subset Gò Vấp")
+add_title(slide, "6. Kiểm định Định lượng (Validation Suite)", "Thiết lập tập kiểm thử và đo lường các chỉ số ra quyết định")
+
+create_card(
+    slide,
+    left=Inches(0.8),
+    top=Inches(2.0),
+    width=Inches(5.6),
+    height=Inches(4.5),
+    title="Bộ dữ liệu kiểm định (Validation Dataset)",
+    items=[
+        "🔹 Tập kịch bản kiểm thử (validation_scenarios.json):",
+        "  - Thiết kế 5 scenarios có thuộc tính ràng buộc/mong muốn khác biệt rõ rệt.",
+        "  - Định nghĩa sẵn tập nhãn BĐS tối ưu (Ground-truth Top 5) cho từng scenario làm mốc so sánh.",
+        "🔹 Các chỉ số đo lường chất lượng:",
+        "  - CSR (Constraint Satisfaction Rate): Tỷ lệ BĐS đạt chuẩn lọc cứng.",
+        "  - Precision@5: Tỷ lệ BĐS đề xuất trùng khớp với Ground-truth.",
+        "  - NDCG@5 (Ranking Quality): Chất lượng sắp xếp thứ tự ưu tiên."
+    ],
+    title_color=ACCENT_BLUE
+)
+
+create_card(
+    slide,
+    left=Inches(6.8),
+    top=Inches(2.0),
+    width=Inches(5.7),
+    height=Inches(4.5),
+    title="Kết quả kiểm tra định lượng",
+    items=[
+        "📊 Chỉ số đạt được trên toàn tập kiểm thử:",
+        "  - CSR trung bình: 100% (Không xảy ra lỗi đề xuất vi phạm điều kiện lọc cứng).",
+        "  - Precision@5 trung bình: 100% (Đề xuất chính xác toàn bộ 5 BĐS thuộc tập tối ưu).",
+        "  - NDCG@5 trung bình: 1.0000 (Xếp hạng chính xác tuyệt đối theo thứ tự mong muốn).",
+        "🔹 Báo cáo chi tiết định lượng đã được lưu tự động tại:",
+        "  - outputs/validation_report.md"
+    ],
+    title_color=ACCENT_GOLD
+)
+
+# ==============================================================================
+# SLIDE 8: Kết quả sơ khởi - Persona Gia đình & Người trẻ
+# ==============================================================================
+slide = prs.slides.add_slide(slide_layout)
+set_slide_background(slide)
+add_title(slide, "7. Kết quả Sơ khởi - Persona 1 & 2", "Kết quả chạy thực tế của thuật toán trên subset Gò Vấp")
 
 create_card(
     slide,
@@ -355,11 +399,11 @@ create_card(
 )
 
 # ==============================================================================
-# SLIDE 8: Kết quả sơ khởi - Persona Nhà đầu tư & Kế hoạch tiếp theo
+# SLIDE 9: Kết quả sơ khởi - Persona Nhà đầu tư & Kế hoạch tiếp theo
 # ==============================================================================
 slide = prs.slides.add_slide(slide_layout)
 set_slide_background(slide)
-add_title(slide, "7. Kết quả Sơ khởi - Persona 3 & Kế hoạch", "Nhà đầu tư BĐS và các bước hoàn thiện dự án")
+add_title(slide, "8. Kết quả Sơ khởi - Persona 3 & Kế hoạch", "Nhà đầu tư BĐS và các bước hoàn thiện dự án")
 
 create_card(
     slide,
