@@ -24,16 +24,16 @@ prs = Presentation()
 prs.slide_width = Inches(13.333)
 prs.slide_height = Inches(7.5)
 
-# Color Palette (Premium Dark/Navy Theme)
-BG_COLOR = RGBColor(15, 23, 42)      # Slate 900
-TEXT_MAIN = RGBColor(248, 250, 252)  # Slate 50
-TEXT_MUTED = RGBColor(148, 163, 184) # Slate 400
-ACCENT_BLUE = RGBColor(56, 189, 248) # Sky 400
-ACCENT_GOLD = RGBColor(251, 191, 36)  # Amber 400
-CARD_BG = RGBColor(30, 41, 59)       # Slate 800
+# Color Palette (Premium Light Theme)
+BG_COLOR = RGBColor(248, 250, 252)      # Slate 50 (Off-white background)
+TEXT_MAIN = RGBColor(15, 23, 42)        # Slate 900 (Dark Slate main text)
+TEXT_MUTED = RGBColor(100, 116, 139)    # Slate 500 (Cool Gray muted text)
+ACCENT_BLUE = RGBColor(29, 78, 216)     # Blue 700 (Rich Blue accent)
+ACCENT_GOLD = RGBColor(180, 83, 9)      # Amber 700 (Deep Amber accent)
+CARD_BG = RGBColor(255, 255, 255)       # Pure White card background
 
 def set_slide_background(slide):
-    """Set slide background to solid Slate 900."""
+    """Set slide background to solid light Slate 50."""
     background = slide.background
     fill = background.fill
     fill.solid()
@@ -70,7 +70,7 @@ def create_card(slide, left, top, width, height, title, items, title_color=ACCEN
     )
     shape.fill.solid()
     shape.fill.fore_color.rgb = CARD_BG
-    shape.line.color.rgb = RGBColor(71, 85, 105) # Slate 600 line border
+    shape.line.color.rgb = RGBColor(203, 213, 225) # Slate 300 line border for light card
     shape.line.width = Pt(1.5)
     
     # Add text inside the card
