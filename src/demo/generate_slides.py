@@ -206,11 +206,50 @@ create_card(
 )
 
 # ==============================================================================
-# SLIDE 4: Thông tin về bộ dữ liệu
+# SLIDE 4: Giải pháp đề xuất 5.2 (Tích hợp LLM & Real-time API)
 # ==============================================================================
 slide = prs.slides.add_slide(slide_layout)
 set_slide_background(slide)
-add_title(slide, "3. Thông tin Bộ dữ liệu", "Chi tiết về dữ liệu nguồn và dữ liệu làm giàu tiện ích")
+add_title(slide, "3. Giải pháp đề xuất 5.2 (LLM & Real-time API)", "Kiến trúc hệ thống tư vấn thông minh tích hợp AI")
+
+create_card(
+    slide,
+    left=Inches(0.8),
+    top=Inches(2.0),
+    width=Inches(5.6),
+    height=Inches(4.5),
+    title="Luồng xử lý thông minh",
+    items=[
+        "1. Semantic Query Parsing: LLM đọc hiểu mong muốn tự do bằng tiếng Việt, phân tích ra các tiêu chí ẩn (ví dụ: 'yên tĩnh' -> giảm điểm gần đường lớn).",
+        "2. Real-time POI Enrichment: Sử dụng Mapbox hoặc Google Places API để tự động truy xuất các tiện ích xung quanh tọa độ của từng BĐS thực tế.",
+        "3. Hybrid Scoring & Re-ranking: Kết hợp điểm số khoảng cách POI và chấm điểm nội dung bằng LLM dựa trên thông tin mô tả chi tiết của BĐS (Description).",
+        "4. Tự động sinh báo cáo giải thích (LLM Explanation): Giải thích trực quan, tự nhiên và thuyết phục tại sao BĐS được chọn."
+    ],
+    title_color=ACCENT_BLUE
+)
+
+create_card(
+    slide,
+    left=Inches(6.8),
+    top=Inches(2.0),
+    width=Inches(5.7),
+    height=Inches(4.5),
+    title="Ưu điểm vượt trội so với 5.1",
+    items=[
+        "🔹 Trải nghiệm người dùng cao: Không cần nhập các form khảo sát phức tạp, chỉ cần trò chuyện tự do.",
+        "🔹 Độ chính xác tiện ích tuyệt đối: Lấy POI theo thời gian thực tại bất kỳ vị trí nào, không bị giới hạn bởi database tĩnh.",
+        "🔹 Đánh giá BĐS sâu sắc hơn: Đọc hiểu được thông tin phi cấu trúc (ví dụ: hẻm xe hơi, nội thất cao cấp, nở hậu) từ Description tin đăng.",
+        "🔹 Cá nhân hóa tối đa: Lý giải lý do đề xuất riêng biệt cho từng người dùng bằng văn phong tiếng Việt tự nhiên."
+    ],
+    title_color=ACCENT_GOLD
+)
+
+# ==============================================================================
+# SLIDE 5: Thông tin về bộ dữ liệu
+# ==============================================================================
+slide = prs.slides.add_slide(slide_layout)
+set_slide_background(slide)
+add_title(slide, "4. Thông tin Bộ dữ liệu", "Chi tiết về dữ liệu nguồn và dữ liệu làm giàu tiện ích")
 
 create_card(
     slide,
@@ -249,11 +288,11 @@ create_card(
 )
 
 # ==============================================================================
-# SLIDE 5: Cách đánh giá (Evaluation)
+# SLIDE 6: Cách đánh giá (Evaluation)
 # ==============================================================================
 slide = prs.slides.add_slide(slide_layout)
 set_slide_background(slide)
-add_title(slide, "4. Cách đánh giá Hệ thống tư vấn (DSS Evaluation)", "Các tiêu chí đảm bảo chất lượng thuật toán ra quyết định")
+add_title(slide, "5. Cách đánh giá Hệ thống tư vấn (DSS Evaluation)", "Các tiêu chí đảm bảo chất lượng thuật toán ra quyết định")
 
 create_card(
     slide,
@@ -273,11 +312,11 @@ create_card(
 )
 
 # ==============================================================================
-# SLIDE 6: Kết quả sơ khởi - Persona Gia đình & Người trẻ
+# SLIDE 7: Kết quả sơ khởi - Persona Gia đình & Người trẻ
 # ==============================================================================
 slide = prs.slides.add_slide(slide_layout)
 set_slide_background(slide)
-add_title(slide, "5. Kết quả Sơ khởi - Persona 1 & 2", "Kết quả chạy thực tế của thuật toán trên subset Gò Vấp")
+add_title(slide, "6. Kết quả Sơ khởi - Persona 1 & 2", "Kết quả chạy thực tế của thuật toán trên subset Gò Vấp")
 
 create_card(
     slide,
@@ -316,11 +355,11 @@ create_card(
 )
 
 # ==============================================================================
-# SLIDE 7: Kết quả sơ khởi - Persona Nhà đầu tư & Kế hoạch tiếp theo
+# SLIDE 8: Kết quả sơ khởi - Persona Nhà đầu tư & Kế hoạch tiếp theo
 # ==============================================================================
 slide = prs.slides.add_slide(slide_layout)
 set_slide_background(slide)
-add_title(slide, "6. Kết quả Sơ khởi - Persona 3 & Kế hoạch", "Nhà đầu tư BĐS và các bước hoàn thiện dự án")
+add_title(slide, "7. Kết quả Sơ khởi - Persona 3 & Kế hoạch", "Nhà đầu tư BĐS và các bước hoàn thiện dự án")
 
 create_card(
     slide,
@@ -346,7 +385,7 @@ create_card(
     top=Inches(2.0),
     width=Inches(5.7),
     height=Inches(4.5),
-    title="Kế hoạch phát triển tiếp theo",
+    title="Kế hoạch phát triển tiếp theo (Pipeline 5.2)",
     items=[
         "1. Tự động hóa lấy POI: Sử dụng Google Places API / OpenStreetMap thay vì hardcode tọa độ.",
         "2. Mở rộng bộ dữ liệu: Nâng số lượng căn lên 200 - 500 mẫu tại nhiều quận khác nhau.",
