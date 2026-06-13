@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khảo sát Nhu cầu Nhà ở – IT2041 Nhóm 8</title>
+  <meta name="description" content="Khảo sát nhu cầu mua nhà tại Quận Gò Vấp, TP.HCM phục vụ đề tài DSS Recommendation">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --bg-selected: #eff6ff;
+      --border: #e2e8f0;
+      --border-selected: #3b82f6;
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #94a3b8;
+      --accent: #3b82f6;
+      --accent-light: #dbeafe;
+      --accent-dark: #1d4ed8;
+      --success: #10b981;
+      --success-light: #d1fae5;
+      --warning: #f59e0b;
+      --warning-light: #fef3c7;
+      --danger: #ef4444;
+      --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --gradient-2: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04);
+      --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.08), 0 8px 10px -6px rgba(0,0,0,0.04);
+      --radius: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 20px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .header {
+      background: var(--gradient-2);
+      padding: 3rem 1.5rem;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+      animation: pulse 6s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+    }
+    .header h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      position: relative;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+    .header p {
+      font-size: 1rem;
+      opacity: 0.9;
+      position: relative;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .header .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+      padding: 0.35rem 1rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+
+    /* Progress Bar */
+    .progress-container {
+      background: var(--bg-card);
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-sm);
+    }
+    .progress-bar-wrapper {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .progress-steps {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+    .progress-step {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      transition: color 0.3s;
+    }
+    .progress-step.active { color: var(--accent); }
+    .progress-step.done { color: var(--success); }
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--gradient-2);
+      border-radius: 10px;
+      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Main Content */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    /* Step sections */
+    .step-section {
+      display: none;
+      animation: fadeInUp 0.4s ease-out;
+    }
+    .step-section.active { display: block; }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .section-desc {
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+
+    /* Form Elements */
+    .form-group {
+      margin-bottom: 1.75rem;
+    }
+    .form-label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+    .form-label .required {
+      color: var(--danger);
+    }
+    .form-hint {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 0.95rem;
+      font-family: inherit;
+      background: var(--bg-card);
+      transition: all 0.2s;
+      color: var(--text-primary);
+    }
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-light);
+    }
+
+    /* Slider */
+    .slider-group {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+      transition: all 0.2s;
+    }
+    .slider-group:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-md);
+    }
+    .slider-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+    .slider-label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .slider-label .icon {
+      font-size: 1.2rem;
+    }
+    .slider-value {
+      background: var(--accent-light);
+      color: var(--accent-dark);
+      padding: 0.2rem 0.65rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      min-width: 2.5rem;
+      text-align: center;
+    }
+    input[type="range"] {
+      width: 100%;
+      height: 6px;
+      -webkit-appearance: none;
+      appearance: none;
+      background: var(--border);
+      border-radius: 10px;
+      outline: none;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 22px;
+      height: 22px;
+      background: var(--accent);
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(59,130,246,0.4);
+      transition: transform 0.15s;
+    }
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+    }
+
+    /* Property Cards */
+    .property-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    .property-card {
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+    .property-card:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+    .property-card.selected {
+      border-color: var(--border-selected);
+      background: var(--bg-selected);
+      box-shadow: 0 0 0 3px var(--accent-light), var(--shadow-md);
+    }
+    .property-card .check-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-card);
+      transition: all 0.2s;
+      font-size: 0.8rem;
+    }
+    .property-card.selected .check-badge {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+    .property-card .rank-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--gradient-2);
+      color: white;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.85rem;
+      box-shadow: 0 2px 8px rgba(59,130,246,0.3);
+    }
+    .property-card.selected .rank-badge { display: flex; }
+
+    .prop-id {
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .prop-title {
+      font-weight: 600;
+      font-size: 1rem;
+      margin: 0.25rem 0 0.5rem;
+      line-height: 1.4;
+      padding-right: 2.5rem;
+    }
+    .prop-specs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .prop-spec {
+      background: var(--bg-primary);
+      padding: 0.3rem 0.7rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+    .prop-spec.price {
+      background: var(--warning-light);
+      color: #92400e;
+      font-weight: 700;
+    }
+    .prop-amenities {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+    .prop-amenity {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    /* Buttons */
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    .btn {
+      padding: 0.85rem 2rem;
+      border-radius: var(--radius);
+      border: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .btn-primary {
+      background: var(--gradient-2);
+      color: white;
+      box-shadow: 0 4px 14px rgba(59,130,246,0.3);
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(59,130,246,0.4);
+    }
+    .btn-secondary {
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      border: 2px solid var(--border);
+    }
+    .btn-secondary:hover {
+      background: var(--bg-card-hover);
+    }
+    .btn-success {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white;
+      box-shadow: 0 4px 14px rgba(16,185,129,0.3);
+    }
+    .btn-success:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(16,185,129,0.4);
+    }
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    /* Inline grid */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    /* Results */
+    .result-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .result-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .json-box {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1.25rem;
+      border-radius: var(--radius);
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      overflow-x: auto;
+      max-height: 400px;
+      overflow-y: auto;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    .filter-bar {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .filter-bar select {
+      width: auto;
+      min-width: 140px;
+    }
+    .count-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: var(--accent-light);
+      color: var(--accent-dark);
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .info-banner {
+      background: var(--accent-light);
+      border: 1px solid #bfdbfe;
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.88rem;
+      color: var(--accent-dark);
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-start;
+    }
+
+    /* Copy button */
+    .copy-btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+    .copy-btn:hover { background: var(--accent-dark); }
+    .copy-btn.copied { background: var(--success); }
+
+    @media (max-width: 640px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      .header h1 { font-size: 1.5rem; }
+      .btn-group { flex-direction: column; }
+      .prop-amenities { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="badge">📋 IT2041 – DSS with Data – Nhóm 8</div>
+    <h1>Khảo sát Nhu cầu Nhà ở</h1>
+    <p>Giúp chúng tôi kiểm chứng hệ thống tư vấn BĐS bằng cách cho biết nhu cầu và lựa chọn của bạn</p>
+  </div>
+
+  <!-- Progress -->
+  <div class="progress-container">
+    <div class="progress-bar-wrapper">
+      <div class="progress-steps">
+        <span class="progress-step active" id="ps1">1. Thông tin</span>
+        <span class="progress-step" id="ps2">2. Ưu tiên</span>
+        <span class="progress-step" id="ps3">3. Chọn BĐS</span>
+        <span class="progress-step" id="ps4">4. Kết quả</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="width: 25%"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- STEP 1: Thông tin cá nhân -->
+    <div class="step-section active" id="step1">
+      <h2 class="section-title">👤 Thông tin & Nhu cầu cơ bản</h2>
+      <p class="section-desc">Cho chúng tôi biết bạn thuộc nhóm nào và nhu cầu nhà ở cơ bản.</p>
+
+      <div class="form-group">
+        <label class="form-label">Họ tên (hoặc mã ẩn danh) <span class="required">*</span></label>
+        <input type="text" id="respondentName" placeholder="VD: Nguyễn Văn A hoặc Anon_01">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Bạn thuộc nhóm nào? <span class="required">*</span></label>
+        <select id="userType">
+          <option value="">— Chọn —</option>
+          <option value="family">👨‍👩‍👧‍👦 Gia đình (có con nhỏ)</option>
+          <option value="young_professional">👤 Người trẻ đi làm / Độc thân</option>
+          <option value="couple">💑 Cặp đôi / Mới cưới</option>
+          <option value="investor">💰 Nhà đầu tư</option>
+          <option value="elderly">🧓 Người cao tuổi / Nghỉ hưu</option>
+        </select>
+      </div>
+
+      <div class="grid-2">
+        <div class="form-group">
+          <label class="form-label">Ngân sách tối đa (tỷ VNĐ) <span class="required">*</span></label>
+          <input type="number" id="budgetMax" placeholder="VD: 8" step="0.5" min="1" max="30">
+          <p class="form-hint">Đơn vị: tỷ đồng</p>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Số phòng ngủ tối thiểu <span class="required">*</span></label>
+          <select id="minBedrooms">
+            <option value="">— Chọn —</option>
+            <option value="1">1 phòng</option>
+            <option value="2">2 phòng</option>
+            <option value="3">3 phòng</option>
+            <option value="4">4 phòng</option>
+            <option value="5">5+ phòng</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Diện tích mong muốn tối thiểu (m²)</label>
+        <input type="number" id="minArea" placeholder="VD: 40" min="10" max="500">
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-primary" onclick="goToStep(2)">Tiếp theo →</button>
+      </div>
+    </div>
+
+    <!-- STEP 2: Mức độ ưu tiên -->
+    <div class="step-section" id="step2">
+      <h2 class="section-title">⚖️ Mức độ ưu tiên các tiêu chí</h2>
+      <p class="section-desc">Kéo thanh trượt để đánh giá mức độ quan trọng của từng tiêu chí (1 = Không quan trọng, 5 = Rất quan trọng).</p>
+
+      <div class="slider-group">
+        <div class="slider-header">
+          <span class="slider-label"><span class="icon">💰</span> Giá cả hợp lý</span>
+          <span class="slider-value" id="val_price">3</span>
+        </div>
+        <input type="range" min="1" max="5" value="3" id="pref_price" oninput="updateSlider('price')">
+      </div>
+
+      <div class="slider-group">
+        <div class="slider-header">
+          <span class="slider-label"><span class="icon">🏫</span> Gần trường học</span>
+          <span class="slider-value" id="val_school">3</span>
+        </div>
+        <input type="range" min="1" max="5" value="3" id="pref_school" oninput="updateSlider('school')">
+      </div>
+
+      <div class="slider-group">
+        <div class="slider-header">
+          <span class="slider-label"><span class="icon">🌳</span> Gần công viên</span>
+          <span class="slider-value" id="val_park">3</span>
+        </div>
+        <input type="range" min="1" max="5" value="3" id="pref_park" oninput="updateSlider('park')">
+      </div>
+
+      <div class="slider-group">
+        <div class="slider-header">
+          <span class="slider-label"><span class="icon">🏥</span> Gần bệnh viện</span>
+          <span class="slider-value" id="val_hospital">3</span>
+        </div>
+        <input type="range" min="1" max="5" value="3" id="pref_hospital" oninput="updateSlider('hospital')">
+      </div>
+
+      <div class="slider-group">
+        <div class="slider-header">
+          <span class="slider-label"><span class="icon">🛒</span> Gần siêu thị / chợ</span>
+          <span class="slider-value" id="val_supermarket">3</span>
+        </div>
+        <input type="range" min="1" max="5" value="3" id="pref_supermarket" oninput="updateSlider('supermarket')">
+      </div>
+
+      <div class="slider-group">
+        <div class="slider-header">
+          <span class="slider-label"><span class="icon">📐</span> Diện tích rộng</span>
+          <span class="slider-value" id="val_area">3</span>
+        </div>
+        <input type="range" min="1" max="5" value="3" id="pref_area" oninput="updateSlider('area')">
+      </div>
+
+      <div class="slider-group">
+        <div class="slider-header">
+          <span class="slider-label"><span class="icon">🛣️</span> Gần đường lớn</span>
+          <span class="slider-value" id="val_boulevard">3</span>
+        </div>
+        <input type="range" min="1" max="5" value="3" id="pref_boulevard" oninput="updateSlider('boulevard')">
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="goToStep(1)">← Quay lại</button>
+        <button class="btn btn-primary" onclick="goToStep(3)">Xem danh sách BĐS →</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: Chọn BĐS -->
+    <div class="step-section" id="step3">
+      <h2 class="section-title">🏠 Chọn căn BĐS bạn thích</h2>
+      <p class="section-desc">Dưới đây là danh sách BĐS tại Quận Gò Vấp phù hợp với ngân sách của bạn. Hãy chọn <strong>tối đa 5 căn</strong> bạn muốn mua nhất (theo thứ tự ưu tiên).</p>
+
+      <div class="info-banner">
+        <span>ℹ️</span>
+        <span>Click vào căn bạn muốn chọn. Thứ tự click = thứ tự ưu tiên (căn click đầu = ưng ý nhất). Click lại để bỏ chọn.</span>
+      </div>
+
+      <div class="filter-bar">
+        <span class="count-badge" id="matchCount">0 căn phù hợp</span>
+        <span class="count-badge" id="selectedCount" style="background: #d1fae5; color: #065f46;">Đã chọn: 0/5</span>
+      </div>
+
+      <div class="property-grid" id="propertyGrid"></div>
+
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="goToStep(2)">← Quay lại</button>
+        <button class="btn btn-success" onclick="goToStep(4)" id="btnSubmit" disabled>✅ Gửi khảo sát</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: Kết quả -->
+    <div class="step-section" id="step4">
+      <h2 class="section-title">🎉 Cảm ơn bạn đã khảo sát!</h2>
+      <p class="section-desc">Kết quả của bạn đã được ghi nhận. Dưới đây là dữ liệu JSON để nhóm sử dụng cho validation.</p>
+
+      <div class="result-card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem;">
+          <h3>📋 Dữ liệu khảo sát (JSON)</h3>
+          <button class="copy-btn" id="copyBtn" onclick="copyJSON()">📋 Copy</button>
+        </div>
+        <div class="json-box" id="jsonOutput"></div>
+      </div>
+
+      <div class="result-card">
+        <h3>💡 Hướng dẫn cho nhóm</h3>
+        <p style="font-size:0.9rem;color:var(--text-secondary);">
+          Copy JSON ở trên và lưu vào file <code>data/survey_responses/</code>. Mỗi phản hồi lưu 1 file JSON riêng.
+          Script evaluation sẽ so sánh danh sách <code>user_chosen_top5</code> với đề xuất của pipeline để tính Precision/NDCG.
+        </p>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-primary" onclick="resetSurvey()">🔄 Khảo sát lại</button>
+      </div>
+    </div>
+
+  </div>
+
+<script>
+// Property data (embedded from go_vap_enriched.json)
+const ALL_PROPERTIES = [{"id":"GV_037","title":"⭐️ Giảm 50tr! Nhà Vuông SHR 2 tầng 26m2 – Quang Trung Gò Vấp","ward":"P. Thông Tây Hội","price":2.85,"area":26,"beds":2,"baths":1,"floors":2,"school":516,"park":1022,"hospital":645,"supermarket":269,"boulevard":472},{"id":"GV_035","title":"Nhà Lô góc SHR 2 tầng HXH 33m2 – Quang Trung Gò Vấp","ward":"P. Thông Tây Hội","price":4.1,"area":33,"beds":3,"baths":2,"floors":2,"school":110,"park":915,"hospital":975,"supermarket":613,"boulevard":1010},{"id":"GV_030","title":"⭐️ Nhà Vuông SHR 3 tầng HXH 44m2 – Nguyễn Văn Khối Gò Vấp","ward":"P. Thông Tây Hội","price":4.35,"area":44,"beds":2,"baths":2,"floors":2,"school":641,"park":230,"hospital":276,"supermarket":541,"boulevard":1090},{"id":"GV_008","title":"SIÊU PHẨM TRUNG TÂM GÒ VẤP – NHÀ MỚI Ở NGAY – GẦN CITYLAND","ward":"P. Thông Tây Hội","price":4.55,"area":60,"beds":3,"baths":3,"floors":2,"school":614,"park":588,"hospital":313,"supermarket":186,"boulevard":727},{"id":"GV_034","title":"Giảm 100tr! Nhà Nở hậu SHR 2 tầng HXH 38m2 – Thống Nhất Gò Vấp","ward":"P. An Hội Đông","price":4.55,"area":38,"beds":2,"baths":2,"floors":2,"school":659,"park":670,"hospital":252,"supermarket":149,"boulevard":685},{"id":"GV_020","title":"Bán nhà 2 Tầng HXH Thống nhất p16 Gò Vấp","ward":"P. An Hội Đông","price":4.65,"area":34,"beds":2,"baths":2,"floors":2,"school":719,"park":706,"hospital":220,"supermarket":396,"boulevard":849},{"id":"GV_031","title":"Bán nhà đẹp 3 tầng đường Bùi Quang Là, Phường 12, Quận Gò Vấp","ward":"P. An Hội Tây","price":4.72,"area":40,"beds":4,"baths":4,"floors":3,"school":711,"park":121,"hospital":1236,"supermarket":372,"boulevard":716},{"id":"GV_032","title":"Bán nhà 2 tầng Phường 6, Đường Phạm Văn Chiêu, Gò Vấp","ward":"P. An Hội Tây","price":4.77,"area":40,"beds":2,"baths":2,"floors":2,"school":137,"park":995,"hospital":1138,"supermarket":1375,"boulevard":570},{"id":"GV_007","title":"Bán nhà 42.6m² 4.8 tỷ tại 2 Tầng 3PN Phường 12 Quận Gò Vấp","ward":"P. An Hội Tây","price":4.8,"area":42.6,"beds":3,"baths":2,"floors":3,"school":772,"park":488,"hospital":1504,"supermarket":83,"boulevard":1076},{"id":"GV_027","title":"Bán nhà 2 Tầng quang trung Phường 14 Quận Gò Vấp","ward":"P. An Hội Tây","price":4.99,"area":50,"beds":3,"baths":3,"floors":2,"school":1216,"park":675,"hospital":1399,"supermarket":885,"boulevard":968},{"id":"GV_013","title":"Bán nhà 2 Tầng HXH full NỘI THẤT Quang Trung p14 Gò Vấp","ward":"P. An Hội Tây","price":5.08,"area":50,"beds":3,"baths":2,"floors":2,"school":1304,"park":603,"hospital":1485,"supermarket":973,"boulevard":1060},{"id":"GV_029","title":"Bán nhà 49m² 2 tầng quang trung 3m5×14m² Phường 14 Gò Vấp","ward":"P. Thông Tây Hội","price":5.28,"area":49,"beds":3,"baths":2,"floors":2,"school":197,"park":1043,"hospital":168,"supermarket":255,"boulevard":484},{"id":"GV_005","title":"Chính chủ bán nhà hẻm 562 Lê Quang Định, P1, Gò Vấp","ward":"P. Hạnh Thông","price":5.5,"area":48.3,"beds":2,"baths":2,"floors":1,"school":3628,"park":1389,"hospital":4351,"supermarket":3965,"boulevard":800},{"id":"GV_006","title":"HXH PHẠM VĂN CHIÊU GÒ VẤP – 45M² – 5 TẦNG – 5PN","ward":"P. An Hội Tây","price":5.5,"area":45,"beds":5,"baths":5,"floors":5,"school":180,"park":1082,"hospital":1278,"supermarket":1283,"boulevard":734},{"id":"GV_004","title":"Chính chủ bán nhà đường Lê Đức Thọ, P15, Q.Gò Vấp","ward":"P. An Hội Đông","price":5.52,"area":80,"beds":1,"baths":1,"floors":1,"school":370,"park":1303,"hospital":698,"supermarket":1509,"boulevard":191},{"id":"GV_036","title":"Nhà Vuông SHR 2 tầng HXH 47m2 – Quang Trung Gò Vấp","ward":"P. Thông Tây Hội","price":5.9,"area":47,"beds":3,"baths":2,"floors":2,"school":406,"park":527,"hospital":713,"supermarket":567,"boulevard":1120},{"id":"GV_015","title":"Bán nhà 3 TẦNG HXM Lê Lợi p4 Gò Vấp","ward":"P. Hạnh Thông","price":6.0,"area":54,"beds":7,"baths":8,"floors":3,"school":3078,"park":1080,"hospital":3775,"supermarket":3386,"boulevard":418},{"id":"GV_033","title":"Bán nhà Quang Trung Gò Vấp, 3 tầng, 5x12, Hẻm xe hơi thông","ward":"P. Thông Tây Hội","price":6.5,"area":59,"beds":4,"baths":4,"floors":3,"school":823,"park":1024,"hospital":978,"supermarket":586,"boulevard":662},{"id":"GV_025","title":"Bán nhà 4 tầng HXH đường số 51 Phường 14 Quận Gò Vấp","ward":"P. An Hội Tây","price":7.1,"area":68,"beds":4,"baths":3,"floors":4,"school":1243,"park":858,"hospital":1502,"supermarket":1119,"boulevard":1198},{"id":"GV_024","title":"Bán nhà 4 tầng HXH Phạm Văn Chiêu, Gò Vấp","ward":"P. Thông Tây Hội","price":7.5,"area":64,"beds":4,"baths":5,"floors":4,"school":685,"park":1303,"hospital":915,"supermarket":604,"boulevard":834},{"id":"GV_003","title":"Bán nhà đường Lê Đức Thọ, P16, Quận Gò Vấp","ward":"P. An Hội Đông","price":8.95,"area":95,"beds":1,"baths":1,"floors":1,"school":497,"park":1155,"hospital":667,"supermarket":640,"boulevard":782},{"id":"GV_018","title":"Bán nhà 5 Tầng HXH Dương Quảng Hàm P6 Gò Vấp","ward":"P. An Nhơn","price":9.4,"area":54,"beds":6,"baths":5,"floors":5,"school":1930,"park":2171,"hospital":2729,"supermarket":2347,"boulevard":1794},{"id":"GV_021","title":"Bán nhà 4 TẦNG HXH Phạm Văn Chiêu q14 Gò Vấp","ward":"P. An Hội Tây","price":9.9,"area":80,"beds":3,"baths":4,"floors":4,"school":241,"park":1124,"hospital":1344,"supermarket":1238,"boulevard":816},{"id":"GV_011","title":"Bán nhà 5 tầng MT đường Thống Nhất, P11 Gò Vấp","ward":"P. Thông Tây Hội","price":10.5,"area":88,"beds":6,"baths":7,"floors":5,"school":583,"park":744,"hospital":441,"supermarket":104,"boulevard":574},{"id":"GV_022","title":"Bán nhà 2 HXH Nguyễn Thái Sơn P4 Gò Vấp","ward":"P. Hạnh Thông","price":10.5,"area":93,"beds":3,"baths":2,"floors":2,"school":2822,"park":896,"hospital":3529,"supermarket":3143,"boulevard":298},{"id":"GV_023","title":"Bán nhà 4 Tầng HXH Phạm Văn Chiêu Gò Vấp","ward":"P. Thông Tây Hội","price":11.5,"area":96,"beds":3,"baths":5,"floors":4,"school":245,"park":661,"hospital":883,"supermarket":1188,"boulevard":697},{"id":"GV_009","title":"Bán nhà MT kinh doanh Quang Trung, P11 Gò Vấp","ward":"P. Thông Tây Hội","price":11.6,"area":91,"beds":2,"baths":1,"floors":1,"school":318,"park":855,"hospital":1027,"supermarket":394,"boulevard":1213},{"id":"GV_016","title":"Bán nhà 2 Tầng HXH Quang Trung p8 Gò Vấp","ward":"P. Thông Tây Hội","price":12.0,"area":100,"beds":7,"baths":2,"floors":2,"school":857,"park":1008,"hospital":1018,"supermarket":624,"boulevard":680},{"id":"GV_001","title":"Biệt Thự Lô Góc 2 Mặt Tiền – 8x15=120m² – Phường 15, Gò Vấp","ward":"P. An Hội Đông","price":12.6,"area":120,"beds":7,"baths":9,"floors":4,"school":1447,"park":2241,"hospital":858,"supermarket":1817,"boulevard":1603},{"id":"GV_010","title":"Bán nhà 3 tầng MT đường Thống Nhất, Gò Vấp","ward":"P. An Hội Đông","price":13.5,"area":119.1,"beds":5,"baths":3,"floors":3,"school":689,"park":475,"hospital":136,"supermarket":528,"boulevard":861},{"id":"GV_014","title":"Bán nhà 4 Tầng HXH Lê Đức Thọ p16 Gò Vấp","ward":"P. An Hội Đông","price":13.8,"area":108,"beds":7,"baths":4,"floors":4,"school":479,"park":751,"hospital":369,"supermarket":662,"boulevard":699},{"id":"GV_002","title":"Bán nhà ngang 8m KDC đông đúc liền kề Gò Vấp","ward":"P. An Phú Đông","price":15.8,"area":134.8,"beds":6,"baths":7,"floors":3,"school":1574,"park":2644,"hospital":1476,"supermarket":2078,"boulevard":1866},{"id":"GV_028","title":"Bán Nhà 2 Tầng 2 Mặt Tiền Phạm Văn Bạch, P12 Gò Vấp","ward":"P. An Hội Tây","price":16.5,"area":137.5,"beds":3,"baths":3,"floors":2,"school":422,"park":560,"hospital":1201,"supermarket":350,"boulevard":897},{"id":"GV_012","title":"Bán biệt thự siêu đẹp, đường Thống Nhất, Gò Vấp","ward":"P. Thông Tây Hội","price":17.0,"area":258.4,"beds":6,"baths":6,"floors":3,"school":189,"park":879,"hospital":787,"supermarket":518,"boulevard":722},{"id":"GV_026","title":"Bán nhà 2 tầng MT Phạm Văn Chiêu, P13 Gò Vấp","ward":"P. An Hội Đông","price":19.0,"area":150,"beds":3,"baths":3,"floors":2,"school":394,"park":979,"hospital":960,"supermarket":1345,"boulevard":229},{"id":"GV_019","title":"Bán nhà 4 Tầng MT Phạm Văn Bạch, Gò Vấp","ward":"P. An Hội Tây","price":21.9,"area":98,"beds":4,"baths":5,"floors":4,"school":278,"park":502,"hospital":1054,"supermarket":434,"boulevard":754},{"id":"GV_017","title":"Bán nhà 5 Tầng MT Nguyễn Văn Công p3 Gò Vấp","ward":"P. Hạnh Thông","price":27.0,"area":127,"beds":5,"baths":5,"floors":5,"school":2028,"park":475,"hospital":2852,"supermarket":2333,"boulevard":900}];
+
+let currentStep = 1;
+let selectedProperties = [];
+
+function updateSlider(name) {
+  const val = document.getElementById('pref_' + name).value;
+  document.getElementById('val_' + name).textContent = val;
+}
+
+function goToStep(step) {
+  // Validate current step
+  if (step > currentStep) {
+    if (currentStep === 1 && !validateStep1()) return;
+    if (currentStep === 3 && selectedProperties.length === 0) {
+      alert('Vui lòng chọn ít nhất 1 căn BĐS!');
+      return;
+    }
+  }
+
+  document.querySelectorAll('.step-section').forEach(s => s.classList.remove('active'));
+  document.getElementById('step' + step).classList.add('active');
+
+  // Update progress
+  const pct = step * 25;
+  document.getElementById('progressFill').style.width = pct + '%';
+  for (let i = 1; i <= 4; i++) {
+    const el = document.getElementById('ps' + i);
+    el.classList.remove('active', 'done');
+    if (i < step) el.classList.add('done');
+    if (i === step) el.classList.add('active');
+  }
+
+  currentStep = step;
+
+  if (step === 3) renderProperties();
+  if (step === 4) renderResults();
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function validateStep1() {
+  const name = document.getElementById('respondentName').value.trim();
+  const type = document.getElementById('userType').value;
+  const budget = parseFloat(document.getElementById('budgetMax').value);
+  const beds = document.getElementById('minBedrooms').value;
+
+  if (!name) { alert('Vui lòng nhập họ tên!'); return false; }
+  if (!type) { alert('Vui lòng chọn nhóm người dùng!'); return false; }
+  if (!budget || budget < 1) { alert('Vui lòng nhập ngân sách hợp lệ!'); return false; }
+  if (!beds) { alert('Vui lòng chọn số phòng ngủ tối thiểu!'); return false; }
+  return true;
+}
+
+function renderProperties() {
+  const budget = parseFloat(document.getElementById('budgetMax').value);
+  const minBeds = parseInt(document.getElementById('minBedrooms').value);
+  const minArea = parseFloat(document.getElementById('minArea').value) || 0;
+
+  const filtered = ALL_PROPERTIES.filter(p =>
+    p.price <= budget && p.beds >= minBeds && p.area >= minArea
+  );
+
+  document.getElementById('matchCount').textContent = filtered.length + ' căn phù hợp';
+
+  const grid = document.getElementById('propertyGrid');
+  grid.innerHTML = '';
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '<div class="info-banner"><span>⚠️</span><span>Không có BĐS nào phù hợp với tiêu chí của bạn. Hãy quay lại điều chỉnh ngân sách hoặc số phòng ngủ.</span></div>';
+    return;
+  }
+
+  filtered.forEach(p => {
+    const selIdx = selectedProperties.indexOf(p.id);
+    const isSelected = selIdx >= 0;
+    const card = document.createElement('div');
+    card.className = 'property-card' + (isSelected ? ' selected' : '');
+    card.onclick = () => toggleProperty(p.id);
+
+    const distFmt = (d) => d >= 1000 ? (d/1000).toFixed(1) + 'km' : d + 'm';
+
+    card.innerHTML = `
+      <div class="rank-badge">${isSelected ? selIdx + 1 : ''}</div>
+      <div class="check-badge">${isSelected ? '✓' : ''}</div>
+      <div class="prop-id">${p.id}</div>
+      <div class="prop-title">${p.title}</div>
+      <div class="prop-specs">
+        <span class="prop-spec price">💰 ${p.price} tỷ</span>
+        <span class="prop-spec">📐 ${p.area}m²</span>
+        <span class="prop-spec">🛏 ${p.beds} PN</span>
+        <span class="prop-spec">🚿 ${p.baths} WC</span>
+        <span class="prop-spec">🏢 ${p.floors} tầng</span>
+        <span class="prop-spec">📍 ${p.ward}</span>
+      </div>
+      <div class="prop-amenities">
+        <div class="prop-amenity">🏫 Trường: ${distFmt(p.school)}</div>
+        <div class="prop-amenity">🌳 Công viên: ${distFmt(p.park)}</div>
+        <div class="prop-amenity">🏥 Bệnh viện: ${distFmt(p.hospital)}</div>
+        <div class="prop-amenity">🛒 Siêu thị: ${distFmt(p.supermarket)}</div>
+        <div class="prop-amenity">🛣️ Đường lớn: ${distFmt(p.boulevard)}</div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function toggleProperty(id) {
+  const idx = selectedProperties.indexOf(id);
+  if (idx >= 0) {
+    selectedProperties.splice(idx, 1);
+  } else {
+    if (selectedProperties.length >= 5) {
+      alert('Bạn chỉ được chọn tối đa 5 căn!');
+      return;
+    }
+    selectedProperties.push(id);
+  }
+
+  document.getElementById('selectedCount').textContent = 'Đã chọn: ' + selectedProperties.length + '/5';
+  document.getElementById('btnSubmit').disabled = selectedProperties.length === 0;
+  renderProperties();
+}
+
+function getPreferences() {
+  const keys = ['price', 'school', 'park', 'hospital', 'supermarket', 'area', 'boulevard'];
+  const raw = {};
+  keys.forEach(k => {
+    raw[k] = parseInt(document.getElementById('pref_' + k).value);
+  });
+
+  // Normalize to weights
+  const total = Object.values(raw).reduce((a, b) => a + b, 0);
+  const weights = {};
+  keys.forEach(k => {
+    weights[k] = { importance: raw[k], weight: Math.round((raw[k] / total) * 1000) / 1000 };
+  });
+  return weights;
+}
+
+function renderResults() {
+  const result = {
+    response_id: 'SURVEY_' + Date.now(),
+    timestamp: new Date().toISOString(),
+    respondent: document.getElementById('respondentName').value.trim(),
+    user_type: document.getElementById('userType').value,
+    hard_constraints: {
+      budget_max_billion: parseFloat(document.getElementById('budgetMax').value),
+      budget_max_million: parseFloat(document.getElementById('budgetMax').value) * 1000,
+      min_bedrooms: parseInt(document.getElementById('minBedrooms').value),
+      min_area_m2: parseFloat(document.getElementById('minArea').value) || null
+    },
+    preference_ratings: getPreferences(),
+    user_chosen_top5: selectedProperties,
+    note: 'Thứ tự trong user_chosen_top5 là thứ tự ưu tiên (index 0 = ưng ý nhất)'
+  };
+
+  const json = JSON.stringify(result, null, 2);
+  document.getElementById('jsonOutput').textContent = json;
+}
+
+function copyJSON() {
+  const text = document.getElementById('jsonOutput').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = '✅ Đã copy!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = '📋 Copy';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+
+function resetSurvey() {
+  selectedProperties = [];
+  currentStep = 1;
+  document.getElementById('respondentName').value = '';
+  document.getElementById('userType').value = '';
+  document.getElementById('budgetMax').value = '';
+  document.getElementById('minBedrooms').value = '';
+  document.getElementById('minArea').value = '';
+  ['price','school','park','hospital','supermarket','area','boulevard'].forEach(k => {
+    document.getElementById('pref_' + k).value = 3;
+    document.getElementById('val_' + k).textContent = '3';
+  });
+  goToStep(1);
+}
+</script>
+
+</body>
+</html>
