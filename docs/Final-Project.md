@@ -25,7 +25,7 @@ Kế hoạch phân tích dữ liệu. Ví dụ số lượng mẫu, số lượn
 
 ## 5. Solutions
 
-### 5.1 Form -> Inference Engine -> LLM explaination
+### 5.1 Form -> Inference Engine -> LLM explaination (baseline, không dùng làm solution chính)
 Ý tưởng chính: người dùng nhập nhu cầu qua form cố định, hệ thống chuyển nhu cầu thành tập luật và trọng số, sau đó inference engine lọc và chấm điểm để tạo Top 5, cuối cùng LLM sinh lời giải thích.
 
 Dữ liệu sử dụng: dữ liệu người dùng nhập từ form và cơ sở dữ liệu bất động sản đã được làm giàu với các thuộc tính như giá, số phòng, khoảng cách đến trường học, công viên, trục giao thông.
@@ -35,6 +35,8 @@ Cách xử lý: form được chuẩn hóa thành `hard constraints` và `soft p
 Kết quả kỳ vọng: hệ thống tạo ra khuyến nghị minh bạch, dễ kiểm chứng, thời gian xử lý nhanh và phù hợp với các tiêu chí đầu vào tương đối cố định.
 
 pipleline: `Form -> Preference Profile -> Rule-based Filtering -> Rule-based Scoring -> Top 5 Candidates -> LLM Explanation`
+
+Ghi chú cập nhật: solution 5.1 chỉ nên giữ như baseline kỹ thuật hoặc bước tiền xử lý, vì dễ bị đánh giá là bộ lọc/rule-based recommender thông thường và chưa thể hiện rõ bản chất DSS with Data.
 
 ### 5.2 Form + User Query -> Inference Engine + LLM -> LLM explaination
 Ý tưởng chính: người dùng vừa nhập form cố định vừa nhập thêm nhu cầu đặc biệt bằng ngôn ngữ tự nhiên; LLM xử lý phần nhu cầu bổ sung, còn inference engine giữ vai trò lọc, chấm điểm và tái xếp hạng.
@@ -47,6 +49,17 @@ Kết quả kỳ vọng: hệ thống giữ được tính minh bạch của rul
 
 pipeline: `Form + Additional User Request -> LLM Requirement Parsing and Deduplication -> Amenity Mapping -> Rule-based Top 10 -> Tool-based Attribute Enrichment -> Re-scoring/Re-ranking -> Top 5 -> LLM Explanation`
 
+### 5.3 Data-driven MCDA -> TOPSIS Ranking -> Sensitivity Analysis -> LLM explanation
+Ý tưởng chính: mô hình hóa bài toán chọn BĐS như một bài toán ra quyết định đa tiêu chí (Multi-Criteria Decision Analysis). Mỗi BĐS là một phương án, mỗi thuộc tính là một tiêu chí, sau đó dùng AHP/Entropy để tính trọng số và TOPSIS để xếp hạng phương án theo khoảng cách đến nghiệm lý tưởng.
+
+Dữ liệu sử dụng: cơ sở dữ liệu BĐS đã được làm giàu, tiêu chí người dùng, dữ liệu khảo sát/preference nếu có, và các feature như giá, diện tích, giá/m2, số phòng, khoảng cách đến trường học, công viên, bệnh viện, siêu thị, giao thông.
+
+Cách xử lý: đầu tiên lọc các phương án vi phạm điều kiện bắt buộc như vượt ngân sách hoặc thiếu phòng ngủ; sau đó xây dựng decision matrix giữa BĐS và tiêu chí; tính trọng số người dùng bằng AHP hoặc khảo sát, kết hợp với trọng số khách quan từ dữ liệu bằng Entropy/CRITIC; chạy TOPSIS để xếp hạng; cuối cùng chạy sensitivity analysis để xem Top 5 có ổn định khi trọng số thay đổi hay không.
+
+Kết quả kỳ vọng: hệ thống không chỉ đưa ra Top 5, mà còn giải thích được trade-off, tiêu chí nào ảnh hưởng mạnh đến quyết định, phương án nào là robust choice và ranking có nhạy với giả định trọng số hay không.
+
+pipeline: `User Preference -> Hard Constraint Filtering -> Decision Matrix -> AHP/Entropy Weighting -> TOPSIS Ranking -> Sensitivity Analysis -> Top 5 -> LLM Trade-off Explanation`
+
 ## 6. Tiêu chí đánh giá/so sánh
 
 Các tiêu chí đánh giá:
@@ -58,6 +71,8 @@ Các tiêu chí đánh giá:
 6. Khả năng mở rộng
 7. Mức độ hữu ích
 8. TBD
+
+Kế hoạch xây dựng tập validation chi tiết nằm ở `docs/validation_dataset_plan.md`. Tập validation nên gồm 3 phần: validation properties, user scenarios và human relevance labels để so sánh solution 5.2 với 5.3 bằng CSR@5, AvgRel@5, NDCG@5, MAP@5, Pairwise Win Rate và Stability.
 
 ## 7. Lưu ý
 1. Tiêu chí đánh giá/so sánh (1) và (2) phải dựa trên một cơ sở rõ ràng. Có thể hiểu là phải dựa trên một tập validation nào đó. Tạm thời chấp nhận tập validation là tập do chúng ta tự phân loại/xếp hạng dựa trên sự tổng hợp và suy luận
