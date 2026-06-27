@@ -2,7 +2,7 @@
 
 ## 1. Hướng dẫn sử dụng
 - Mỗi dòng là 1 test case.
-- Cả Solution 5.1 và 5.2 đều chạy trên **cùng một tập case này** để đảm bảo so sánh công bằng.
+- Cả Solution 1 và 2 đều chạy trên **cùng một tập case này** để đảm bảo so sánh công bằng.
 - Input chung gồm 2 phần: **Form** (các tiêu chí cơ bản có thể định lượng) và **Nhu cầu thêm** (mô tả tự do, có thể để trống).
 - Chỉ ghi kỳ vọng đầu ra ở mức định hướng, không cần chi tiết kỹ thuật.
 

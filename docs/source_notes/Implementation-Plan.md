@@ -1,11 +1,11 @@
 # Kế hoạch triển khai - Kiểm soát tiến độ theo tuần
 
 ## 1. Mục tiêu
-Triển khai song song Solution 5.1 và Solution 5.2 với 4 thành viên chia thành 2 nhóm độc lập, theo dõi tiến độ qua đầu ra và meeting cuối tuần.
+Triển khai song song Solution 1 và Solution 2 với 4 thành viên chia thành 2 nhóm độc lập, theo dõi tiến độ qua đầu ra và meeting cuối tuần.
 
 ## 2. Phân nhóm
-- Nhóm 5.1 (member-1, member-2): phụ trách Solution 5.1.
-- Nhóm 5.2 (member-3, member-4): phụ trách Solution 5.2.
+- Nhóm 1 (member-1, member-2): phụ trách Solution 1.
+- Nhóm 2 (member-3, member-4): phụ trách Solution 2.
 
 Mỗi nhóm tự quyết định cách triển khai chi tiết.
 
@@ -82,10 +82,10 @@ Việc cần làm:
 
 | Thành viên | Tuần 1 | Tuần 2 | Tuần 3 | Tuần 4 | Tuần 5 | Ghi chú |
 |---|---|---|---|---|---|---|
-| member-1 | Planned | Planned | Planned | Planned | Planned | Nhóm 5.1 |
-| member-2 | Planned | Planned | Planned | Planned | Planned | Nhóm 5.1 |
-| member-3 | Planned | Planned | Planned | Planned | Planned | Nhóm 5.2 |
-| member-4 | Planned | Planned | Planned | Planned | Planned | Nhóm 5.2 |
+| member-1 | Planned | Planned | Planned | Planned | Planned | Nhóm 1 |
+| member-2 | Planned | Planned | Planned | Planned | Planned | Nhóm 1 |
+| member-3 | Planned | Planned | Planned | Planned | Planned | Nhóm 2 |
+| member-4 | Planned | Planned | Planned | Planned | Planned | Nhóm 2 |
 
 ## 6. Quy ước cập nhật
 - **Planned**: đã nhận việc, chưa hoàn tất.

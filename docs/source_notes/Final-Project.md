@@ -11,7 +11,7 @@
 ## 2. Input và Output của hệ thống
 
 **Input chung cho cả hai solution:**
-Cả Solution 5.1 và Solution 5.2 đều nhận cùng một dạng input để đảm bảo so sánh công bằng.
+Cả Solution 1 và Solution 2 đều nhận cùng một dạng input để đảm bảo so sánh công bằng.
 - **Form cố định**: các tiêu chí cơ bản có thể định lượng được (ngân sách, số phòng ngủ, khoảng cách tối đa đến trường học / công viên / trục giao thông).
 - **Nhu cầu thêm** *(tùy chọn)*: mô tả tự do bằng ngôn ngữ tự nhiên cho các mong muốn bổ sung mà form chưa bao phủ.
 
@@ -93,16 +93,16 @@ Hai solution xử lý cùng input này theo cách khác nhau, đó là điểm k
 
 ## 5. Solutions
 
-### 5.1 Form + Free-Text -> Fuzzy LLM Reasoning -> Iterative Search -> Top 5 + Tradeoff Explanation
-Ý tưởng chính: nhận cùng input (form + nhu cầu thêm) như solution 5.2, nhưng LLM gộp toàn bộ thành một mô tả ngữ nghĩa thống nhất rồi dùng fuzzy reasoning để xác định các chiều mơ hồ, thực hiện tìm kiếm lặp từ nhiều góc độ, phân nhóm kết quả thành các cluster và giải thích tradeoff rõ ràng.
+### 5.1 Form + Free-Text → LLM Agent (Tool Use) → Top 5 + Explanation
+Ý tưởng chính: LLM hoạt động như một agent được trang bị bộ tool cụ thể (SQL query, vector search, Map API, distance calculation), tự lên kế hoạch và gọi tool theo vòng lặp Reason → Act → Observe cho đến khi tìm đủ ứng viên đa dạng.
 
-Dữ liệu sử dụng: form + nhu cầu thêm (được LLM chuyển thành câu mô tả tổng hợp), cơ sở dữ liệu bất động sản với vector embedding (mô tả, tiện ích, khu vực) và metadata dạng SQL (giá, số phòng, diện tích).
+Dữ liệu sử dụng: form + nhu cầu thêm làm đầu vào cho agent; relational DB và vector DB làm nguồn tìm kiếm; Map API cho dữ liệu không gian.
 
-Cách xử lý: LLM gộp form và nhu cầu thêm thành một biểu diễn ngữ nghĩa thống nhất; xác định các chiều mơ hồ (chất lượng, giá, vị trí, tiện ích); sinh ra nhiều câu truy vấn ngữ nghĩa khác nhau cho từng diễn giải; thực hiện multi-round vector search; phân nhóm kết quả thành các cluster đặc trưng (ví dụ: sống động, yên tĩnh, cân bằng); tính fuzzy satisfaction score [0, 1] cho từng chiều; áp SQL filter nếu có hard constraint tường minh; chọn Top 5 đa dạng từ nhiều cluster; LLM sinh lời giải thích tradeoff đầy đủ theo từng nhóm.
+Cách xử lý: LLM nhận input, đọc system prompt (có few-shot examples hướng dẫn cách suy luận), tự lên chiến lược → gọi `sql_filter()` cho hard constraints → gọi `vector_search()` theo nhiều góc diễn giải → gọi `fetch_nearby()` hoặc `get_distance()` khi cần kiểm tra tiện ích → đánh giá sau mỗi tool call → dừng khi đủ đa dạng → chọn Top 5 → sinh giải thích.
 
-Kết quả kỳ vọng: hệ thống hiểu được nhu cầu mơ hồ, đưa ra Top 5 đa dạng từ nhiều hướng, kèm lời giải thích tradeoff minh bạch giúp người dùng nhìn thấy các lựa chọn khác nhau và ra quyết định phù hợp với ưu tiên thực sự của họ.
+Kết quả kỳ vọng: hệ thống linh hoạt, không bị giới hạn bởi pipeline cố định, kết hợp nhiều nguồn dữ liệu trong cùng một phiên suy luận và cải thiện chất lượng liên tục qua system prompt và few-shot.
 
-Pipeline: `Form + Free-Text → LLM Semantic Fusion → Fuzzy Analysis → Multi-Round Vector Search → Result Clustering → Tradeoff Analysis → SQL Filtering (nếu có) → Top 5 Selection → LLM Explanation with Tradeoff`
+Pipeline: `Form + Free-Text → LLM Agent (System Prompt + Tools) → [Reason → Act → Observe]* → Top 5 → LLM Explanation`
 
 ### 5.2 Form + User Query -> Inference Engine + LLM -> LLM explaination
 Ý tưởng chính: người dùng vừa nhập form cố định vừa nhập thêm nhu cầu đặc biệt bằng ngôn ngữ tự nhiên; LLM xử lý phần nhu cầu bổ sung, còn inference engine giữ vai trò lọc, chấm điểm và tái xếp hạng.
@@ -111,7 +111,7 @@ Dữ liệu sử dụng: dữ liệu từ form, nhu cầu thêm của người d
 
 Cách xử lý: chạy form qua inference engine để lấy Top 10 ban đầu; LLM bóc tách nhu cầu thêm, xử lý cả các nhu cầu bị trùng với form, rồi quy đổi chúng thành `hard constraints`, `soft preferences`; gọi tool để enrichment đồng loạt các nhu cầu thêm (thuộc tính mới) này vào Top 10; sau đó chuẩn hóa điểm, re-ranking và cắt còn Top 5; LLM sinh lời giải thích dựa trên Top 5 này.
 
-Kết quả kỳ vọng: hệ thống giữ được tính minh bạch của rule-based nhưng vẫn xử lý được các nhu cầu mới và mơ hồ hơn; đổi lại chi phí API, độ trễ và độ phức tạp triển khai sẽ cao hơn solution 5.1.
+Kết quả kỳ vọng: hệ thống giữ được tính minh bạch của rule-based nhưng vẫn xử lý được các nhu cầu mới và mơ hồ hơn; đổi lại chi phí API, độ trễ và độ phức tạp triển khai sẽ cao hơn Solution 1.
 
 pipeline: `Form + Additional User Request -> LLM Requirement Parsing and Deduplication -> Amenity Mapping -> Rule-based Top 10 -> Tool-based Attribute Enrichment -> Re-scoring/Re-ranking -> Top 5 -> LLM Explanation`
 
