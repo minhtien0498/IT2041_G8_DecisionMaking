@@ -189,7 +189,8 @@
 
     input[type="text"],
     input[type="number"],
-    select {
+    select,
+    textarea {
       width: 100%;
       padding: 0.75rem 1rem;
       border: 2px solid var(--border);
@@ -200,7 +201,12 @@
       transition: all 0.2s;
       color: var(--text-primary);
     }
-    input:focus, select:focus {
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+    input:focus, select:focus, textarea:focus {
       outline: none;
       border-color: var(--accent);
       box-shadow: 0 0 0 3px var(--accent-light);
@@ -593,6 +599,12 @@
         <input type="number" id="minArea" placeholder="VD: 40" min="10" max="500">
       </div>
 
+      <div class="form-group">
+        <label class="form-label">Mô tả thêm nhu cầu của bạn</label>
+        <textarea id="userNeedText" placeholder="VD: Gia đình tôi có 2 con nhỏ, muốn nhà dưới 6 tỷ, gần trường học và công viên, không quá xa siêu thị."></textarea>
+        <p class="form-hint">Phần này dùng để kiểm tra khả năng hiểu nhu cầu tự nhiên của solution 5.2.</p>
+      </div>
+
       <div class="btn-group">
         <button class="btn btn-primary" onclick="goToStep(2)">Tiếp theo →</button>
       </div>
@@ -870,6 +882,7 @@ function renderResults() {
       min_bedrooms: parseInt(document.getElementById('minBedrooms').value),
       min_area_m2: parseFloat(document.getElementById('minArea').value) || null
     },
+    user_need_text: document.getElementById('userNeedText').value.trim() || null,
     preference_ratings: getPreferences(),
     user_chosen_top5: selectedProperties,
     note: 'Thứ tự trong user_chosen_top5 là thứ tự ưu tiên (index 0 = ưng ý nhất)'
@@ -900,6 +913,7 @@ function resetSurvey() {
   document.getElementById('budgetMax').value = '';
   document.getElementById('minBedrooms').value = '';
   document.getElementById('minArea').value = '';
+  document.getElementById('userNeedText').value = '';
   ['price','school','park','hospital','supermarket','area','boulevard'].forEach(k => {
     document.getElementById('pref_' + k).value = 3;
     document.getElementById('val_' + k).textContent = '3';
