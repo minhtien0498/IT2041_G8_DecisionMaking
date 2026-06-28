@@ -6,11 +6,11 @@ File này đánh giá 2 solution hiện có trong `source_notes/` và gợi ý c
 
 | Solution | Short name | Core idea | Recommendation |
 |---|---|---|---|
-| 5.1 | Rule-based recommender baseline | Form cố định -> luật lọc -> chấm điểm -> Top 5 -> LLM giải thích | Chỉ nên giữ làm baseline kỹ thuật, không nên dùng làm solution chính nếu thầy đánh giá chưa phù hợp DSS |
-| 5.2 | Hybrid LLM + Map enrichment | Form + nhu cầu tự nhiên -> LLM parse -> gọi map/POI API -> re-rank -> LLM giải thích | Nên dùng làm hướng chính/đề xuất nâng cấp |
-| 5.3 | Data-driven MCDA/TOPSIS | User preference + enriched data -> decision matrix -> AHP/Entropy weights -> TOPSIS -> sensitivity analysis | Nên dùng làm solution thay thế 5.1 vì thể hiện rõ bài toán ra quyết định đa tiêu chí |
+| Solution 1 | Rule-based recommender baseline | Form cố định -> luật lọc -> chấm điểm -> Top 5 -> LLM giải thích | Chỉ nên giữ làm baseline kỹ thuật, không nên dùng làm solution chính nếu thầy đánh giá chưa phù hợp DSS |
+| Solution 2 | Hybrid LLM + Map enrichment | Form + nhu cầu tự nhiên -> LLM parse -> gọi map/POI API -> re-rank -> LLM giải thích | Nên dùng làm hướng chính/đề xuất nâng cấp |
+| Solution 3 | Data-driven MCDA/TOPSIS | User preference + enriched data -> decision matrix -> AHP/Entropy weights -> TOPSIS -> sensitivity analysis | Nên dùng làm solution thay thế Solution 1 vì thể hiện rõ bài toán ra quyết định đa tiêu chí |
 
-## 2. Solution 5.1 Evaluation
+## 2. Solution 1 Evaluation
 
 ### Pipeline
 
@@ -57,9 +57,9 @@ Nên định nghĩa 3-4 persona để test:
 
 ### Verdict
 
-Solution 5.1 **chỉ nên giữ làm baseline hoặc bước tiền xử lý**. Nếu thầy đánh giá solution này chưa phù hợp với môn DSS with Data, không nên tiếp tục bảo vệ nó như một hướng chính vì dễ bị xem là bộ lọc nâng cao.
+Solution 1 **chỉ nên giữ làm baseline hoặc bước tiền xử lý**. Nếu thầy đánh giá solution này chưa phù hợp với môn DSS with Data, không nên tiếp tục bảo vệ nó như một hướng chính vì dễ bị xem là bộ lọc nâng cao.
 
-## 3. Solution 5.2 Evaluation
+## 3. Solution 2 Evaluation
 
 ### Pipeline
 
@@ -95,7 +95,7 @@ Form + Additional User Request
 - Dễ tăng độ phức tạp: parse user intent, geocode, search POI, normalize score.
 - LLM có rủi ro hallucination nếu không khóa output schema.
 - Chi phí và quota API có thể thành rủi ro.
-- Nếu chỉ enrich Top 10 sau bước 5.1, có thể bỏ sót một số listing ngoài Top 10 nhưng rất phù hợp với nhu cầu bổ sung.
+- Nếu chỉ enrich Top 10 sau bước Solution 1, có thể bỏ sót một số listing ngoài Top 10 nhưng rất phù hợp với nhu cầu bổ sung.
 
 ### What To Improve
 
@@ -139,9 +139,9 @@ LLM output nên bị khóa schema:
 
 ### Verdict
 
-Solution 5.2 **nên là solution chính để trình bày với thầy**, nhưng phải nói rõ đây là bản nâng cấp trên nền 5.1. Demo có thể làm ở scale nhỏ để kiểm soát API và thời gian.
+Solution 2 **nên là solution chính để trình bày với thầy**, nhưng phải nói rõ đây là bản nâng cấp trên nền Solution 1. Demo có thể làm ở scale nhỏ để kiểm soát API và thời gian.
 
-## 4. Solution 5.3 Evaluation
+## 4. Solution 3 Evaluation
 
 ### Pipeline
 
@@ -161,22 +161,22 @@ User Preference
 ### Strengths
 
 - Rất hợp với DSS vì mô hình hóa rõ `alternatives`, `criteria`, `weights`, `decision matrix` và `ranking`.
-- Trọng số có cơ sở hơn 5.1 vì có thể lấy từ AHP/user survey và hiệu chỉnh bằng Entropy/CRITIC từ dữ liệu.
+- Trọng số có cơ sở hơn Solution 1 vì có thể lấy từ AHP/user survey và hiệu chỉnh bằng Entropy/CRITIC từ dữ liệu.
 - TOPSIS giải thích được phương án nào gần nghiệm lý tưởng nhất và xa nghiệm xấu nhất.
 - Sensitivity analysis giúp trả lời câu hỏi quan trọng của DSS: quyết định có ổn định khi giả định/trọng số thay đổi không?
-- Không phụ thuộc mạnh vào LLM hoặc API bên ngoài như 5.2, nên dễ làm bản demo ổn định.
-- Dễ so sánh định lượng với 5.2 bằng relevance score, NDCG@5, MAP@5 và stability.
+- Không phụ thuộc mạnh vào LLM hoặc API bên ngoài như Solution 2, nên dễ làm bản demo ổn định.
+- Dễ so sánh định lượng với Solution 2 bằng relevance score, NDCG@5, MAP@5 và stability.
 
 ### Weaknesses
 
 - Cần giải thích AHP/TOPSIS rõ ràng để người nghe không thấy quá toán.
-- Nếu chỉ dùng trọng số tự đặt mà không có survey hoặc pairwise comparison thì sẽ quay lại điểm yếu chủ quan giống 5.1.
+- Nếu chỉ dùng trọng số tự đặt mà không có survey hoặc pairwise comparison thì sẽ quay lại điểm yếu chủ quan giống Solution 1.
 - TOPSIS vẫn phụ thuộc vào chất lượng feature; nếu POI/enrichment sai thì ranking sai theo.
 - Cần thêm sensitivity analysis để solution đủ khác biệt và đủ mạnh.
 
 ### What To Improve
 
-Nên triển khai 5.3 với scope vừa phải:
+Nên triển khai Solution 3 với scope vừa phải:
 
 ```text
 100-300 listings
@@ -202,7 +202,7 @@ Criteria nên dùng:
 
 ### Verdict
 
-Solution 5.3 **nên dùng làm solution thay thế 5.1**. Đây là hướng hợp môn DSS hơn vì trọng tâm không phải "lọc rồi cộng điểm", mà là ra quyết định đa tiêu chí có trọng số, nghiệm lý tưởng, phân tích nhạy cảm và kiểm chứng bằng dữ liệu.
+Solution 3 **nên dùng làm solution thay thế Solution 1**. Đây là hướng hợp môn DSS hơn vì trọng tâm không phải "lọc rồi cộng điểm", mà là ra quyết định đa tiêu chí có trọng số, nghiệm lý tưởng, phân tích nhạy cảm và kiểm chứng bằng dữ liệu.
 
 ## 5. Recommended Architecture
 
@@ -222,7 +222,7 @@ Lý do:
 
 ## 6. Data Requirements By Solution
 
-| Requirement | Solution 5.1 | Solution 5.2 |
+| Requirement | Solution 1 | Solution 2 |
 |---|---|---|
 | Clean real estate listing | Required | Required |
 | Price/area/bedrooms/location | Required | Required |
@@ -232,7 +232,7 @@ Lý do:
 | LLM | Explanation only | Parsing + explanation |
 | API key | Not required if attributes exist | Required for Mapbox/Google |
 
-| Requirement | Solution 5.3 |
+| Requirement | Solution 3 |
 |---|---|
 | Clean real estate listing | Required |
 | Enriched criteria/features | Required |
@@ -253,7 +253,7 @@ docs/validation_dataset_plan.md
 
 File này nên được dùng làm cơ sở cho final report vì nó tách rõ technical validation, property holdout validation và human-labeled decision-quality validation.
 
-### For Solution 5.1
+### For Solution 1
 
 | Metric | Meaning |
 |---|---|
@@ -262,7 +262,7 @@ File này nên được dùng làm cơ sở cho final report vì nó tách rõ t
 | Ranking stability | Cùng input có ra cùng kết quả không |
 | Persona relevance | Top 5 có hợp persona không |
 
-### For Solution 5.2
+### For Solution 2
 
 | Metric | Meaning |
 |---|---|
@@ -272,7 +272,7 @@ File này nên được dùng làm cơ sở cho final report vì nó tách rõ t
 | Explanation faithfulness | LLM giải thích có dựa đúng score/attribute không |
 | Latency/cost | Có chạy được trong demo không |
 
-### For Solution 5.3
+### For Solution 3
 
 | Metric | Meaning |
 |---|---|
@@ -292,15 +292,15 @@ File này nên được dùng làm cơ sở cho final report vì nó tách rõ t
 | LLM parse sai nhu cầu | Ranking lệch | Dùng JSON schema + whitelist amenity |
 | Trọng số chủ quan | Bị hỏi cơ sở | Dùng persona-based weights và ghi rõ là baseline rule |
 | Search API trả kết quả không ổn định | Reproducibility thấp | Cache POI result thành dataset trung gian |
-| 5.3 bị giống weighted scoring | Thầy có thể xem là biến thể 5.1 | Nhấn mạnh AHP/Entropy, TOPSIS ideal solution và sensitivity analysis |
+| Solution 3 bị giống weighted scoring | Thầy có thể xem là biến thể Solution 1 | Nhấn mạnh AHP/Entropy, TOPSIS ideal solution và sensitivity analysis |
 | Trọng số AHP chủ quan | Ranking phụ thuộc người dùng | Thu thập survey/pairwise comparison và báo cáo Consistency Ratio |
 
 ## 9. Presentation Recommendation
 
 Khi trình bày với thầy, nên nói:
 
-1. Nhóm không dùng 5.1 làm solution chính nữa:
-   - 5.1 chỉ là baseline rule-based ban đầu
+1. Nhóm không dùng Solution 1 làm solution chính nữa:
+   - Solution 1 chỉ là baseline rule-based ban đầu
    - hạn chế là trọng số và luật còn thủ công
    - chưa đủ mạnh để đại diện cho DSS with Data
 
@@ -315,8 +315,8 @@ Khi trình bày với thầy, nên nói:
    - dùng sensitivity analysis để kiểm tra độ ổn định của quyết định
 
 4. Hai solution chính không loại trừ nhau:
-   - 5.2 mạnh về hiểu nhu cầu tự nhiên và enrich dữ liệu động
-   - 5.3 mạnh về phương pháp ra quyết định đa tiêu chí và kiểm chứng trade-off
+   - Solution 2 mạnh về hiểu nhu cầu tự nhiên và enrich dữ liệu động
+   - Solution 3 mạnh về phương pháp ra quyết định đa tiêu chí và kiểm chứng trade-off
 
 ## 10. Suggested Final Scope For Midterm
 

@@ -25,7 +25,7 @@ Kế hoạch phân tích dữ liệu. Ví dụ số lượng mẫu, số lượn
 
 ## 5. Solutions
 
-### 5.1 Form -> Inference Engine -> LLM explaination (baseline, không dùng làm solution chính)
+### Solution 1 Form -> Inference Engine -> LLM explaination (baseline, không dùng làm solution chính)
 Ý tưởng chính: người dùng nhập nhu cầu qua form cố định, hệ thống chuyển nhu cầu thành tập luật và trọng số, sau đó inference engine lọc và chấm điểm để tạo Top 5, cuối cùng LLM sinh lời giải thích.
 
 Dữ liệu sử dụng: dữ liệu người dùng nhập từ form và cơ sở dữ liệu bất động sản đã được làm giàu với các thuộc tính như giá, số phòng, khoảng cách đến trường học, công viên, trục giao thông.
@@ -36,20 +36,20 @@ Kết quả kỳ vọng: hệ thống tạo ra khuyến nghị minh bạch, dễ
 
 pipleline: `Form -> Preference Profile -> Rule-based Filtering -> Rule-based Scoring -> Top 5 Candidates -> LLM Explanation`
 
-Ghi chú cập nhật: solution 5.1 chỉ nên giữ như baseline kỹ thuật hoặc bước tiền xử lý, vì dễ bị đánh giá là bộ lọc/rule-based recommender thông thường và chưa thể hiện rõ bản chất DSS with Data.
+Ghi chú cập nhật: solution 1 chỉ nên giữ như baseline kỹ thuật hoặc bước tiền xử lý, vì dễ bị đánh giá là bộ lọc/rule-based recommender thông thường và chưa thể hiện rõ bản chất DSS with Data.
 
-### 5.2 Form + User Query -> Inference Engine + LLM -> LLM explaination
+### Solution 2 Form + User Query -> Inference Engine + LLM -> LLM explaination
 Ý tưởng chính: người dùng vừa nhập form cố định vừa nhập thêm nhu cầu đặc biệt bằng ngôn ngữ tự nhiên; LLM xử lý phần nhu cầu bổ sung, còn inference engine giữ vai trò lọc, chấm điểm và tái xếp hạng.
 
 Dữ liệu sử dụng: dữ liệu từ form, nhu cầu thêm của người dùng, cơ sở dữ liệu bất động sản đã được làm giàu, cùng dữ liệu tiện ích xung quanh lấy thêm từ geocoding và Search Map API.
 
 Cách xử lý: chạy form qua inference engine để lấy Top 10 ban đầu; LLM bóc tách nhu cầu thêm, xử lý cả các nhu cầu bị trùng với form, rồi quy đổi chúng thành `hard constraints`, `soft preferences`; gọi tool để enrichment đồng loạt các nhu cầu thêm (thuộc tính mới) này vào Top 10; sau đó chuẩn hóa điểm, re-ranking và cắt còn Top 5; LLM sinh lời giải thích dựa trên Top 5 này.
 
-Kết quả kỳ vọng: hệ thống giữ được tính minh bạch của rule-based nhưng vẫn xử lý được các nhu cầu mới và mơ hồ hơn; đổi lại chi phí API, độ trễ và độ phức tạp triển khai sẽ cao hơn solution 5.1.
+Kết quả kỳ vọng: hệ thống giữ được tính minh bạch của rule-based nhưng vẫn xử lý được các nhu cầu mới và mơ hồ hơn; đổi lại chi phí API, độ trễ và độ phức tạp triển khai sẽ cao hơn solution 1.
 
 pipeline: `Form + Additional User Request -> LLM Requirement Parsing and Deduplication -> Amenity Mapping -> Rule-based Top 10 -> Tool-based Attribute Enrichment -> Re-scoring/Re-ranking -> Top 5 -> LLM Explanation`
 
-### 5.3 Data-driven MCDA -> TOPSIS Ranking -> Sensitivity Analysis -> LLM explanation
+### Solution 3 Data-driven MCDA -> TOPSIS Ranking -> Sensitivity Analysis -> LLM explanation
 Ý tưởng chính: mô hình hóa bài toán chọn BĐS như một bài toán ra quyết định đa tiêu chí (Multi-Criteria Decision Analysis). Mỗi BĐS là một phương án, mỗi thuộc tính là một tiêu chí, sau đó dùng AHP/Entropy để tính trọng số và TOPSIS để xếp hạng phương án theo khoảng cách đến nghiệm lý tưởng.
 
 Dữ liệu sử dụng: cơ sở dữ liệu BĐS đã được làm giàu, tiêu chí người dùng, dữ liệu khảo sát/preference nếu có, và các feature như giá, diện tích, giá/m2, số phòng, khoảng cách đến trường học, công viên, bệnh viện, siêu thị, giao thông.
@@ -72,7 +72,7 @@ Các tiêu chí đánh giá:
 7. Mức độ hữu ích
 8. TBD
 
-Kế hoạch xây dựng tập validation chi tiết nằm ở `docs/validation_dataset_plan.md`. Tập validation nên gồm 3 phần: validation properties, user scenarios và human relevance labels để so sánh solution 5.2 với 5.3 bằng CSR@5, AvgRel@5, NDCG@5, MAP@5, Pairwise Win Rate và Stability.
+Kế hoạch xây dựng tập validation chi tiết nằm ở `docs/validation_dataset_plan.md`. Tập validation nên gồm 3 phần: validation properties, user scenarios và human relevance labels để so sánh solution 2 với Solution 3 bằng CSR@5, AvgRel@5, NDCG@5, MAP@5, Pairwise Win Rate và Stability.
 
 ## 7. Lưu ý
 1. Tiêu chí đánh giá/so sánh (1) và (2) phải dựa trên một cơ sở rõ ràng. Có thể hiểu là phải dựa trên một tập validation nào đó. Tạm thời chấp nhận tập validation là tập do chúng ta tự phân loại/xếp hạng dựa trên sự tổng hợp và suy luận

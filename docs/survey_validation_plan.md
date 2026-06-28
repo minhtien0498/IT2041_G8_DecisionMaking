@@ -19,7 +19,7 @@ Form hiện tại trong `survey/index.html` đang làm tốt phần đầu và m
 - Cho user chọn Top 5 BĐS họ thích.
 - Xuất JSON.
 
-Đã bổ sung thêm trường `user_need_text` để phục vụ solution 5.2, vì 5.2 cần kiểm tra khả năng hiểu nhu cầu tự nhiên.
+Đã bổ sung thêm trường `user_need_text` để phục vụ solution 2, vì Solution 2 cần kiểm tra khả năng hiểu nhu cầu tự nhiên.
 
 ## 2. Vì sao không nên chỉ hỏi user chọn Top 5
 
@@ -34,7 +34,7 @@ Vì vậy, nên dùng form hiện tại để thu preference, sau đó làm thê
 
 ```text
 Với mỗi user scenario
--> chạy solution 5.2 và 5.3 lấy candidate set
+-> chạy solution 2 và Solution 3 lấy candidate set
 -> đưa candidate set cho 2-3 người chấm relevance 1-5
 ```
 
@@ -217,7 +217,7 @@ Dùng được nếu deadline gấp.
 
 Chỉ nên làm nếu có tool chấm nhãn tốt.
 
-## 7. Cách dùng khảo sát cho solution 5.2
+## 7. Cách dùng khảo sát cho solution 2
 
 Preference survey dùng để kiểm tra:
 
@@ -245,7 +245,7 @@ Kỳ vọng parse:
 }
 ```
 
-Metric riêng cho 5.2:
+Metric riêng cho Solution 2:
 
 | Metric | Cách đo |
 |---|---|
@@ -254,7 +254,7 @@ Metric riêng cho 5.2:
 | Unsupported handling | Nhu cầu không đo được có bị gắn cờ đúng không |
 | Explanation faithfulness | Lời giải thích có bám đúng feature thật không |
 
-## 8. Cách dùng khảo sát cho solution 5.3
+## 8. Cách dùng khảo sát cho solution 3
 
 Preference survey dùng để tạo trọng số:
 
@@ -292,7 +292,7 @@ Dùng thang AHP:
 | 7 | Quan trọng hơn rất nhiều |
 | 9 | Quan trọng tuyệt đối |
 
-Metric riêng cho 5.3:
+Metric riêng cho Solution 3:
 
 | Metric | Cách đo |
 |---|---|
@@ -335,7 +335,7 @@ Form hiện tại dùng được cho bản đầu tiên. Nếu còn thời gian,
 
 | Cải thiện | Lý do |
 |---|---|
-| Thêm câu `user_need_text` | Đã thêm, phục vụ 5.2 |
+| Thêm câu `user_need_text` | Đã thêm, phục vụ Solution 2 |
 | Thêm khu vực mong muốn | Hữu ích khi mở rộng ngoài Gò Vấp |
 | Cho rating từng BĐS 1-5 | Tạo relevance labels trực tiếp |
 | Randomize thứ tự BĐS | Giảm bias do thứ tự hiển thị |
@@ -347,7 +347,7 @@ Form hiện tại dùng được cho bản đầu tiên. Nếu còn thời gian,
 Có thể viết:
 
 ```text
-Nhóm thiết kế khảo sát gồm hai phần. Phần thứ nhất thu thập nhu cầu người dùng gồm persona, ngân sách, số phòng ngủ tối thiểu, mức độ ưu tiên các tiêu chí và mô tả nhu cầu tự nhiên. Phần này dùng để tạo user scenarios và trọng số tiêu chí cho các solution. Phần thứ hai dùng để chấm nhãn relevance 1-5 cho các cặp user scenario - property candidate. Các nhãn này được dùng làm ground truth mềm để tính AvgRel@5, Precision@5, NDCG@5, MAP@5 và so sánh solution 5.2 với solution 5.3.
+Nhóm thiết kế khảo sát gồm hai phần. Phần thứ nhất thu thập nhu cầu người dùng gồm persona, ngân sách, số phòng ngủ tối thiểu, mức độ ưu tiên các tiêu chí và mô tả nhu cầu tự nhiên. Phần này dùng để tạo user scenarios và trọng số tiêu chí cho các solution. Phần thứ hai dùng để chấm nhãn relevance 1-5 cho các cặp user scenario - property candidate. Các nhãn này được dùng làm ground truth mềm để tính AvgRel@5, Precision@5, NDCG@5, MAP@5 và so sánh solution 2 với solution 3.
 ```
 
 Nếu chỉ kịp form hiện tại:
