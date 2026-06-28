@@ -11,3 +11,9 @@ env/
 
 # OS
 .DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Local archived workspace
+archive/fact_checking_project/

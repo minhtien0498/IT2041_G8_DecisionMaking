@@ -11,7 +11,7 @@ import json
 import os
 import unicodedata
 
-INPUT_CSV = os.path.join(os.path.dirname(__file__), "..", "..", "docs", "data_public.csv")
+INPUT_CSV = os.path.join(os.path.dirname(__file__), "..", "..", "data", "raw", "data_public.csv")
 OUTPUT_DIR = os.path.join(os.path.dirname(__file__), "..", "..", "data")
 OUTPUT_FILE = os.path.join(OUTPUT_DIR, "go_vap_tan_binh_100.json")
 

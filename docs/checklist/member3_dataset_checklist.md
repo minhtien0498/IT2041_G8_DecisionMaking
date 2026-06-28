@@ -5,8 +5,8 @@ File này gom các đầu ra chính cho phần việc `member-3` sau khi đã ch
 Nguồn dữ liệu đã dùng để tổng hợp:
 
 - `data/go_vap_tan_binh_100.json`
-- `docs/data_public.csv`
-- `docs/vietnam_housing_dataset.csv`
+- `data/raw/data_public.csv`
+- `data/raw/vietnam_housing_dataset.csv`
 
 ## Checklist công việc
 

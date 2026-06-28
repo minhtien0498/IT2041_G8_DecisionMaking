@@ -39,7 +39,6 @@ IT2041_G8_DecisionMaking/
 │   ├── dataset_recommendation.md
 │   ├── data_preparation_plan.md
 │   ├── solution_evaluation.md
-│   ├── validation_push_note.md # Note các phần đã làm/cần làm khi push nhóm
 │   └── source_notes/         # Tài liệu nháp & chi tiết giải thuật cũ
 ├── outputs/                  # Kết quả xuất ra từ các pipeline
 │   ├── solution1_results.json
@@ -161,21 +160,6 @@ data/user_preference_validation.json
 ```
 
 Đây sẽ là phần quan trọng để chứng minh chất lượng ra quyết định của hệ thống trong môn DSS with Data.
-
----
-
-## ✅ Ghi chú Validation
-
-Chi tiết các phần đã thêm, đã làm và cần làm tiếp theo nằm tại:
-
-```text
-docs/validation_push_note.md
-```
-
-Tóm tắt:
-- 50 synthetic scenarios hiện dùng cho technical validation / stress test / regression test.
-- Chưa nên claim đây là bằng chứng recommendation đúng với người mua thật.
-- Bước tiếp theo cần làm là thu thập survey thật và chấm relevance score cho Top 5 recommendation.
 
 ---
 

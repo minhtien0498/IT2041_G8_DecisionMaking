@@ -10,7 +10,6 @@ Index toàn bộ tài liệu trong `docs/`. Đề tài: **Hệ thống tư vấn
 | Tài liệu | Nội dung |
 |---|---|
 | [Final-Project.md](Final-Project.md) | Mô tả đề tài, input/output, nguồn dữ liệu, 3 solutions, tiêu chí đánh giá |
-| [de-tai-bds.md](de-tai-bds.md) | Bản giới thiệu đề tài (ngắn) |
 | [../PROJECT_PLAN.md](../PROJECT_PLAN.md) | Kế hoạch phát triển (roadmap midterm/final) |
 | [source_notes/Implementation-Plan.md](source_notes/Implementation-Plan.md) | **Kế hoạch triển khai theo tuần + phân công 4 member** (active) |
 
@@ -35,7 +34,10 @@ Index toàn bộ tài liệu trong `docs/`. Đề tài: **Hệ thống tư vấn
 | [dataset_recommendation.md](dataset_recommendation.md) | Đề xuất nguồn dataset |
 | [data_preparation_plan.md](data_preparation_plan.md) | Kế hoạch chuẩn bị/tiền xử lý dữ liệu |
 | [data_expansion_guide.md](data_expansion_guide.md) | Hướng dẫn mở rộng dữ liệu & kiểm định nhu cầu |
-| → thư mục riêng | [`../member3_tien/`](../member3_tien/) (report/slide/notes nháp của member-3) |
+| [dataset/dataset_schema_review.md](dataset/dataset_schema_review.md) | Rà soát schema dataset 100 căn dùng chung |
+| [report/dataset_report_draft.md](report/dataset_report_draft.md) | Bản thô báo cáo phần dataset/data preprocessing |
+| [slide/dataset_slide_draft.marp.md](slide/dataset_slide_draft.marp.md) | Slide thô phần dataset |
+| [checklist/member3_dataset_checklist.md](checklist/member3_dataset_checklist.md) | Checklist đầu ra và link nhanh đến toàn bộ phần member-3 |
 
 ## 5. Validation & Đánh giá (member-4)
 | Tài liệu | Nội dung |
@@ -44,14 +46,12 @@ Index toàn bộ tài liệu trong `docs/`. Đề tài: **Hệ thống tư vấn
 | [validation_dataset_search.md](validation_dataset_search.md) | Khảo sát nguồn validation dataset |
 | [survey_validation_plan.md](survey_validation_plan.md) | Kế hoạch khảo sát người dùng để chấm relevance |
 | [solution_verification_plan.md](solution_verification_plan.md) | Kế hoạch kiểm chứng/so sánh các solution |
-| [validation_push_note.md](validation_push_note.md) | Ghi chú việc đã làm/cần làm cho validation |
 | [source_notes/Validation-Set-Template.md](source_notes/Validation-Set-Template.md) | Mẫu cấu trúc một validation case |
 
 ## 6. Slide trình bày
 | Tài liệu | Nội dung |
 |---|---|
 | [slides_sol1_vs_sol2.marp.md](slides_sol1_vs_sol2.marp.md) | So sánh Solution 1 vs Solution 2 (bản mới, đầy đủ) |
-| [slide_solutions_review.marp.md](slide_solutions_review.marp.md) | Slide review giải pháp 1 & 2 (framing System Prompt + Few-shot) |
 
 ## 7. Tài liệu nguồn / nháp
 | Thư mục | Nội dung |

@@ -30,7 +30,7 @@ Project nên tách rõ 3 lớp validation:
 | Loại validation | File/dữ liệu | Mục tiêu | Có dùng làm bằng chứng recommendation đúng với người thật không? |
 |---|---|---|---|
 | Technical validation | `data/validation_50_scenarios.json` | Test thuật toán ổn định, không crash, không vi phạm hard constraints | Không |
-| Property holdout validation | Một subset từ `docs/data_public.csv` | Test pipeline chạy được trên listing mới, dữ liệu mới, quận mới | Không trực tiếp |
+| Property holdout validation | Một subset từ `data/raw/data_public.csv` | Test pipeline chạy được trên listing mới, dữ liệu mới, quận mới | Không trực tiếp |
 | Human-labeled validation | `data/user_preference_validation.json` | Đánh giá Top 5 có phù hợp với nhu cầu người dùng không | Có |
 
 Phần quan trọng nhất cho final là **human-labeled validation**, vì đây là phần biến DSS từ "có chạy được" thành "ra quyết định có chất lượng".
@@ -47,7 +47,7 @@ data/user_preference_validation.json
 
 ### 2.1. `validation_properties.json`
 
-Đây là tập BĐS dùng riêng cho validation. Có thể lấy từ `docs/data_public.csv`, sau đó clean và enrich POI.
+Đây là tập BĐS dùng riêng cho validation. Có thể lấy từ `data/raw/data_public.csv`, sau đó clean và enrich POI.
 
 Mục tiêu:
 

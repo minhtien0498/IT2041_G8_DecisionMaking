@@ -13,8 +13,8 @@
 
 ## Nguồn dữ liệu lớn để tham khảo hoặc scale-up
 
-- `docs/data_public.csv`
-- `docs/vietnam_housing_dataset.csv`
+- `data/raw/data_public.csv`
+- `data/raw/vietnam_housing_dataset.csv`
 
 ## Cách dùng
 

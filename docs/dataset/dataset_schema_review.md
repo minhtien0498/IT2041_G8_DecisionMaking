@@ -11,8 +11,8 @@ Dataset chính hiện tại của phần này là:
 
 Dataset mở rộng để tham khảo hoặc scale-up:
 
-- `docs/data_public.csv`: `51,304` dòng, `28` cột
-- `docs/vietnam_housing_dataset.csv`: `30,229` dòng, `12` cột
+- `data/raw/data_public.csv`: `51,304` dòng, `28` cột
+- `data/raw/vietnam_housing_dataset.csv`: `30,229` dòng, `12` cột
 
 ## 2. Schema chính của `data/go_vap_tan_binh_100.json`
 

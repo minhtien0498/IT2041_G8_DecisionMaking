@@ -33,9 +33,9 @@ Listing dataset lớn hơn
 
 | Nguồn | Vai trò | Dùng làm validation được không? | Ghi chú |
 |---|---|---|---|
-| `docs/data_public.csv` trong repo | Listing TP.HCM, khoảng 51k dòng | Có, để tạo holdout/test listing | Đây là nguồn tốt nhất hiện có vì cùng domain và có lat/lon ở một phần dữ liệu. |
+| `data/raw/data_public.csv` trong repo | Listing TP.HCM, khoảng 51k dòng | Có, để tạo holdout/test listing | Đây là nguồn tốt nhất hiện có vì cùng domain và có lat/lon ở một phần dữ liệu. |
 | Ho Chi Minh City Real Estate Data 2025 - Kaggle | Listing BĐS TP.HCM | Có, nếu cần đối chiếu/tái tải nguồn gốc | Link: https://www.kaggle.com/datasets/cnglmph/ho-chi-minh-city-real-estate-data-2025 |
-| `docs/vietnam_housing_dataset.csv` trong repo | Listing nhà ở Việt Nam, khoảng 30k dòng | Có, làm external/generalization test | Không tập trung TP.HCM; có thể thiếu tọa độ. |
+| `data/raw/vietnam_housing_dataset.csv` trong repo | Listing nhà ở Việt Nam, khoảng 30k dòng | Có, làm external/generalization test | Không tập trung TP.HCM; có thể thiếu tọa độ. |
 | House Price Prediction Dataset Vietnam 2024 - Kaggle | Listing crawl từ BĐS Việt Nam | Có, làm external/generalization test | Link: https://www.kaggle.com/datasets/nguyentiennhan/vietnam-housing-dataset-2024 |
 | OpenStreetMap / Geofabrik Vietnam | POI và đường sá | Có, để validate/enrich tiện ích | Link: https://download.geofabrik.de/asia/vietnam.html |
 | GADM Vietnam boundaries | Ranh giới hành chính | Có, để chuẩn hóa quận/phường | Link: https://gadm.org/download_country.html |
@@ -45,7 +45,7 @@ Listing dataset lớn hơn
 
 ### 1. Data holdout validation
 
-Dùng `docs/data_public.csv` để tạo tập listing lớn hơn:
+Dùng `data/raw/data_public.csv` để tạo tập listing lớn hơn:
 
 ```text
 train/demo: 100-200 listing Gò Vấp hoặc TP.HCM

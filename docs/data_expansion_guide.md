@@ -6,7 +6,7 @@
 
 ## 🧭 Hướng 1: Mở rộng bộ dữ liệu Bất động sản (TP.HCM Scale)
 
-Hiện tại, subset 37 BĐS Gò Vấp chỉ phục vụ chạy thử nghiệm (midterm baseline). Dữ liệu gốc `docs/data_public.csv` có tới **51,304 mẫu** phủ khắp TP.HCM.
+Hiện tại, subset 37 BĐS Gò Vấp chỉ phục vụ chạy thử nghiệm (midterm baseline). Dữ liệu gốc `data/raw/data_public.csv` có tới **51,304 mẫu** phủ khắp TP.HCM.
 
 ### 🔹 Cách thực hiện:
 1. **Mở rộng phạm vi địa lý**:

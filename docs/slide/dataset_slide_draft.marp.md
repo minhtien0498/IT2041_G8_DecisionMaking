@@ -131,8 +131,8 @@ footer: '<span>Tiến</span><span>Dataset Mở Rộng BĐS</span><span>June 27, 
 | Nguồn | Quy mô | Vai trò |
 |---|---:|---|
 | `data/go_vap_tan_binh_100.json` | 100 BĐS | Dataset clean mở rộng cho scope final |
-| `docs/data_public.csv` | 51,304 dòng | Nguồn gốc để extract |
-| `docs/vietnam_housing_dataset.csv` | 30,229 dòng | Nguồn tham khảo mở rộng |
+| `data/raw/data_public.csv` | 51,304 dòng | Nguồn gốc để extract |
+| `data/raw/vietnam_housing_dataset.csv` | 30,229 dòng | Nguồn tham khảo mở rộng |
 
 | Chỉ số | Giá trị |
 |---|---|

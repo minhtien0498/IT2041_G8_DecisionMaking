@@ -2,7 +2,7 @@
 
 ## 1. Tổng quan dataset
 
-Phần việc của member-3 hiện tập trung vào bộ dữ liệu mở rộng `data/go_vap_tan_binh_100.json`. File này gồm `100` bất động sản dạng `Nhà riêng`, trong đó có `50` căn ở `Gò Vấp` và `50` căn ở `Tân Bình`. Ngoài ra, repo vẫn có hai nguồn lớn hơn để mở rộng trong giai đoạn sau: `docs/data_public.csv` với `51,304` dòng và `docs/vietnam_housing_dataset.csv` với `30,229` dòng.
+Phần việc của member-3 hiện tập trung vào bộ dữ liệu mở rộng `data/go_vap_tan_binh_100.json`. File này gồm `100` bất động sản dạng `Nhà riêng`, trong đó có `50` căn ở `Gò Vấp` và `50` căn ở `Tân Bình`. Ngoài ra, repo vẫn có hai nguồn lớn hơn để mở rộng trong giai đoạn sau: `data/raw/data_public.csv` với `51,304` dòng và `data/raw/vietnam_housing_dataset.csv` với `30,229` dòng.
 
 Bộ dataset 100 căn được chọn nhằm tăng quy mô dữ liệu so với bản nhỏ trước đó và tạo tiền đề cho giai đoạn final. Mỗi bất động sản có `property_id` duy nhất, thông tin giá, diện tích, số phòng, vị trí, tọa độ. Tuy nhiên, bộ này hiện mới ở trạng thái `clean dataset`, chưa enrich lại các cột khoảng cách POI.
 
