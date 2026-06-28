@@ -1,8 +1,8 @@
-# Chi tiết Solution 5.3
+# Chi tiết Solution 3
 
 ## Data-driven MCDA: AHP/Entropy Weights + TOPSIS Ranking + Sensitivity Analysis
 
-Do solution 5.1 có rủi ro bị xem là bộ lọc/rule-based recommender thông thường, solution 5.3 nên chuyển trọng tâm sang một mô hình **ra quyết định đa tiêu chí** rõ hơn. Hướng đề xuất là:
+Do solution 1 có rủi ro bị xem là bộ lọc/rule-based recommender thông thường, solution 3 nên chuyển trọng tâm sang một mô hình **ra quyết định đa tiêu chí** rõ hơn. Hướng đề xuất là:
 
 ```text
 User Preference + Enriched Property Data
@@ -17,7 +17,7 @@ User Preference + Enriched Property Data
 
 ## Vì sao phù hợp hơn với môn DSS with Data
 
-Solution 5.3 phù hợp hơn solution 5.1 vì có đủ các thành phần cốt lõi của DSS:
+Solution 3 phù hợp hơn solution 1 vì có đủ các thành phần cốt lõi của DSS:
 
 - **Alternatives**: các bất động sản ứng viên.
 - **Criteria**: giá, diện tích, số phòng, giá/m2, khoảng cách đến trường, công viên, bệnh viện, siêu thị, giao thông.
@@ -27,9 +27,9 @@ Solution 5.3 phù hợp hơn solution 5.1 vì có đủ các thành phần cốt
 - **Sensitivity analysis**: kiểm tra nếu trọng số thay đổi thì Top 5 có ổn định không.
 - **Explanation**: giải thích trade-off giữa các phương án.
 
-Điểm khác biệt quan trọng với 5.1:
+Điểm khác biệt quan trọng với Solution 1:
 
-| Nội dung | Solution 5.1 | Solution 5.3 |
+| Nội dung | Solution 1 | Solution 3 |
 |---|---|---|
 | Bản chất | Rule/filter + weighted score | Multi-Criteria Decision Analysis |
 | Trọng số | Nhóm tự đặt hoặc form cố định | AHP từ preference người dùng + Entropy/CRITIC từ dữ liệu |
@@ -127,7 +127,7 @@ alpha = 0.7
 
 Nghĩa là preference người dùng vẫn là chính, nhưng dữ liệu thực tế có ảnh hưởng 30%.
 
-Đây là điểm giúp solution 5.3 khác với 5.1: trọng số không chỉ là ý kiến chủ quan, mà được hiệu chỉnh bằng đặc điểm của dataset.
+Đây là điểm giúp solution 3 khác với Solution 1: trọng số không chỉ là ý kiến chủ quan, mà được hiệu chỉnh bằng đặc điểm của dataset.
 
 ## Bước 4. TOPSIS ranking
 
@@ -224,7 +224,7 @@ User Input / Survey Preference
 -> LLM Trade-off Explanation
 ```
 
-## Validation cho solution 5.3
+## Validation cho solution 3
 
 Có thể đánh giá bằng:
 
@@ -251,28 +251,28 @@ Protocol chi tiết cho tập validation nằm ở:
 docs/validation_dataset_plan.md
 ```
 
-Với solution 5.3, phần validation nên nhấn mạnh thêm:
+Với solution 3, phần validation nên nhấn mạnh thêm:
 
 - Human relevance để kiểm tra TOPSIS ranking có khớp đánh giá người dùng không.
 - Top-5 Stability để kiểm tra ranking có ổn định khi trọng số thay đổi không.
 - AHP Consistency Ratio để kiểm tra preference người dùng có mâu thuẫn không.
 - Critical Criteria để biết tiêu chí nào làm quyết định nhạy nhất.
 
-## Khi nào chọn solution 5.3
+## Khi nào chọn solution 3
 
-Nên chọn solution 5.3 làm phương án thay thế 5.1 nếu cần một hướng:
+Nên chọn solution 3 làm phương án thay thế Solution 1 nếu cần một hướng:
 
 - Không phụ thuộc quá nhiều vào LLM.
-- Không cần API phức tạp như 5.2.
+- Không cần API phức tạp như Solution 2.
 - Có nền tảng DSS rõ ràng.
 - Có thể giải thích bằng mô hình ra quyết định đa tiêu chí.
-- Dễ so sánh với 5.2 trong final report.
+- Dễ so sánh với Solution 2 trong final report.
 
 Tóm lại:
 
 ```text
-5.2 = LLM + dynamic data enrichment + re-ranking
-5.3 = MCDA/TOPSIS + data-driven weighting + sensitivity analysis
+Solution 2 = LLM + dynamic data enrichment + re-ranking
+Solution 3 = MCDA/TOPSIS + data-driven weighting + sensitivity analysis
 ```
 
-Hai solution này đủ khác nhau và đều hợp với DSS with Data hơn 5.1.
+Hai solution này đủ khác nhau và đều hợp với DSS with Data hơn Solution 1.

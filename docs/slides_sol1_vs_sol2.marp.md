@@ -4,7 +4,7 @@ theme: default
 paginate: true
 size: 16:9
 math: katex
-header: 'Hệ thống tư vấn BĐS thông minh · Solution 5.1 vs 5.2'
+header: 'Hệ thống tư vấn BĐS thông minh · Solution 1 vs Solution 2'
 footer: 'Nhóm 8 (IT2041_G8) · DSS with Data'
 style: |
   section {
@@ -62,7 +62,7 @@ style: |
   .tag.gold { background:#fef3c7; color:#b45309; }
 ---
 
-# Solution 5.1 vs 5.2 — Phiên bản mới
+# Solution 1 vs Solution 2 — Phiên bản mới
 
 ## LLM "tự quyết" hay **dựa trên giá trị**?
 
@@ -78,7 +78,7 @@ Nhóm 8 — IT2041_G8
 <div class="cols">
 <div class="card">
 
-### Solution 5.1 — *LLM làm bộ suy luận*
+### Solution 1 — *LLM làm bộ suy luận*
 <span class="tag">Fuzzy reasoning</span>
 
 - Input: **form + free-text** → LLM gộp thành 1 mô tả ngữ nghĩa
@@ -89,7 +89,7 @@ Nhóm 8 — IT2041_G8
 </div>
 <div class="card">
 
-### Solution 5.2 — *Inference engine làm lõi*
+### Solution 2 — *Inference engine làm lõi*
 <span class="tag gold">Rule-based core</span>
 
 - Input: **form + free-text** → LLM parse thành hard/soft constraint
@@ -177,17 +177,17 @@ $$\mu_{price}(p) = \max\!\left(0,\; 1 - \frac{p - \text{budget}}{\text{tolerance
 
 ### Ý nghĩa cho môn DSS
 - Rubric trong system prompt **chính là** một **hàm thuộc (membership function)** của fuzzy logic — chỉ là dạng *rời rạc* thay vì liên tục.
-- → "Fuzzy satisfaction [0,1]" trong 5.1 là **fuzzy thật**, có cơ sở toán học, **kiểm tra được**.
+- → "Fuzzy satisfaction [0,1]" trong Solution 1 là **fuzzy thật**, có cơ sở toán học, **kiểm tra được**.
 - Cùng nguyên lý áp dụng cho các chiều khác: `µ_location`, `µ_amenity`, `µ_quietness`…
 
 </div>
 </div>
 
-> Nếu cần độ chính xác tuyệt đối, nhóm có thể **tính µ bằng code** và để LLM **chỉ giải thích** — đó là dạng 5.2. Ở 5.1, LLM áp dụng rubric để giữ tính linh hoạt với nhu cầu tự do.
+> Nếu cần độ chính xác tuyệt đối, nhóm có thể **tính µ bằng code** và để LLM **chỉ giải thích** — đó là dạng Solution 2. Ở Solution 1, LLM áp dụng rubric để giữ tính linh hoạt với nhu cầu tự do.
 
 ---
 
-# 6. Solution 5.1 — Pipeline
+# 6. Solution 1 — Pipeline
 
 ```
 Form + Free-Text
@@ -204,7 +204,7 @@ Form + Free-Text
 
 ---
 
-# 7. Solution 5.2 — Pipeline
+# 7. Solution 2 — Pipeline
 
 ```
 Form + Free-Text
@@ -223,7 +223,7 @@ Form + Free-Text
 
 # 8. So sánh & định vị
 
-| Tiêu chí | 5.1 (Fuzzy LLM) | 5.2 (Rule-based core) |
+| Tiêu chí | Solution 1 (Fuzzy LLM) | Solution 2 (Rule-based core) |
 |---|---|---|
 | Nơi ra quyết định | Trong LLM (có rubric) | Inference engine |
 | Xử lý nhu cầu mơ hồ | ✅ Rất mạnh | ⚠️ Giới hạn POI đã map |
@@ -240,6 +240,6 @@ Form + Free-Text
 
 > **Điểm số do LLM sinh ra, nhưng KHÔNG tùy tiện** — đó là kết quả áp dụng một **membership function có thể kiểm tra**, định nghĩa sẵn trong *system prompt* + *few-shot*.
 
-- **5.1**: linh hoạt, xử lý nhu cầu mờ, Top 5 đa dạng tradeoff — phù hợp khi người dùng mô tả tự do.
-- **5.2**: minh bạch tuyệt đối, deterministic, dễ validate — phù hợp làm mốc so sánh và demo ổn định.
+- **Solution 1**: linh hoạt, xử lý nhu cầu mờ, Top 5 đa dạng tradeoff — phù hợp khi người dùng mô tả tự do.
+- **Solution 2**: minh bạch tuyệt đối, deterministic, dễ validate — phù hợp làm mốc so sánh và demo ổn định.
 - **Hai solution bổ sung cho nhau**, cùng tinh thần DSS *with Data*: quyết định **dựa trên giá trị**, LLM chỉ **hỗ trợ suy luận và giải thích**.

@@ -1,4 +1,4 @@
-# Chi tiết Solution 5.1
+# Chi tiết Solution 1
 
 ## Form -> Inference Engine -> LLM explaination
 
@@ -15,7 +15,7 @@ Quy trình đề xuất:
 4. Hệ thống thực hiện sắp xếp theo `total_score` và lấy Top 5.
 5. LLM chỉ nhận Top 5 cùng các bằng chứng chấm điểm để sinh lời giải thích tự nhiên, không tự quyết định xếp hạng.
 
-Ý chính cần nhấn mạnh: inference engine trong solution 5.1 không chỉ làm lọc, mà còn phải tạo ra cấu trúc điểm có thể kiểm chứng được. LLM là lớp giải thích cuối cùng, không phải lớp suy luận chính.
+Ý chính cần nhấn mạnh: inference engine trong solution 1 không chỉ làm lọc, mà còn phải tạo ra cấu trúc điểm có thể kiểm chứng được. LLM là lớp giải thích cuối cùng, không phải lớp suy luận chính.
 
 ### Bước 1. Chuẩn hóa form thành hồ sơ nhu cầu
 Ví dụ một form có thể sinh ra cấu trúc trung gian như sau:
@@ -137,8 +137,8 @@ LLM không nên tự tính điểm từ đầu. LLM chỉ nên:
 - tóm tắt các điểm mạnh và điểm yếu của từng phương án
 - cá nhân hóa lời giải thích theo hồ sơ người dùng
 
-Nói cách khác, pipeline của solution 5.1 nên được mô tả là:
+Nói cách khác, pipeline của solution 1 nên được mô tả là:
 
 `Form -> Preference Profile -> Rule-based Filtering -> Rule-based Scoring -> Top 5 Candidates -> LLM Explanation`
 
-Nếu viết vào báo cáo, có thể chốt phần này bằng nhận định sau: solution 5.1 phù hợp khi bài toán có bộ tiêu chí tương đối cố định, dễ biểu diễn bằng form, và cần đảm bảo tính minh bạch trong quá trình xếp hạng.
+Nếu viết vào báo cáo, có thể chốt phần này bằng nhận định sau: solution 1 phù hợp khi bài toán có bộ tiêu chí tương đối cố định, dễ biểu diễn bằng form, và cần đảm bảo tính minh bạch trong quá trình xếp hạng.

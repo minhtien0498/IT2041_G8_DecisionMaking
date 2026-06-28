@@ -93,7 +93,7 @@ Hai solution xử lý cùng input này theo cách khác nhau, đó là điểm k
 
 ## 5. Solutions
 
-### 5.1 Form + Free-Text → LLM Agent (Tool Use) → Top 5 + Explanation
+### Solution 1 Form + Free-Text → LLM Agent (Tool Use) → Top 5 + Explanation
 Ý tưởng chính: LLM hoạt động như một agent được trang bị bộ tool cụ thể (SQL query, vector search, Map API, distance calculation), tự lên kế hoạch và gọi tool theo vòng lặp Reason → Act → Observe cho đến khi tìm đủ ứng viên đa dạng.
 
 Dữ liệu sử dụng: form + nhu cầu thêm làm đầu vào cho agent; relational DB và vector DB làm nguồn tìm kiếm; Map API cho dữ liệu không gian.
@@ -104,7 +104,7 @@ Kết quả kỳ vọng: hệ thống linh hoạt, không bị giới hạn bở
 
 Pipeline: `Form + Free-Text → LLM Agent (System Prompt + Tools) → [Reason → Act → Observe]* → Top 5 → LLM Explanation`
 
-### 5.2 Form + User Query -> Inference Engine + LLM -> LLM explaination
+### Solution 2 Form + User Query -> Inference Engine + LLM -> LLM explaination
 Ý tưởng chính: người dùng vừa nhập form cố định vừa nhập thêm nhu cầu đặc biệt bằng ngôn ngữ tự nhiên; LLM xử lý phần nhu cầu bổ sung, còn inference engine giữ vai trò lọc, chấm điểm và tái xếp hạng.
 
 Dữ liệu sử dụng: dữ liệu từ form, nhu cầu thêm của người dùng, cơ sở dữ liệu bất động sản đã được làm giàu, cùng dữ liệu tiện ích xung quanh lấy thêm từ geocoding và Search Map API.

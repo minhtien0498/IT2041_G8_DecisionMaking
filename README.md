@@ -42,7 +42,7 @@ IT2041_G8_DecisionMaking/
 │   ├── validation_push_note.md # Note các phần đã làm/cần làm khi push nhóm
 │   └── source_notes/         # Tài liệu nháp & chi tiết giải thuật cũ
 ├── outputs/                  # Kết quả xuất ra từ các pipeline
-│   ├── pipeline_5_1_results.json
+│   ├── solution1_results.json
 │   ├── validation_report.md
 │   ├── validation_summary.json
 │   └── preliminary_results.md # Báo cáo kết quả sơ khởi gửi giáo viên
@@ -72,7 +72,7 @@ python3 src/demo/run_pipeline.py
 ```
 *Output:*
 - `data/go_vap_enriched.json`: Dữ liệu đã enrich khoảng cách POI.
-- `outputs/pipeline_5_1_results.json`: Kết quả chi tiết điểm số của các kịch bản.
+- `outputs/solution1_results.json`: Kết quả chi tiết điểm số của các kịch bản.
 
 ---
 

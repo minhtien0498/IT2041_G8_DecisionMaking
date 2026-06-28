@@ -1,0 +1,254 @@
+[
+  {
+    "case_id": "S2_001",
+    "persona": "family_with_children",
+    "case_group": "clear",
+    "input": {
+      "budget_max_million": 8000,
+      "min_bedrooms": 3,
+      "soft_preferences": {
+        "price": {"weight": 0.25, "direction": "lower_better", "min": 3000, "max": 8000},
+        "distance_to_nearest_school_m": {"weight": 0.25, "direction": "lower_better", "min": 0, "max": 2000},
+        "distance_to_nearest_park_m": {"weight": 0.20, "direction": "lower_better", "min": 0, "max": 2000},
+        "distance_to_nearest_supermarket_m": {"weight": 0.15, "direction": "lower_better", "min": 0, "max": 1500},
+        "area_m2": {"weight": 0.15, "direction": "higher_better", "min": 30, "max": 150}
+      },
+      "user_need_text": "Ưu tiên nhiều chợ xung quanh để tiện đi chợ hàng ngày."
+    },
+    "expected": {
+      "hard_constraints": ["price <= 8000", "bedrooms >= 3"],
+      "soft_priorities": ["near school", "near park", "many markets nearby"],
+      "unsupported_requirements": []
+    }
+  },
+  {
+    "case_id": "S2_002",
+    "persona": "young_professional",
+    "case_group": "clear",
+    "input": {
+      "budget_max_million": 5500,
+      "min_bedrooms": 2,
+      "soft_preferences": {
+        "price": {"weight": 0.35, "direction": "lower_better", "min": 2000, "max": 5500},
+        "distance_to_nearest_supermarket_m": {"weight": 0.25, "direction": "lower_better", "min": 0, "max": 1500},
+        "distance_to_nearest_boulevard_m": {"weight": 0.20, "direction": "lower_better", "min": 0, "max": 2000},
+        "area_m2": {"weight": 0.20, "direction": "higher_better", "min": 20, "max": 100}
+      },
+      "user_need_text": "Muốn nhiều quán cà phê gần nhà để làm việc cuối tuần."
+    },
+    "expected": {
+      "hard_constraints": ["price <= 5500", "bedrooms >= 2"],
+      "soft_priorities": ["cheap price", "near supermarket", "many cafes nearby"],
+      "unsupported_requirements": []
+    }
+  },
+  {
+    "case_id": "S2_003",
+    "persona": "investor",
+    "case_group": "clear",
+    "input": {
+      "budget_max_million": 15000,
+      "min_bedrooms": 1,
+      "soft_preferences": {
+        "price_per_m2": {"weight": 0.30, "direction": "lower_better", "min": 30, "max": 200},
+        "distance_to_nearest_boulevard_m": {"weight": 0.25, "direction": "lower_better", "min": 0, "max": 2000},
+        "area_m2": {"weight": 0.25, "direction": "higher_better", "min": 30, "max": 250},
+        "distance_to_nearest_supermarket_m": {"weight": 0.20, "direction": "lower_better", "min": 0, "max": 1500}
+      },
+      "user_need_text": ""
+    },
+    "expected": {
+      "hard_constraints": ["price <= 15000", "bedrooms >= 1"],
+      "soft_priorities": ["low price per m2", "near boulevard", "large area"],
+      "unsupported_requirements": []
+    }
+  },
+  {
+    "case_id": "S2_004",
+    "persona": "family_with_children",
+    "case_group": "ambiguous_free_text",
+    "input": {
+      "budget_max_million": 8000,
+      "min_bedrooms": 3,
+      "soft_preferences": {
+        "price": {"weight": 0.25, "direction": "lower_better", "min": 3000, "max": 8000},
+        "distance_to_nearest_school_m": {"weight": 0.25, "direction": "lower_better", "min": 0, "max": 2000},
+        "distance_to_nearest_park_m": {"weight": 0.20, "direction": "lower_better", "min": 0, "max": 2000},
+        "distance_to_nearest_supermarket_m": {"weight": 0.15, "direction": "lower_better", "min": 0, "max": 1500},
+        "area_m2": {"weight": 0.15, "direction": "higher_better", "min": 30, "max": 150}
+      },
+      "user_need_text": "Nhà phải có chợ trong vòng 1km, ưu tiên gần trường mầm non cho con."
+    },
+    "expected": {
+      "hard_constraints": ["price <= 8000", "bedrooms >= 3", "market within 1km"],
+      "soft_priorities": ["near kindergarten"],
+      "unsupported_requirements": []
+    }
+  },
+  {
+    "case_id": "S2_005",
+    "persona": "young_professional",
+    "case_group": "ambiguous_free_text",
+    "input": {
+      "budget_max_million": 5500,
+      "min_bedrooms": 2,
+      "soft_preferences": {
+        "price": {"weight": 0.35, "direction": "lower_better", "min": 2000, "max": 5500},
+        "distance_to_nearest_supermarket_m": {"weight": 0.25, "direction": "lower_better", "min": 0, "max": 1500},
+        "distance_to_nearest_boulevard_m": {"weight": 0.20, "direction": "lower_better", "min": 0, "max": 2000},
+        "area_m2": {"weight": 0.20, "direction": "higher_better", "min": 20, "max": 100}
+      },
+      "user_need_text": "Khu nhiều tiện ích, ưu tiên gần nhà thuốc và có phòng gym xung quanh."
+    },
+    "expected": {
+      "hard_constraints": ["price <= 5500", "bedrooms >= 2"],
+      "soft_priorities": ["near pharmacy", "many gyms nearby"],
+      "unsupported_requirements": []
+    }
+  },
+  {
+    "case_id": "S2_006",
+    "persona": "family_with_children",
+    "case_group": "ambiguous_free_text",
+    "input": {
+      "budget_max_million": 8000,
+      "min_bedrooms": 3,
+      "soft_preferences": {
+        "price": {"weight": 0.25, "direction": "lower_better", "min": 3000, "max": 8000},
+        "distance_to_nearest_school_m": {"weight": 0.25, "direction": "lower_better", "min": 0, "max": 2000},
+        "distance_to_nearest_park_m": {"weight": 0.20, "direction": "lower_better", "min": 0, "max": 2000},
+        "distance_to_nearest_supermarket_m": {"weight": 0.15, "direction": "lower_better", "min": 0, "max": 1500},
+        "area_m2": {"weight": 0.15, "direction": "higher_better", "min": 30, "max": 150}
+      },
+      "user_need_text": "Muốn nơi sống tiện nghi, nhiều chợ và gần siêu thị quanh đây."
+    },
+    "expected": {
+      "hard_constraints": ["price <= 8000", "bedrooms >= 3"],
+      "soft_priorities": ["many markets nearby"],
+      "unsupported_requirements": [],
+      "duplicates_with_form": ["supermarket"]
+    }
+  },
+  {
+    "case_id": "S2_007",
+    "persona": "young_professional",
+    "case_group": "conflict_tradeoff",
+    "input": {
+      "budget_max_million": 5000,
+      "min_bedrooms": 2,
+      "soft_preferences": {
+        "price": {"weight": 0.40, "direction": "lower_better", "min": 2000, "max": 5000},
+        "distance_to_nearest_supermarket_m": {"weight": 0.25, "direction": "lower_better", "min": 0, "max": 1500},
+        "distance_to_nearest_boulevard_m": {"weight": 0.20, "direction": "lower_better", "min": 0, "max": 2000},
+        "area_m2": {"weight": 0.15, "direction": "higher_better", "min": 20, "max": 100}
+      },
+      "user_need_text": "Vừa muốn khu trung tâm nhiều quán cà phê, vừa muốn yên tĩnh tránh ồn."
+    },
+    "expected": {
+      "hard_constraints": ["price <= 5000", "bedrooms >= 2"],
+      "soft_priorities": ["many cafes nearby"],
+      "unsupported_requirements": ["yên tĩnh tránh ồn"]
+    }
+  },
+  {
+    "case_id": "S2_008",
+    "persona": "family_with_children",
+    "case_group": "conflict_tradeoff",
+    "input": {
+      "budget_max_million": 7000,
+      "min_bedrooms": 3,
+      "soft_preferences": {
+        "price": {"weight": 0.30, "direction": "lower_better", "min": 3000, "max": 7000},
+        "distance_to_nearest_school_m": {"weight": 0.25, "direction": "lower_better", "min": 0, "max": 2000},
+        "distance_to_nearest_park_m": {"weight": 0.25, "direction": "lower_better", "min": 0, "max": 2000},
+        "area_m2": {"weight": 0.20, "direction": "higher_better", "min": 30, "max": 150}
+      },
+      "user_need_text": "Ưu tiên gần công viên cho yên tĩnh, đồng thời cần nhiều chợ gần nhà cho tiện."
+    },
+    "expected": {
+      "hard_constraints": ["price <= 7000", "bedrooms >= 3"],
+      "soft_priorities": ["many markets nearby"],
+      "unsupported_requirements": [],
+      "duplicates_with_form": ["park"]
+    }
+  },
+  {
+    "case_id": "S2_009",
+    "persona": "investor",
+    "case_group": "conflict_tradeoff",
+    "input": {
+      "budget_max_million": 15000,
+      "min_bedrooms": 1,
+      "soft_preferences": {
+        "price_per_m2": {"weight": 0.35, "direction": "lower_better", "min": 30, "max": 200},
+        "distance_to_nearest_boulevard_m": {"weight": 0.25, "direction": "lower_better", "min": 0, "max": 2000},
+        "area_m2": {"weight": 0.20, "direction": "higher_better", "min": 30, "max": 250},
+        "distance_to_nearest_supermarket_m": {"weight": 0.20, "direction": "lower_better", "min": 0, "max": 1500}
+      },
+      "user_need_text": "Muốn khu sầm uất để dễ cho thuê nhưng giá/m² vẫn phải thấp, ưu tiên nhiều chợ."
+    },
+    "expected": {
+      "hard_constraints": ["price <= 15000", "bedrooms >= 1"],
+      "soft_priorities": ["many markets nearby"],
+      "unsupported_requirements": ["khu sầm uất"]
+    }
+  },
+  {
+    "case_id": "S2_010",
+    "persona": "family_with_children",
+    "case_group": "unsupported",
+    "input": {
+      "budget_max_million": 8000,
+      "min_bedrooms": 3,
+      "soft_preferences": {
+        "price": {"weight": 0.30, "direction": "lower_better", "min": 3000, "max": 8000},
+        "distance_to_nearest_school_m": {"weight": 0.30, "direction": "lower_better", "min": 0, "max": 2000},
+        "area_m2": {"weight": 0.40, "direction": "higher_better", "min": 30, "max": 150}
+      },
+      "user_need_text": "Muốn khu hàng xóm thân thiện, an ninh tốt và hợp phong thủy."
+    },
+    "expected": {
+      "hard_constraints": ["price <= 8000", "bedrooms >= 3"],
+      "soft_priorities": [],
+      "unsupported_requirements": ["hàng xóm thân thiện", "an ninh tốt", "hợp phong thủy"]
+    }
+  },
+  {
+    "case_id": "S2_011",
+    "persona": "young_professional",
+    "case_group": "unsupported",
+    "input": {
+      "budget_max_million": 5500,
+      "min_bedrooms": 2,
+      "soft_preferences": {
+        "price": {"weight": 0.50, "direction": "lower_better", "min": 2000, "max": 5500},
+        "area_m2": {"weight": 0.50, "direction": "higher_better", "min": 20, "max": 100}
+      },
+      "user_need_text": "Nơi có vibe trẻ trung, view đẹp và thoáng mát."
+    },
+    "expected": {
+      "hard_constraints": ["price <= 5500", "bedrooms >= 2"],
+      "soft_priorities": [],
+      "unsupported_requirements": ["vibe trẻ trung", "view đẹp", "thoáng mát"]
+    }
+  },
+  {
+    "case_id": "S2_012",
+    "persona": "investor",
+    "case_group": "unsupported",
+    "input": {
+      "budget_max_million": 15000,
+      "min_bedrooms": 1,
+      "soft_preferences": {
+        "price_per_m2": {"weight": 0.50, "direction": "lower_better", "min": 30, "max": 200},
+        "area_m2": {"weight": 0.50, "direction": "higher_better", "min": 30, "max": 250}
+      },
+      "user_need_text": "Khu đông dân cư, dân trí cao để dễ cho thuê lại."
+    },
+    "expected": {
+      "hard_constraints": ["price <= 15000", "bedrooms >= 1"],
+      "soft_priorities": [],
+      "unsupported_requirements": ["đông dân cư", "dân trí cao"]
+    }
+  }
+]

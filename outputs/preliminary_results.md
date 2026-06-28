@@ -1,10 +1,10 @@
-# Kết quả sơ khởi Pipeline 5.1 — Midterm 13/6
+# Kết quả sơ khởi Solution 1 Pipeline — Midterm 13/6
 
 ## Tổng quan
 
 | Thông tin | Giá trị |
 |-----------|---------|
-| **Pipeline** | 5.1: Form → Rule-based Filtering → Rule-based Scoring → Top 5 |
+| **Pipeline** | Solution 1: Form → Rule-based Filtering → Rule-based Scoring → Top 5 |
 | **Dataset** | data_public.csv (HCMC 2025 — Kaggle) |
 | **Subset** | 37 BĐS "Nhà riêng" tại Quận Gò Vấp, TP.HCM |
 | **Tiêu chí lọc subset** | Có lat/lon, có bedrooms & bathrooms (1-10), giá 500tr-30 tỷ, diện tích 20-500m² |
@@ -158,6 +158,6 @@ data_public.csv (51,304 listings)
 |---------|-----------------|
 | POI dùng tọa độ ước lượng (chưa gọi API thật) | Dùng Google Places API hoặc OpenStreetMap để lấy POI chính xác |
 | Chỉ test trên 1 quận (Gò Vấp) | Mở rộng ra 2-3 quận cho bản final |
-| Chưa có LLM explanation | Bổ sung ở Pipeline 5.2 |
+| Chưa có LLM explanation | Bổ sung ở Solution 2 Pipeline |
 | Trọng số do nhóm tự thiết kế | Có thể cho user tự chọn qua form hoặc dùng persona-based defaults |
 | Chỉ có 37 BĐS | Bản final sẽ dùng 200-500 listings |
