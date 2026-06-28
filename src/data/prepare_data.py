@@ -1,6 +1,6 @@
 """
 Extract 30 clean Nhà riêng listings in Gò Vấp from data_public.csv.
-Output: data/go_vap_30.json — ready for Pipeline 5.1.
+Output: data/go_vap_30.json — ready for Solution 1 Pipeline.
 """
 
 import csv
@@ -50,7 +50,7 @@ def is_go_vap(r):
 
 
 def clean_row(r, idx):
-    """Convert raw CSV row to clean JSON schema for pipeline 5.1."""
+    """Convert raw CSV row to clean JSON schema for Solution 1 pipeline."""
     price_million = float(r['Price'])
     area_m2 = float(r['Area'])
     

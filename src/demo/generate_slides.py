@@ -193,7 +193,7 @@ create_card(
     top=Inches(2.0),
     width=Inches(11.7),
     height=Inches(4.5),
-    title="Quy trình xử lý tuần tự (Pipeline 5.1)",
+    title="Quy trình xử lý tuần tự (Solution 1 Pipeline)",
     items=[
         "Bước 1: Nhận yêu cầu người dùng (Ràng buộc cứng + Trọng số ưu tiên tiện ích)",
         "Bước 2: Lọc sơ bộ (Rule-based Filtering) loại bỏ các căn vượt ngân sách hoặc thiếu số phòng ngủ mong muốn",
@@ -206,11 +206,11 @@ create_card(
 )
 
 # ==============================================================================
-# SLIDE 4: Giải pháp đề xuất 5.2 (Tích hợp LLM & Real-time API)
+# SLIDE 4: Giải pháp đề xuất Solution 2 (Tích hợp LLM & Real-time API)
 # ==============================================================================
 slide = prs.slides.add_slide(slide_layout)
 set_slide_background(slide)
-add_title(slide, "3. Giải pháp đề xuất 5.2 (LLM & Real-time API)", "Kiến trúc hệ thống tư vấn thông minh tích hợp AI")
+add_title(slide, "3. Giải pháp đề xuất Solution 2 (LLM & Real-time API)", "Kiến trúc hệ thống tư vấn thông minh tích hợp AI")
 
 create_card(
     slide,
@@ -234,7 +234,7 @@ create_card(
     top=Inches(2.0),
     width=Inches(5.7),
     height=Inches(4.5),
-    title="Ưu điểm vượt trội so với 5.1",
+    title="Ưu điểm vượt trội so với Solution 1",
     items=[
         "🔹 Trải nghiệm người dùng cao: Không cần nhập các form khảo sát phức tạp, chỉ cần trò chuyện tự do.",
         "🔹 Độ chính xác tiện ích tuyệt đối: Lấy POI theo thời gian thực tại bất kỳ vị trí nào, không bị giới hạn bởi database tĩnh.",
@@ -429,7 +429,7 @@ create_card(
     top=Inches(2.0),
     width=Inches(5.7),
     height=Inches(4.5),
-    title="Kế hoạch phát triển tiếp theo (Pipeline 5.2)",
+    title="Kế hoạch phát triển tiếp theo (Solution 2 Pipeline)",
     items=[
         "1. Tự động hóa lấy POI: Sử dụng Google Places API / OpenStreetMap thay vì hardcode tọa độ.",
         "2. Mở rộng bộ dữ liệu: Nâng số lượng căn lên 200 - 500 mẫu tại nhiều quận khác nhau.",

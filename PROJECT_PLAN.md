@@ -8,7 +8,7 @@
 
 ## 📅 Lịch trình phát triển (Roadmap)
 
-### 🔹 Pha 1: Midterm (Hoàn thành trước 13/6) - Pipeline 5.1
+### 🔹 Pha 1: Midterm (Hoàn thành trước 13/6) - Solution 1 Pipeline
 * [x] **Chuẩn hóa dữ liệu**: Lọc subset 37 BĐS "Nhà riêng" chất lượng cao tại Quận Gò Vấp từ tập dữ liệu gốc (HCMC 2025).
 * [x] **Làm giàu dữ liệu (POI Enrichment)**: Tích hợp cơ sở dữ liệu các địa điểm tiện ích thực tế tại Gò Vấp (Trường học, Công viên, Bệnh viện, Siêu thị, Đường lớn) và tính toán khoảng cách thực (Haversine).
 * [x] **Xây dựng bộ lọc cứng (Rule-based Filtering)**: Loại bỏ các BĐS vi phạm ràng buộc về Ngân sách tối đa hoặc số Phòng ngủ tối thiểu.
@@ -18,7 +18,7 @@
   3. *Nhà đầu tư*: Ưu tiên giá/m² thấp, gần đường lớn, diện tích lớn.
 * [x] **Đánh giá sơ bộ**: Viết báo cáo kết quả chạy pipeline và kiểm định tính đúng đắn của giải thuật.
 
-### 🔹 Pha 2: Final (Sau Midterm) - Pipeline 5.2
+### 🔹 Pha 2: Final (Sau Midterm) - Solution 2 Pipeline
 * [ ] **Tích hợp API thực tế**: Gọi OpenStreetMap (OSM) hoặc Google Places API để lấy dữ liệu tiện ích tự động dựa trên tọa độ thật của từng listing BĐS.
 * [ ] **Mở rộng dữ liệu**: Áp dụng pipeline trên quy mô lớn hơn (toàn TP.HCM hoặc 3-4 quận trung tâm/cận trung tâm, nâng quy mô lên 200-500 listings).
 * [ ] **Tích hợp LLM (Requirement Parsing & Re-ranking)**:

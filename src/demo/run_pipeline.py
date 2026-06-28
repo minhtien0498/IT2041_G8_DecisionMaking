@@ -1,5 +1,5 @@
 """
-Pipeline 5.1: Rule-based Filtering → Scoring → Top 5 → Report
+Solution 1 Pipeline: Rule-based Filtering → Scoring → Top 5 → Report
 
 Chạy trên 30 BĐS Gò Vấp đã extract.
 Tạo kết quả sơ khởi cho midterm.
@@ -227,7 +227,7 @@ def get_attribute_value(prop, attr_name):
 
 
 def run_pipeline(scenario, properties):
-    """Run Pipeline 5.1 for a given user scenario."""
+    """Run Solution 1 Pipeline for a given user scenario."""
     print(f"\n{'='*70}")
     print(f"SCENARIO: {scenario['name']}")
     print(f"Mô tả: {scenario['description']}")
@@ -381,7 +381,7 @@ def main():
     
     # Save results
     os.makedirs(OUTPUT_DIR, exist_ok=True)
-    results_file = os.path.join(OUTPUT_DIR, 'pipeline_5_1_results.json')
+    results_file = os.path.join(OUTPUT_DIR, 'solution1_results.json')
     with open(results_file, 'w', encoding='utf-8') as f:
         json.dump(all_results, f, ensure_ascii=False, indent=2)
     
