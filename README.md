@@ -166,4 +166,4 @@ data/user_preference_validation.json
 ## 📊 Kết quả sơ khởi (Midterm 13/6)
 
 Chi tiết kết quả chạy thử nghiệm và phương pháp đánh giá có thể xem trực tiếp tại file:
-👉 **[outputs/preliminary_results.md](file:///Users/totien/Documents/caohoc/Ki2-2026/IT2041_G8_DecisionMaking/outputs/preliminary_results.md)**
+👉 **[outputs/preliminary_results.md](outputs/preliminary_results.md)**
