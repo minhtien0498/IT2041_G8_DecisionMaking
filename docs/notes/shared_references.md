@@ -18,6 +18,9 @@
 
 ## Cách dùng
 
-- Nếu cần viết report hoặc slide: ưu tiên mở các file trong thư mục `member3_tien/`.
+- Nếu cần viết report: mở `docs/report/dataset_report_draft.md`.
+- Nếu cần chỉnh slide: mở `docs/slide/dataset_slide_draft.marp.md`.
+- Nếu cần rà soát checklist bàn giao: mở `docs/checklist/member3_dataset_checklist.md`.
+- Nếu cần chạy lại quy trình sinh dataset: mở `notebooks/prepare_gv_tb_100.ipynb` hoặc `src/data/prepare_gv_tb_100.py`.
 - Nếu cần đối chiếu schema, số liệu, hoặc cập nhật dataset chung: mở các file shared bên trên.
-- Không move các file shared vào thư mục riêng để tránh làm hỏng luồng làm việc của các thành viên khác.
+- Không move các file shared sang thư mục cá nhân để tránh làm hỏng luồng làm việc của các thành viên khác.

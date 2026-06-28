@@ -9,27 +9,27 @@
 - Đã ghi chú các cột null hoặc cột cần lưu ý
 
 File:
-- `member3_tien/dataset/dataset_schema_review.md`
+- `docs/dataset/dataset_schema_review.md`
 
 ### Report thô phần dataset
 
 File:
-- `member3_tien/dataset/dataset_report_draft.md`
+- `docs/report/dataset_report_draft.md`
 
 ### Slide thô phần dataset
 
 File:
-- `member3_tien/slide/dataset_slide_draft.marp.md`
+- `docs/slide/dataset_slide_draft.marp.md`
 
 ### Ghi chú mở rộng dataset
 
 File:
-- `member3_tien/dataset/dataset_expansion_note.md`
+- `docs/dataset/dataset_expansion_note.md`
 
 ### Manifest khóa version dataset
 
 File:
-- `member3_tien/dataset/dataset_version_manifest.md`
+- `docs/dataset/dataset_version_manifest.md`
 
 ## 2. Team nên dùng gì ngay bây giờ
 
