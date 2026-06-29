@@ -21,7 +21,9 @@ IT2041_G8_DecisionMaking/
 │   ├── __init__.py
 │   ├── data/                 # Modules thu thập & tiền xử lý dữ liệu
 │   │   ├── __init__.py
-│   │   └── prepare_data.py   # Lọc và làm sạch BĐS Quận Gò Vấp từ file CSV gốc
+│   │   ├── prepare_data.py   # Script legacy cho bộ Gò Vấp cũ
+│   │   ├── prepare_gv_tb_100.py # Tạo bộ clean dataset 100 căn
+│   │   └── enrich_gv_tb_100.py  # Enrich POI cho bộ 100 căn
 │   ├── demo/                 # Modules chạy kịch bản & giao diện demo
 │   │   ├── __init__.py
 │   │   └── run_pipeline.py   # Chạy pipeline tính điểm & đề xuất Top 5
@@ -32,8 +34,13 @@ IT2041_G8_DecisionMaking/
 │   └── models/               # Modules lưu trữ/gọi mô hình (LLMs)
 │       └── __init__.py
 ├── data/                     # Dữ liệu phục vụ hệ thống (.json)
-│   ├── go_vap_30.json        # 37 BĐS Gò Vấp sạch sau khi lọc
-│   ├── go_vap_enriched.json  # Dữ liệu BĐS đã làm giàu tọa độ POI
+│   ├── raw/
+│   │   ├── data_public.csv
+│   │   └── vietnam_housing_dataset.csv
+│   ├── go_vap_tan_binh_100.json
+│   ├── go_vap_tan_binh_100_enriched.json
+│   ├── go_vap_30.json        # Bộ legacy
+│   ├── go_vap_enriched.json  # Bộ legacy
 │   └── validation_50_scenarios.json # 50 kịch bản kiểm thử synthetic
 ├── docs/                     # Tài liệu nghiên cứu & phân tích
 │   ├── dataset_recommendation.md
@@ -44,7 +51,7 @@ IT2041_G8_DecisionMaking/
 │   ├── solution1_results.json
 │   ├── validation_report.md
 │   ├── validation_summary.json
-│   └── preliminary_results.md # Báo cáo kết quả sơ khởi gửi giáo viên
+│   └── preliminary_results.md # Ghi chú chuyển tiếp giữa baseline cũ và workflow hiện tại
 ├── survey/                   # Giao diện khảo sát nhu cầu người dùng
 │   └── index.html
 ├── archive/                  # [ĐÃ IGNORE] Code và tài liệu của đề tài cũ
@@ -53,25 +60,46 @@ IT2041_G8_DecisionMaking/
 
 ---
 
-## 🚀 Hướng dẫn chạy Pipeline Sơ Khởi (Midterm)
+## 🚀 Hướng dẫn chuẩn bị dataset 100 căn
 
-Hệ thống hiện tại chạy trên tập dữ liệu mẫu gồm **37 BĐS sạch tại Quận Gò Vấp**, đã tích hợp tính toán khoảng cách thực tế (theo công thức Haversine) đến các POI chính (Trường học, Công viên, Bệnh viện, Siêu thị, Trục đường lớn).
+Workflow dữ liệu hiện tại của nhóm đã chuyển sang bộ **100 BĐS** gồm:
+- `50` căn ở **Gò Vấp**
+- `50` căn ở **Tân Bình**
 
-### 1. Trích xuất dữ liệu Gò Vấp
-Chạy script lọc dữ liệu từ file csv gốc:
+Luồng chuẩn hiện tại là:
+1. tạo bộ clean dataset `100` căn từ file nguồn
+2. enrich khoảng cách POI cho bộ `100` căn
+3. dùng file enriched này để chuẩn bị bước migrate pipeline/validation sang scope mới
+
+### 1. Tạo bộ clean dataset 100 căn
+Chạy script lọc dữ liệu từ file CSV gốc:
 ```bash
-python3 src/data/prepare_data.py
+python3 src/data/prepare_gv_tb_100.py
 ```
-*Output:* Tạo ra file `data/go_vap_30.json` chứa thông tin BĐS đã làm sạch.
+*Output:* Tạo ra file `data/go_vap_tan_binh_100.json`.
 
-### 2. Chạy Pipeline tính điểm & tìm Top 5
-Chạy pipeline đánh giá theo 3 kịch bản người dùng (Gia đình có con nhỏ, Người trẻ độc thân, Nhà đầu tư):
+Nếu muốn thao tác trực quan theo từng bước:
 ```bash
-python3 src/demo/run_pipeline.py
+notebooks/prepare_gv_tb_100.ipynb
 ```
-*Output:*
-- `data/go_vap_enriched.json`: Dữ liệu đã enrich khoảng cách POI.
-- `outputs/solution1_results.json`: Kết quả chi tiết điểm số của các kịch bản.
+
+### 2. Enrich POI cho bộ 100 căn
+Chạy script enrich:
+```bash
+python3 src/data/enrich_gv_tb_100.py
+```
+*Output:* Tạo ra file `data/go_vap_tan_binh_100_enriched.json`.
+
+Nếu muốn thao tác trực quan theo từng bước:
+```bash
+notebooks/enrich_gv_tb_100.ipynb
+```
+
+### 3. Ghi chú về pipeline hiện tại
+
+- Bộ `100` căn đã sẵn sàng ở mức `clean` và `enriched`.
+- Một số script demo/validation cũ trong repo vẫn đang tham chiếu bộ `legacy` (`go_vap_30.json`, `go_vap_enriched.json`).
+- Bước tiếp theo là chuyển hẳn pipeline và validation sang `go_vap_tan_binh_100_enriched.json`.
 
 ---
 
@@ -125,7 +153,7 @@ Các metric đang dùng:
 
 ### Kết quả validation hiện tại
 
-Trên tập **37 BĐS Gò Vấp** và **50 synthetic scenarios**:
+Các metric dưới đây là **baseline legacy** trên tập **37 BĐS Gò Vấp** và **50 synthetic scenarios**. Chúng chưa phải kết quả rerun trên bộ `100` căn mới:
 
 | Metric | Giá trị |
 |---|---:|
@@ -163,7 +191,16 @@ data/user_preference_validation.json
 
 ---
 
-## 📊 Kết quả sơ khởi (Midterm 13/6)
+## 📊 Kết quả sơ khởi / Tài liệu tham chiếu cũ
 
-Chi tiết kết quả chạy thử nghiệm và phương pháp đánh giá có thể xem trực tiếp tại file:
+File dưới đây là **kết quả baseline legacy của midterm**, được chạy trên bộ dữ liệu cũ `37` căn ở Gò Vấp:
+
 👉 **[outputs/preliminary_results.md](outputs/preliminary_results.md)**
+
+Lưu ý:
+- File này được giữ lại để tham chiếu lịch sử phát triển của project.
+- Nó **không đại diện cho workflow dữ liệu hiện tại** của nhóm, mà là ghi chú chuyển tiếp giữa bản cũ và bản mới.
+- Workflow hiện tại đã chuyển sang bộ `100` căn:
+  - `data/go_vap_tan_binh_100.json`
+  - `data/go_vap_tan_binh_100_enriched.json`
+- Khi migrate xong pipeline/validation sang bộ mới, nhóm nên tạo một báo cáo kết quả mới thay cho baseline midterm này.
