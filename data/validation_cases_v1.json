@@ -1,0 +1,224 @@
+[
+  {
+    "case_id": "V1_001",
+    "persona": "family_with_children",
+    "case_group": "clear",
+    "review_note": "Baseline case cho family. Dung de check schema va top5 on dinh.",
+    "input": {
+      "budget_max_million": 8000,
+      "min_bedrooms": 3,
+      "soft_preferences": {
+        "price": {"weight": 0.25, "direction": "lower_better", "min": 3000, "max": 8000},
+        "distance_to_nearest_school_m": {"weight": 0.25, "direction": "lower_better", "min": 0, "max": 2000},
+        "distance_to_nearest_park_m": {"weight": 0.20, "direction": "lower_better", "min": 0, "max": 2000},
+        "distance_to_nearest_supermarket_m": {"weight": 0.15, "direction": "lower_better", "min": 0, "max": 1500},
+        "area_m2": {"weight": 0.15, "direction": "higher_better", "min": 30, "max": 150}
+      },
+      "user_need_text": "Gia dinh co 2 con nho, uu tien gan truong va cong vien."
+    },
+    "expected": {
+      "hard_constraints": ["price <= 8000", "bedrooms >= 3"],
+      "soft_priorities": ["near school", "near park", "reasonable price"],
+      "unsupported_requirements": []
+    }
+  },
+  {
+    "case_id": "V1_002",
+    "persona": "young_professional",
+    "case_group": "clear",
+    "review_note": "Case nguoi tre. Nhanh de check ranking khi uu tien gia va giao thong.",
+    "input": {
+      "budget_max_million": 5500,
+      "min_bedrooms": 2,
+      "soft_preferences": {
+        "price": {"weight": 0.35, "direction": "lower_better", "min": 2000, "max": 5500},
+        "distance_to_nearest_supermarket_m": {"weight": 0.25, "direction": "lower_better", "min": 0, "max": 1500},
+        "distance_to_nearest_boulevard_m": {"weight": 0.20, "direction": "lower_better", "min": 0, "max": 2000},
+        "area_m2": {"weight": 0.20, "direction": "higher_better", "min": 20, "max": 100}
+      },
+      "user_need_text": "Muon gia re, de di lam, co sieu thi gan nha."
+    },
+    "expected": {
+      "hard_constraints": ["price <= 5500", "bedrooms >= 2"],
+      "soft_priorities": ["cheap price", "near supermarket", "near boulevard"],
+      "unsupported_requirements": []
+    }
+  },
+  {
+    "case_id": "V1_003",
+    "persona": "investor",
+    "case_group": "clear",
+    "review_note": "Case dau tu co the dung de so base ranking giua hai solution.",
+    "input": {
+      "budget_max_million": 15000,
+      "min_bedrooms": 1,
+      "soft_preferences": {
+        "price_per_m2": {"weight": 0.30, "direction": "lower_better", "min": 30, "max": 200},
+        "distance_to_nearest_boulevard_m": {"weight": 0.25, "direction": "lower_better", "min": 0, "max": 2000},
+        "area_m2": {"weight": 0.25, "direction": "higher_better", "min": 30, "max": 250},
+        "distance_to_nearest_supermarket_m": {"weight": 0.20, "direction": "lower_better", "min": 0, "max": 1500}
+      },
+      "user_need_text": "Uu tien don gia tren m2 thap va de cho thue lai."
+    },
+    "expected": {
+      "hard_constraints": ["price <= 15000", "bedrooms >= 1"],
+      "soft_priorities": ["low price per m2", "near boulevard", "large area"],
+      "unsupported_requirements": []
+    }
+  },
+  {
+    "case_id": "V1_004",
+    "persona": "elderly",
+    "case_group": "clear",
+    "review_note": "Case nguoi cao tuoi. Kiem tra hospital + park co len top dung khong.",
+    "input": {
+      "budget_max_million": 10000,
+      "min_bedrooms": 2,
+      "soft_preferences": {
+        "distance_to_nearest_hospital_m": {"weight": 0.40, "direction": "lower_better", "min": 0, "max": 2500},
+        "distance_to_nearest_park_m": {"weight": 0.30, "direction": "lower_better", "min": 0, "max": 2000},
+        "price": {"weight": 0.20, "direction": "lower_better", "min": 3000, "max": 10000},
+        "area_m2": {"weight": 0.10, "direction": "higher_better", "min": 30, "max": 150}
+      },
+      "user_need_text": "Can gan benh vien va cong vien de di bo."
+    },
+    "expected": {
+      "hard_constraints": ["price <= 10000", "bedrooms >= 2"],
+      "soft_priorities": ["near hospital", "near park", "reasonable price"],
+      "unsupported_requirements": []
+    }
+  },
+  {
+    "case_id": "V1_005",
+    "persona": "couple",
+    "case_group": "clear",
+    "review_note": "Case cap doi. Dung cho demo co ban va compare top5.",
+    "input": {
+      "budget_max_million": 6000,
+      "min_bedrooms": 2,
+      "soft_preferences": {
+        "price": {"weight": 0.30, "direction": "lower_better", "min": 2500, "max": 6000},
+        "distance_to_nearest_supermarket_m": {"weight": 0.30, "direction": "lower_better", "min": 0, "max": 1500},
+        "distance_to_nearest_school_m": {"weight": 0.20, "direction": "lower_better", "min": 0, "max": 2000},
+        "area_m2": {"weight": 0.20, "direction": "higher_better", "min": 25, "max": 120}
+      },
+      "user_need_text": "Can nha vua tui tien, gan sieu thi, khong gian du cho 2 vo chong."
+    },
+    "expected": {
+      "hard_constraints": ["price <= 6000", "bedrooms >= 2"],
+      "soft_priorities": ["cheap price", "near supermarket", "enough area"],
+      "unsupported_requirements": []
+    }
+  },
+  {
+    "case_id": "V1_006",
+    "persona": "family_with_children",
+    "case_group": "ambiguous_free_text",
+    "review_note": "Case co free-text do duoc mot phan. Dung de check parse hard/soft/unsupported.",
+    "input": {
+      "budget_max_million": 8000,
+      "min_bedrooms": 3,
+      "soft_preferences": {
+        "price": {"weight": 0.25, "direction": "lower_better", "min": 3000, "max": 8000},
+        "distance_to_nearest_school_m": {"weight": 0.25, "direction": "lower_better", "min": 0, "max": 2000},
+        "distance_to_nearest_park_m": {"weight": 0.20, "direction": "lower_better", "min": 0, "max": 2000},
+        "distance_to_nearest_supermarket_m": {"weight": 0.15, "direction": "lower_better", "min": 0, "max": 1500},
+        "area_m2": {"weight": 0.15, "direction": "higher_better", "min": 30, "max": 150}
+      },
+      "user_need_text": "Nha phai co cho trong vong 1km, uu tien gan truong mam non cho con."
+    },
+    "expected": {
+      "hard_constraints": ["price <= 8000", "bedrooms >= 3", "market within 1km"],
+      "soft_priorities": ["near kindergarten"],
+      "unsupported_requirements": []
+    }
+  },
+  {
+    "case_id": "V1_007",
+    "persona": "young_professional",
+    "case_group": "ambiguous_free_text",
+    "review_note": "Case free-text co do duoc va co phan mo ho. Dung de test unsupported tagging.",
+    "input": {
+      "budget_max_million": 5500,
+      "min_bedrooms": 2,
+      "soft_preferences": {
+        "price": {"weight": 0.35, "direction": "lower_better", "min": 2000, "max": 5500},
+        "distance_to_nearest_supermarket_m": {"weight": 0.25, "direction": "lower_better", "min": 0, "max": 1500},
+        "distance_to_nearest_boulevard_m": {"weight": 0.20, "direction": "lower_better", "min": 0, "max": 2000},
+        "area_m2": {"weight": 0.20, "direction": "higher_better", "min": 20, "max": 100}
+      },
+      "user_need_text": "Khu nhieu tien ich, uu tien gan nha thuoc va co phong gym xung quanh."
+    },
+    "expected": {
+      "hard_constraints": ["price <= 5500", "bedrooms >= 2"],
+      "soft_priorities": ["near pharmacy", "many gyms nearby"],
+      "unsupported_requirements": ["khu nhieu tien ich"]
+    }
+  },
+  {
+    "case_id": "V1_008",
+    "persona": "investor",
+    "case_group": "conflict_tradeoff",
+    "review_note": "Case tradeoff ro. Dung de xem solution co gan co unsupported va giai thich xung dot khong.",
+    "input": {
+      "budget_max_million": 15000,
+      "min_bedrooms": 1,
+      "soft_preferences": {
+        "price_per_m2": {"weight": 0.35, "direction": "lower_better", "min": 30, "max": 200},
+        "distance_to_nearest_boulevard_m": {"weight": 0.25, "direction": "lower_better", "min": 0, "max": 2000},
+        "area_m2": {"weight": 0.20, "direction": "higher_better", "min": 30, "max": 250},
+        "distance_to_nearest_supermarket_m": {"weight": 0.20, "direction": "lower_better", "min": 0, "max": 1500}
+      },
+      "user_need_text": "Muon khu sam uat de cho thue nhung gia tren m2 van phai thap, uu tien nhieu cho."
+    },
+    "expected": {
+      "hard_constraints": ["price <= 15000", "bedrooms >= 1"],
+      "soft_priorities": ["many markets nearby", "low price per m2"],
+      "unsupported_requirements": ["khu sam uat"]
+    }
+  },
+  {
+    "case_id": "V1_009",
+    "persona": "elderly",
+    "case_group": "unsupported",
+    "review_note": "Case unsupported gan nhu hoan toan. Dung de check output van hop schema.",
+    "input": {
+      "budget_max_million": 9500,
+      "min_bedrooms": 2,
+      "soft_preferences": {
+        "distance_to_nearest_hospital_m": {"weight": 0.40, "direction": "lower_better", "min": 0, "max": 2500},
+        "distance_to_nearest_park_m": {"weight": 0.25, "direction": "lower_better", "min": 0, "max": 2000},
+        "price": {"weight": 0.20, "direction": "lower_better", "min": 3000, "max": 9500},
+        "area_m2": {"weight": 0.15, "direction": "higher_better", "min": 30, "max": 150}
+      },
+      "user_need_text": "Muon noi yen tinh, dan tri cao, hop phong thuy va hang xom than thien."
+    },
+    "expected": {
+      "hard_constraints": ["price <= 9500", "bedrooms >= 2"],
+      "soft_priorities": [],
+      "unsupported_requirements": ["noi yen tinh", "dan tri cao", "hop phong thuy", "hang xom than thien"]
+    }
+  },
+  {
+    "case_id": "V1_010",
+    "persona": "couple",
+    "case_group": "conflict_tradeoff",
+    "review_note": "Case cap doi co tradeoff giao thong va yen tinh. Huu ich cho compare explanation.",
+    "input": {
+      "budget_max_million": 6200,
+      "min_bedrooms": 2,
+      "soft_preferences": {
+        "price": {"weight": 0.30, "direction": "lower_better", "min": 2500, "max": 6200},
+        "distance_to_nearest_supermarket_m": {"weight": 0.25, "direction": "lower_better", "min": 0, "max": 1500},
+        "distance_to_nearest_boulevard_m": {"weight": 0.20, "direction": "lower_better", "min": 0, "max": 2000},
+        "area_m2": {"weight": 0.25, "direction": "higher_better", "min": 25, "max": 120}
+      },
+      "user_need_text": "Muon gan duong lon de di lam, nhung cung muon yen tinh va co nhieu quan ca phe."
+    },
+    "expected": {
+      "hard_constraints": ["price <= 6200", "bedrooms >= 2"],
+      "soft_priorities": ["near boulevard", "many cafes nearby"],
+      "unsupported_requirements": ["yen tinh"]
+    }
+  }
+]

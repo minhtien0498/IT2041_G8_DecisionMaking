@@ -42,12 +42,15 @@ Index toàn bộ tài liệu trong `docs/`. Đề tài: **Hệ thống tư vấn
 ## 5. Validation & Đánh giá (member-4)
 | Tài liệu | Nội dung |
 |---|---|
+| [output_contract_shared.md](output_contract_shared.md) | Output contract chung cho member-1, member-2, member-4 |
 | [validation_dataset_plan.md](validation_dataset_plan.md) | Kế hoạch xây validation set (properties + scenarios + relevance labels) |
 | [validation_dataset_search.md](validation_dataset_search.md) | Khảo sát nguồn validation dataset |
 | [survey_validation_plan.md](survey_validation_plan.md) | Kế hoạch khảo sát người dùng để chấm relevance |
 | [solution_verification_plan.md](solution_verification_plan.md) | Kế hoạch kiểm chứng/so sánh các solution |
+| [validation_rubric.md](validation_rubric.md) | Rubric chấm và thứ tự ưu tiên metric của member-4 |
 | [source_notes/Validation-Set-Template.md](source_notes/Validation-Set-Template.md) | Mẫu cấu trúc một validation case |
-
+| [solution_comparison_template.md](solution_comparison_template.md) | Khung bảng compare kết quả giữa các solution |
+| [checklist/member4_validation_checklist.md](checklist/member4_validation_checklist.md) | Checklist đầu ra và đầu việc chính của member-4 |
 ## 6. Slide trình bày
 | Tài liệu | Nội dung |
 |---|---|
@@ -64,3 +67,6 @@ Index toàn bộ tài liệu trong `docs/`. Đề tài: **Hệ thống tư vấn
 ### ⚠️ Còn cần nhóm chốt
 - **Solution 1**: 2 bản thiết kế khác nhau — [Solution-1-Detail.md](Solution-1-Detail.md) (rule-based, khớp code hiện tại) vs [source_notes/Solution-1-Detail.md](source_notes/Solution-1-Detail.md) (LLM Agent). Member-1 chọn hướng chính.
 - **Final-Project**: [Final-Project.md](Final-Project.md) vs [source_notes/Final-Project.md](source_notes/Final-Project.md) — mỗi bản có phần riêng, nên gộp thành 1 bản chuẩn.
+
+
+
