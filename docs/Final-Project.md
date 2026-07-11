@@ -49,7 +49,7 @@ Kết quả kỳ vọng: hệ thống giữ được tính minh bạch của rul
 
 pipeline: `Form + Additional User Request -> LLM Requirement Parsing and Deduplication -> Amenity Mapping -> Rule-based Top 10 -> Tool-based Attribute Enrichment -> Re-scoring/Re-ranking -> Top 5 -> LLM Explanation`
 
-### Solution 3 Data-driven MCDA -> TOPSIS Ranking -> Sensitivity Analysis -> LLM explanation
+### Solution 1 Data-driven MCDA -> TOPSIS Ranking -> Sensitivity Analysis -> LLM explanation
 Ý tưởng chính: mô hình hóa bài toán chọn BĐS như một bài toán ra quyết định đa tiêu chí (Multi-Criteria Decision Analysis). Mỗi BĐS là một phương án, mỗi thuộc tính là một tiêu chí, sau đó dùng AHP/Entropy để tính trọng số và TOPSIS để xếp hạng phương án theo khoảng cách đến nghiệm lý tưởng.
 
 Dữ liệu sử dụng: cơ sở dữ liệu BĐS đã được làm giàu, tiêu chí người dùng, dữ liệu khảo sát/preference nếu có, và các feature như giá, diện tích, giá/m2, số phòng, khoảng cách đến trường học, công viên, bệnh viện, siêu thị, giao thông.
@@ -72,7 +72,7 @@ Các tiêu chí đánh giá:
 7. Mức độ hữu ích
 8. TBD
 
-Kế hoạch xây dựng tập validation chi tiết nằm ở `docs/validation_dataset_plan.md`. Tập validation nên gồm 3 phần: validation properties, user scenarios và human relevance labels để so sánh solution 2 với Solution 3 bằng CSR@5, AvgRel@5, NDCG@5, MAP@5, Pairwise Win Rate và Stability.
+Kế hoạch xây dựng tập validation chi tiết nằm ở `docs/validation_dataset_plan.md`. Tập validation nên gồm 3 phần: validation properties, user scenarios và human relevance labels để so sánh solution 2 với Solution 1 bằng CSR@5, AvgRel@5, NDCG@5, MAP@5, Pairwise Win Rate và Stability.
 
 ## 7. Lưu ý
 1. Tiêu chí đánh giá/so sánh (1) và (2) phải dựa trên một cơ sở rõ ràng. Có thể hiểu là phải dựa trên một tập validation nào đó. Tạm thời chấp nhận tập validation là tập do chúng ta tự phân loại/xếp hạng dựa trên sự tổng hợp và suy luận

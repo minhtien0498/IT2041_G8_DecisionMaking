@@ -1,144 +1,282 @@
 # Chi tiết Solution 1
 
-## Form -> Inference Engine -> LLM explaination
+> Ghi chú cập nhật `2026-07-11`:
+> `Solution 1` hiện tại là hướng **MCDA/TOPSIS** của `Phú`, được đổi tên từ `Solution 3` cũ.
+> Hướng rule-based `Solution 1` cũ đã bị loại khỏi scope final và không còn là tài liệu active nữa.
 
-Quy trình đề xuất:
-1. Người dùng nhập nhu cầu theo form cố định.
-2. Hệ thống chuẩn hóa input thành một `user preference profile` gồm:
-   - `hard constraints`: điều kiện bắt buộc phải thỏa mãn.
-   - `soft preferences`: tiêu chí dùng để chấm điểm mức độ phù hợp.
-   - `weight`: trọng số cho từng tiêu chí.
-   - `preference direction`: mong muốn nhỏ hơn, lớn hơn, hay nằm trong một khoảng.
-3. Inference engine xử lý theo 2 tầng:
-   - `rule-based filtering`: loại bỏ các bất động sản không thỏa điều kiện bắt buộc.
-   - `rule-based scoring`: chấm điểm các bất động sản còn lại theo từng tiêu chí.
-4. Hệ thống thực hiện sắp xếp theo `total_score` và lấy Top 5.
-5. LLM chỉ nhận Top 5 cùng các bằng chứng chấm điểm để sinh lời giải thích tự nhiên, không tự quyết định xếp hạng.
+## Data-driven MCDA: AHP/Entropy Weights + TOPSIS Ranking + Sensitivity Analysis
 
-Ý chính cần nhấn mạnh: inference engine trong solution 1 không chỉ làm lọc, mà còn phải tạo ra cấu trúc điểm có thể kiểm chứng được. LLM là lớp giải thích cuối cùng, không phải lớp suy luận chính.
+Do hướng rule-based cũ có rủi ro bị xem là bộ lọc/recommender thông thường, `Solution 1` hiện tại chuyển trọng tâm sang một mô hình **ra quyết định đa tiêu chí** rõ hơn. Hướng đề xuất là:
 
-### Bước 1. Chuẩn hóa form thành hồ sơ nhu cầu
-Ví dụ một form có thể sinh ra cấu trúc trung gian như sau:
-- `budget_max = 3.5` tỷ
-- `min_bedroom = 3`
-- `preferred_school_distance <= 1000m`
-- `preferred_park_distance <= 1500m`
-- `prefer_far_from_boulevard = true`
-- `weights = {price: 0.30, bedroom: 0.20, school: 0.20, park: 0.10, boulevard: 0.20}`
-
-Từ đó hệ thống tách thành:
-- `hard constraints`: ví dụ `price <= budget_max`, `bedroom >= min_bedroom`
-- `soft preferences`: ví dụ càng gần trường càng tốt, càng gần công viên càng tốt, càng xa đại lộ càng tốt
-
-### Bước 2. Rule-based filtering
-Đây là phần inference engine ở mức luật cứng. Mục tiêu là giảm không gian tìm kiếm và đảm bảo các gợi ý không vi phạm nhu cầu tối thiểu.
-
-Ví dụ luật:
-- Nếu `price > budget_max` thì loại.
-- Nếu `number_of_room < min_bedroom` thì loại.
-- Nếu người dùng khai có con đang đi học và chọn ưu tiên mạnh cho trường học, có thể đặt thêm luật cứng: nếu `distance_to_nearest_high_school > threshold` thì loại.
-
-Kết quả của bước này là một tập ứng viên hợp lệ, ví dụ từ 1000 bất động sản còn lại 80 bất động sản.
-
-### Bước 3. Rule-based scoring
-Với các ứng viên còn lại, hệ thống chấm điểm theo từng thuộc tính. Mỗi thuộc tính nên có:
-- `raw value`: giá trị thực tế của bất động sản
-- `normalized_score`: điểm chuẩn hóa trong khoảng `[0, 1]`
-- `weight`: trọng số tiêu chí
-- `contribution_score = normalized_score * weight`
-
-Công thức tổng quát:
-
-`total_score = sum(contribution_score_i)`
-
-Ba kiểu tiêu chí phổ biến:
-1. Càng nhỏ càng tốt, ví dụ `price`, `distance_to_nearest_school`, `distance_to_nearest_park`
-2. Càng lớn càng tốt, ví dụ `number_of_room`
-3. Càng xa càng tốt trong một số trường hợp đặc biệt, ví dụ `distance_to_nearest_boulevard`
-
-Ví dụ chuẩn hóa:
-- Với tiêu chí càng nhỏ càng tốt:
-  `normalized_score = max(0, min(1, (threshold_max - value) / (threshold_max - threshold_min)))`
-- Với tiêu chí càng lớn càng tốt:
-  `normalized_score = max(0, min(1, (value - threshold_min) / (threshold_max - threshold_min)))`
-
-Ví dụ:
-- Giá ngân sách tối đa 3.5 tỷ, căn hộ giá 3.0 tỷ thì được điểm cao.
-- Khoảng cách đến trường 500m sẽ được điểm cao hơn 1200m.
-- Khoảng cách đến đại lộ 3000m sẽ được điểm cao hơn 1000m nếu người dùng muốn ở xa trục giao thông lớn.
-
-### Bước 4. Output từ inference engine cho LLM
-Response bạn đang nghĩ tới là đúng hướng, nhưng nên bổ sung thêm ngữ nghĩa để LLM giải thích đúng và nhất quán. Mỗi thuộc tính nên có:
-- `value`
-- `unit`
-- `preference_type`
-- `weight`
-- `normalized_score`
-- `contribution_score`
-
-Ví dụ cấu trúc tốt hơn:
-
-```python
-bds_recommendation = [
-    {
-        "name": "Chung cu ABC",
-        "total_score": 0.84,
-        "attributes": {
-            "number_of_room": {
-                "value": 3,
-                "unit": "room",
-                "preference_type": "higher_better",
-                "weight": 0.20,
-                "normalized_score": 1.00,
-                "contribution_score": 0.20
-            },
-            "distance_to_nearest_high_school": {
-                "value": 500,
-                "unit": "meter",
-                "preference_type": "lower_better",
-                "weight": 0.20,
-                "normalized_score": 0.90,
-                "contribution_score": 0.18
-            },
-            "distance_to_nearest_park": {
-                "value": 1000,
-                "unit": "meter",
-                "preference_type": "lower_better",
-                "weight": 0.10,
-                "normalized_score": 0.60,
-                "contribution_score": 0.06
-            },
-            "price": {
-                "value": 3000,
-                "unit": "million_vnd",
-                "preference_type": "lower_better",
-                "weight": 0.30,
-                "normalized_score": 0.90,
-                "contribution_score": 0.27
-            },
-            "distance_to_nearest_boulevard": {
-                "value": 3000,
-                "unit": "meter",
-                "preference_type": "higher_better",
-                "weight": 0.20,
-                "normalized_score": 0.65,
-                "contribution_score": 0.13
-            }
-        }
-    }
-]
+```text
+User Preference + Enriched Property Data
+-> Decision Matrix
+-> AHP/Entropy Weighting
+-> TOPSIS Ranking
+-> Sensitivity Analysis
+-> Top 5 + Trade-off Explanation
 ```
 
-Lợi ích của cấu trúc này là LLM có thể giải thích theo đúng logic hệ thống, ví dụ: căn hộ được xếp hạng cao vì giá phù hợp ngân sách, đủ số phòng ngủ, gần trường học và ở tương đối xa đại lộ.
+Ý tưởng chính: mỗi bất động sản là một phương án quyết định, mỗi thuộc tính là một tiêu chí quyết định. Hệ thống không chỉ lọc và cộng điểm, mà xây dựng một ma trận ra quyết định, chuẩn hóa tiêu chí lợi ích/chi phí, tính trọng số có cơ sở, so sánh từng phương án với nghiệm lý tưởng và phân tích độ ổn định của kết quả.
 
-### Bước 5. Vai trò cụ thể của LLM
-LLM không nên tự tính điểm từ đầu. LLM chỉ nên:
-- diễn giải vì sao bất động sản A đứng trên B
-- tóm tắt các điểm mạnh và điểm yếu của từng phương án
-- cá nhân hóa lời giải thích theo hồ sơ người dùng
+## Vì sao phù hợp hơn với môn DSS with Data
 
-Nói cách khác, pipeline của solution 1 nên được mô tả là:
+`Solution 1` hiện tại phù hợp hơn hướng rule-based cũ vì có đủ các thành phần cốt lõi của DSS:
 
-`Form -> Preference Profile -> Rule-based Filtering -> Rule-based Scoring -> Top 5 Candidates -> LLM Explanation`
+- **Alternatives**: các bất động sản ứng viên.
+- **Criteria**: giá, diện tích, số phòng, giá/m2, khoảng cách đến trường, công viên, bệnh viện, siêu thị, giao thông.
+- **Decision matrix**: bảng phương án x tiêu chí.
+- **Preference model**: trọng số tiêu chí từ người dùng hoặc từ dữ liệu.
+- **Decision method**: TOPSIS để xếp hạng phương án theo khoảng cách đến nghiệm lý tưởng.
+- **Sensitivity analysis**: kiểm tra nếu trọng số thay đổi thì Top 5 có ổn định không.
+- **Explanation**: giải thích trade-off giữa các phương án.
 
-Nếu viết vào báo cáo, có thể chốt phần này bằng nhận định sau: solution 1 phù hợp khi bài toán có bộ tiêu chí tương đối cố định, dễ biểu diễn bằng form, và cần đảm bảo tính minh bạch trong quá trình xếp hạng.
+Điểm khác biệt quan trọng với hướng rule-based cũ:
+
+| Nội dung | Solution 1 cũ | Solution 1 hiện tại |
+|---|---|---|
+| Bản chất | Rule/filter + weighted score | Multi-Criteria Decision Analysis |
+| Trọng số | Nhóm tự đặt hoặc form cố định | AHP từ preference người dùng + Entropy/CRITIC từ dữ liệu |
+| Cách xếp hạng | Cộng điểm tuyến tính | So sánh với ideal best và ideal worst |
+| Kiểm chứng | Chủ yếu constraint/rule consistency | NDCG, relevance, stability, sensitivity |
+| Tính DSS | Yếu, dễ giống bộ lọc nâng cao | Mạnh hơn, đúng bài toán hỗ trợ ra quyết định |
+
+## Bước 1. Xây dựng decision matrix
+
+Từ tập dữ liệu BĐS đã enrich, tạo ma trận:
+
+```text
+Rows    = properties
+Columns = decision criteria
+```
+
+Ví dụ tiêu chí:
+
+| Criteria | Type | Meaning |
+|---|---|---|
+| `price_million_vnd` | cost | Giá càng thấp càng tốt |
+| `price_per_m2_million` | cost | Giá/m2 càng thấp càng tốt |
+| `area_m2` | benefit | Diện tích càng lớn càng tốt |
+| `bedrooms` | benefit | Số phòng ngủ càng nhiều càng tốt |
+| `distance_to_nearest_school_m` | cost | Gần trường hơn thì tốt hơn |
+| `distance_to_nearest_park_m` | cost | Gần công viên hơn thì tốt hơn |
+| `distance_to_nearest_hospital_m` | cost | Gần bệnh viện hơn thì tốt hơn |
+| `distance_to_nearest_supermarket_m` | cost | Gần siêu thị/chợ hơn thì tốt hơn |
+| `distance_to_nearest_boulevard_m` | cost/benefit | Tùy persona: cần tiện đi lại thì cost, cần yên tĩnh thì benefit |
+
+Hard constraints vẫn được dùng, nhưng chỉ để loại các phương án chắc chắn không phù hợp:
+
+```text
+price <= budget_max
+bedrooms >= min_bedrooms
+district in preferred_districts, nếu có
+```
+
+Sau khi lọc cứng, TOPSIS xử lý phần ra quyết định mềm.
+
+## Bước 2. Tính trọng số bằng AHP hoặc preference survey
+
+Thay vì tự đặt trọng số trực tiếp, hệ thống có thể hỏi người dùng hoặc dùng khảo sát để tạo ma trận so sánh cặp tiêu chí.
+
+Ví dụ với persona gia đình:
+
+```text
+Gần trường quan trọng hơn giá bao nhiêu lần?
+Gần công viên quan trọng hơn diện tích bao nhiêu lần?
+Giá quan trọng hơn gần siêu thị bao nhiêu lần?
+```
+
+Từ pairwise comparison matrix, AHP sinh ra trọng số:
+
+```json
+{
+  "price_million_vnd": 0.25,
+  "area_m2": 0.12,
+  "bedrooms": 0.10,
+  "distance_to_nearest_school_m": 0.28,
+  "distance_to_nearest_park_m": 0.15,
+  "distance_to_nearest_supermarket_m": 0.10
+}
+```
+
+AHP còn có **Consistency Ratio (CR)**. Nếu CR quá cao, hệ thống biết preference của người dùng đang mâu thuẫn và có thể yêu cầu điều chỉnh hoặc ghi nhận uncertainty.
+
+Ngưỡng thường dùng:
+
+```text
+CR <= 0.10: preference tương đối nhất quán
+CR > 0.10: preference có mâu thuẫn, cần xem lại
+```
+
+## Bước 3. Tính trọng số khách quan từ dữ liệu
+
+Để làm rõ yếu tố "with Data", có thể kết hợp thêm trọng số khách quan từ dữ liệu bằng Entropy Weighting hoặc CRITIC.
+
+Ý nghĩa:
+
+- Nếu một tiêu chí gần như không phân biệt được các BĐS, trọng số dữ liệu của nó thấp.
+- Nếu một tiêu chí có độ biến thiên cao và giúp phân biệt phương án tốt/xấu, trọng số dữ liệu của nó cao hơn.
+
+Công thức kết hợp:
+
+```text
+final_weight = alpha * user_weight + (1 - alpha) * data_weight
+```
+
+Ví dụ:
+
+```text
+alpha = 0.7
+```
+
+Nghĩa là preference người dùng vẫn là chính, nhưng dữ liệu thực tế có ảnh hưởng 30%.
+
+Đây là điểm giúp `Solution 1` hiện tại khác với hướng rule-based cũ: trọng số không chỉ là ý kiến chủ quan, mà được hiệu chỉnh bằng đặc điểm của dataset.
+
+## Bước 4. TOPSIS ranking
+
+TOPSIS xếp hạng phương án theo nguyên tắc:
+
+```text
+Phương án tốt nên gần nghiệm lý tưởng tốt nhất và xa nghiệm lý tưởng xấu nhất.
+```
+
+Quy trình:
+
+1. Chuẩn hóa decision matrix.
+2. Nhân với trọng số tiêu chí.
+3. Xác định ideal best:
+   - tiêu chí benefit: giá trị lớn nhất.
+   - tiêu chí cost: giá trị nhỏ nhất.
+4. Xác định ideal worst:
+   - tiêu chí benefit: giá trị nhỏ nhất.
+   - tiêu chí cost: giá trị lớn nhất.
+5. Tính khoảng cách từng BĐS đến ideal best và ideal worst.
+6. Tính closeness coefficient:
+
+```text
+C_i = D_i_minus / (D_i_plus + D_i_minus)
+```
+
+Trong đó:
+
+- `D_i_plus`: khoảng cách đến ideal best.
+- `D_i_minus`: khoảng cách đến ideal worst.
+- `C_i` càng cao thì phương án càng tốt.
+
+Output của mỗi BĐS:
+
+```json
+{
+  "property_id": "GV_008",
+  "topsis_score": 0.782,
+  "rank": 1,
+  "distance_to_ideal_best": 0.18,
+  "distance_to_ideal_worst": 0.64,
+  "strengths": ["gần trường", "giá trong ngân sách", "diện tích tốt"],
+  "tradeoffs": ["xa công viên hơn lựa chọn hạng 2"]
+}
+```
+
+## Bước 5. Sensitivity analysis
+
+Sau khi có Top 5, hệ thống kiểm tra độ ổn định của quyết định:
+
+```text
+Nếu tăng/giảm trọng số mỗi tiêu chí 10-20%, Top 5 có thay đổi mạnh không?
+```
+
+Metric đề xuất:
+
+| Metric | Ý nghĩa |
+|---|---|
+| Top-5 Stability | Tỷ lệ BĐS vẫn nằm trong Top 5 sau khi nhiễu trọng số |
+| Rank Change Average | Trung bình mức thay đổi thứ hạng |
+| Critical Criteria | Tiêu chí nào làm ranking đổi nhiều nhất |
+| Robust Winner | BĐS nào vẫn giữ Top 1 trong đa số lần thử |
+
+Đây là phần rất "DSS": hệ thống không chỉ đưa ra đáp án, mà còn nói đáp án đó có ổn định hay nhạy với giả định nào.
+
+## Bước 6. LLM explanation
+
+LLM không quyết định ranking. LLM chỉ nhận:
+
+- Top 5 từ TOPSIS.
+- Trọng số tiêu chí.
+- Điểm từng tiêu chí.
+- Kết quả sensitivity analysis.
+- Trade-off giữa các phương án.
+
+LLM sinh giải thích:
+
+```text
+Căn GV_008 đứng hạng 1 vì gần trường và giá nằm tốt trong ngân sách. Tuy nhiên, nếu người dùng tăng mạnh trọng số công viên, căn GV_035 có thể vượt lên do gần công viên hơn. Điều này cho thấy lựa chọn GV_008 tốt nhất khi ưu tiên chính là trường học và ngân sách.
+```
+
+## Pipeline đề xuất
+
+```text
+User Input / Survey Preference
+-> Hard Constraint Filtering
+-> Build Decision Matrix
+-> AHP User Weighting
+-> Entropy/CRITIC Data Weighting
+-> Combine Weights
+-> TOPSIS Ranking
+-> Sensitivity Analysis
+-> Top 5 Recommendation
+-> LLM Trade-off Explanation
+```
+
+## Validation cho Solution 1
+
+Có thể đánh giá bằng:
+
+| Metric | Ý nghĩa |
+|---|---|
+| Constraint Satisfaction Rate | Top 5 có vi phạm điều kiện bắt buộc không |
+| Average Human Relevance | Điểm phù hợp trung bình do người chấm đánh giá |
+| NDCG@5 | Phương án người đánh giá thích có được đưa lên cao không |
+| MAP@5 | Chất lượng ranking tổng thể |
+| Top-5 Stability | Ranking có ổn định khi trọng số thay đổi không |
+| AHP Consistency Ratio | Preference người dùng có nhất quán không |
+
+Nếu chưa có survey lớn, có thể dùng tối thiểu:
+
+```text
+10-20 scenarios
+Top 10 candidate properties mỗi scenario
+2 labelers chấm relevance 1-5
+```
+
+Protocol chi tiết cho tập validation nằm ở:
+
+```text
+docs/validation_dataset_plan.md
+```
+
+Với `Solution 1`, phần validation nên nhấn mạnh thêm:
+
+- Human relevance để kiểm tra TOPSIS ranking có khớp đánh giá người dùng không.
+- Top-5 Stability để kiểm tra ranking có ổn định khi trọng số thay đổi không.
+- AHP Consistency Ratio để kiểm tra preference người dùng có mâu thuẫn không.
+- Critical Criteria để biết tiêu chí nào làm quyết định nhạy nhất.
+
+## Khi nào chọn Solution 1
+
+Nên chọn `Solution 1` hiện tại làm hướng final nếu nhóm cần một phương án:
+
+- Không phụ thuộc quá nhiều vào LLM.
+- Không cần API phức tạp như Solution 2.
+- Có nền tảng DSS rõ ràng.
+- Có thể giải thích bằng mô hình ra quyết định đa tiêu chí.
+- Dễ so sánh với Solution 2 trong final report.
+
+Tóm lại:
+
+```text
+Solution 2 = LLM + dynamic data enrichment + re-ranking
+Solution 1 = MCDA/TOPSIS + data-driven weighting + sensitivity analysis
+```
+
+Hai solution này đủ khác nhau và đều hợp với DSS with Data hơn hướng rule-based cũ.

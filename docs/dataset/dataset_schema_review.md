@@ -1,6 +1,6 @@
 # Rà Soát Schema Dataset
 
-## 1. Dataset chính cho phần việc của member-3
+## 1. Dataset chính cho phần việc của member-3 (`Tiến`)
 
 Dataset chính hiện tại của phần này là:
 
@@ -54,7 +54,7 @@ Tổng số cột hiện có: `32`
 
 ## 3. Danh sách cột bắt buộc cho pipeline
 
-Đây là bộ cột tối thiểu nên khóa lại để cả Solution 1 và Solution 2 cùng dùng:
+Đây là bộ cột tối thiểu nên khóa lại để cả `Solution 2` và `Solution 1` cùng dùng. `Solution 1` chỉ còn ý nghĩa baseline/historical reference:
 
 - `property_id`
 - `title`

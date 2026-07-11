@@ -1,5 +1,12 @@
 # Ghi Chú Bàn Giao Cho Nhóm
 
+Quy ước hiện tại:
+- `Solution 1`: hướng MCDA/TOPSIS của `Phú`, được đổi tên từ `Solution 3` cũ
+- `Solution 2`: `Quang`
+- hướng rule-based `Solution 1` cũ đã bị loại khỏi scope final
+- `Tiến`: data / enrich / dataset
+- `Ấn`: validation / evaluation
+
 ## 1. Member-3 đã bàn giao gì
 
 ### Rà soát dataset
@@ -38,25 +45,25 @@ Nếu cần chuẩn bị scope final lớn hơn:
 - dùng `data/go_vap_tan_binh_100.json` làm bộ clean dataset chính
 - nhưng cần enrich trước khi đưa vào ranking có POI
 
-## 3. Việc member-1 và member-2 cần biết
+## 3. Việc Quang và Phú cần biết
 
 - Dùng chung schema đã khóa trong `dataset_schema_review.md`
 - Không tự đổi tên field giá, phòng ngủ, POI
-- Nếu cần dataset lớn hơn, phải thông báo lại cho member-3/member-4 để cập nhật note và validation
+- Nếu cần dataset lớn hơn, phải thông báo lại cho `Tiến` / `Ấn` để cập nhật note và validation
 
-## 4. Việc member-4 cần biết
+## 4. Việc Ấn cần biết
 
 - Nếu validation muốn cover scope `100` căn thì nên dựa trên `go_vap_tan_binh_100.json`
 - Nếu validation cần dùng feature POI, cần có enrich cho bộ này trước
 
-## 5. Phần member-3 chưa thể chốt độc lập
+## 5. Phần Tiến chưa thể chốt độc lập
 
 - Final slide draft của cả nhóm
 
 Lý do:
 
-- cần slide thô từ member-1
-- cần slide thô từ member-2
-- cần slide thô từ member-4
+- cần slide thô từ `Quang`
+- cần slide thô từ `Phú`
+- cần slide thô từ `Ấn`
 
-Khi cả nhóm bàn giao slide thô, member-3 có thể ghép final slide deck.
+Khi cả nhóm bàn giao slide thô, `Tiến` có thể ghép final slide deck.

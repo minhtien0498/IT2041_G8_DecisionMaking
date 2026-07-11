@@ -1,6 +1,6 @@
 """Solution 2 — Pipeline lai Form + Free-text.
 
-Package tự chứa, KHÔNG import từ Solution 1 (src/demo/run_pipeline.py).
+Package tự chứa, KHÔNG phụ thuộc vào artifact của hướng rule-based cũ đã bị loại.
 Backend deterministic offline; mọi thành phần có interface để cắm LLM/Map API thật.
 """
 

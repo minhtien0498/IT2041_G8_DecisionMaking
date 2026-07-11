@@ -2,6 +2,12 @@
 
 File này gom các đầu ra chính cho phần việc `member-3` sau khi đã chuyển về các thư mục dùng chung ở root.
 
+Quy ước hiện tại:
+- `Solution 1`: hướng MCDA/TOPSIS của `Phú`, được đổi tên từ `Solution 3` cũ
+- `Solution 2`: `Quang`
+- hướng rule-based `Solution 1` cũ đã bị loại
+- `Ấn`: validation / evaluation
+
 Nguồn dữ liệu đã dùng để tổng hợp:
 
 - `data/go_vap_tan_binh_100.json`
@@ -48,7 +54,7 @@ Nguồn dữ liệu đã dùng để tổng hợp:
 
 - [ ] Ghép `final slide draft` của cả nhóm  
   Trạng thái: chưa thể làm độc lập  
-  Lý do: cần nhận slide thô từ member-1, member-2, member-4
+  Lý do: cần nhận slide thô từ `Quang`, `Phú`, `Ấn`
 
 ## Cấu trúc thư mục hiện tại
 

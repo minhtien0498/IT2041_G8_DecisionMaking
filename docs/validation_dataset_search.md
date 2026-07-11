@@ -147,7 +147,7 @@ File này mô tả rõ:
 
 - Cách tách `validation_properties.json`, `validation_user_scenarios.json`, `user_preference_validation.json`.
 - Schema đề xuất cho từng file.
-- Cách tạo candidate set công bằng giữa solution 2 và Solution 3.
+- Cách tạo candidate set công bằng giữa `Solution 1` hiện tại và `Solution 2`.
 - Rubric chấm relevance 1-5.
 - Quy trình blind labeling.
 - Metric so sánh solution: CSR@5, AvgRel@5, Precision@5, NDCG@5, MAP@5, Pairwise Win Rate, Top-5 Stability.

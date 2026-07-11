@@ -45,10 +45,10 @@ Nếu nhóm cần một mốc ổn định để bắt đầu:
 
 ## 4. Action item cho các thành viên khác
 
-- `member-1`, `member-2`:
+- `Quang` (`Solution 2`) và `Phú` (`Solution 1`):
   - Có thể dùng `go_vap_tan_binh_100.json` cho các bước parser, schema, hoặc ranking chưa cần POI
   - Nếu cần ranking theo POI, phải enrich trước
 
-- `member-4`:
+- `Ấn`:
   - Có thể tham chiếu `go_vap_tan_binh_100.json` để thiết kế validation cho scope 100 căn
   - Nếu validation cần feature POI thật, phải chờ bước enrich
