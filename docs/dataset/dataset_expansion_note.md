@@ -21,8 +21,8 @@ Script extract đã được tạo:
 
 Hai file trên là file dùng chung cho nhóm, vì:
 
-- Solution 1 và Solution 2 đều có thể dùng chung
-- member-4 có thể cần để tạo validation set
+- `Solution 2` và `Solution 1` đều có thể dùng chung
+- `Ấn` có thể cần để tạo validation set
 - nhóm có thể cần dùng lại để enrich hoặc benchmark
 
 Vì vậy, chúng **không được move vào thư mục riêng của member-3**.

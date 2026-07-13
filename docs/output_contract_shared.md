@@ -1,6 +1,12 @@
 # Shared Output Contract
 
-File này là bản chốt schema output dùng chung cho `member-1`, `member-2`, và `member-4`.
+File này là bản chốt schema output dùng chung cho hai solution chính và phần validation.
+
+Quy ước hiện tại:
+- `Solution 1`: hướng MCDA/TOPSIS của `Phú`, được đổi tên từ `Solution 3` cũ
+- `Solution 2`: hướng của `Quang`
+- hướng rule-based `Solution 1` cũ đã bị loại khỏi scope final
+- `Ấn`: phụ trách validation / evaluation
 
 Mục tiêu:
 - Hai solution phải xuất cùng format.
@@ -99,7 +105,7 @@ Schema này khớp với:
 - [src/solution2/output_contract.py](../src/solution2/output_contract.py)
 - [tests/test_pipeline_contract.py](../tests/test_pipeline_contract.py)
 
-## 7. Definition of done cho member-1 và member-2
+## 7. Definition of done cho `Quang` và `Phú`
 
 Mỗi solution được xem là đã nối đúng contract khi:
 - Xuất được `JSON` đúng schema trên.

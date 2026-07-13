@@ -1,0 +1,82 @@
+{
+  "dataset_name": "go_vap_tan_binh_100_enriched_overpass_api",
+  "provider": "OpenStreetMap Overpass API",
+  "description": "Mô tả ý nghĩa các trường trong file dữ liệu đã enrich bằng Overpass API.",
+  "field_groups": {
+    "base_fields": {
+      "description": "Các trường gốc lấy từ dataset bất động sản ban đầu.",
+      "fields": {
+        "property_id": "Mã định danh duy nhất của bất động sản.",
+        "title": "Tiêu đề tin đăng.",
+        "district": "Quận của bất động sản, ví dụ Gò Vấp hoặc Tân Bình.",
+        "ward": "Phường của bất động sản nếu trích xuất được.",
+        "location_raw": "Chuỗi địa chỉ/vị trí gốc từ dữ liệu nguồn.",
+        "price_million_vnd": "Giá bất động sản tính theo triệu VND.",
+        "price_billion_vnd": "Giá bất động sản tính theo tỷ VND.",
+        "area_m2": "Diện tích bất động sản tính theo mét vuông.",
+        "price_per_m2_million": "Giá trên mỗi mét vuông, đơn vị triệu VND/m2.",
+        "bedrooms": "Số phòng ngủ.",
+        "bathrooms": "Số phòng tắm.",
+        "floors": "Số tầng nếu có.",
+        "direction": "Hướng nhà nếu có.",
+        "position": "Vị trí như mặt tiền, hẻm, trong hẻm...",
+        "latitude": "Vĩ độ của bất động sản.",
+        "longitude": "Kinh độ của bất động sản.",
+        "description_snippet": "Đoạn mô tả rút gọn từ tin đăng."
+      }
+    },
+    "distance_features": {
+      "description": "Khoảng cách từ bất động sản đến tiện ích gần nhất theo từng nhóm.",
+      "unit": "meter",
+      "fields": {
+        "distance_to_nearest_school_m": "Khoảng cách đến trường học hoặc mầm non gần nhất.",
+        "distance_to_nearest_park_m": "Khoảng cách đến công viên gần nhất.",
+        "distance_to_nearest_hospital_m": "Khoảng cách đến bệnh viện hoặc phòng khám gần nhất.",
+        "distance_to_nearest_supermarket_m": "Khoảng cách đến siêu thị gần nhất.",
+        "distance_to_nearest_market_m": "Khoảng cách đến chợ gần nhất.",
+        "distance_to_nearest_cafe_m": "Khoảng cách đến quán cà phê gần nhất.",
+        "distance_to_nearest_boulevard_m": "Khoảng cách đến trục đường lớn gần nhất, xấp xỉ theo các loại highway chính trong OSM."
+      }
+    },
+    "nearest_name_features": {
+      "description": "Tên của tiện ích gần nhất trong từng nhóm.",
+      "fields": {
+        "nearest_school_name": "Tên trường học hoặc mầm non gần nhất.",
+        "nearest_park_name": "Tên công viên gần nhất. Nếu OSM không có tên rõ ràng có thể là mã dạng osm_<id>.",
+        "nearest_hospital_name": "Tên bệnh viện hoặc phòng khám gần nhất.",
+        "nearest_supermarket_name": "Tên siêu thị gần nhất.",
+        "nearest_market_name": "Tên chợ gần nhất.",
+        "nearest_cafe_name": "Tên quán cà phê gần nhất.",
+        "nearest_boulevard_name": "Tên trục đường lớn gần nhất. Nếu OSM không có tên rõ ràng có thể là mã dạng osm_<id>."
+      }
+    },
+    "count_features": {
+      "description": "Số lượng tiện ích nằm trong bán kính đếm đã cấu hình, hiện tại là 1km.",
+      "unit": "count",
+      "fields": {
+        "near_school_count_1km": "Số trường học hoặc mầm non trong bán kính 1km.",
+        "near_park_count_1km": "Số công viên trong bán kính 1km.",
+        "near_hospital_count_1km": "Số bệnh viện hoặc phòng khám trong bán kính 1km.",
+        "near_supermarket_count_1km": "Số siêu thị trong bán kính 1km.",
+        "near_market_count_1km": "Số chợ trong bán kính 1km.",
+        "near_cafe_count_1km": "Số quán cà phê trong bán kính 1km.",
+        "near_boulevard_count_1km": "Số segment đường lớn trong bán kính 1km. Trường này chỉ mang ý nghĩa xấp xỉ về mức độ gần trục giao thông."
+      }
+    },
+    "metadata_fields": {
+      "description": "Thông tin về chính quá trình enrich.",
+      "fields": {
+        "enrichment_provider": "Nguồn enrich đã dùng, hiện tại là osm_overpass_api.",
+        "enrichment_radius_m": "Bán kính truy vấn Overpass API cho mỗi bất động sản.",
+        "enrichment_count_radius_m": "Bán kính dùng để đếm số lượng tiện ích.",
+        "api_result_count": "Tổng số phần tử raw mà Overpass API trả về cho bất động sản đó trước khi phân loại thành các nhóm feature."
+      }
+    }
+  },
+  "notes": [
+    "Một số trường nearest_*_name có thể mang dạng osm_<id> nếu phần tử OSM không có tag name.",
+    "Các trường boulevard được suy ra từ nhóm highway chính trong OSM, nên mang tính xấp xỉ chứ không phải phân loại giao thông hoàn hảo.",
+    "Nếu một nhóm tiện ích không tìm thấy trong bán kính truy vấn, trường distance tương ứng có thể là null, tên là null, và count là 0.",
+    "File output chính và file checkpoint nên có cùng schema cho các record đã enrich."
+  ]
+}

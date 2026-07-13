@@ -1,37 +1,42 @@
 # Solution Comparison Template
 
-File này là khung để `member-4` tổng hợp kết quả giữa các solution.
+File này là khung để `Ấn` tổng hợp kết quả giữa các solution.
+
+Quy ước hiện tại:
+- `Solution 2`: hướng của `Quang`
+- `Solution 1`: hướng của `Phú`
+- `Solution 1`: chỉ giữ làm baseline/historical reference nếu cần nhắc lại
 
 ## 1. Bảng compare theo case
 
-| case_id | persona | group | solution_1_top1 | solution_2_top1 | csr_s1 | csr_s2 | ndcg5_s1 | ndcg5_s2 | unsupported_note | winner | note |
+| case_id | persona | group | solution_2_top1 | solution_1_top1 | csr_s2 | csr_s3 | ndcg5_s2 | ndcg5_s3 | unsupported_note | winner | note |
 |---|---|---|---|---|---:|---:|---:|---:|---|---|---|
-| V1_001 | family_with_children | clear | GV_008 | GV_008 | 1.0 | 1.0 | 0.92 | 0.95 | none | solution_2 | top1 giai thich ro hon |
+| V1_001 | family_with_children | clear | GV_008 | GV_008 | 1.0 | 1.0 | 0.92 | 0.95 | none | solution_1 | top1 giai thich ro hon |
 
 ## 2. Bảng compare chi tiet top5
 
 | case_id | solution_id | rank | property_id | total_score | hard_constraint_pass | reason_tags | unsupported_requirements |
 |---|---|---:|---|---:|---|---|---|
-| V1_001 | solution_1 | 1 | GV_008 | 0.6558 | true | near_school, near_park | |
-| V1_001 | solution_2 | 1 | GV_008 | 0.7590 | true | near_school, near_park, market | |
+| V1_001 | solution_2 | 1 | GV_008 | 0.6558 | true | near_school, near_park | |
+| V1_001 | solution_1 | 1 | GV_008 | 0.7590 | true | near_school, near_park, market | |
 
 ## 3. Bảng tong hop theo persona
 
-| persona | cases | avg_csr_s1 | avg_csr_s2 | avg_ndcg5_s1 | avg_ndcg5_s2 | winner | note |
+| persona | cases | avg_csr_s2 | avg_csr_s3 | avg_ndcg5_s2 | avg_ndcg5_s3 | winner | note |
 |---|---:|---:|---:|---:|---:|---|---|
-| family_with_children | 2 | 1.00 | 1.00 | 0.88 | 0.94 | solution_2 | free-text giup hon |
+| family_with_children | 2 | 1.00 | 1.00 | 0.88 | 0.94 | solution_1 | free-text giup hon |
 | young_professional | 2 | 1.00 | 1.00 | 0.80 | 0.91 | solution_2 | xu ly amenity moi tot hon |
 
 ## 4. Bảng tong hop cuoi
 
-| metric | solution_1 | solution_2 | winner | note |
+| metric | solution_2 | solution_1 | winner | note |
 |---|---:|---:|---|---|
 | avg_csr | 1.00 | 1.00 | tie | ca hai giu rang buoc cung |
-| avg_precision5 | 0.76 | 0.82 | solution_2 | top5 sat nhu cau hon |
-| avg_recall5 | 0.92 | 0.94 | solution_2 | lay du candidate tot hon |
-| avg_ndcg5 | 0.92 | 0.95 | solution_2 | ranking hop ly hon |
-| map | 0.92 | 0.95 | solution_2 | tong hop ranking tot hon |
-| avg_latency_ms | 1800 | 2200 | solution_1 | solution 1 nhanh hon |
+| avg_precision5 | 0.76 | 0.82 | solution_1 | top5 sat nhu cau hon |
+| avg_recall5 | 0.92 | 0.94 | solution_1 | lay du candidate tot hon |
+| avg_ndcg5 | 0.92 | 0.95 | solution_1 | ranking hop ly hon |
+| map | 0.92 | 0.95 | solution_1 | tong hop ranking tot hon |
+| avg_latency_ms | 2200 | 900 | solution_1 | solution 1 nhanh hon trong demo offline |
 
 ## 5. Rule dien bang
 

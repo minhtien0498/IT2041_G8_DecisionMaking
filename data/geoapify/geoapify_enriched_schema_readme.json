@@ -1,0 +1,82 @@
+{
+  "dataset_name": "go_vap_tan_binh_100_enriched_geoapify_api",
+  "provider": "Geoapify Places API",
+  "description": "Mô tả ý nghĩa các trường trong file dữ liệu đã enrich bằng Geoapify Places API.",
+  "field_groups": {
+    "base_fields": {
+      "description": "Các trường gốc lấy từ dataset bất động sản ban đầu.",
+      "fields": {
+        "property_id": "Mã định danh duy nhất của bất động sản.",
+        "title": "Tiêu đề tin đăng.",
+        "district": "Quận của bất động sản.",
+        "ward": "Phường của bất động sản nếu trích xuất được.",
+        "location_raw": "Chuỗi địa chỉ/vị trí gốc.",
+        "price_million_vnd": "Giá bất động sản tính theo triệu VND.",
+        "price_billion_vnd": "Giá bất động sản tính theo tỷ VND.",
+        "area_m2": "Diện tích bất động sản theo mét vuông.",
+        "price_per_m2_million": "Giá trên mỗi mét vuông, đơn vị triệu VND/m2.",
+        "bedrooms": "Số phòng ngủ.",
+        "bathrooms": "Số phòng tắm.",
+        "floors": "Số tầng nếu có.",
+        "direction": "Hướng nhà nếu có.",
+        "position": "Vị trí bất động sản.",
+        "latitude": "Vĩ độ.",
+        "longitude": "Kinh độ.",
+        "description_snippet": "Đoạn mô tả rút gọn của tin đăng."
+      }
+    },
+    "distance_features": {
+      "description": "Khoảng cách từ bất động sản đến tiện ích gần nhất trong từng nhóm.",
+      "unit": "meter",
+      "fields": {
+        "distance_to_nearest_school_m": "Khoảng cách đến trường học hoặc mầm non gần nhất.",
+        "distance_to_nearest_park_m": "Khoảng cách đến công viên gần nhất.",
+        "distance_to_nearest_hospital_m": "Khoảng cách đến bệnh viện hoặc phòng khám gần nhất.",
+        "distance_to_nearest_supermarket_m": "Khoảng cách đến siêu thị gần nhất.",
+        "distance_to_nearest_market_m": "Khoảng cách đến chợ gần nhất.",
+        "distance_to_nearest_cafe_m": "Khoảng cách đến quán cà phê gần nhất.",
+        "distance_to_nearest_boulevard_m": "Khoảng cách đến trục đường lớn gần nhất, xấp xỉ theo nhóm category highway chính."
+      }
+    },
+    "nearest_name_features": {
+      "description": "Tên của tiện ích gần nhất trong từng nhóm.",
+      "fields": {
+        "nearest_school_name": "Tên trường học hoặc mầm non gần nhất.",
+        "nearest_park_name": "Tên công viên gần nhất.",
+        "nearest_hospital_name": "Tên bệnh viện hoặc phòng khám gần nhất.",
+        "nearest_supermarket_name": "Tên siêu thị gần nhất.",
+        "nearest_market_name": "Tên chợ gần nhất.",
+        "nearest_cafe_name": "Tên quán cà phê gần nhất.",
+        "nearest_boulevard_name": "Tên trục đường lớn gần nhất nếu provider có thông tin tên."
+      }
+    },
+    "count_features": {
+      "description": "Số lượng tiện ích trong bán kính đếm, hiện tại là 1km.",
+      "unit": "count",
+      "fields": {
+        "near_school_count_1km": "Số trường học hoặc mầm non trong bán kính 1km.",
+        "near_park_count_1km": "Số công viên trong bán kính 1km.",
+        "near_hospital_count_1km": "Số bệnh viện hoặc phòng khám trong bán kính 1km.",
+        "near_supermarket_count_1km": "Số siêu thị trong bán kính 1km.",
+        "near_market_count_1km": "Số chợ trong bán kính 1km.",
+        "near_cafe_count_1km": "Số quán cà phê trong bán kính 1km.",
+        "near_boulevard_count_1km": "Số segment đường lớn trong bán kính 1km."
+      }
+    },
+    "metadata_fields": {
+      "description": "Thông tin về quá trình enrich bằng Geoapify.",
+      "fields": {
+        "enrichment_provider": "Nguồn enrich đã dùng, hiện tại là geoapify_places_api.",
+        "enrichment_radius_m": "Bán kính truy vấn Geoapify Places API.",
+        "enrichment_count_radius_m": "Bán kính dùng để đếm số lượng tiện ích.",
+        "api_result_count": "Tổng số feature mà Geoapify API trả về cho tất cả category của bất động sản đó."
+      }
+    }
+  },
+  "notes": [
+    "Geoapify Places API cần API key và tính phí/credit theo số lượng kết quả trả về.",
+    "Category boulevard được ánh xạ xấp xỉ từ các nhóm highway chính nên chỉ mang ý nghĩa gần đúng về trục giao thông lớn.",
+    "Nếu không tìm thấy tiện ích trong bán kính truy vấn, trường distance có thể là null, tên là null và count là 0.",
+    "Schema được giữ gần giống với nhánh overpass để tiện so sánh giữa hai provider."
+  ]
+}

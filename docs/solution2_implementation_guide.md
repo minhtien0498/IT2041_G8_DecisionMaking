@@ -29,8 +29,8 @@ Form + Additional User Request
 **Nguyên tắc thiết kế:**
 - **Deterministic offline**: không cần API key, chạy được mọi lúc, kết quả tái lập
   → lý tưởng cho validation. Mọi thành phần có interface để cắm LLM/Map API thật sau.
-- **Tự chứa 100%**: package `src/solution2/` không import gì từ Solution 1
-  (`src/demo/run_pipeline.py`). Tránh phụ thuộc chéo giữa member-1 và member-2.
+- **Tự chứa 100%**: package `src/solution2/` không import gì từ hướng rule-based cũ
+  đã bị loại. Tránh phụ thuộc chéo giữa 2 solution final.
 - **Toán nền đồng nhất**: công thức min-max normalize và base scoring cho kết quả
   giống Solution 1 trên cùng input form → member-4 so sánh công bằng.
 
@@ -230,6 +230,6 @@ nhu cầu free-text ảnh hưởng mạnh hơn lên thứ hạng.
 ## 10. Bàn giao cho member-4
 
 `outputs/solution2_results.json` đã đúng output contract chung. Member-4 chỉ cần
-đọc list này, ghép cùng `solution1_results.json` để dựng bảng so sánh
+đọc list này, ghép cùng output của `Solution 1` mới để dựng bảng so sánh
 (`solution_1_top5` vs `solution_2_top5`, constraint satisfaction, review comment).
 Không cần đổi tên field giữa hai solution.

@@ -15,6 +15,8 @@ IT2041_G8_DecisionMaking/
 ├── configs/                  # Lưu trữ cấu hình hệ thống
 ├── notebooks/                # Jupyter Notebooks nghiên cứu thuật toán
 │   ├── pipeline_demo.ipynb
+│   ├── enrich_gv_tb_100_overpass_pipeline.ipynb  # Enrich bằng Overpass API
+│   ├── enrich_gv_tb_100_geoapify_pipeline.ipynb  # Enrich bằng Geoapify Places API
 │   └── validation_analysis.ipynb # Notebook phân tích data validation
 ├── tests/                    # Các bộ unit test kiểm định mã nguồn
 ├── src/                      # Thư mục mã nguồn chính (Python Package)
@@ -26,7 +28,7 @@ IT2041_G8_DecisionMaking/
 │   │   └── enrich_gv_tb_100.py  # Enrich POI cho bộ 100 căn
 │   ├── demo/                 # Modules chạy kịch bản & giao diện demo
 │   │   ├── __init__.py
-│   │   └── run_pipeline.py   # Chạy pipeline tính điểm & đề xuất Top 5
+│   │   └── run_solution2.py  # Demo hiện tại cho Solution 2
 │   ├── eval/                 # Modules đánh giá thuật toán
 │   │   ├── __init__.py
 │   │   ├── generate_validation_set.py # Sinh 50 synthetic validation scenarios
@@ -37,6 +39,8 @@ IT2041_G8_DecisionMaking/
 │   ├── raw/
 │   │   ├── data_public.csv
 │   │   └── vietnam_housing_dataset.csv
+│   ├── overpass/             # Output, checkpoint, schema, curl mẫu cho Overpass API
+│   ├── geoapify/             # Output, checkpoint, schema, curl mẫu cho Geoapify API
 │   ├── go_vap_tan_binh_100.json
 │   ├── go_vap_tan_binh_100_enriched.json
 │   ├── go_vap_30.json        # Bộ legacy
@@ -48,7 +52,6 @@ IT2041_G8_DecisionMaking/
 │   ├── solution_evaluation.md
 │   └── source_notes/         # Tài liệu nháp & chi tiết giải thuật cũ
 ├── outputs/                  # Kết quả xuất ra từ các pipeline
-│   ├── solution1_results.json
 │   ├── validation_report.md
 │   ├── validation_summary.json
 │   └── preliminary_results.md # Ghi chú chuyển tiếp giữa baseline cũ và workflow hiện tại
@@ -83,23 +86,112 @@ Nếu muốn thao tác trực quan theo từng bước:
 notebooks/prepare_gv_tb_100.ipynb
 ```
 
-### 2. Enrich POI cho bộ 100 căn
-Chạy script enrich:
-```bash
-python3 src/data/enrich_gv_tb_100.py
-```
-*Output:* Tạo ra file `data/go_vap_tan_binh_100_enriched.json`.
-
-Nếu muốn thao tác trực quan theo từng bước:
-```bash
-notebooks/enrich_gv_tb_100.ipynb
-```
-
-### 3. Ghi chú về pipeline hiện tại
+### 2. Ghi chú về pipeline hiện tại
 
 - Bộ `100` căn đã sẵn sàng ở mức `clean` và `enriched`.
 - Một số script demo/validation cũ trong repo vẫn đang tham chiếu bộ `legacy` (`go_vap_30.json`, `go_vap_enriched.json`).
 - Bước tiếp theo là chuyển hẳn pipeline và validation sang `go_vap_tan_binh_100_enriched.json`.
+
+---
+
+## 🌐 Enrich Bằng API
+
+Ngoài file enrich thủ công cũ, repo hiện đã có 2 notebook enrich bằng API thật:
+
+- [notebooks/enrich_gv_tb_100_overpass_pipeline.ipynb](notebooks/enrich_gv_tb_100_overpass_pipeline.ipynb)
+- [notebooks/enrich_gv_tb_100_geoapify_pipeline.ipynb](notebooks/enrich_gv_tb_100_geoapify_pipeline.ipynb)
+
+Hai notebook này đều:
+- đọc input từ [data/go_vap_tan_binh_100.json](data/go_vap_tan_binh_100.json)
+- enrich theo batch
+- có `checkpoint`
+- có `error log`
+- sinh output JSON dùng lại cho pipeline khác
+
+### 1. Overpass API
+
+Notebook:
+- [notebooks/enrich_gv_tb_100_overpass_pipeline.ipynb](notebooks/enrich_gv_tb_100_overpass_pipeline.ipynb)
+
+Thư mục output:
+- [data/overpass](data/overpass)
+
+Các file chính:
+- Output: [data/overpass/go_vap_tan_binh_100_enriched_overpass_api.json](data/overpass/go_vap_tan_binh_100_enriched_overpass_api.json)
+- Checkpoint: [data/overpass/go_vap_tan_binh_100_enriched_overpass_api_checkpoint.json](data/overpass/go_vap_tan_binh_100_enriched_overpass_api_checkpoint.json)
+- Error log: [data/overpass/go_vap_tan_binh_100_overpass_errors.json](data/overpass/go_vap_tan_binh_100_overpass_errors.json)
+- Schema readme: [data/overpass/overpass_enriched_schema_readme.json](data/overpass/overpass_enriched_schema_readme.json)
+- cURL/Postman mẫu: [data/overpass/overpass_api_curl_examples.md](data/overpass/overpass_api_curl_examples.md)
+
+### 2. Geoapify Places API
+
+Notebook:
+- [notebooks/enrich_gv_tb_100_geoapify_pipeline.ipynb](notebooks/enrich_gv_tb_100_geoapify_pipeline.ipynb)
+
+Thư mục output:
+- [data/geoapify](data/geoapify)
+
+Các file chính:
+- Output: [data/geoapify/go_vap_tan_binh_100_enriched_geoapify_api.json](data/geoapify/go_vap_tan_binh_100_enriched_geoapify_api.json)
+- Checkpoint: [data/geoapify/go_vap_tan_binh_100_enriched_geoapify_api_checkpoint.json](data/geoapify/go_vap_tan_binh_100_enriched_geoapify_api_checkpoint.json)
+- Error log: [data/geoapify/go_vap_tan_binh_100_geoapify_errors.json](data/geoapify/go_vap_tan_binh_100_geoapify_errors.json)
+- Schema readme: [data/geoapify/geoapify_enriched_schema_readme.json](data/geoapify/geoapify_enriched_schema_readme.json)
+- cURL/Postman mẫu: [data/geoapify/geoapify_api_curl_examples.md](data/geoapify/geoapify_api_curl_examples.md)
+
+### 3. Hướng dẫn tạo `GEOAPIFY_API_KEY`
+
+1. Đăng ký tài khoản:
+Miễn phí, không yêu cầu thẻ tín dụng. Truy cập trang [Geoapify MyProjects](https://myprojects.geoapify.com/) và tạo một tài khoản mới. Có thể đăng nhập nhanh bằng Google hoặc GitHub.
+
+2. Tạo dự án mới:
+Sau khi đăng nhập vào Dashboard, nhấn vào nút `Create a new project`. Đặt tên dự án sao cho dễ quản lý, ví dụ: `location-verification-service`.
+
+3. Sao chép API Key:
+Vào mục `API Keys` bên trong dự án vừa tạo. Geoapify đã tự động tạo sẵn một API key đầu tiên cho bạn. Bấm `Copy` để lấy chuỗi mã này. Đây chính là giá trị để thay thế cho `YOUR_GEOAPIFY_API_KEY`.
+
+### 4. Cấu hình `.env`
+
+Repo đã có file mẫu:
+- [.env.example](.env.example)
+
+Tạo file `.env` ở thư mục gốc project với nội dung:
+
+```bash
+GEOAPIFY_API_KEY=your_real_geoapify_api_key
+```
+
+Hoặc export trực tiếp trong shell:
+
+```bash
+export GEOAPIFY_API_KEY="your_real_geoapify_api_key"
+```
+
+### 5. Cách chạy notebook mới
+
+Chạy Overpass:
+
+```bash
+jupyter nbconvert --to notebook --execute --inplace notebooks/enrich_gv_tb_100_overpass_pipeline.ipynb
+```
+
+Chạy Geoapify:
+
+```bash
+jupyter nbconvert --to notebook --execute --inplace notebooks/enrich_gv_tb_100_geoapify_pipeline.ipynb
+```
+
+Hoặc mở trực tiếp bằng Jupyter và chạy theo cell.
+
+### 6. So sánh hai provider
+
+File tổng hợp hiện tại:
+- [docs/provider_comparison_overpass_vs_geoapify.md](docs/provider_comparison_overpass_vs_geoapify.md)
+
+File này so sánh nhanh:
+- giá cả / quota / limit
+- tốc độ và thời gian chạy quan sát được
+- độ đầy dữ liệu
+- độ ổn định khi chạy notebook
 
 ---
 
@@ -150,6 +242,13 @@ Các metric đang dùng:
 - NDCG@3, NDCG@5.
 - Mean Average Precision (MAP).
 - Breakdown theo archetype và edge cases.
+
+### Ghi chú đổi scope solution
+
+- `Solution 1` cũ dạng rule-based đã bị loại khỏi scope final vì quá đơn giản.
+- `Solution 1` hiện tại là tên mới của hướng `MCDA/TOPSIS`, trước đây từng gọi là `Solution 3`.
+- `Solution 2` giữ nguyên là hướng hybrid của Quang.
+- Xem thêm: [docs/notes/solution_scope_change_2026-07-11.md](docs/notes/solution_scope_change_2026-07-11.md)
 
 ### Kết quả validation hiện tại
 

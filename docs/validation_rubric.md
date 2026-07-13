@@ -1,6 +1,11 @@
 # Validation Rubric
 
-File này là rubric chấm chung cho `member-4` khi so sánh output của các solution.
+File này là rubric chấm chung cho `Ấn` khi so sánh output của các solution.
+
+Quy ước hiện tại:
+- `Solution 1`: hướng MCDA/TOPSIS của `Phú`, được đổi tên từ `Solution 3` cũ
+- `Solution 2`: hướng của `Quang`
+- hướng rule-based `Solution 1` cũ đã bị loại
 
 ## 1. Mục tiêu
 
@@ -97,7 +102,7 @@ Dung 3 dong tong hop:
 | On | `CSR >= 0.95` va `NDCG@5 >= 0.70` |
 | Yeu | `CSR < 0.95` hoac explanation sai/khong minh bach |
 
-## 11. Luu y cho member-4
+## 11. Luu y cho `Ấn`
 
 - Khong so sanh cong bang neu hai solution khac `output contract`.
 - Khong dung chi synthetic validation de ket luan chat luong voi nguoi dung that.

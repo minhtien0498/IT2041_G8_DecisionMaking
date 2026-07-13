@@ -8,6 +8,7 @@ __pycache__/
 .venv/
 venv/
 env/
+.env
 
 # OS
 .DS_Store
@@ -17,3 +18,7 @@ env/
 
 # Local archived workspace
 archive/fact_checking_project/
+
+# API cache
+data/overpass/cache/
+data/geoapify/cache/

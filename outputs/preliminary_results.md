@@ -37,13 +37,13 @@ Thành phần mới đã có:
 ## 4. Các output đang dùng trong repo
 
 Các file output hiện có:
-- `outputs/solution1_results.json`
 - `outputs/solution2_results.json`
 - `outputs/validation_report.md`
 - `outputs/validation_summary.json`
 
 Lưu ý:
-- các output này hiện vẫn có thể còn phụ thuộc một phần vào pipeline hoặc dataset `legacy`
+- `solution1_results.json` cũ đã được dọn vì thuộc về hướng rule-based đã bị loại
+- các output còn lại hiện vẫn có thể còn phụ thuộc một phần vào pipeline hoặc dataset `legacy`
 - nếu muốn chuyển hẳn sang bộ `100` căn, cần migrate toàn bộ pipeline/validation rồi chạy lại để sinh output mới
 
 ## 5. Kết luận

@@ -1,6 +1,11 @@
 # Member-4 - Validation And Evaluation
 
-File này gom phần việc chính của `member-4`.
+File này gom phần việc chính của `member-4` (`Ấn`).
+
+Quy ước hiện tại:
+- `Solution 1`: hướng MCDA/TOPSIS của `Phú`, được đổi tên từ `Solution 3` cũ
+- `Solution 2`: hướng của `Quang`
+- hướng rule-based `Solution 1` cũ đã bị loại
 
 ## Checklist công việc
 
@@ -16,10 +21,10 @@ File này gom phần việc chính của `member-4`.
 - [x] Tạo bảng compare output giữa các solution
   File: [solution_comparison_template.md](../solution_comparison_template.md)
 
-- [ ] Nhận output từ member-1
+- [ ] Nhận output từ `Quang` (`Solution 2`)
   Kỳ vọng: đúng schema contract chung
 
-- [ ] Nhận output từ member-2
+- [ ] Nhận output từ `Phú` (`Solution 1` mới, trước đây là `Solution 3`)
   Kỳ vọng: đúng schema contract chung
 
 - [ ] Chạy validation và tổng hợp kết quả
@@ -36,7 +41,7 @@ File này gom phần việc chính của `member-4`.
 - `output contract` chung đã chốt
 - `validation set` bản 1
 - `rubric` đánh giá
-- danh sách `risk` khi so sánh 2 solution
+- danh sách `risk` khi so sánh `Solution 2` và `Solution 1`
 
 ## Đầu ra cần bàn giao tuần 2
 
@@ -46,7 +51,7 @@ File này gom phần việc chính của `member-4`.
 
 ## Risk cần theo dõi
 
-- member-1 và member-2 xuất lệch schema
+- `Quang` hoặc `Phú` xuất lệch schema
 - dataset `100` căn chưa được migrate đồng bộ vào toàn pipeline
 - synthetic validation chưa đủ mạnh để chứng minh chất lượng với người dùng thật
 - free-text có nhiều nhu cầu `unsupported`, dễ làm compare thiếu công bằng
@@ -58,4 +63,3 @@ File này gom phần việc chính của `member-4`.
 - [docs/solution_verification_plan.md](../solution_verification_plan.md)
 - [docs/survey_validation_plan.md](../survey_validation_plan.md)
 - [docs/output_contract_shared.md](../output_contract_shared.md)
-

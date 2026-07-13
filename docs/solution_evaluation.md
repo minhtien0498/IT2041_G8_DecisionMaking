@@ -1,18 +1,21 @@
 # Solution Evaluation - Smart Real Estate Advisory System
 
-File này đánh giá 2 solution hiện có trong `source_notes/` và gợi ý cách trình bày với thầy.
+File này đánh giá 2 solution final hiện tại và gợi ý cách trình bày với thầy.
+
+Ghi chú:
+- `Solution 1` hiện tại là hướng `MCDA/TOPSIS` của `Phú`, được đổi tên từ `Solution 3` cũ.
+- Hướng rule-based `Solution 1` cũ đã bị loại khỏi scope final vì quá đơn giản so với yêu cầu môn.
 
 ## 1. Summary
 
 | Solution | Short name | Core idea | Recommendation |
 |---|---|---|---|
-| Solution 1 | Rule-based recommender baseline | Form cố định -> luật lọc -> chấm điểm -> Top 5 -> LLM giải thích | Chỉ nên giữ làm baseline kỹ thuật, không nên dùng làm solution chính nếu thầy đánh giá chưa phù hợp DSS |
-| Solution 2 | Hybrid LLM + Map enrichment | Form + nhu cầu tự nhiên -> LLM parse -> gọi map/POI API -> re-rank -> LLM giải thích | Nên dùng làm hướng chính/đề xuất nâng cấp |
-| Solution 3 | Data-driven MCDA/TOPSIS | User preference + enriched data -> decision matrix -> AHP/Entropy weights -> TOPSIS -> sensitivity analysis | Nên dùng làm solution thay thế Solution 1 vì thể hiện rõ bài toán ra quyết định đa tiêu chí |
+| Solution 1 | Data-driven MCDA/TOPSIS | User preference + enriched data -> decision matrix -> AHP/Entropy weights -> TOPSIS -> sensitivity analysis | Là một trong hai hướng final chính, hợp DSS hơn |
+| Solution 2 | Hybrid LLM + Map enrichment | Form + nhu cầu tự nhiên -> LLM parse -> gọi map/POI API -> re-rank -> LLM giải thích | Là một trong hai hướng final chính, mạnh về cá nhân hóa |
 
-## 2. Solution 1 Evaluation
+## 2. Ghi chú về hướng cũ đã bị loại
 
-### Pipeline
+Hướng `Solution 1` cũ từng có pipeline:
 
 ```text
 Form
@@ -23,41 +26,12 @@ Form
 -> LLM Explanation
 ```
 
-### Strengths
+Nhóm không còn dùng hướng này làm solution final vì:
+- quá gần với bộ lọc/rule-based recommender thông thường
+- chưa thể hiện đủ rõ mô hình ra quyết định của DSS
+- theo góp ý của thầy, cần đổi sang hướng mạnh hơn về DSS with Data
 
-- Rất hợp với DSS vì có luật, trọng số và điểm số minh bạch.
-- Dễ demo với 100-200 listing sạch.
-- Không phụ thuộc nhiều vào API bên ngoài nếu database đã có sẵn attributes.
-- Dễ giải thích cách hệ thống ra quyết định.
-- Dễ đánh giá bằng rule consistency và constraint satisfaction.
-
-### Weaknesses
-
-- Chỉ xử lý tốt các tiêu chí đã có trong form.
-- Không linh hoạt với nhu cầu tự nhiên như "gần chợ", "khu yên tĩnh", "nhiều tiện ích cho trẻ em".
-- Trọng số dễ bị hỏi: lấy từ đâu, có cơ sở không.
-- Nếu attributes nghèo thì recommendation chỉ giống bộ lọc nâng cao.
-
-### What To Improve
-
-Nên làm rõ 3 lớp dữ liệu:
-
-1. `hard_constraints`: ngân sách tối đa, số phòng tối thiểu, quận mong muốn.
-2. `soft_preferences`: gần trường, gần công viên, gần bệnh viện, giá/m2 tốt.
-3. `weights`: trọng số theo persona hoặc theo form user chọn.
-
-Nên định nghĩa 3-4 persona để test:
-
-| Persona | Priority |
-|---|---|
-| Family with children | school, park, hospital, bedrooms |
-| Young professional | commute, supermarket, center access |
-| Investor | price_per_m2, district median, liquidity |
-| Elderly buyer | hospital, quiet area, low floor if available |
-
-### Verdict
-
-Solution 1 **chỉ nên giữ làm baseline hoặc bước tiền xử lý**. Nếu thầy đánh giá solution này chưa phù hợp với môn DSS with Data, không nên tiếp tục bảo vệ nó như một hướng chính vì dễ bị xem là bộ lọc nâng cao.
+Phần này chỉ nên nhắc ngắn như một baseline/historical reference nếu cần.
 
 ## 3. Solution 2 Evaluation
 
@@ -141,7 +115,7 @@ LLM output nên bị khóa schema:
 
 Solution 2 **nên là solution chính để trình bày với thầy**, nhưng phải nói rõ đây là bản nâng cấp trên nền Solution 1. Demo có thể làm ở scale nhỏ để kiểm soát API và thời gian.
 
-## 4. Solution 3 Evaluation
+## 4. Solution 1 Evaluation
 
 ### Pipeline
 
@@ -176,7 +150,7 @@ User Preference
 
 ### What To Improve
 
-Nên triển khai Solution 3 với scope vừa phải:
+Nên triển khai Solution 1 với scope vừa phải:
 
 ```text
 100-300 listings
@@ -202,7 +176,7 @@ Criteria nên dùng:
 
 ### Verdict
 
-Solution 3 **nên dùng làm solution thay thế Solution 1**. Đây là hướng hợp môn DSS hơn vì trọng tâm không phải "lọc rồi cộng điểm", mà là ra quyết định đa tiêu chí có trọng số, nghiệm lý tưởng, phân tích nhạy cảm và kiểm chứng bằng dữ liệu.
+Solution 1 **nên được dùng như một trong hai hướng final chính**. Đây là hướng hợp môn DSS hơn vì trọng tâm không phải "lọc rồi cộng điểm", mà là ra quyết định đa tiêu chí có trọng số, nghiệm lý tưởng, phân tích nhạy cảm và kiểm chứng bằng dữ liệu.
 
 ## 5. Recommended Architecture
 
@@ -225,23 +199,13 @@ Lý do:
 | Requirement | Solution 1 | Solution 2 |
 |---|---|---|
 | Clean real estate listing | Required | Required |
-| Price/area/bedrooms/location | Required | Required |
-| Precomputed amenities | Recommended | Optional |
-| Lat/lon | Recommended | Required if using map API |
-| Mapbox/Google/OSM | Optional | Required for dynamic enrichment |
+| Enriched criteria/features | Required | Optional nhưng rất hữu ích |
+| User preference / persona weights | Required | Required |
+| AHP pairwise comparison or survey | Recommended | Optional |
+| Entropy/CRITIC data weighting | Recommended | Không bắt buộc |
+| Mapbox/Google/OSM | Không bắt buộc nếu features đã precompute | Required nếu enrich động |
 | LLM | Explanation only | Parsing + explanation |
-| API key | Not required if attributes exist | Required for Mapbox/Google |
-
-| Requirement | Solution 3 |
-|---|---|
-| Clean real estate listing | Required |
-| Enriched criteria/features | Required |
-| User preference / persona weights | Required |
-| AHP pairwise comparison or survey | Recommended |
-| Entropy/CRITIC data weighting | Recommended |
-| Human relevance validation | Recommended |
-| LLM | Explanation only |
-| API key | Not required if features are precomputed |
+| API key | Không bắt buộc nếu features đã precompute | Required nếu dùng provider ngoài |
 
 ## 7. Evaluation Plan
 
@@ -253,15 +217,6 @@ docs/validation_dataset_plan.md
 
 File này nên được dùng làm cơ sở cho final report vì nó tách rõ technical validation, property holdout validation và human-labeled decision-quality validation.
 
-### For Solution 1
-
-| Metric | Meaning |
-|---|---|
-| Constraint satisfaction | Top 5 có vi phạm ngân sách/số phòng/quận không |
-| Score transparency | Mỗi recommendation có breakdown điểm không |
-| Ranking stability | Cùng input có ra cùng kết quả không |
-| Persona relevance | Top 5 có hợp persona không |
-
 ### For Solution 2
 
 | Metric | Meaning |
@@ -272,7 +227,7 @@ File này nên được dùng làm cơ sở cho final report vì nó tách rõ t
 | Explanation faithfulness | LLM giải thích có dựa đúng score/attribute không |
 | Latency/cost | Có chạy được trong demo không |
 
-### For Solution 3
+### For Solution 1
 
 | Metric | Meaning |
 |---|---|
@@ -292,31 +247,35 @@ File này nên được dùng làm cơ sở cho final report vì nó tách rõ t
 | LLM parse sai nhu cầu | Ranking lệch | Dùng JSON schema + whitelist amenity |
 | Trọng số chủ quan | Bị hỏi cơ sở | Dùng persona-based weights và ghi rõ là baseline rule |
 | Search API trả kết quả không ổn định | Reproducibility thấp | Cache POI result thành dataset trung gian |
-| Solution 3 bị giống weighted scoring | Thầy có thể xem là biến thể Solution 1 | Nhấn mạnh AHP/Entropy, TOPSIS ideal solution và sensitivity analysis |
+| Solution 1 bị giống weighted scoring | Thầy có thể xem là biến thể scoring thông thường | Nhấn mạnh AHP/Entropy, TOPSIS ideal solution và sensitivity analysis |
 | Trọng số AHP chủ quan | Ranking phụ thuộc người dùng | Thu thập survey/pairwise comparison và báo cáo Consistency Ratio |
 
 ## 9. Presentation Recommendation
 
 Khi trình bày với thầy, nên nói:
 
-1. Nhóm không dùng Solution 1 làm solution chính nữa:
-   - Solution 1 chỉ là baseline rule-based ban đầu
-   - hạn chế là trọng số và luật còn thủ công
-   - chưa đủ mạnh để đại diện cho DSS with Data
+1. Hướng rule-based cũ đã bị loại:
+   - quá đơn giản
+   - dễ bị xem là bộ lọc nâng cao
+   - không còn là solution active nữa
 
-2. Nhóm ưu tiên **phương án 2** vì xử lý nhu cầu linh hoạt:
+2. Nhóm ưu tiên giữ **2 hướng final**:
+   - `Solution 2` mạnh về xử lý nhu cầu linh hoạt
+   - `Solution 1` mạnh về mô hình ra quyết định đa tiêu chí
+
+3. Với **phương án 2**:
    - listing BĐS là dữ liệu sản phẩm
    - POI/amenity là dữ liệu ngữ cảnh
    - hệ thống tạo attribute quyết định và recommend Top 5
 
-3. Nhóm bổ sung **phương án 3** làm hướng DSS/MCDA:
+4. Với **phương án 1**:
    - mô hình hóa alternatives, criteria, weights và decision matrix
    - dùng TOPSIS để tìm phương án gần nghiệm lý tưởng nhất
    - dùng sensitivity analysis để kiểm tra độ ổn định của quyết định
 
-4. Hai solution chính không loại trừ nhau:
+5. Hai solution chính không loại trừ nhau:
    - Solution 2 mạnh về hiểu nhu cầu tự nhiên và enrich dữ liệu động
-   - Solution 3 mạnh về phương pháp ra quyết định đa tiêu chí và kiểm chứng trade-off
+   - Solution 1 mạnh về phương pháp ra quyết định đa tiêu chí và kiểm chứng trade-off
 
 ## 10. Suggested Final Scope For Midterm
 
