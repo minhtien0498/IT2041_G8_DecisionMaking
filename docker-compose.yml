@@ -1,0 +1,23 @@
+# Postgres cho Solution 1 (src/solution1). Chỉ dùng sql_filter đơn giản,
+# KHÔNG cần pgvector/PostGIS ở giai đoạn này (theo yêu cầu của user).
+services:
+  solution1_db:
+    image: postgres:16
+    container_name: solution1_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: solution1
+      POSTGRES_PASSWORD: solution1
+      POSTGRES_DB: solution1
+    ports:
+      - "5433:5432"
+    volumes:
+      - solution1_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U solution1 -d solution1"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  solution1_pgdata:

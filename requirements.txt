@@ -10,5 +10,10 @@ folium>=0.14.0
 openai>=1.0.0
 python-dotenv>=1.0.0
 
+# Solution 1 (src/solution1) — Postgres client + HTTP endpoint for UI
+psycopg[binary]>=3.1.0
+fastapi>=0.110.0
+uvicorn>=0.29.0
+
 # Slide Generation
 python-pptx>=0.6.21
