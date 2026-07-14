@@ -97,7 +97,7 @@ class OpenRouterLLMClient:
         self._current_key_index = 0
 
     def chat(self, messages, tools=None, tool_choice=None, max_tokens=2000, temperature=0.3,
-             reasoning_effort="low"):
+             reasoning_effort="low", frequency_penalty=None, presence_penalty=None):
         """Gọi chat completion, tự fallback qua model pool + key pool khi lỗi.
 
         `reasoning_effort`: giới hạn tỉ lệ token dành cho reasoning nội bộ của model
@@ -105,6 +105,11 @@ class OpenRouterLLMClient:
         tiêu hết max_tokens vào reasoning khiến content rỗng/None. "low" (~20%
         max_tokens) để dành đủ ngân sách cho content thật, đồng thời giảm độ trễ. Set
         None để tắt.
+
+        `frequency_penalty`/`presence_penalty`: giảm xác suất model TỰ LẶP LẠI chính
+        nội dung nó vừa viết (hiện tượng text degeneration/self-repetition đã quan sát
+        được ở explainer với output dài, nhiều heading lặp kiểu template) — nên dùng
+        cho các call sinh văn bản dài. Không set (None) thì không gửi param này.
 
         Trả về (response, model_used, key_label_used). Raise lỗi cuối cùng nếu mọi
         model/key đều lỗi.
@@ -118,6 +123,10 @@ class OpenRouterLLMClient:
             kwargs["tools"] = tools
         if tool_choice is not None:
             kwargs["tool_choice"] = tool_choice
+        if frequency_penalty is not None:
+            kwargs["frequency_penalty"] = frequency_penalty
+        if presence_penalty is not None:
+            kwargs["presence_penalty"] = presence_penalty
         if reasoning_effort is not None:
             kwargs["extra_body"] = {"reasoning": {"effort": reasoning_effort, "exclude": True}}
 

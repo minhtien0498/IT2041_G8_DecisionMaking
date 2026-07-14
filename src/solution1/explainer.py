@@ -30,6 +30,33 @@ def _template_fallback(top5):
     )
 
 
+def _looks_complete(text):
+    """True nếu text kết thúc bằng dấu câu hợp lý (không bị cắt giữa chừng)."""
+    return text.rstrip().endswith((".", "!", "?", ":", ")", '"', "”", "*", "】", "。"))
+
+
+def _dedupe_repeated_text(text, marker_len=150):
+    """Một số model (vd Nemotron) đôi khi KHÔNG dừng lại sau khi viết xong câu trả lời,
+    mà lặp lại NGUYÊN VĂN toàn bộ nội dung lần thứ 2 — đôi khi còn "khởi động lại" giữa
+    chừng TRƯỚC KHI viết xong bản đầu (khiến bản đầu bị cắt ngang), rồi mới viết trọn vẹn
+    ở bản lặp lại thứ 2. Phát hiện bằng cách tìm đoạn mở đầu (marker_len ký tự đầu) có
+    xuất hiện lại lần nữa hay không; nếu có, ưu tiên giữ lại bản nào kết thúc trọn vẹn
+    (ưu tiên bản 2 nếu bản 1 bị cắt ngang), thay vì luôn cắt bỏ phần sau."""
+    if not text or len(text) < marker_len * 2:
+        return text
+    marker = text[:marker_len].strip()
+    if not marker:
+        return text
+    second_pos = text.find(marker, marker_len)
+    if second_pos == -1:
+        return text
+    first_copy = text[:second_pos].rstrip()
+    second_copy = text[second_pos:].rstrip()
+    if _looks_complete(second_copy) and not _looks_complete(first_copy):
+        return second_copy
+    return first_copy
+
+
 def _extract_explanation_text(content):
     """Ưu tiên text thuần (model không bắt buộc trả JSON). Nếu model vẫn lỡ bọc JSON
     dạng {"explanation_summary": "..."}, tự bóc tách cho gọn thay vì hiển thị JSON thô."""
@@ -40,12 +67,12 @@ def _extract_explanation_text(content):
         try:
             data = json.loads(stripped)
             if isinstance(data, dict) and data.get("explanation_summary"):
-                return data["explanation_summary"].strip()
+                return _dedupe_repeated_text(data["explanation_summary"].strip())
         except json.JSONDecodeError:
             match = re.search(r'"explanation_summary"\s*:\s*"(.*)"\s*}\s*$', stripped, re.DOTALL)
             if match:
-                return match.group(1).strip()
-    return stripped
+                return _dedupe_repeated_text(match.group(1).strip())
+    return _dedupe_repeated_text(stripped)
 
 
 def _build_prompt(form, free_text, top5):
@@ -103,8 +130,10 @@ def explain(form, free_text, top5, llm_client):
                 {"role": "system", "content": SYSTEM_PROMPT},
                 {"role": "user", "content": prompt},
             ],
-            max_tokens=3000,
+            max_tokens=8000,
             temperature=0.4,
+            frequency_penalty=0.4,
+            presence_penalty=0.2,
         )
         content = response.choices[0].message.content
         text = _extract_explanation_text(content)

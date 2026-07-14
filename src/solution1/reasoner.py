@@ -16,9 +16,10 @@ from . import schema, tools
 MAX_TURNS = 5
 # Số lần thử lại THÊM (ngoài MAX_TURNS) khi model trả lời cuối cùng nhưng KHÔNG parse
 # được JSON hợp lệ. Quan sát thực tế: cùng 1 model/case có thể thành công hoặc thất bại
-# format JSON giữa các lần gọi khác nhau (không deterministic) — retry ngắn giúp tăng độ
-# tin cậy đáng kể mà không tốn quá nhiều quota.
-MAX_JSON_RETRIES = 2
+# format JSON giữa các lần gọi khác nhau (không deterministic — có case cần tới >2 lần
+# thử lại mới ra JSON hợp lệ) — retry giúp tăng độ tin cậy đáng kể mà không tốn quá
+# nhiều quota (mỗi retry là 1 lượt gọi mới với ngân sách token đầy đủ, không cộng dồn).
+MAX_JSON_RETRIES = 4
 
 RUBRIC = """
 Thang điểm total_score từ 0.0 đến 1.0:
@@ -46,7 +47,7 @@ Ví dụ output JSON ĐÚNG định dạng (chỉ minh họa format, không neo 
       "property_id": "XX_101",
       "total_score": 0.78,
       "hard_constraint_pass": true,
-      "reason_tags": ["good_price", "near_market"],
+      "reason_tags": ["Giá tốt", "Gần chợ"],
       "why_recommended": "Giá thấp hơn nhiều so với ngân sách tối đa và rất gần chợ.",
       "tradeoff": "Diện tích hơi nhỏ so với các lựa chọn khác."
     }
@@ -96,6 +97,12 @@ QUY TRÌNH BẮT BUỘC (tối đa 5 lượt gọi):
    "unsupported_requirements": [...]}}
    CHỈ được chọn property_id đã có trong kết quả trả về từ sql_filter, KHÔNG được bịa
    thêm property_id khác. Sắp xếp candidates giảm dần theo total_score. Tối đa 10 candidates.
+   QUAN TRỌNG VỀ NGÔN NGỮ: `reason_tags` PHẢI là các cụm từ TIẾNG VIỆT NGẮN GỌN (vd "Giá
+   tốt", "Gần trường học", "Diện tích rộng"), TUYỆT ĐỐI KHÔNG dùng định danh kiểu biến
+   snake_case tiếng Anh (vd KHÔNG viết "good_price", "near_school", "large_area").
+   `why_recommended` và `tradeoff` cũng PHẢI viết hoàn toàn bằng tiếng Việt tự nhiên,
+   không trộn tiếng Anh (trừ tên riêng địa danh/tòa nhà/đường phố, hoặc thuật ngữ
+   chuyên ngành không có bản dịch phổ biến, vd "SHR", "HXH").
    LƯU Ý: có thể suy nghĩ ngắn gọn trước khi trả lời, nhưng KHÔNG viết dài dòng diễn giải
    từng bước tính toán ra ngoài — hãy đi thẳng vào JSON kết quả cuối cùng để tránh bị cắt
    bớt do giới hạn độ dài phản hồi.
