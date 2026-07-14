@@ -25,7 +25,7 @@ Kế hoạch phân tích dữ liệu. Ví dụ số lượng mẫu, số lượn
 
 ## 5. Solutions
 
-### Solution 1 Form -> Inference Engine -> LLM explaination (baseline, không dùng làm solution chính)
+### Baseline cũ Form -> Inference Engine -> LLM explanation (không dùng làm solution chính)
 Ý tưởng chính: người dùng nhập nhu cầu qua form cố định, hệ thống chuyển nhu cầu thành tập luật và trọng số, sau đó inference engine lọc và chấm điểm để tạo Top 5, cuối cùng LLM sinh lời giải thích.
 
 Dữ liệu sử dụng: dữ liệu người dùng nhập từ form và cơ sở dữ liệu bất động sản đã được làm giàu với các thuộc tính như giá, số phòng, khoảng cách đến trường học, công viên, trục giao thông.
@@ -36,7 +36,18 @@ Kết quả kỳ vọng: hệ thống tạo ra khuyến nghị minh bạch, dễ
 
 pipleline: `Form -> Preference Profile -> Rule-based Filtering -> Rule-based Scoring -> Top 5 Candidates -> LLM Explanation`
 
-Ghi chú cập nhật: solution 1 chỉ nên giữ như baseline kỹ thuật hoặc bước tiền xử lý, vì dễ bị đánh giá là bộ lọc/rule-based recommender thông thường và chưa thể hiện rõ bản chất DSS with Data.
+Ghi chú cập nhật: hướng này chỉ nên giữ như baseline kỹ thuật hoặc bước tiền xử lý, vì dễ bị đánh giá là bộ lọc/rule-based recommender thông thường và chưa thể hiện rõ bản chất DSS with Data.
+
+### Solution 1 Form + User Query -> Two-LLM Pipeline + Guardrail -> Explanation
+Ý tưởng chính: Solution 1 dùng một pipeline tuần tự hai LLM có guardrail. LLM thứ nhất đóng vai trò reasoner: đọc form và nhu cầu tự nhiên, bắt buộc gọi tool lọc dữ liệu, có thể gọi thêm tool enrichment khi người dùng nhắc đến tiện ích chưa có sẵn, sau đó chấm điểm và sinh lý do sơ bộ cho các candidate. LLM thứ hai chỉ sinh giải thích cuối cùng dựa trên Top 5 đã được guardrail kiểm soát.
+
+Dữ liệu sử dụng: cơ sở dữ liệu BĐS đã được làm giàu, form người dùng, nhu cầu free-text và các thuộc tính tiện ích bổ sung được enrich động nếu cần.
+
+Cách xử lý: hệ thống tạo hard constraints từ form, gọi `sql_filter` để lấy candidate set trong database, cho LLM reasoner dùng các trường tiện ích sẵn có hoặc gọi tool enrich thêm tiện ích động, sau đó guardrail bằng code loại property ID không thuộc candidate set, loại trùng, sort theo điểm, đánh lại rank và cắt Top 5. LLM explainer nhận Top 5 đã khóa và viết giải thích trade-off.
+
+Kết quả kỳ vọng: hệ thống linh hoạt hơn baseline rule-based khi xử lý free-text, nhưng vẫn kiểm soát được biên dữ liệu. Top 5 không được bịa ngoài dataset, còn phần explanation phải bám vào thuộc tính thật của bất động sản.
+
+pipeline: `Form + User Query -> Hard Filter -> LLM Reasoner + Tool Use -> Guardrail Grounding -> Top 5 -> LLM Explanation`
 
 ### Solution 2 Form + User Query -> Inference Engine + LLM -> LLM explaination
 Ý tưởng chính: người dùng vừa nhập form cố định vừa nhập thêm nhu cầu đặc biệt bằng ngôn ngữ tự nhiên; LLM xử lý phần nhu cầu bổ sung, còn inference engine giữ vai trò lọc, chấm điểm và tái xếp hạng.
@@ -48,17 +59,6 @@ Cách xử lý: chạy form qua inference engine để lấy Top 10 ban đầu; 
 Kết quả kỳ vọng: hệ thống giữ được tính minh bạch của rule-based nhưng vẫn xử lý được các nhu cầu mới và mơ hồ hơn; đổi lại chi phí API, độ trễ và độ phức tạp triển khai sẽ cao hơn solution 1.
 
 pipeline: `Form + Additional User Request -> LLM Requirement Parsing and Deduplication -> Amenity Mapping -> Rule-based Top 10 -> Tool-based Attribute Enrichment -> Re-scoring/Re-ranking -> Top 5 -> LLM Explanation`
-
-### Solution 1 Data-driven MCDA -> TOPSIS Ranking -> Sensitivity Analysis -> LLM explanation
-Ý tưởng chính: mô hình hóa bài toán chọn BĐS như một bài toán ra quyết định đa tiêu chí (Multi-Criteria Decision Analysis). Mỗi BĐS là một phương án, mỗi thuộc tính là một tiêu chí, sau đó dùng AHP/Entropy để tính trọng số và TOPSIS để xếp hạng phương án theo khoảng cách đến nghiệm lý tưởng.
-
-Dữ liệu sử dụng: cơ sở dữ liệu BĐS đã được làm giàu, tiêu chí người dùng, dữ liệu khảo sát/preference nếu có, và các feature như giá, diện tích, giá/m2, số phòng, khoảng cách đến trường học, công viên, bệnh viện, siêu thị, giao thông.
-
-Cách xử lý: đầu tiên lọc các phương án vi phạm điều kiện bắt buộc như vượt ngân sách hoặc thiếu phòng ngủ; sau đó xây dựng decision matrix giữa BĐS và tiêu chí; tính trọng số người dùng bằng AHP hoặc khảo sát, kết hợp với trọng số khách quan từ dữ liệu bằng Entropy/CRITIC; chạy TOPSIS để xếp hạng; cuối cùng chạy sensitivity analysis để xem Top 5 có ổn định khi trọng số thay đổi hay không.
-
-Kết quả kỳ vọng: hệ thống không chỉ đưa ra Top 5, mà còn giải thích được trade-off, tiêu chí nào ảnh hưởng mạnh đến quyết định, phương án nào là robust choice và ranking có nhạy với giả định trọng số hay không.
-
-pipeline: `User Preference -> Hard Constraint Filtering -> Decision Matrix -> AHP/Entropy Weighting -> TOPSIS Ranking -> Sensitivity Analysis -> Top 5 -> LLM Trade-off Explanation`
 
 ## 6. Tiêu chí đánh giá/so sánh
 
@@ -72,7 +72,7 @@ Các tiêu chí đánh giá:
 7. Mức độ hữu ích
 8. TBD
 
-Kế hoạch xây dựng tập validation chi tiết nằm ở `docs/validation_dataset_plan.md`. Tập validation nên gồm 3 phần: validation properties, user scenarios và human relevance labels để so sánh solution 2 với Solution 1 bằng CSR@5, AvgRel@5, NDCG@5, MAP@5, Pairwise Win Rate và Stability.
+Kế hoạch xây dựng tập validation chi tiết nằm ở `docs/validation_dataset_plan.md`. Tập validation nên gồm 3 phần: validation properties, user scenarios và human relevance labels để so sánh Solution 2 với Solution 1 bằng CSR@5, AvgRel@5, NDCG@5, MAP@5, Pairwise Win Rate, Grounding Pass Rate, tool-call correctness và latency.
 
 ## 7. Lưu ý
 1. Tiêu chí đánh giá/so sánh (1) và (2) phải dựa trên một cơ sở rõ ràng. Có thể hiểu là phải dựa trên một tập validation nào đó. Tạm thời chấp nhận tập validation là tập do chúng ta tự phân loại/xếp hạng dựa trên sự tổng hợp và suy luận

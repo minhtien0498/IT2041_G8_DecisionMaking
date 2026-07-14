@@ -1,0 +1,687 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{enumitem}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[utf8]{vntex}
+\usepackage{amsmath,amssymb}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{array,booktabs,multirow,tabularx,longtable}
+\usepackage{caption,subcaption}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{indentfirst}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{biblatex}
+\usepackage{titlesec}
+\usepackage{xltabular}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\addbibresource{references.bib}
+\graphicspath{{img/}}
+\hypersetup{urlcolor=blue,linkcolor=black,citecolor=black,colorlinks=true}
+\usetikzlibrary{arrows,arrows.meta,backgrounds,positioning,calc,fit,shapes.geometric}
+\hbadness=10000
+\hfuzz=40pt
+
+\definecolor{codebg}{HTML}{F8FAFC}
+\definecolor{codeframe}{HTML}{CBD5E1}
+\definecolor{keywordblue}{HTML}{1D4ED8}
+\definecolor{stringgreen}{HTML}{047857}
+\definecolor{commentgray}{HTML}{64748B}
+\definecolor{notebg}{HTML}{EFF6FF}
+\definecolor{noteframe}{HTML}{60A5FA}
+
+\lstdefinestyle{jsonpretty}{
+    basicstyle=\ttfamily\small,
+    keywordstyle=\bfseries\color{keywordblue},
+    stringstyle=\color{stringgreen},
+    commentstyle=\itshape\color{commentgray},
+    backgroundcolor=\color{codebg},
+    frame=single,
+    rulecolor=\color{codeframe},
+    framerule=0.6pt,
+    framesep=7pt,
+    breaklines=true,
+    keepspaces=true,
+    showstringspaces=false,
+    columns=fullflexible,
+    numbers=none,
+    tabsize=2
+}
+\lstset{style=jsonpretty}
+
+\tikzset{
+    stepbox/.style={draw, rounded corners=4pt, thick, align=center, minimum width=3.1cm, minimum height=1.05cm, fill=cyan!10},
+    enginebox/.style={draw, rounded corners=4pt, thick, align=center, minimum width=3.1cm, minimum height=1.05cm, fill=orange!15},
+    databox/.style={draw, rounded corners=4pt, thick, align=center, minimum width=3.1cm, minimum height=1.05cm, fill=green!12},
+    llmbox/.style={draw, rounded corners=4pt, thick, align=center, minimum width=3.1cm, minimum height=1.05cm, fill=purple!10},
+    arrow/.style={-{Latex[length=2.2mm]}, thick}
+}
+
+\titlespacing*{\section}{0pt}{1.0ex plus 0.4ex minus .2ex}{0.6ex plus .2ex}
+\titlespacing*{\subsection}{0pt}{0.8ex plus 0.3ex minus .2ex}{0.45ex plus .15ex}
+\titlespacing*{\subsubsection}{0pt}{0.6ex plus 0.2ex minus .1ex}{0.35ex plus .1ex}
+
+\AtBeginDocument{\renewcommand*\contentsname{Mục lục}}
+\AtBeginDocument{\renewcommand*\listfigurename{Danh mục hình vẽ}}
+\AtBeginDocument{\renewcommand*\listtablename{Danh mục bảng}}
+
+\setlength{\parindent}{1em}
+\setlength{\parskip}{0.04em}
+\setlength{\headheight}{34pt}
+\setstretch{1.18}
+\setlist[itemize]{topsep=0.25em,itemsep=0.12em,parsep=0pt,partopsep=0pt,leftmargin=*}
+\setlist[enumerate]{topsep=0.25em,itemsep=0.12em,parsep=0pt,partopsep=0pt,leftmargin=*}
+\setlist[itemize,1]{label=-}
+\setlist[itemize,2]{label=+}
+
+\newcommand{\uitlogosmall}{%
+  \IfFileExists{img/UIT_LOGO.png}
+    {\includegraphics[width=8mm,height=8mm]{img/UIT_LOGO.png}}
+    {\fbox{\scriptsize UIT}}%
+}
+
+\newcommand{\uitlogolarge}{%
+  \IfFileExists{img/UIT_LOGO.png}
+    {\includegraphics[width=4cm]{img/UIT_LOGO.png}}
+    {\fbox{\Large UIT}}%
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{
+  \begin{tabular}{@{}rl@{}}
+    \begin{picture}(22,14)(0,0)
+      \put(0,-4){\uitlogosmall}
+    \end{picture} &
+    \begin{tabular}{@{}l@{}}
+      \textbf{Trường Đại học Công nghệ Thông tin}\\
+      \textbf{Báo cáo đề tài Hệ hỗ trợ ra quyết định}
+    \end{tabular}
+  \end{tabular}
+}
+\fancyfoot[R]{\scriptsize \ttfamily Trang \thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0.3pt}
+
+\begin{document}
+
+\pagenumbering{gobble}
+
+\begin{titlepage}
+\begin{center}
+ĐẠI HỌC QUỐC GIA THÀNH PHỐ HỒ CHÍ MINH \\
+TRƯỜNG ĐẠI HỌC CÔNG NGHỆ THÔNG TIN \\
+\end{center}
+
+\vspace{1cm}
+
+\begin{figure}[h!]
+\begin{center}
+\uitlogolarge
+\end{center}
+\end{figure}
+
+\begin{center}
+    \textbf{\LARGE BÁO CÁO}
+\end{center}
+
+\begin{center}
+    \textbf{\Large HỆ HỖ TRỢ RA QUYẾT ĐỊNH}
+\end{center}
+
+\begin{center}
+\begin{tabular}{c}
+~~\\
+\hline
+\\
+\textbf{\LARGE HỆ THỐNG TƯ VẤN CHỌN} \\
+\\
+\textbf{\LARGE BẤT ĐỘNG SẢN THÔNG MINH} \\
+\\
+\textbf{\LARGE Ở THÀNH PHỐ HỒ CHÍ MINH} \\
+\\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{2.6cm}
+
+\begin{center}
+\begin{tabular}{r l}
+Giảng viên hướng dẫn: & Lê Thanh Tùng \\
+Sinh viên thực hiện: & Trần Tú Quang - 250201084 \\
+& Tô Huỳnh Minh Tiến - 250201095 \\
+& Nguyễn Ấn - 250201042 \\
+& Nguyễn Văn Phú - 250201081 \\
+\end{tabular}
+\end{center}
+
+\begin{center}
+{\footnotesize Thành phố Hồ Chí Minh, tháng 07 năm 2026}
+\end{center}
+\end{titlepage}
+
+\pagenumbering{roman}
+\newpage
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+
+\section*{TÓM TẮT}
+\addcontentsline{toc}{section}{TÓM TẮT}
+Báo cáo trình bày hệ thống tư vấn chọn bất động sản thông minh tại TP.HCM theo hướng hệ hỗ trợ ra quyết định dựa trên dữ liệu. Khác với các trang tìm kiếm chỉ lọc theo giá, diện tích hoặc khu vực, hệ thống mô hình hóa nhu cầu người dùng thành ràng buộc, tiêu chí ưu tiên và trọng số ra quyết định. Mục tiêu của hệ thống không phải thay người dùng đưa ra quyết định cuối cùng, mà là thu hẹp tập lựa chọn, xếp hạng các phương án theo tiêu chí có thể kiểm chứng và giải thích trade-off giữa các lựa chọn.
+
+Nhóm đề xuất hai hướng chính. Solution 1 dùng pipeline tuần tự hai LLM: LLM thứ nhất gọi công cụ để lọc cứng, enrich tiện ích bổ sung và chấm điểm ứng viên; lớp guardrail bằng code đảm bảo Top 5 luôn thuộc tập 100 bất động sản trong cơ sở dữ liệu; LLM thứ hai chỉ sinh giải thích dựa trên Top 5 đã được kiểm soát. Solution 2 dùng kiến trúc hybrid giữa form, LLM và enrichment bản đồ: form đảm bảo các tiêu chí cơ bản ổn định, LLM chuyển nhu cầu tự nhiên thành thuộc tính đo lường được, còn inference engine chịu trách nhiệm lọc, chấm điểm và tái xếp hạng. Dataset hiện tại gồm 100 căn nhà riêng tại Gò Vấp và Tân Bình. Kết quả validation legacy trên 50 kịch bản và 37 bất động sản Gò Vấp đạt CSR 100\%, Precision@5 76.8\%, Recall@5 92.0\% và NDCG@5 0.92; đây là mốc tham chiếu kỹ thuật cho logic lọc/xếp hạng, trong khi workflow final cần chạy lại trên bộ 100 căn đã enrich.
+
+\section{GIỚI THIỆU}
+
+\subsection{Bối cảnh và động lực}
+Việc tìm mua hoặc thuê bất động sản tại TP.HCM là một bài toán ra quyết định phức tạp. Người dùng không chỉ quan tâm đến giá, diện tích và số phòng, mà còn có các nhu cầu khó biểu diễn bằng bộ lọc cố định như gần trường cho con, thuận tiện đi làm, gần công viên, gần chợ hoặc phù hợp kế hoạch đầu tư. Các ứng dụng phổ biến thường dừng ở mức lọc điều kiện tường minh, khiến người dùng phải tự so sánh rất nhiều phương án và tự suy luận trade-off giữa các tiêu chí.
+
+Đề tài này tiếp cận bài toán dưới góc nhìn Decision Support System (DSS). Mỗi bất động sản được xem là một phương án quyết định, mỗi thuộc tính như giá, diện tích, số phòng và khoảng cách đến tiện ích là một tiêu chí, còn nhu cầu người dùng được chuyển thành ràng buộc và trọng số. Hệ thống không thay người dùng quyết định tuyệt đối, mà hỗ trợ người dùng rút gọn không gian lựa chọn, nhìn thấy lý do xếp hạng và hiểu các đánh đổi quan trọng.
+
+Điểm khó của bài toán nằm ở chỗ ``phù hợp'' không phải là một thuộc tính đơn lẻ. Một căn nhà có giá tốt nhưng xa trường học có thể không phù hợp với gia đình có con nhỏ; ngược lại, một căn có diện tích vừa phải nhưng gần chợ, bệnh viện và trục giao thông lại có thể phù hợp với người cao tuổi. Vì vậy, hệ thống cần kết hợp cả dữ liệu mô tả bất động sản, dữ liệu vị trí, nhu cầu người dùng và cơ chế giải thích để biến một danh sách rời rạc thành một đề xuất có lý do.
+
+\subsection{Vấn đề nghiên cứu}
+Bài toán chính của nhóm là: với một tập bất động sản đã được làm sạch và làm giàu thông tin tiện ích, làm thế nào để đưa ra Top 5 phương án phù hợp nhất với nhu cầu người dùng, đồng thời giải thích được vì sao các phương án đó được chọn. Bài toán có ba thách thức:
+
+\begin{itemize}
+    \item Nhu cầu người dùng vừa có phần định lượng rõ ràng như ngân sách, diện tích, số phòng, vừa có phần mơ hồ như ``gần trường'', ``khu tiện sinh hoạt'' hoặc ``phù hợp gia đình có con nhỏ''.
+    \item Các tiêu chí có chiều tối ưu khác nhau: giá và khoảng cách là tiêu chí cost, còn diện tích hoặc số phòng là tiêu chí benefit.
+    \item Kết quả khuyến nghị cần minh bạch, kiểm chứng được và không phụ thuộc vào việc LLM tự bịa thứ hạng.
+\end{itemize}
+
+\subsection{Mục tiêu và phạm vi}
+Mục tiêu của hệ thống là chuyển nhu cầu người dùng thành tiêu chí đo lường được, lọc các phương án vi phạm ràng buộc cứng, xếp hạng các phương án còn lại và sinh giải thích bằng ngôn ngữ tự nhiên. Về mặt chức năng, hệ thống cần nhận được hai loại input: thông tin form có cấu trúc như ngân sách, số phòng ngủ, khu vực ưu tiên; và mô tả tự nhiên như ``muốn gần trường mẫu giáo'' hoặc ``ưu tiên nhiều tiện ích trong bán kính 1 km''. Output kỳ vọng là Top 5 bất động sản, điểm số tương ứng, các thuộc tính đóng góp vào điểm và phần giải thích dễ hiểu.
+
+Phạm vi dữ liệu hiện tại tập trung vào nhà riêng tại hai quận Gò Vấp và Tân Bình, với 100 mẫu đã được chuẩn hóa. Nhóm chọn phạm vi này vì nó đủ nhỏ để kiểm soát chất lượng dữ liệu và chi phí enrich, nhưng vẫn đủ đa dạng về giá, diện tích, số phòng và tiện ích xung quanh để thể hiện bài toán ra quyết định. Các kết quả validation định lượng đang có trong repo vẫn thuộc giai đoạn legacy trên 37 bất động sản Gò Vấp, nên báo cáo phân biệt rõ giữa kết quả tham chiếu và workflow final.
+
+\begin{tcolorbox}[colback=notebg,colframe=noteframe,title=Phạm vi hoàn thiện theo thành viên]
+Báo cáo được tổ chức theo hướng mỗi thành viên phụ trách một phần chuyên môn rõ ràng: dữ liệu và enrichment, Solution 1 pipeline hai LLM có guardrail, Solution 2 hybrid LLM + Map, validation và tổng hợp kết quả. Những phần chưa có số liệu chạy cuối cùng được đánh dấu bằng yêu cầu bổ sung cụ thể ngay tại mục liên quan để nhóm điền kết quả thực nghiệm đúng vị trí.
+\end{tcolorbox}
+
+\section{DỮ LIỆU VÀ TIỀN XỬ LÝ}
+
+\subsection{Nguồn dữ liệu}
+Repo hiện có hai nguồn dữ liệu thô để mở rộng: nguồn dữ liệu rao bán BĐS công khai gồm 51,304 dòng và bộ dữ liệu nhà ở Việt Nam gồm 30,229 dòng. Các nguồn này chứa thông tin rao bán bất động sản với mức độ sạch không đồng đều, vì dữ liệu được tổng hợp từ nhiều tin đăng khác nhau. Do đó, thay vì đưa toàn bộ dữ liệu vào hệ thống ngay từ đầu, nhóm tạo một tập dữ liệu sạch có kiểm soát để phục vụ demo và thực nghiệm.
+
+Bộ dữ liệu đang dùng trong báo cáo là tập 100 BĐS Gò Vấp - Tân Bình, gồm 100 căn nhà riêng, chia đều 50 căn ở Gò Vấp và 50 căn ở Tân Bình. Hai quận này được chọn vì có sự đa dạng tương đối về giá, diện tích và vị trí trong đô thị: Gò Vấp phù hợp với nhóm nhu cầu gia đình, người trẻ và người mua ở thực; Tân Bình có lợi thế về kết nối giao thông, tiện ích và vị trí gần các trục di chuyển lớn. Phạm vi 100 căn cũng giúp nhóm kiểm tra thủ công dữ liệu, cache kết quả API và giải thích demo một cách nhất quán.
+
+\begin{table}[H]
+\centering
+\caption{Tóm tắt dataset sử dụng trong project}
+\label{tab:dataset_summary}
+\small
+\begin{tabularx}{\textwidth}{|P{3.8cm}|Y|}
+\hline
+\textbf{Thành phần} & \textbf{Mô tả} \\ \hline
+Nguồn thô & Nguồn rao bán BĐS công khai: 51,304 dòng; bộ dữ liệu nhà ở Việt Nam: 30,229 dòng \\ \hline
+Dataset clean hiện tại & 100 căn nhà riêng tại Gò Vấp và Tân Bình \\ \hline
+Phân bố địa lý & Gò Vấp: 50 mẫu; Tân Bình: 50 mẫu \\ \hline
+Khoảng giá & 1.25--27.0 tỷ VND; trung bình khoảng 8.27 tỷ VND \\ \hline
+Diện tích & 20.0--258.4 m$^2$; trung bình khoảng 69.1 m$^2$ \\ \hline
+Số phòng ngủ & 1--7 phòng; trung bình khoảng 3.5 phòng \\ \hline
+\end{tabularx}
+\end{table}
+
+\subsection{Schema dữ liệu}
+Các trường nền được thiết kế để cả hai solution cùng dùng gồm mã bất động sản, tiêu đề tin đăng, quận/phường, địa chỉ thô, giá bán, diện tích, giá trên mỗi mét vuông, số phòng ngủ, số phòng tắm, số tầng, tọa độ và mô tả ngắn. Đây là nhóm thuộc tính mô tả trực tiếp bất động sản, dùng cho hard constraints và các tiêu chí ra quyết định cơ bản.
+
+Các trường enrich quan trọng gồm khoảng cách đến trường học, công viên, bệnh viện, siêu thị và trục giao thông. Nhóm thuộc tính này đóng vai trò cầu nối giữa nhu cầu tự nhiên của người dùng và scoring engine. Ví dụ, câu ``gần trường cho con nhỏ'' được chuyển thành khoảng cách đến trường gần nhất hoặc số lượng trường trong bán kính 1 km; câu ``tiện sinh hoạt'' có thể liên quan đến siêu thị, chợ, bệnh viện và công viên. Nhờ schema chung này, Solution 1 và Solution 2 có thể dùng cùng một nền dữ liệu nhưng khác nhau ở cách gọi công cụ, cách enrich động và cách giải thích kết quả.
+
+\subsection{Làm giàu dữ liệu tiện ích}
+Hệ thống hỗ trợ hai hướng enrichment: Overpass API dựa trên dữ liệu OpenStreetMap \cite{openstreetmap2026,overpass2026} và Geoapify Places API \cite{geoapify2026}. Hai notebook enrich đều đọc từ dataset 100 căn, chạy theo batch, có checkpoint, error log và sinh output JSON. Thiết kế theo batch giúp quá trình enrich có thể dừng/chạy lại mà không mất toàn bộ kết quả, đồng thời dễ kiểm tra những địa chỉ hoặc request bị lỗi.
+
+Các thuộc tính enrich giúp biến nhu cầu tự nhiên như ``gần trường'', ``gần công viên'' hoặc ``gần siêu thị'' thành tiêu chí định lượng để chấm điểm. Với mỗi bất động sản, hệ thống có thể tính khoảng cách đến tiện ích gần nhất hoặc số lượng tiện ích trong một bán kính nhất định. Khoảng cách phù hợp với các nhu cầu kiểu ``càng gần càng tốt'', còn số lượng tiện ích phù hợp với các nhu cầu kiểu ``khu vực nhiều tiện ích''. Đây là bước quan trọng để hệ thống tránh đánh giá bằng cảm tính và giữ được tính kiểm chứng của DSS.
+
+\begin{tcolorbox}[colback=notebg,colframe=noteframe,title=Ghi chú về trạng thái dữ liệu]
+Dataset 100 căn là workflow final về mặt phạm vi dữ liệu. Tuy nhiên, một số output validation cũ trong repo vẫn dựa trên bộ legacy 37 căn ở Gò Vấp. Vì vậy, khi trình bày kết quả, nhóm cần ghi rõ kết quả nào là legacy và kết quả nào được chạy lại trên bộ 100 căn đã enrich.
+\end{tcolorbox}
+
+\subsection{Phân tích dữ liệu và kết quả enrichment}
+Phần dữ liệu của hệ thống được triển khai theo hai lớp. Lớp thứ nhất là bộ dữ liệu sạch 100 BĐS Gò Vấp - Tân Bình, được tạo từ pipeline tiền xử lý dữ liệu của nhóm. Lớp này chuẩn hóa các trường nền như giá, diện tích, số phòng, quận/phường, tọa độ và mô tả. Lớp thứ hai là bộ dữ liệu đã enrich POI, được tạo từ pipeline làm giàu dữ liệu bằng Overpass và Geoapify. Lớp enriched bổ sung khoảng cách hoặc số lượng POI để các tiêu chí như gần trường, gần công viên, gần bệnh viện và gần siêu thị có thể được đưa vào scoring.
+
+Về quy mô, bộ clean dataset hiện có 100 bất động sản dạng nhà riêng, chia đều 50 căn ở Gò Vấp và 50 căn ở Tân Bình. Bảng \ref{tab:tien_clean_stats} tóm tắt các thống kê chính sau tiền xử lý.
+
+\begin{table}[H]
+\centering
+\caption{Thống kê clean dataset sau tiền xử lý}
+\label{tab:tien_clean_stats}
+\small
+\begin{tabularx}{\textwidth}{|P{4.2cm}|P{2.2cm}|P{2.2cm}|P{2.2cm}|Y|}
+\hline
+\textbf{Thuộc tính} & \textbf{Min} & \textbf{Max} & \textbf{Mean} & \textbf{Nhận xét} \\ \hline
+Giá (tỷ VND) & 1.25 & 27.0 & 8.27 & Phủ được cả nhóm ngân sách thấp, trung bình và cao. \\ \hline
+Diện tích (m$^2$) & 20.0 & 258.4 & 69.11 & Có cả nhà nhỏ đô thị và nhà diện tích lớn. \\ \hline
+Giá/m$^2$ (triệu VND) & 62.5 & 223.47 & 124.62 & Dùng được cho persona nhà đầu tư hoặc so sánh giá trị. \\ \hline
+Số phòng ngủ & 1 & 7 & 3.48 & Phù hợp để mô phỏng người độc thân, cặp đôi và gia đình. \\ \hline
+Số phòng tắm & 1 & 9 & 3.22 & Có thể dùng như tiêu chí phụ khi đánh giá tiện nghi. \\ \hline
+Số tầng & 1 & 5 & 2.73 & Thiếu 2/100 mẫu, nhưng vẫn đủ dùng như thông tin mô tả. \\ \hline
+\end{tabularx}
+\end{table}
+
+Về phân bố địa lý, dataset được cân bằng theo quận: Gò Vấp 50 mẫu và Tân Bình 50 mẫu. Một số phường xuất hiện nhiều gồm Phường Bảy Hiền 14 mẫu, Phường Gò Vấp 13 mẫu, Phường Thông Tây Hội 13 mẫu và Phường An Hội Tây 13 mẫu. Phân bố này phù hợp với phạm vi demo vì mỗi quận đều có đủ số lượng ứng viên để chạy lọc, scoring và ranking, đồng thời vẫn giữ quy mô đủ nhỏ để kiểm soát chất lượng dữ liệu thủ công.
+
+Bảng \ref{tab:tien_missing_values} trình bày các giá trị thiếu quan trọng. Các trường nền như tọa độ, giá, diện tích và số phòng đã tương đối đầy đủ; các trường mô tả phụ như hướng nhà và vị trí còn thiếu nhiều nên không nên đưa vào scoring chính. Đặc biệt, bộ dữ liệu sạch ban đầu chưa có thông tin POI, vì vậy các trường khoảng cách đến tiện ích đều thiếu trước bước enrichment.
+
+\begin{table}[H]
+\centering
+\caption{Tỷ lệ thiếu dữ liệu ở các trường quan trọng}
+\label{tab:tien_missing_values}
+\small
+\begin{tabularx}{\textwidth}{|P{5.2cm}|P{2.4cm}|Y|}
+\hline
+\textbf{Trường dữ liệu} & \textbf{Thiếu} & \textbf{Cách xử lý trong báo cáo/pipeline} \\ \hline
+Tọa độ kinh độ/vĩ độ & 0/100 & Có thể dùng trực tiếp cho enrichment POI. \\ \hline
+Số tầng & 2/100 & Giữ làm thông tin mô tả, không bắt buộc trong hard constraints. \\ \hline
+Hướng nhà & 75/100 & Không đưa vào scoring chính vì thiếu quá nhiều. \\ \hline
+Vị trí nhà & 14/100 & Có thể dùng trong giải thích nếu có, nhưng pipeline phải chấp nhận giá trị rỗng. \\ \hline
+Mô tả ngắn & 5/100 & Dùng hỗ trợ giải thích, không dùng làm tiêu chí định lượng chính. \\ \hline
+Các trường khoảng cách POI trong bộ dữ liệu sạch & 100/100 & Cần bổ sung bằng bước enrichment trước khi dùng cho ranking có POI. \\ \hline
+\end{tabularx}
+\end{table}
+
+Để bổ sung POI, nhóm thử nghiệm hai provider: Overpass API và Geoapify Places API. Overpass có lợi thế là nguồn mở, không cần API key, độ phủ tốt ở một số nhóm POI như bệnh viện, siêu thị và chợ; tuy nhiên thời gian chạy chậm và phụ thuộc mạnh vào quota của public instance. Geoapify yêu cầu API key nhưng ổn định hơn khi chạy demo, hoàn tất đủ 100 mẫu trong phiên test hiện tại và không phát sinh lỗi API. Bảng \ref{tab:tien_provider_compare} tóm tắt kết quả quan sát từ các output trong repo.
+
+\begin{table}[H]
+\centering
+\caption{So sánh kết quả enrichment Overpass và Geoapify}
+\label{tab:tien_provider_compare}
+\small
+\begin{tabularx}{\textwidth}{|P{4.0cm}|P{4.2cm}|Y|}
+\hline
+\textbf{Tiêu chí} & \textbf{Overpass API} & \textbf{Geoapify Places API} \\ \hline
+Số record output & 100/100 & 100/100 \\ \hline
+Error log & 0 lỗi ghi nhận & 0 lỗi ghi nhận \\ \hline
+Thời gian chạy quan sát & 100 mẫu trong 55 phút 25 giây & 100 mẫu trong 16 phút 47 giây \\ \hline
+Độ phủ school/park/cafe/boulevard & Thiếu 0 mẫu ở các nhóm này & Thiếu 0 mẫu ở các nhóm này \\ \hline
+Độ phủ hospital & Thiếu 1/100 mẫu & Thiếu 27/100 mẫu \\ \hline
+Độ phủ supermarket/market & Thiếu 1/100 mẫu ở mỗi nhóm & Thiếu 2/100 supermarket và 3/100 market \\ \hline
+Nhận xét vận hành & Phù hợp làm baseline open-data, cần batch, checkpoint, retry và cache & Phù hợp demo vì tốc độ nhanh hơn và checkpoint ổn định hơn \\ \hline
+\end{tabularx}
+\end{table}
+
+Từ kết quả trên, hướng sử dụng dữ liệu hợp lý là giữ clean dataset 100 căn làm nguồn chuẩn, dùng Geoapify cho demo và các lần chạy cần tốc độ ổn định, đồng thời dùng Overpass như baseline open-data để đối chiếu độ phủ POI. Với các tiêu chí mà Geoapify thiếu nhiều như hospital, nhóm có thể tinh chỉnh category mapping hoặc dùng Overpass để bổ sung. Cách tổ chức này giúp hệ thống vừa có tính tái lập trong demo, vừa giữ được phương án mở rộng bằng dữ liệu mở khi cần.
+
+\section{THIẾT KẾ HỆ THỐNG}
+
+\subsection{Kiến trúc tổng quan}
+Kiến trúc đề xuất tách rõ ba vai trò: LLM dùng để hiểu nhu cầu và sinh giải thích, inference engine dùng để lọc/chấm điểm/xếp hạng, còn map/POI tool dùng để cung cấp bằng chứng dữ liệu. Cách tách này là nguyên tắc thiết kế quan trọng của hệ thống. LLM có khả năng diễn giải tốt ngôn ngữ tự nhiên, nhưng không nên là thành phần tự quyết định thứ hạng vì khó kiểm chứng và có rủi ro hallucination. Ngược lại, inference engine có thể tính điểm minh bạch dựa trên dữ liệu nhưng khó hiểu các câu mô tả mơ hồ của người dùng.
+
+Vì vậy, hệ thống phân công nhiệm vụ theo hướng: LLM chuyển câu chữ thành schema, map/POI provider cung cấp dữ liệu đo lường, còn DSS engine đưa ra ranking. Kết quả cuối cùng vì thế vừa linh hoạt với nhu cầu tự nhiên, vừa có thể truy ngược về điểm số và thuộc tính cụ thể.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=0.9cm and 0.65cm]
+\node[stepbox] (input) {Form + nhu cầu\\tự nhiên};
+\node[llmbox, right=of input] (parse) {LLM parse\\schema nhu cầu};
+\node[enginebox, right=of parse] (engine) {Inference engine\\lọc + ranking};
+\node[databox, below=of engine] (data) {Dataset BĐS\\+ POI enrichment};
+\node[stepbox, right=of engine] (top5) {Top 5\\khuyến nghị};
+\node[llmbox, right=of top5] (explain) {LLM giải thích\\trade-off};
+\draw[arrow] (input) -- (parse);
+\draw[arrow] (parse) -- (engine);
+\draw[arrow] (data) -- (engine);
+\draw[arrow] (engine) -- (top5);
+\draw[arrow] (top5) -- (explain);
+\end{tikzpicture}
+\caption{Kiến trúc tổng quan của hệ thống tư vấn BĐS thông minh}
+\label{fig:architecture}
+\end{figure}
+
+\subsection{Output contract}
+Để kết quả dễ kiểm thử, pipeline trả về cấu trúc thống nhất gồm: thông tin nhu cầu đã parse, số lượng BĐS sau lọc cứng, Top 5, điểm nền theo form, điểm bổ sung sau enrichment, điểm cuối cùng, các thuộc tính đóng góp và phần giải thích.
+
+Output contract này giúp tách phần tính toán khỏi phần trình bày. Nếu người dùng hỏi vì sao một căn được xếp hạng cao, hệ thống có thể chỉ ra căn đó đạt điểm tốt ở tiêu chí nào, tiêu chí nào làm giảm điểm và nhu cầu bổ sung nào đã ảnh hưởng đến thứ hạng. Nếu kết quả không hợp lý, nhóm cũng có thể debug theo từng lớp: parser hiểu sai nhu cầu, dữ liệu POI sai, normalization chưa hợp lý hay trọng số chưa phù hợp.
+
+\subsection{Phần hoàn thiện bởi Trần Tú Quang: kiến trúc mã nguồn}
+Trần Tú Quang bổ sung vào mục này mô tả kiến trúc triển khai ở mức source code. Nội dung cần điền gồm:
+
+\begin{itemize}
+    \item Một hình sơ đồ module thể hiện quan hệ giữa nhóm xử lý dữ liệu, nhóm xử lý Solution 2, nhóm đánh giá, nhóm demo, kho dữ liệu và kho kết quả.
+    \item Một bảng mô tả đầu vào và đầu ra của từng module chính, ví dụ module tạo bộ dữ liệu 100 BĐS, module enrichment POI, module parse nhu cầu, module pipeline, module scoring, module enrichment động và module evaluation.
+    \item Một đoạn mô tả luồng chạy end-to-end: người dùng nhập form và nhu cầu tự nhiên, hệ thống parse nhu cầu, lọc ứng viên, enrich tiện ích, re-rank và trả về Top 5.
+\end{itemize}
+
+Nếu có ảnh chụp demo hoặc bảng kết quả Solution 2, đặt hình hoặc bảng minh họa ngay sau phần mô tả luồng chạy.
+
+\section{SOLUTION 1: PIPELINE HAI LLM CÓ GUARDRAIL}
+
+\subsection{Ý tưởng}
+Solution 1 được thiết kế theo hướng tuần tự, có giới hạn rõ ràng, thay vì để một agent tự trị tự do quyết định toàn bộ quá trình. Mục tiêu của hướng này là tận dụng khả năng hiểu nhu cầu và giải thích của LLM, nhưng vẫn giữ ranh giới dữ liệu chặt chẽ: mọi bất động sản được đề xuất cuối cùng phải thuộc tập 100 mẫu trong cơ sở dữ liệu, không cho phép LLM tự sinh thêm phương án bên ngoài.
+
+Pipeline gồm hai LLM. LLM thứ nhất đóng vai trò reasoner: nhận form và nhu cầu tự nhiên, bắt buộc gọi công cụ lọc dữ liệu, có thể gọi thêm công cụ enrich nếu nhu cầu của người dùng vượt ngoài các tiện ích đã có sẵn, sau đó trả về danh sách ứng viên kèm điểm và lý do. LLM thứ hai đóng vai trò explainer: chỉ nhận Top 5 đã qua guardrail và viết phần giải thích trade-off bằng ngôn ngữ tự nhiên. Nhờ tách hai vai trò này, hệ thống vừa có khả năng diễn giải linh hoạt, vừa giảm rủi ro LLM tự bịa thứ hạng hoặc tự thêm bất động sản không tồn tại.
+
+\subsection{Luồng xử lý}
+Luồng xử lý của Solution 1 gồm bốn bước chính. Đầu tiên, hệ thống chuyển các trường định lượng trong form thành hard constraints, ví dụ ngân sách tối đa và số phòng ngủ tối thiểu. Các điều kiện này được đưa vào công cụ lọc dữ liệu và luôn được áp dụng bằng code, kể cả khi LLM diễn giải thiếu. Bước này đảm bảo các phương án vi phạm ràng buộc cứng không được đi tiếp.
+
+Thứ hai, LLM reasoner nhận danh sách candidate sau lọc. Nếu nhu cầu người dùng chỉ liên quan đến các tiện ích đã có trong bộ dữ liệu, chẳng hạn trường học, công viên, bệnh viện, siêu thị hoặc trục đường lớn, LLM dùng trực tiếp các trường khoảng cách/số lượng có sẵn để chấm điểm. Nếu người dùng nhắc đến tiện ích ngoài schema gốc như nhà thuốc, phòng gym, quán cà phê, chợ hoặc một địa điểm cụ thể, LLM có thể gọi công cụ enrich bổ sung cho nhóm candidate đang xét.
+
+Thứ ba, lớp guardrail bằng code kiểm tra output của LLM reasoner. Lớp này loại bỏ property ID không thuộc candidate set đã lọc, loại trùng, sắp xếp lại theo điểm giảm dần, đánh lại rank và cắt Top 5. Đây là cơ chế quan trọng để bảo vệ tính công bằng khi so sánh giữa các solution: Top 5 của Solution 1 vẫn luôn xuất phát từ cùng tập dữ liệu 100 căn.
+
+Cuối cùng, LLM explainer chỉ sinh giải thích cho Top 5 đã được kiểm soát. LLM này không có quyền gọi tool và không được thay đổi thứ hạng. Phần giải thích vì vậy có thể tự nhiên hơn nhưng vẫn bám vào dữ liệu đã có: giá, diện tích, số phòng, khoảng cách tiện ích, điểm mạnh và trade-off của từng căn.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=0.8cm and 0.35cm, transform shape, scale=0.82]
+\node[stepbox] (input) {Form + nhu cầu\\tự nhiên};
+\node[enginebox, right=of input] (filter) {Hard filter\\ứng viên hợp lệ};
+\node[llmbox, right=of filter] (reasoner) {LLM reasoner\\gọi tool + chấm điểm};
+\node[enginebox, right=of reasoner] (guard) {Guardrail\\grounding + Top 5};
+\node[llmbox, right=of guard] (explain) {LLM explainer\\giải thích};
+\node[databox, below=of filter] (db) {DB 100 BĐS\\+ POI nền $X$};
+\node[databox, below=of reasoner] (enrich) {Enrichment động\\bổ sung $Y$ nếu cần};
+\draw[arrow] (input) -- (filter);
+\draw[arrow] (filter) -- (reasoner);
+\draw[arrow] (reasoner) -- (guard);
+\draw[arrow] (guard) -- (explain);
+\draw[arrow] (db) -- (filter);
+\draw[arrow] (db) -- (reasoner);
+\draw[arrow] (reasoner) -- (enrich);
+\draw[arrow] (enrich) -- (guard);
+\end{tikzpicture}
+\caption{Pipeline Solution 1: hai LLM có guardrail và enrichment động}
+\label{fig:solution1_pipeline}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\caption{Vai trò các thành phần trong Solution 1}
+\label{tab:solution1_components}
+\small
+\begin{tabularx}{\textwidth}{|P{3.7cm}|Y|Y|}
+\hline
+\textbf{Thành phần} & \textbf{Vai trò} & \textbf{Cơ chế kiểm soát} \\ \hline
+Hard filter & Lọc theo ngân sách, số phòng và các ràng buộc cứng từ form & Điều kiện được áp dụng bằng code, không phụ thuộc hoàn toàn vào LLM \\ \hline
+LLM reasoner & Hiểu nhu cầu, gọi tool, chấm điểm candidate và sinh lý do sơ bộ & Bị giới hạn số lượt gọi tool và chỉ được chọn từ candidate set \\ \hline
+Enrichment tool & Bổ sung tiện ích hoặc khoảng cách mới khi free-form yêu cầu & Chỉ enrich trên danh sách candidate, không mở rộng tập bất động sản \\ \hline
+Guardrail & Loại hallucination, dedupe, sort, renumber và cắt Top 5 & Bắt buộc property ID thuộc tập dữ liệu đã lọc \\ \hline
+LLM explainer & Viết giải thích cuối cùng và trade-off cho người dùng & Không có quyền gọi tool hoặc thay đổi ranking \\ \hline
+\end{tabularx}
+\end{table}
+
+\subsection{Enrichment động và vấn đề X + Y tiện ích}
+Bộ dữ liệu enriched ban đầu đã có một nhóm tiện ích nền, ký hiệu là $X$, gồm các thông tin như khoảng cách đến trường học, công viên, bệnh viện, siêu thị và trục đường lớn. Tuy nhiên, nhu cầu tự nhiên của người dùng có thể nhắc đến các tiện ích chưa nằm trong $X$, ví dụ nhà thuốc, phòng gym, quán cà phê, chợ hoặc một địa điểm làm việc cụ thể. Khi đó, Solution 1 có thể enrich thêm một nhóm thuộc tính mới, ký hiệu là $Y$, chỉ cho các candidate cần xét.
+
+Điều này tạo ra một điểm cần lưu ý khi validation. Nếu ground truth hoặc bộ chấm chỉ đánh giá dựa trên $X$ tiện ích có sẵn, trong khi Solution 1 đã dùng thêm $Y$ tiện ích từ nhu cầu tự nhiên, kết quả có thể bị mất cân bằng: một phương án được LLM reasoner đánh giá cao vì thỏa $Y$ nhưng lại không được phản ánh trong nhãn đánh giá. Vì vậy, validation final nên ghi rõ mỗi scenario được chấm theo $X$ hay theo $X + Y$. Với các case có enrichment động, cách đánh giá công bằng hơn là đưa cả thuộc tính $Y$ vào tiêu chí relevance hoặc ít nhất ghi chú riêng khi phân tích lỗi.
+
+\subsection{Kết quả sơ bộ trên 10 kịch bản}
+Nguyễn Văn Phú đã chạy thử Solution 1 trên 10 kịch bản validation đầu tiên. Kết quả sơ bộ cho thấy pipeline chạy thành công cả 10 case, mỗi case trả về đủ Top 5 và Top 5 đều thuộc tập dữ liệu trong cơ sở dữ liệu. Một số case chỉ dùng công cụ lọc dữ liệu, trong khi một số case có gọi thêm enrichment động khi nhu cầu tự nhiên nhắc đến tiện ích ngoài schema nền.
+
+\begin{table}[H]
+\centering
+\caption{Kết quả chạy sơ bộ Solution 1 trên 10 validation case}
+\label{tab:solution1_preliminary}
+\small
+\begin{tabularx}{\textwidth}{|P{2.0cm}|P{2.0cm}|P{2.2cm}|P{2.5cm}|Y|}
+\hline
+\textbf{Case} & \textbf{Status} & \textbf{Số BĐS} & \textbf{Latency} & \textbf{Tool được gọi} \\ \hline
+V1\_001 & ok & 5 & 240.5 giây & Lọc dữ liệu \\ \hline
+V1\_002 & ok & 5 & 199.4 giây & Lọc dữ liệu \\ \hline
+V1\_003 & ok & 5 & 248.0 giây & Lọc dữ liệu \\ \hline
+V1\_004 & ok & 5 & 301.8 giây & Lọc dữ liệu + enrichment \\ \hline
+V1\_005 & ok & 5 & 182.2 giây & Lọc dữ liệu \\ \hline
+V1\_006 & ok & 5 & 91.0 giây & Lọc dữ liệu \\ \hline
+V1\_007 & ok & 5 & 244.0 giây & Lọc dữ liệu + enrichment \\ \hline
+V1\_008 & ok & 5 & 419.4 giây & Lọc dữ liệu + enrichment nhiều lượt \\ \hline
+V1\_009 & ok & 5 & 301.0 giây & Lọc dữ liệu \\ \hline
+V1\_010 & ok & 5 & 165.0 giây & Lọc dữ liệu \\ \hline
+\end{tabularx}
+\end{table}
+
+Kết quả này cho thấy hướng Solution 1 đã có output end-to-end để review nội dung, nhưng vẫn chưa nên xem là kết quả final. Thứ nhất, latency còn cao do phải gọi LLM và tool ngoài nhiều lần; trung bình khoảng 239 giây cho một case trong lần chạy sơ bộ. Thứ hai, phần giải thích sinh bởi LLM khá dài và cần được kiểm tra thủ công để loại lỗi ngôn ngữ hoặc suy diễn ngoài dữ liệu. Thứ ba, các input validation không dấu nên được chuẩn hóa sang tiếng Việt có dấu để giảm khả năng LLM hiểu sai nhu cầu khi sinh response.
+
+Đoạn kết của Solution 1 là: hướng này không nhấn mạnh công thức điểm cố định, mà nhấn mạnh khả năng reasoning có kiểm soát. Thành phần DSS nằm ở cách hệ thống tách hard constraints, candidate set, enrichment có bằng chứng, guardrail grounding và explanation faithfulness. Nói cách khác, LLM hỗ trợ diễn giải và chấm điểm, còn code giữ vai trò kiểm soát biên dữ liệu và tính hợp lệ của quyết định.
+
+\section{SOLUTION 2: HYBRID LLM + MAP ENRICHMENT}
+
+\subsection{Ý tưởng}
+Solution 2 xử lý tình huống người dùng vừa nhập form cố định vừa mô tả nhu cầu bổ sung bằng ngôn ngữ tự nhiên. LLM không trực tiếp xếp hạng BĐS; LLM chỉ parse nhu cầu thành hard constraints, soft preferences, duplicate criteria và unsupported requirements. Inference engine vẫn giữ vai trò quyết định ranking.
+
+Hướng này xuất phát từ quan sát rằng nhiều nhu cầu thực tế không xuất hiện sẵn trong form. Người dùng có thể nói ``muốn gần chợ vì ba mẹ lớn tuổi'', ``ưu tiên nhiều quán cafe để làm việc'', hoặc ``tránh xa đại lộ vì sợ ồn''. Nếu chỉ dùng form cố định, hệ thống sẽ bỏ qua phần ngữ cảnh này. Nếu để LLM tự xếp hạng, kết quả lại khó kiểm chứng. Solution 2 chọn cách trung gian: LLM hiểu câu chữ và ánh xạ sang feature, còn DSS engine vẫn tính điểm bằng dữ liệu.
+
+\subsection{Pipeline}
+Pipeline Solution 2 trong source hiện tại gồm các bước:
+
+\begin{enumerate}
+    \item Nhận form và phần nhu cầu tự nhiên từ người dùng.
+    \item LLM và requirement parser tách nhu cầu thành schema đo lường được.
+    \item Lọc cứng và chấm điểm form để lấy Top 10 ban đầu.
+    \item Enrich Top 10 bằng các tiện ích tương ứng với nhu cầu bổ sung.
+    \item Post-filter, tính điểm bổ sung sau enrichment, sau đó kết hợp điểm.
+    \item Re-rank, lấy Top 5 và sinh giải thích.
+\end{enumerate}
+
+Điểm đáng chú ý là pipeline lấy Top 10 sau bước chấm điểm form thay vì cắt ngay Top 5. Top 10 đóng vai trò vùng đệm cho nhu cầu bổ sung. Một bất động sản có thể không nằm trong Top 5 theo tiêu chí cơ bản, nhưng lại rất phù hợp với nhu cầu tự nhiên như gần trường mẫu giáo hoặc nhiều chợ trong bán kính 1 km. Nếu cắt quá sớm, hệ thống có thể loại mất phương án tốt trước khi enrichment được thực hiện.
+
+Công thức kết hợp điểm trong pipeline:
+
+\[
+final\_score = \alpha \cdot base\_score + \beta \cdot additional\_score
+\]
+
+Trong source demo, giá trị mặc định là $\alpha = 0.7$ và $\beta = 0.3$. Nếu không có nhu cầu bổ sung đo lường được, hệ thống đặt $\alpha = 1.0$ và $\beta = 0.0$ để kết quả chỉ phụ thuộc vào form.
+
+Tỷ lệ $\alpha = 0.7$ và $\beta = 0.3$ thể hiện giả định thiết kế: các tiêu chí nền trong form vẫn là trục chính của quyết định, còn nhu cầu tự nhiên đóng vai trò tinh chỉnh thứ hạng. Cách này giúp hệ thống tránh tình trạng một tiêu chí phụ mới enrich được làm đảo toàn bộ ranking quá mạnh, nhưng vẫn đủ linh hoạt để nâng hạng những phương án thật sự phù hợp với nhu cầu riêng của người dùng.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=0.75cm and 0.35cm, transform shape, scale=0.72]
+\node[stepbox] (input2) {Form + nhu cầu\\tự nhiên};
+\node[llmbox, right=of input2] (parser2) {Parser LLM\\schema nhu cầu};
+\node[enginebox, right=of parser2] (base2) {Base scoring\\Top 10 ban đầu};
+\node[databox, below=of base2] (data2) {Dataset BĐS\\+ POI/cache};
+\node[databox, right=of base2] (enrich2) {Map enrichment\\thuộc tính động};
+\node[enginebox, right=of enrich2] (rerank2) {Re-rank\\điểm cuối};
+\node[stepbox, right=of rerank2] (top52) {Top 5\\khuyến nghị};
+\draw[arrow] (input2) -- (parser2);
+\draw[arrow] (parser2) -- (base2);
+\draw[arrow] (data2) -- (base2);
+\draw[arrow] (base2) -- (enrich2);
+\draw[arrow] (data2) -- (enrich2);
+\draw[arrow] (enrich2) -- (rerank2);
+\draw[arrow] (rerank2) -- (top52);
+\end{tikzpicture}
+\caption{Pipeline Solution 2: parse nhu cầu, enrich Top 10 và re-rank Top 5}
+\label{fig:solution2_pipeline}
+\end{figure}
+
+\subsection{Ánh xạ nhu cầu tự nhiên sang thuộc tính}
+Một nguyên tắc quan trọng là capability-aware reasoning: hệ thống chỉ đưa vào scoring những nhu cầu có thể chuyển thành thuộc tính đo lường được bằng dữ liệu hoặc tool hiện có.
+
+Ví dụ, yêu cầu ``gần trường mẫu giáo'' có thể ánh xạ sang nhóm tiện ích trường mầm non và metric khoảng cách đến trường gần nhất. Yêu cầu ``khu dân cư thân thiện'' khó đo lường trực tiếp bằng dữ liệu hiện có, nên không nên đưa vào scoring; hệ thống có thể ghi nhận là nhu cầu chưa được hỗ trợ và giải thích rằng tiêu chí này chưa có nguồn dữ liệu tương ứng. Nhờ ranh giới này, LLM hỗ trợ mở rộng khả năng hiểu nhu cầu nhưng không làm mất tính minh bạch của ranking.
+
+\begin{table}[H]
+\centering
+\caption{Ví dụ ánh xạ nhu cầu sang feature}
+\label{tab:amenity_mapping}
+\small
+\begin{tabularx}{\textwidth}{|P{4.3cm}|P{3.0cm}|Y|}
+\hline
+\textbf{Câu người dùng} & \textbf{Amenity} & \textbf{Feature đo lường} \\ \hline
+Gần trường cho con nhỏ & school, kindergarten & Khoảng cách đến trường gần nhất; số trường trong 1 km \\ \hline
+Gần công viên & park & Khoảng cách đến công viên gần nhất \\ \hline
+Gần bệnh viện & hospital, clinic & Khoảng cách đến bệnh viện/phòng khám gần nhất \\ \hline
+Nhiều chợ, siêu thị & market, supermarket & Số chợ/siêu thị trong bán kính 1 km \\ \hline
+Tiện đi làm & workplace/district center & Khoảng cách đến điểm làm việc hoặc trung tâm quận \\ \hline
+\end{tabularx}
+\end{table}
+
+\subsection{Phần hoàn thiện bởi Trần Tú Quang: kết quả Solution 2}
+Trần Tú Quang bổ sung một case study chạy Solution 2 từ đầu đến cuối. Phần này cần bốn bảng hoặc khối minh họa:
+
+\begin{itemize}
+    \item Bảng input case: form người dùng, câu nhu cầu tự nhiên và persona tương ứng.
+    \item Bảng output parser: hard constraints, soft preferences, duplicate criteria, unsupported requirements và amenity được ánh xạ.
+    \item Bảng so sánh Top 10 trước enrichment và Top 5 sau re-ranking: thể hiện rõ phương án nào tăng hoặc giảm hạng sau khi xét nhu cầu tự nhiên.
+    \item Bảng thuộc tính động: các POI được bổ sung, ví dụ số chợ trong 1 km, khoảng cách đến trường mẫu giáo, khoảng cách đến công viên và điểm đóng góp vào điểm bổ sung.
+\end{itemize}
+
+Phần nhận xét cần giải thích vì sao LLM không trực tiếp quyết định ranking, mà chỉ giúp chuyển nhu cầu tự nhiên thành tiêu chí đo lường được; ranking cuối vẫn do inference engine tính toán.
+
+\section{THIẾT KẾ THỰC NGHIỆM VÀ ĐÁNH GIÁ}
+
+\subsection{Bộ kịch bản validation}
+Repo hiện có bộ validation synthetic gồm 50 kịch bản, chia theo 5 archetype: gia đình có con nhỏ, người trẻ, nhà đầu tư, người cao tuổi và cặp đôi. Mỗi archetype có 10 biến thể nhu cầu. Bộ này kiểm tra khả năng lọc cứng, chất lượng Top 5, chất lượng ranking và hành vi khi không có đủ ứng viên.
+
+Việc dùng nhiều archetype giúp validation không bị lệch về một kiểu người dùng duy nhất. Nhóm gia đình thường nhấn mạnh trường học, diện tích và ngân sách; nhóm người trẻ quan tâm đến giá, tiện đi làm và tiện ích sinh hoạt; nhóm nhà đầu tư quan tâm đến giá/m$^2$, khả năng khai thác và vị trí; nhóm người cao tuổi ưu tiên bệnh viện, chợ, công viên và môi trường sống ổn định. Nhờ vậy, hệ thống được kiểm tra trong các bối cảnh có trade-off khác nhau thay vì chỉ tối ưu cho một profile cố định.
+
+\subsection{Chỉ số đánh giá}
+Các chỉ số đang dùng gồm Constraint Satisfaction Rate (CSR), Precision@3, Precision@5, Recall@3, Recall@5, NDCG@3, NDCG@5 và Mean Average Precision. CSR đo khả năng hệ thống không vi phạm các điều kiện bắt buộc; Precision và Recall đo mức độ trùng khớp giữa đề xuất và ground truth; NDCG đánh giá chất lượng thứ tự xếp hạng, đặc biệt quan trọng vì Top 1 và Top 2 thường có tác động lớn hơn các vị trí cuối danh sách. MAP cung cấp một góc nhìn tổng hợp về chất lượng ranking trên nhiều kịch bản.
+
+Với Solution 1, nhóm cần bổ sung thêm Grounding Pass Rate, Tool-call Correctness, Explanation Faithfulness, latency và tỷ lệ case có enrich động để đánh giá khả năng reasoning có kiểm soát. Với Solution 2, nhóm cần bổ sung Intent Parsing Accuracy, Amenity Mapping Accuracy, Explanation Faithfulness, latency và chi phí API. Những metric này phản ánh đúng bản chất khác nhau của hai hướng: Solution 1 cần chứng minh LLM không bịa bất động sản và dùng tool đúng lúc, còn Solution 2 cần chứng minh parser hiểu đúng nhu cầu và enrichment thực sự cải thiện đề xuất.
+
+\begin{table}[H]
+\centering
+\caption{Metric đánh giá theo từng solution}
+\label{tab:metrics}
+\small
+\begin{tabularx}{\textwidth}{|P{3.1cm}|Y|Y|}
+\hline
+\textbf{Nhóm metric} & \textbf{Solution 1} & \textbf{Solution 2} \\ \hline
+Độ phù hợp & CSR, NDCG@5, MAP@5, human relevance & CSR, Precision và Recall@5, re-ranking usefulness \\ \hline
+Độ kiểm soát & Grounding Pass Rate, duplicate rate, hard-constraint pass & Stability sau enrichment và cache POI \\ \hline
+Chất lượng hiểu nhu cầu & Tool-call correctness, dynamic enrichment usefulness & Intent parsing accuracy, amenity mapping accuracy \\ \hline
+Giải thích & Explanation faithfulness theo Top 5 và thuộc tính & Explanation faithfulness theo score và thuộc tính \\ \hline
+Vận hành & Latency, số lượt gọi LLM và tool, tỷ lệ case dùng enrich động & Latency, quota API và chi phí \\ \hline
+\end{tabularx}
+\end{table}
+
+\subsection{Phần hoàn thiện bởi Nguyễn Ấn: validation final}
+Nguyễn Ấn bổ sung kết quả validation sau khi pipeline được migrate sang dataset 100 căn. Phần này cần ba nhóm kết quả:
+
+\begin{itemize}
+    \item Bảng synthetic validation final: CSR, Precision@3, Precision@5, Recall@3, Recall@5, NDCG@5 và MAP trên 50 kịch bản hoặc số kịch bản final mà nhóm thống nhất.
+    \item Bảng phân tích theo archetype: gia đình, người trẻ, nhà đầu tư, người cao tuổi, cặp đôi; mỗi nhóm có số scenario, P@5, R@5, NDCG@5 và nhận xét lỗi thường gặp.
+    \item Bảng human-labeled validation: 10--20 kịch bản được người chấm relevance 1--5; dùng để so sánh Solution 1 và Solution 2 bằng NDCG@5, MAP@5 hoặc Pairwise Win Rate.
+\end{itemize}
+
+Phần phân tích cần chỉ ra các edge case như không có ứng viên, ít hơn 5 ứng viên, ranking thay đổi mạnh sau enrichment hoặc LLM gọi tool chưa đúng nhu cầu. Riêng với Solution 1, bộ validation cần ghi rõ case nào chỉ dùng nhóm tiện ích nền $X$ và case nào dùng thêm nhóm tiện ích động $Y$; nếu không, nhãn đánh giá có thể bỏ sót phần thông tin mà Solution 1 thật sự dùng để xếp hạng.
+
+\section{KẾT QUẢ THỰC NGHIỆM HIỆN CÓ}
+
+\subsection{Kết quả validation legacy}
+Kết quả định lượng hiện có trong repo được chạy trên bộ legacy gồm 37 bất động sản tại Gò Vấp và 50 kịch bản synthetic. Đây là mốc tham chiếu kỹ thuật cho logic lọc/xếp hạng, chưa phải kết quả final trên dataset 100 căn.
+
+\begin{table}[H]
+\centering
+\caption{Kết quả validation legacy trên 50 kịch bản}
+\label{tab:legacy_results}
+\small
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Chỉ số} & \textbf{Giá trị} \\ \hline
+Constraint Satisfaction Rate & 100.0\% \\ \hline
+Precision@3 & 82.0\% \\ \hline
+Precision@5 & 76.8\% \\ \hline
+Recall@3 & 64.3\% \\ \hline
+Recall@5 & 92.0\% \\ \hline
+NDCG@3 & 0.9200 \\ \hline
+NDCG@5 & 0.9200 \\ \hline
+Mean Average Precision & 0.9200 \\ \hline
+\end{tabular}
+\end{table}
+
+CSR đạt 100\% cho thấy hard constraint filter không đưa phương án vi phạm vào Top 5. Đây là kết quả quan trọng vì trong bối cảnh tư vấn bất động sản, vi phạm ràng buộc cứng như vượt ngân sách hoặc thiếu số phòng tối thiểu thường làm đề xuất mất giá trị ngay cả khi các tiêu chí khác tốt. Precision@5 đạt 76.8\% và Recall@5 đạt 92.0\%, cho thấy hệ thống tìm được phần lớn phương án phù hợp theo ground truth synthetic.
+
+Tuy nhiên, kết quả này cần được đọc với hai lưu ý. Thứ nhất, bộ dữ liệu legacy chỉ gồm 37 bất động sản ở Gò Vấp, nên không phản ánh đầy đủ độ đa dạng của workflow final 100 căn. Thứ hai, một số kịch bản có quá ít ứng viên hoặc không có ứng viên nào thỏa mãn ràng buộc cứng; trong trường hợp đó, Precision@5 có thể thấp không phải vì ranking sai, mà vì tập ứng viên không đủ lớn để trả về 5 lựa chọn. Vì vậy, kết quả legacy nên được xem là bằng chứng kỹ thuật ban đầu, còn kết luận final cần dựa trên lần chạy mới.
+
+\subsection{Phân tích theo archetype}
+\begin{table}[H]
+\centering
+\caption{Kết quả legacy theo nhóm người dùng}
+\label{tab:archetype_results}
+\small
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Archetype} & \textbf{\#Scenario} & \textbf{Avg CSR} & \textbf{Avg P@5} & \textbf{Avg NDCG@5} \\ \hline
+Gia đình & 10 & 100\% & 80\% & 1.0000 \\ \hline
+Người trẻ & 10 & 100\% & 68\% & 1.0000 \\ \hline
+Nhà đầu tư & 10 & 100\% & 100\% & 1.0000 \\ \hline
+Người cao tuổi & 10 & 100\% & 88\% & 1.0000 \\ \hline
+Cặp đôi & 10 & 100\% & 48\% & 0.6000 \\ \hline
+\end{tabular}
+\end{table}
+
+\section{THẢO LUẬN VÀ HẠN CHẾ}
+
+\subsection{So sánh hai solution}
+Solution 1 mạnh ở khả năng reasoning có kiểm soát. LLM reasoner có thể đọc nhu cầu tự nhiên, gọi công cụ phù hợp và dùng thêm tiện ích động khi cần, trong khi guardrail bằng code đảm bảo kết quả không vượt khỏi tập dữ liệu đã được kiểm soát. Hướng này phù hợp để demo các nhu cầu đa dạng và giải thích trade-off sâu, nhưng phụ thuộc nhiều vào chất lượng LLM, latency, API key và việc kiểm tra thủ công phần giải thích.
+
+Solution 2 mạnh ở khả năng cá nhân hóa: người dùng có thể nhập nhu cầu tự nhiên, hệ thống parse thành feature và enrich dữ liệu theo nhu cầu mới. Đây là phần tạo khác biệt so với một bộ lọc bất động sản thông thường, vì hệ thống có thể hiểu các nhu cầu chưa được thiết kế sẵn trong form. Tuy nhiên, Solution 2 phụ thuộc nhiều hơn vào API map, cache dữ liệu, chất lượng parser và kiểm soát schema LLM. Nếu parser sai hoặc dữ liệu POI không ổn định, ranking sau enrichment có thể bị lệch.
+
+Do đó, hai solution không nên được xem là hai hướng loại trừ nhau. Solution 1 thể hiện hướng LLM tool-use có guardrail, trong đó LLM được phép reasoning nhưng không được vượt biên dữ liệu. Solution 2 thể hiện hướng hybrid có scoring engine rõ ràng hơn, trong đó LLM chủ yếu parse nhu cầu và inference engine quyết định ranking. Trong demo final, nhóm có thể trình bày hai hướng như hai mức kiểm soát khác nhau giữa LLM và code.
+
+\begin{table}[H]
+\centering
+\caption{So sánh hai solution final}
+\label{tab:solution_comparison}
+\small
+\begin{tabularx}{\textwidth}{|P{3.0cm}|Y|Y|}
+\hline
+\textbf{Tiêu chí} & \textbf{Solution 1: Hai LLM có guardrail} & \textbf{Solution 2: Hybrid LLM + Map} \\ \hline
+Bản chất & LLM reasoning + tool-use + grounding guardrail & Cá nhân hóa nhu cầu tự nhiên và enrichment động \\ \hline
+Vai trò LLM & Reasoning, gọi tool, chấm điểm sơ bộ và sinh giải thích & Parse nhu cầu và sinh giải thích \\ \hline
+Điểm mạnh & Linh hoạt với free-form, giải thích sâu, luôn khóa Top 5 trong DB & Scoring rõ ràng hơn, dễ debug theo parser, enrichment và scoring \\ \hline
+Rủi ro & Latency cao, LLM có thể sinh giải thích dài hoặc lỗi ngôn ngữ & LLM parse sai, quota API, chi phí và latency \\ \hline
+Validation cần bổ sung & Grounding, tool-call correctness, relevance theo X+Y, explanation faithfulness & Intent parsing, mapping accuracy, explanation faithfulness \\ \hline
+\end{tabularx}
+\end{table}
+
+\subsection{Hạn chế}
+Hạn chế lớn nhất hiện tại là sự lệch pha giữa dataset final 100 căn và kết quả validation legacy 37 căn. Ngoài ra, dataset 100 căn cần được enrich đầy đủ POI trước khi chạy ranking final dựa trên khoảng cách tiện ích. Nếu các cột POI còn thiếu, những tiêu chí như gần trường, gần công viên hoặc gần bệnh viện sẽ không thể đóng góp chính xác vào ranking.
+
+Hạn chế thứ hai là validation hiện tại chủ yếu dựa trên synthetic scenarios. Cách này hữu ích để kiểm thử logic hệ thống, nhưng chưa phản ánh đầy đủ cảm nhận và ưu tiên thật của người dùng. Một căn nhà có thể đạt điểm cao theo dữ liệu định lượng hoặc theo reasoning của LLM, nhưng người thật có thể đánh giá thấp vì mô tả không hấp dẫn, hẻm nhỏ, vị trí khó đi hoặc yếu tố an ninh chưa được dữ liệu hóa. Vì vậy, bản đánh giá final cần có human-labeled relevance để kiểm tra chất lượng quyết định ở tầng gần thực tế hơn.
+
+Hạn chế thứ ba nằm ở LLM và API ngoài. LLM cần bị khóa output schema để tránh sinh tiêu chí không tồn tại trong hệ thống, đồng thời phần giải thích cần được kiểm tra để tránh lỗi ngôn ngữ hoặc suy diễn ngoài dữ liệu. API map có thể thay đổi kết quả theo thời gian, quota hoặc provider, nên kết quả enrich cần được cache để đảm bảo tính tái lập khi demo và validation.
+
+\section{PHÂN CÔNG HOÀN THIỆN BÁO CÁO}
+
+\subsection{Mục tiêu của phần phân công}
+Phần này xác định rõ phần việc còn lại của từng thành viên để các kết quả thực nghiệm được điền đúng vị trí trong báo cáo. Các nội dung ở bảng dưới tương ứng trực tiếp với các mục đã đánh dấu trong phần dữ liệu, kiến trúc hệ thống, Solution 1, Solution 2 và validation.
+
+\begin{samepage}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{xltabular}{\textwidth}{|P{4.1cm}|P{3.9cm}|Y|}
+\caption{Phân công hoàn thiện nội dung báo cáo}
+\label{tab:member_todo} \\
+\hline
+\textbf{Thành viên} & \textbf{Phần phụ trách} & \textbf{Nội dung cần bổ sung} \\ \hline
+\endfirsthead
+\hline
+\textbf{Thành viên} & \textbf{Phần phụ trách} & \textbf{Nội dung cần bổ sung} \\ \hline
+\endhead
+Trần Tú Quang\\250201084 & Kiến trúc mã nguồn và Solution 2 & Điền sơ đồ module, bảng input và output module, case study Solution 2, bảng parser output, bảng Top 10 trước enrichment và Top 5 sau re-ranking. \\ \hline
+Tô Huỳnh Minh Tiến\\250201095 & Dữ liệu, tiền xử lý và enrichment & Điền 2--3 bảng về thống kê dataset, missing values và kết quả enrichment; viết nhận xét chất lượng dữ liệu và giới hạn dữ liệu sau tiền xử lý. \\ \hline
+Nguyễn Ấn\\250201042 & Validation và đánh giá & Điền bảng validation final, bảng theo archetype, bảng human-labeled nếu có; viết phân tích edge cases và so sánh metric giữa hai solution. \\ \hline
+Nguyễn Văn Phú\\250201081 & Solution 1 pipeline hai LLM & Hoàn thiện kết quả 10--50 validation case, kiểm tra phần giải thích, bảng lượt gọi tool và enrichment, latency, tỷ lệ grounding đạt và nhận xét lỗi thường gặp. \\ \hline
+Toàn nhóm & Tổng hợp bản nộp & Thống nhất thuật ngữ, thay kết quả legacy bằng kết quả final nếu đã chạy xong, kiểm tra citation, thêm hình minh họa và compile PDF. \\ \hline
+\end{xltabular}
+\end{samepage}
+\normalsize
+\setlength{\tabcolsep}{6pt}
+
+\section{KẾT LUẬN VÀ HƯỚNG PHÁT TRIỂN}
+
+\subsection{Kết luận}
+Báo cáo đã trình bày một hệ thống tư vấn chọn bất động sản thông minh theo hướng DSS with Data. Hệ thống bắt đầu từ một vấn đề thực tế: người dùng cần ra quyết định trong một không gian lựa chọn nhiều tiêu chí, trong khi các công cụ lọc truyền thống chưa đủ khả năng hiểu nhu cầu cá nhân và giải thích trade-off.
+
+Hai solution final bổ sung cho nhau. Solution 1 cho thấy một hướng LLM tool-use có guardrail: LLM được dùng để reasoning, gọi tool và giải thích, còn code giữ vai trò khóa candidate set, loại hallucination và bảo đảm Top 5 thuộc dữ liệu thật. Solution 2 dùng hybrid LLM + Map enrichment để hiểu nhu cầu tự nhiên và cập nhật tiêu chí linh hoạt mà không để LLM tự quyết định ranking. Kết quả legacy cho thấy pipeline lọc và xếp hạng có tín hiệu tốt, còn kết quả sơ bộ của Solution 1 đã có 10 case chạy thành công nhưng cần rà soát kỹ phần giải thích và latency trước khi xem là final.
+
+\subsection{Hướng phát triển}
+Các bước tiếp theo trước hết là hoàn tất enrichment POI cho 100 căn bằng Overpass hoặc Geoapify, sau đó migrate toàn bộ pipeline và validation sang bộ dữ liệu 100 căn. Với Solution 1, nhóm cần chuẩn hóa input validation sang tiếng Việt có dấu, kiểm tra lại phần giải thích cho 10 case sơ bộ, mở rộng chạy đủ số case final và ghi rõ case nào dùng tiện ích nền $X$ hay tiện ích bổ sung $Y$. Với Solution 2, nhóm cần khóa schema parser và thu thập human relevance labels cho 10--20 kịch bản. Sau khi hai hướng đều có kết quả final, nhóm sẽ so sánh bằng NDCG mức 5, MAP mức 5, Grounding Pass Rate, tool-call correctness, latency và explanation faithfulness.
+
+Về dài hạn, hệ thống có thể mở rộng sang nhiều quận hơn, bổ sung dữ liệu giao thông thực tế, thời gian di chuyển, mức độ an toàn khu vực và thông tin pháp lý của bất động sản. Khi dữ liệu phong phú hơn, DSS có thể chuyển từ tư vấn Top 5 đơn giản sang hỗ trợ phân tích kịch bản: nếu tăng ngân sách, nếu ưu tiên trường học hơn công viên, hoặc nếu đổi khu vực làm việc thì danh sách đề xuất thay đổi như thế nào.
+
+\printbibliography[heading=bibintoc,title={Tài liệu tham khảo}]
+
+\end{document}

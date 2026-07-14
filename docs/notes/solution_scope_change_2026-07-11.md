@@ -10,14 +10,14 @@ Ngày cập nhật: `2026-07-11`
 
 ## 2. Quy ước mới
 
-- `Solution 1` hiện tại là hướng `MCDA/TOPSIS + sensitivity analysis` của `Phú`.
-- Hướng này trước đây từng được gọi là `Solution 3`.
+- `Solution 1` hiện tại là hướng pipeline tuần tự hai LLM có guardrail của `Phú`.
+- Hướng này thay thế cả baseline rule-based cũ và bản đề xuất MCDA/TOPSIS trước đó.
 - `Solution 2` giữ nguyên là hướng `hybrid form + free-text + enrich + rerank` của `Quang`.
 
 ## 3. Hệ quả trong repo
 
 - Các tài liệu active của nhóm nên hiểu theo quy ước:
-  - `Solution 1` = tên mới của `Solution 3` cũ
+  - `Solution 1` = pipeline hai LLM có guardrail
   - `Solution 2` = giữ nguyên
 - Các artifact của `Solution 1` cũ đã và đang được dọn khỏi phần active của repo.
 

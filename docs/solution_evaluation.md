@@ -1,37 +1,64 @@
 # Solution Evaluation - Smart Real Estate Advisory System
 
-File này đánh giá 2 solution final hiện tại và gợi ý cách trình bày với thầy.
+File này đánh giá hai solution final hiện tại và gợi ý cách trình bày với thầy.
 
-Ghi chú:
-- `Solution 1` hiện tại là hướng `MCDA/TOPSIS` của `Phú`, được đổi tên từ `Solution 3` cũ.
-- Hướng rule-based `Solution 1` cũ đã bị loại khỏi scope final vì quá đơn giản so với yêu cầu môn.
+Ghi chú cập nhật:
+
+- `Solution 1`: pipeline tuần tự hai LLM có guardrail của `Phú`.
+- `Solution 2`: hybrid form + free-text + map enrichment của `Quang`.
+- Hướng rule-based cũ và bản đề xuất MCDA/TOPSIS cũ không còn là scope final active.
 
 ## 1. Summary
 
 | Solution | Short name | Core idea | Recommendation |
 |---|---|---|---|
-| Solution 1 | Data-driven MCDA/TOPSIS | User preference + enriched data -> decision matrix -> AHP/Entropy weights -> TOPSIS -> sensitivity analysis | Là một trong hai hướng final chính, hợp DSS hơn |
-| Solution 2 | Hybrid LLM + Map enrichment | Form + nhu cầu tự nhiên -> LLM parse -> gọi map/POI API -> re-rank -> LLM giải thích | Là một trong hai hướng final chính, mạnh về cá nhân hóa |
+| Solution 1 | Two-LLM + Guardrail | Form + free-text -> LLM reasoner gọi tool -> guardrail grounding -> LLM explainer | Một hướng final chính, mạnh về reasoning có kiểm soát |
+| Solution 2 | Hybrid LLM + Map enrichment | Form + free-text -> LLM parser -> enrich POI -> deterministic re-rank -> explanation | Một hướng final chính, mạnh về scoring rõ ràng và cá nhân hóa |
 
-## 2. Ghi chú về hướng cũ đã bị loại
+## 2. Solution 1 Evaluation
 
-Hướng `Solution 1` cũ từng có pipeline:
+### Pipeline
 
 ```text
-Form
--> Preference Profile
--> Rule-based Filtering
--> Rule-based Scoring
--> Top 5 Candidates
--> LLM Explanation
+Form + Free-text
+-> Hard constraints
+-> LLM reasoner + sql_filter
+-> Optional dynamic enrichment
+-> Candidate scoring by LLM
+-> Guardrail grounding
+-> Top 5
+-> LLM explanation
 ```
 
-Nhóm không còn dùng hướng này làm solution final vì:
-- quá gần với bộ lọc/rule-based recommender thông thường
-- chưa thể hiện đủ rõ mô hình ra quyết định của DSS
-- theo góp ý của thầy, cần đổi sang hướng mạnh hơn về DSS with Data
+### Strengths
 
-Phần này chỉ nên nhắc ngắn như một baseline/historical reference nếu cần.
+- Linh hoạt với nhu cầu tự nhiên vì LLM reasoner có thể quyết định khi nào cần gọi tool.
+- Có guardrail grounding nên Top 5 không được bịa ngoài dataset.
+- Có thể enrich thêm tiện ích động `Y` khi free-text nhắc đến nhu cầu chưa có trong nhóm tiện ích nền `X`.
+- Explanation sâu hơn, phù hợp để demo trade-off giữa các lựa chọn.
+- Output hiện đã có 10 validation case sơ bộ trong `outputs/solution1_results.json`.
+
+### Weaknesses
+
+- Latency cao vì mỗi case có thể gọi nhiều lượt LLM/tool.
+- Explanation có thể quá dài, có lỗi ngôn ngữ hoặc suy diễn ngoài dữ liệu nếu không review.
+- Cần API key và môi trường Postgres/OpenRouter/Mapbox để chạy đầy đủ.
+- Validation phải ghi rõ case nào đánh giá trên `X` và case nào đánh giá trên `X + Y`, nếu không dễ thiếu công bằng.
+
+### Metrics nên dùng
+
+| Metric | Meaning |
+|---|---|
+| Constraint satisfaction | Top 5 có vi phạm hard constraints không |
+| Grounding Pass Rate | Top 5 có thuộc candidate set/database không |
+| Tool-call correctness | LLM có gọi đúng tool khi free-text cần enrichment không |
+| Dynamic enrichment usefulness | Thuộc tính `Y` có thật sự cải thiện relevance không |
+| Explanation faithfulness | Explanation có bám đúng Top 5 và thuộc tính thật không |
+| Latency | Có đủ ổn để demo/batch validation không |
+
+### Verdict
+
+Solution 1 nên được giữ như một hướng final chính, nhưng cần trình bày đúng bản chất: đây không phải phương pháp MCDA/TOPSIS, mà là **LLM tool-use có guardrail dữ liệu**. Khi bảo vệ, nên nhấn mạnh rằng LLM được dùng cho reasoning và giải thích, còn code chịu trách nhiệm khóa biên dữ liệu, hard constraints và grounding.
 
 ## 3. Solution 2 Evaluation
 
@@ -51,242 +78,67 @@ Form + Additional User Request
 
 ### Strengths
 
-- Hợp tinh thần "thông minh" hơn vì hiểu được nhu cầu tự nhiên.
-- Tạo khác biệt so với web lọc BĐS bình thường.
-- Có thể tận dụng Mapbox/Google/OSM để tạo dynamic attributes.
-- Rất phù hợp để show DSS + LLM:
-  - DSS engine quyết định bằng điểm số.
-  - LLM hiểu nhu cầu và giải thích.
-- Có thể xử lý nhu cầu như:
-  - "gần trường mẫu giáo"
-  - "nhiều quán cafe"
-  - "gần chợ"
-  - "tránh xa đại lộ"
+- Hợp tinh thần "thông minh" vì hiểu được nhu cầu tự nhiên.
+- Ranking cuối do inference engine tính toán nên dễ debug hơn Solution 1.
+- Tách rõ parser, enrichment, scoring và explanation.
+- Có thể xử lý nhu cầu như gần trường mẫu giáo, nhiều quán cafe, gần chợ, gần bệnh viện.
+- Dễ trình bày như một lớp mở rộng trên form cố định.
 
 ### Weaknesses
 
 - Phụ thuộc API map/geocoding nếu chưa có lat/lon và POI.
-- Dễ tăng độ phức tạp: parse user intent, geocode, search POI, normalize score.
-- LLM có rủi ro hallucination nếu không khóa output schema.
-- Chi phí và quota API có thể thành rủi ro.
-- Nếu chỉ enrich Top 10 sau bước Solution 1, có thể bỏ sót một số listing ngoài Top 10 nhưng rất phù hợp với nhu cầu bổ sung.
+- LLM parser có thể hiểu sai nhu cầu hoặc map sai amenity.
+- Nếu chỉ enrich Top 10 sau base scoring, có thể bỏ sót listing ngoài Top 10 nhưng rất phù hợp với nhu cầu bổ sung.
+- Cần cache để kết quả demo và validation tái lập.
 
-### What To Improve
-
-Nên giới hạn scope để khả thi:
-
-```text
-Chỉ xử lý 100-200 listing sạch
-Chỉ dùng 3-5 loại tiện ích
-Chỉ enrich Top 10 hoặc Top 20
-Chỉ nhận nhu cầu có thể map sang POI measurable
-```
-
-Danh sách amenity nên hỗ trợ ở demo:
-
-| User phrase | Internal amenity | Feature |
-|---|---|---|
-| gần trường / có con nhỏ | school, kindergarten | nearest_school_m, school_count_1km |
-| gần công viên | park | nearest_park_m, park_count_1km |
-| gần bệnh viện | hospital, clinic | nearest_hospital_m |
-| gần chợ / siêu thị | market, supermarket | market_count_1km |
-| tiện đi làm | workplace/district center | commute_distance_m |
-
-LLM output nên bị khóa schema:
-
-```json
-{
-  "hard_constraints": [],
-  "soft_preferences": [
-    {
-      "user_phrase": "gần trường cho con nhỏ",
-      "amenity": "school",
-      "metric": "distance_to_nearest_school_m",
-      "direction": "lower_better",
-      "weight_delta": 0.15,
-      "supported": true
-    }
-  ],
-  "unsupported_requirements": []
-}
-```
-
-### Verdict
-
-Solution 2 **nên là solution chính để trình bày với thầy**, nhưng phải nói rõ đây là bản nâng cấp trên nền Solution 1. Demo có thể làm ở scale nhỏ để kiểm soát API và thời gian.
-
-## 4. Solution 1 Evaluation
-
-### Pipeline
-
-```text
-User Preference
--> Hard Constraint Filtering
--> Decision Matrix
--> AHP / Survey-based User Weights
--> Entropy / CRITIC Data Weights
--> Combined Weights
--> TOPSIS Ranking
--> Sensitivity Analysis
--> Top 5
--> LLM Trade-off Explanation
-```
-
-### Strengths
-
-- Rất hợp với DSS vì mô hình hóa rõ `alternatives`, `criteria`, `weights`, `decision matrix` và `ranking`.
-- Trọng số có cơ sở hơn Solution 1 vì có thể lấy từ AHP/user survey và hiệu chỉnh bằng Entropy/CRITIC từ dữ liệu.
-- TOPSIS giải thích được phương án nào gần nghiệm lý tưởng nhất và xa nghiệm xấu nhất.
-- Sensitivity analysis giúp trả lời câu hỏi quan trọng của DSS: quyết định có ổn định khi giả định/trọng số thay đổi không?
-- Không phụ thuộc mạnh vào LLM hoặc API bên ngoài như Solution 2, nên dễ làm bản demo ổn định.
-- Dễ so sánh định lượng với Solution 2 bằng relevance score, NDCG@5, MAP@5 và stability.
-
-### Weaknesses
-
-- Cần giải thích AHP/TOPSIS rõ ràng để người nghe không thấy quá toán.
-- Nếu chỉ dùng trọng số tự đặt mà không có survey hoặc pairwise comparison thì sẽ quay lại điểm yếu chủ quan giống Solution 1.
-- TOPSIS vẫn phụ thuộc vào chất lượng feature; nếu POI/enrichment sai thì ranking sai theo.
-- Cần thêm sensitivity analysis để solution đủ khác biệt và đủ mạnh.
-
-### What To Improve
-
-Nên triển khai Solution 1 với scope vừa phải:
-
-```text
-100-300 listings
-6-8 criteria
-3 persona/user profiles
-TOPSIS ranking
-10-20% weight perturbation sensitivity analysis
-human relevance labels cho 10-20 scenarios nếu kịp
-```
-
-Criteria nên dùng:
-
-| Criteria | Direction |
-|---|---|
-| price_million_vnd | lower better |
-| price_per_m2_million | lower better |
-| area_m2 | higher better |
-| bedrooms | higher better |
-| distance_to_nearest_school_m | lower better |
-| distance_to_nearest_park_m | lower better |
-| distance_to_nearest_hospital_m | lower better |
-| distance_to_nearest_supermarket_m | lower better |
-
-### Verdict
-
-Solution 1 **nên được dùng như một trong hai hướng final chính**. Đây là hướng hợp môn DSS hơn vì trọng tâm không phải "lọc rồi cộng điểm", mà là ra quyết định đa tiêu chí có trọng số, nghiệm lý tưởng, phân tích nhạy cảm và kiểm chứng bằng dữ liệu.
-
-## 5. Recommended Architecture
-
-Không nên để LLM tự quyết định ranking. Kiến trúc nên là:
-
-```text
-LLM = preference parser + explanation generator
-Inference engine = filtering + scoring + ranking
-Map/POI tool = evidence/data provider
-```
-
-Lý do:
-
-- Tránh LLM bịa ranking.
-- Giữ được tính giải thích và kiểm chứng.
-- Dễ bảo vệ trước thầy vì DSS có luật và score rõ ràng.
-
-## 6. Data Requirements By Solution
-
-| Requirement | Solution 1 | Solution 2 |
-|---|---|---|
-| Clean real estate listing | Required | Required |
-| Enriched criteria/features | Required | Optional nhưng rất hữu ích |
-| User preference / persona weights | Required | Required |
-| AHP pairwise comparison or survey | Recommended | Optional |
-| Entropy/CRITIC data weighting | Recommended | Không bắt buộc |
-| Mapbox/Google/OSM | Không bắt buộc nếu features đã precompute | Required nếu enrich động |
-| LLM | Explanation only | Parsing + explanation |
-| API key | Không bắt buộc nếu features đã precompute | Required nếu dùng provider ngoài |
-
-## 7. Evaluation Plan
-
-Protocol chi tiết cho validation dataset nằm ở:
-
-```text
-docs/validation_dataset_plan.md
-```
-
-File này nên được dùng làm cơ sở cho final report vì nó tách rõ technical validation, property holdout validation và human-labeled decision-quality validation.
-
-### For Solution 2
+### Metrics nên dùng
 
 | Metric | Meaning |
 |---|---|
 | Intent parsing accuracy | LLM parse nhu cầu đúng không |
-| Amenity mapping accuracy | Nhu cầu có map đúng sang POI không |
+| Amenity mapping accuracy | Nhu cầu có map đúng sang POI/feature không |
 | Re-ranking usefulness | Ranking sau enrichment có hợp lý hơn không |
 | Explanation faithfulness | LLM giải thích có dựa đúng score/attribute không |
 | Latency/cost | Có chạy được trong demo không |
 
-### For Solution 1
+### Verdict
 
-| Metric | Meaning |
-|---|---|
-| Constraint satisfaction | Top 5 có vi phạm hard constraints không |
-| AHP consistency ratio | Preference người dùng có nhất quán không |
-| Average Top-5 TOPSIS score | Chất lượng tổng thể của Top 5 theo MCDA |
-| Top-5 stability | Ranking có ổn định khi trọng số thay đổi không |
-| Critical criteria | Tiêu chí nào làm ranking nhạy nhất |
-| Human relevance / NDCG@5 | Top 5 có khớp nhãn người đánh giá không |
+Solution 2 nên được giữ như hướng final chính còn lại. Đây là hướng có scoring engine rõ hơn, dễ kiểm chứng hơn, nhưng parser và enrichment cần được khóa schema/capability để tránh sinh tiêu chí không đo được.
 
-## 8. Risks And Mitigation
+## 4. So sánh hai solution
 
-| Risk | Impact | Mitigation |
+| Tiêu chí | Solution 1 | Solution 2 |
 |---|---|---|
-| Kaggle dataset thiếu lat/lon | Không tính được khoảng cách | Geocode 100-200 mẫu bằng Mapbox/Google |
-| API quota/cost | Demo fail hoặc tốn phí | Dùng OSM offline hoặc cache kết quả API |
-| LLM parse sai nhu cầu | Ranking lệch | Dùng JSON schema + whitelist amenity |
-| Trọng số chủ quan | Bị hỏi cơ sở | Dùng persona-based weights và ghi rõ là baseline rule |
-| Search API trả kết quả không ổn định | Reproducibility thấp | Cache POI result thành dataset trung gian |
-| Solution 1 bị giống weighted scoring | Thầy có thể xem là biến thể scoring thông thường | Nhấn mạnh AHP/Entropy, TOPSIS ideal solution và sensitivity analysis |
-| Trọng số AHP chủ quan | Ranking phụ thuộc người dùng | Thu thập survey/pairwise comparison và báo cáo Consistency Ratio |
+| Bản chất | LLM reasoning + tool-use + guardrail | LLM parser + deterministic scoring/re-ranking |
+| Vai trò LLM | Reasoning, gọi tool, chấm điểm sơ bộ, giải thích | Parse nhu cầu và giải thích |
+| Kiểm soát ranking | Guardrail sau LLM | Inference engine tính điểm trực tiếp |
+| Linh hoạt free-text | Cao | Cao nhưng phụ thuộc parser schema |
+| Reproducibility | Trung bình, phụ thuộc LLM/API | Tốt hơn nếu cache enrichment |
+| Latency | Cao hơn | Thường thấp hơn |
+| Risk chính | Explanation dài/sai, tool-call chưa đúng, latency cao | Parser sai, POI thiếu, re-rank lệch |
+| Validation cần thêm | Grounding, tool-call correctness, X+Y relevance | Intent parsing, mapping accuracy, re-ranking usefulness |
 
-## 9. Presentation Recommendation
+## 5. Presentation Recommendation
 
 Khi trình bày với thầy, nên nói:
 
-1. Hướng rule-based cũ đã bị loại:
-   - quá đơn giản
-   - dễ bị xem là bộ lọc nâng cao
-   - không còn là solution active nữa
+1. Hướng rule-based cũ đã bị loại vì quá giống bộ lọc nâng cao.
+2. Nhóm giữ hai hướng final:
+   - `Solution 1`: LLM tool-use có guardrail, mạnh về reasoning có kiểm soát.
+   - `Solution 2`: hybrid parser + enrichment + scoring, mạnh về scoring minh bạch hơn.
+3. Cả hai solution đều dùng chung dataset 100 căn và output contract chung.
+4. Với Solution 1, cần nói rõ Top 5 luôn thuộc database, không để LLM bịa property.
+5. Với validation, cần ghi rõ tiêu chí nền `X` và tiêu chí enrich động `Y`.
 
-2. Nhóm ưu tiên giữ **2 hướng final**:
-   - `Solution 2` mạnh về xử lý nhu cầu linh hoạt
-   - `Solution 1` mạnh về mô hình ra quyết định đa tiêu chí
-
-3. Với **phương án 2**:
-   - listing BĐS là dữ liệu sản phẩm
-   - POI/amenity là dữ liệu ngữ cảnh
-   - hệ thống tạo attribute quyết định và recommend Top 5
-
-4. Với **phương án 1**:
-   - mô hình hóa alternatives, criteria, weights và decision matrix
-   - dùng TOPSIS để tìm phương án gần nghiệm lý tưởng nhất
-   - dùng sensitivity analysis để kiểm tra độ ổn định của quyết định
-
-5. Hai solution chính không loại trừ nhau:
-   - Solution 2 mạnh về hiểu nhu cầu tự nhiên và enrich dữ liệu động
-   - Solution 1 mạnh về phương pháp ra quyết định đa tiêu chí và kiểm chứng trade-off
-
-## 10. Suggested Final Scope For Midterm
+## 6. Suggested Final Scope
 
 Scope nên chốt:
 
 ```text
-100-200 listings in Ho Chi Minh City
-3-5 amenity types
-3 persona test cases
+100 listings Gò Vấp + Tân Bình
+3-5 amenity types nền
+10-50 validation scenarios tùy thời gian
 Top 5 recommendation
-LLM explanation based only on scoring evidence
+Explanation dựa trên dữ liệu thật
+Comparison bằng CSR, NDCG@5, MAP@5, human relevance, latency và explanation faithfulness
 ```
-
-Đây là scope vừa đủ để demo, không bị sa vào làm full app BĐS.

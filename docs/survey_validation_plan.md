@@ -146,7 +146,7 @@ Không nên hiển thị:
 
 - Solution nào đề xuất BĐS đó.
 - Rank của solution.
-- Điểm TOPSIS/LLM score.
+- Điểm LLM/scoring tương ứng của từng solution.
 
 Lý do: tránh bias người chấm.
 
@@ -256,50 +256,48 @@ Metric riêng cho Solution 2:
 
 ## 8. Cách dùng khảo sát cho solution 1
 
-Preference survey dùng để tạo trọng số:
+Preference survey dùng để kiểm tra:
 
 ```text
-importance 1-5 -> normalized user weights
+free-text + persona -> expected tool-use / expected relevance signal
 ```
 
-Nếu muốn mạnh hơn, có thể thêm AHP pairwise survey, nhưng không bắt buộc nếu deadline gấp.
+Với Solution 1 hiện tại, trọng tâm không còn là tạo trọng số AHP mà là kiểm tra LLM reasoner có hiểu đúng nhu cầu, gọi đúng tool và giải thích đúng dữ liệu hay không.
 
 ### Bản đơn giản
 
-Dùng rating 1-5 hiện có:
+Dùng rating 1-5 hiện có để tạo human relevance label:
 
 ```text
-weight_i = importance_i / sum(importance)
+relevance(property, scenario) = 1..5
 ```
 
 ### Bản nâng cao
 
-Thêm 5-7 câu so sánh cặp:
+Thêm 5-7 câu kiểm tra tool-use/enrichment:
 
 ```text
-Với bạn, gần trường học quan trọng hơn giá cả bao nhiêu?
-Với bạn, gần bệnh viện quan trọng hơn gần siêu thị bao nhiêu?
-Với bạn, diện tích rộng quan trọng hơn gần đường lớn bao nhiêu?
+Nếu người dùng nói "gần nhà thuốc", solution có cần enrich thêm pharmacy không?
+Nếu người dùng nói "gần công viên", solution có thể dùng cột POI có sẵn không?
+Nếu người dùng nói "gần chỗ làm ở địa chỉ X", solution có cần tính khoảng cách đến địa điểm cụ thể không?
 ```
 
-Dùng thang AHP:
+Dùng thang đánh giá:
 
 | Giá trị | Ý nghĩa |
 |---:|---|
-| 1 | Quan trọng như nhau |
-| 3 | Quan trọng hơn nhẹ |
-| 5 | Quan trọng hơn rõ |
-| 7 | Quan trọng hơn rất nhiều |
-| 9 | Quan trọng tuyệt đối |
+| 1 | Không phù hợp |
+| 3 | Chấp nhận được |
+| 5 | Rất phù hợp |
 
 Metric riêng cho Solution 1:
 
 | Metric | Cách đo |
 |---|---|
-| AHP Consistency Ratio | Kiểm tra preference có mâu thuẫn không |
-| Top-5 Stability | Ranking có ổn định khi weight thay đổi không |
-| Human relevance / NDCG@5 | TOPSIS ranking có khớp người chấm không |
-| Critical criteria | Tiêu chí nào làm ranking đổi nhiều nhất |
+| Grounding Pass Rate | Top 5 có thuộc database/candidate set không |
+| Tool-call correctness | LLM có gọi đúng tool theo free-text không |
+| Human relevance / NDCG@5 | Ranking có khớp người chấm không |
+| Explanation faithfulness | Giải thích có bám dữ liệu thật không |
 
 ## 9. Cách chuyển survey response thành validation scenario
 

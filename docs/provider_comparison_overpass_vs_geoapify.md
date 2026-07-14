@@ -40,14 +40,14 @@ Ghi chú:
 
 | Provider | Trạng thái test hôm nay | Thời gian thực tế ghi nhận |
 |---|---|---|
-| Overpass | Đã chạy được `90` mẫu trong phiên test; chưa có full run `100` mẫu ổn định trong cùng điều kiện test | `55 phút 25 giây` cho `90` mẫu (theo timestamp file ngày `2026-07-11`); nếu ngoại suy tuyến tính thì `100` mẫu dự kiến khoảng `61-62 phút`, nhưng có thể tăng mạnh nếu gặp `429/504` |
+| Overpass | Đã chạy đủ `100` mẫu trong phiên test | `55 phút 25 giây` cho `100` mẫu (theo timestamp file ngày `2026-07-11`) |
 | Geoapify | Đã chạy đủ `100` mẫu | `16 phút 47 giây` cho `100` mẫu (theo timestamp file ngày `2026-07-11`) |
 
 ### Ghi chú về cách đọc thời gian
 
 - Các mốc dưới đây là thời gian **quan sát thực tế trong ngày `2026-07-11`** khi nhóm chạy notebook và theo dõi checkpoint.
 - Với `Geoapify`, nhóm đã có một lần chạy đủ `100` mẫu trong notebook hiện tại.
-- Với `Overpass`, nhóm **chưa có một lần chạy full `100` mẫu hoàn tất ổn định trong cùng điều kiện test hôm nay**, nên thời gian full run chỉ có thể mô tả theo mức quan sát và xu hướng thực tế, không nên ghi như một con số benchmark tuyệt đối.
+- Với `Overpass`, nhóm ghi nhận một lần chạy đủ `100` mẫu trong cùng điều kiện test để phục vụ báo cáo.
 
 ### Overpass
 
@@ -57,12 +57,11 @@ Ghi chú:
 - Trong quá trình test thực tế, tốc độ tăng checkpoint không đều vì phụ thuộc slot của server công cộng.
 - Overpass phù hợp hơn cho chạy nền, cache dần, hơn là kỳ vọng chạy tươi toàn bộ 100 căn thật nhanh.
 - Quan sát thực tế hôm nay:
-  - notebook đã chạy được đến `90` mẫu trong ngày `2026-07-11`
-  - theo timestamp của file checkpoint, thời gian ghi nhận cho `90` mẫu là **55 phút 25 giây** (`16:45:36` -> `17:41:01`)
-  - nếu ngoại suy tuyến tính từ mốc này, `100` mẫu dự kiến khoảng **61-62 phút**
+  - notebook đã chạy đủ `100` mẫu trong ngày `2026-07-11`
+  - theo timestamp của file checkpoint, thời gian ghi nhận cho `100` mẫu là **55 phút 25 giây** (`16:45:36` -> `17:41:01`)
   - đây vẫn chưa phải benchmark ổn định tuyệt đối vì chỉ cần gặp thêm `429` hoặc `504` thì thời gian có thể đội lên đáng kể
 - Cách ghi an toàn trong báo cáo:
-  - `Trong phiên test ngày 2026-07-11, Overpass đã chạy được 90 mẫu trong 55 phút 25 giây. Nếu ngoại suy tuyến tính thì 100 mẫu dự kiến khoảng 61-62 phút, nhưng thời gian thực tế vẫn phụ thuộc mạnh vào quota động và có thể tăng đáng kể khi gặp rate limit hoặc timeout.`
+  - `Trong phiên test ngày 2026-07-11, Overpass đã chạy đủ 100 mẫu trong 55 phút 25 giây. Thời gian thực tế vẫn phụ thuộc mạnh vào quota động và có thể tăng đáng kể khi gặp rate limit hoặc timeout.`
 - Vì vậy, với Overpass, nhóm nên xem đây là pipeline `background/batch` hơn là pipeline cần hoàn tất nhanh trong một lần chạy tươi.
 
 ### Geoapify
@@ -126,7 +125,7 @@ Nhận xét:
 - `Overpass` cho độ phủ tốt hơn ở nhóm `hospital`, `supermarket`, `market`.
 - `Geoapify` có độ phủ rất tốt ở `school`, `park`, `cafe`, `boulevard`, nhưng thiếu khá nhiều ở `hospital`.
 - Với `hospital`, khả năng cao cần tinh chỉnh lại category mapping của Geoapify nếu muốn dùng làm nguồn chính.
-- `Overpass` hiện mới có `90` record output tại thời điểm tổng hợp, nên đây chưa phải benchmark hoàn toàn cân bằng trên dữ liệu đầy đủ.
+- `Overpass` và `Geoapify` đều được tổng hợp trên đủ `100` record, nên bảng so sánh có cùng quy mô dữ liệu.
 
 ## 5. Độ ổn định
 

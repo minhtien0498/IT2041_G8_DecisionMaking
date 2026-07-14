@@ -3,7 +3,7 @@
 File này là bản chốt schema output dùng chung cho hai solution chính và phần validation.
 
 Quy ước hiện tại:
-- `Solution 1`: hướng MCDA/TOPSIS của `Phú`, được đổi tên từ `Solution 3` cũ
+- `Solution 1`: pipeline tuần tự hai LLM có guardrail của `Phú`
 - `Solution 2`: hướng của `Quang`
 - hướng rule-based `Solution 1` cũ đã bị loại khỏi scope final
 - `Ấn`: phụ trách validation / evaluation
@@ -71,6 +71,8 @@ Các field sau được phép có, nhưng không bắt buộc:
 {
   "base_score": 0.541,
   "additional_score": 0.711,
+  "why_recommended": "Giá tốt, gần trường và còn trong ngân sách.",
+  "tradeoff": "Diện tích nhỏ hơn lựa chọn hạng 2.",
   "dynamic_attributes": {
     "nearby_market_count_within_1000m": 3
   },
@@ -101,7 +103,9 @@ Nếu `status = no_candidate`:
 
 Schema này khớp với:
 - [docs/source_notes/Implementation-Plan.md](source_notes/Implementation-Plan.md)
+- [docs/Solution-1-Detail.md](Solution-1-Detail.md)
 - [docs/solution2_implementation_guide.md](solution2_implementation_guide.md)
+- [src/solution1/output_contract.py](../src/solution1/output_contract.py)
 - [src/solution2/output_contract.py](../src/solution2/output_contract.py)
 - [tests/test_pipeline_contract.py](../tests/test_pipeline_contract.py)
 

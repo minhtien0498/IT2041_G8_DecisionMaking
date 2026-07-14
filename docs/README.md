@@ -5,7 +5,7 @@ Index toàn bộ tài liệu trong `docs/`. Đề tài: **Hệ thống tư vấn
 > Quy ước tên active hiện tại: dùng **Solution 1 / 2** cho hai hướng final đang theo.
 >
 > Quy ước hiện tại để làm final:
-> - `Solution 1`: hướng MCDA/TOPSIS của `Phú`, được đổi tên từ `Solution 3` cũ
+> - `Solution 1`: pipeline tuần tự hai LLM có guardrail của `Phú`
 > - `Solution 2`: hướng hybrid form + free-text của `Quang`
 > - hướng rule-based `Solution 1` cũ đã bị loại và chỉ còn ý nghĩa lịch sử
 > - `Tiến`: dữ liệu / enrich / dataset
@@ -25,7 +25,7 @@ Index toàn bộ tài liệu trong `docs/`. Đề tài: **Hệ thống tư vấn
 ## 2. Hai hướng final
 | Tài liệu | Hướng tiếp cận |
 |---|---|
-| [Solution-1-Detail.md](Solution-1-Detail.md) | **Solution 1** — Data-driven MCDA/TOPSIS + sensitivity analysis |
+| [Solution-1-Detail.md](Solution-1-Detail.md) | **Solution 1** — Two-LLM sequential pipeline + tool-use + grounding guardrail |
 | [Solution-2-Detail.md](Solution-2-Detail.md) | **Solution 2** — Hybrid: Form + free-text → LLM parse → enrich → re-rank → giải thích |
 | [solution_evaluation.md](solution_evaluation.md) | Đánh giá & so sánh 3 hướng, khuyến nghị chọn solution |
 
@@ -67,7 +67,8 @@ Index toàn bộ tài liệu trong `docs/`. Đề tài: **Hệ thống tư vấn
 
 ---
 
-### ⚠️ Ghi chú đổi tên
-- `Solution 1` hiện tại là tên mới của hướng MCDA/TOPSIS trước đây từng gọi là `Solution 3`.
-- Hướng rule-based `Solution 1` cũ đã bị loại khỏi scope final và đã được dọn khỏi phần active của repo.
+### ⚠️ Ghi chú đổi scope
+- `Solution 1` hiện tại là pipeline hai LLM có guardrail của `Phú`.
+- Hướng MCDA/TOPSIS đã bị thay thế để khớp với source hiện tại trong `src/solution1/`.
+- Hướng rule-based `Solution 1` cũ đã bị loại khỏi scope final và chỉ còn ý nghĩa lịch sử.
 - Khi viết slide/report, nhóm nên bám đúng quy ước: `Phú = Solution 1`, `Quang = Solution 2`.

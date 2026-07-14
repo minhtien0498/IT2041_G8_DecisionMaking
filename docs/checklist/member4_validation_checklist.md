@@ -3,7 +3,7 @@
 File này gom phần việc chính của `member-4` (`Ấn`).
 
 Quy ước hiện tại:
-- `Solution 1`: hướng MCDA/TOPSIS của `Phú`, được đổi tên từ `Solution 3` cũ
+- `Solution 1`: pipeline tuần tự hai LLM có guardrail của `Phú`
 - `Solution 2`: hướng của `Quang`
 - hướng rule-based `Solution 1` cũ đã bị loại
 
@@ -24,7 +24,7 @@ Quy ước hiện tại:
 - [ ] Nhận output từ `Quang` (`Solution 2`)
   Kỳ vọng: đúng schema contract chung
 
-- [ ] Nhận output từ `Phú` (`Solution 1` mới, trước đây là `Solution 3`)
+- [ ] Nhận output từ `Phú` (`Solution 1` pipeline hai LLM có guardrail)
   Kỳ vọng: đúng schema contract chung
 
 - [ ] Chạy validation và tổng hợp kết quả
@@ -55,6 +55,7 @@ Quy ước hiện tại:
 - dataset `100` căn chưa được migrate đồng bộ vào toàn pipeline
 - synthetic validation chưa đủ mạnh để chứng minh chất lượng với người dùng thật
 - free-text có nhiều nhu cầu `unsupported`, dễ làm compare thiếu công bằng
+- Với Solution 1, cần ghi rõ case nào chỉ đánh giá trên tiện ích nền `X` và case nào có thêm tiện ích động `Y`
 
 ## File nên mở đầu tiên
 

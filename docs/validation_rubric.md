@@ -3,7 +3,7 @@
 File này là rubric chấm chung cho `Ấn` khi so sánh output của các solution.
 
 Quy ước hiện tại:
-- `Solution 1`: hướng MCDA/TOPSIS của `Phú`, được đổi tên từ `Solution 3` cũ
+- `Solution 1`: pipeline tuần tự hai LLM có guardrail của `Phú`
 - `Solution 2`: hướng của `Quang`
 - hướng rule-based `Solution 1` cũ đã bị loại
 
@@ -107,3 +107,5 @@ Dung 3 dong tong hop:
 - Khong so sanh cong bang neu hai solution khac `output contract`.
 - Khong dung chi synthetic validation de ket luan chat luong voi nguoi dung that.
 - Neu dataset chay khac scope (`37` can vs `100` can), phai ghi ro trong bang compare.
+- Voi Solution 1, can ghi ro case nao chi dung tien ich nen `X` va case nao co them tien ich dong `Y`.
+- Voi Solution 1, can cham them grounding, tool-call correctness va explanation faithfulness.

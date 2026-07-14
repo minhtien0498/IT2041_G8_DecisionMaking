@@ -1,7 +1,7 @@
 # Ghi Chú Bàn Giao Cho Nhóm
 
 Quy ước hiện tại:
-- `Solution 1`: hướng MCDA/TOPSIS của `Phú`, được đổi tên từ `Solution 3` cũ
+- `Solution 1`: pipeline tuần tự hai LLM có guardrail của `Phú`
 - `Solution 2`: `Quang`
 - hướng rule-based `Solution 1` cũ đã bị loại khỏi scope final
 - `Tiến`: data / enrich / dataset

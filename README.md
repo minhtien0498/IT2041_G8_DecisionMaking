@@ -246,7 +246,7 @@ Các metric đang dùng:
 ### Ghi chú đổi scope solution
 
 - `Solution 1` cũ dạng rule-based đã bị loại khỏi scope final vì quá đơn giản.
-- `Solution 1` hiện tại là tên mới của hướng `MCDA/TOPSIS`, trước đây từng gọi là `Solution 3`.
+- `Solution 1` hiện tại là pipeline tuần tự hai LLM có guardrail của Phú.
 - `Solution 2` giữ nguyên là hướng hybrid của Quang.
 - Xem thêm: [docs/notes/solution_scope_change_2026-07-11.md](docs/notes/solution_scope_change_2026-07-11.md)
 

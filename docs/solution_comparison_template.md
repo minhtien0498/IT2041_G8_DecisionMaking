@@ -4,8 +4,8 @@ File này là khung để `Ấn` tổng hợp kết quả giữa các solution.
 
 Quy ước hiện tại:
 - `Solution 2`: hướng của `Quang`
-- `Solution 1`: hướng của `Phú`
-- `Solution 1`: chỉ giữ làm baseline/historical reference nếu cần nhắc lại
+- `Solution 1`: pipeline hai LLM có guardrail của `Phú`
+- baseline rule-based cũ chỉ giữ làm historical reference nếu cần nhắc lại
 
 ## 1. Bảng compare theo case
 
@@ -36,7 +36,7 @@ Quy ước hiện tại:
 | avg_recall5 | 0.92 | 0.94 | solution_1 | lay du candidate tot hon |
 | avg_ndcg5 | 0.92 | 0.95 | solution_1 | ranking hop ly hon |
 | map | 0.92 | 0.95 | solution_1 | tong hop ranking tot hon |
-| avg_latency_ms | 2200 | 900 | solution_1 | solution 1 nhanh hon trong demo offline |
+| avg_latency_ms | 2200 | 9000 | solution_2 | solution 2 nhanh hon trong demo neu Solution 1 goi nhieu luot LLM/tool |
 
 ## 5. Rule dien bang
 

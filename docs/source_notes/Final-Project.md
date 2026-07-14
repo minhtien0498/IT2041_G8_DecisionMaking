@@ -93,16 +93,16 @@ Hai solution xử lý cùng input này theo cách khác nhau, đó là điểm k
 
 ## 5. Solutions
 
-### Solution 1 Form + Free-Text → LLM Agent (Tool Use) → Top 5 + Explanation
-Ý tưởng chính: LLM hoạt động như một agent được trang bị bộ tool cụ thể (SQL query, vector search, Map API, distance calculation), tự lên kế hoạch và gọi tool theo vòng lặp Reason → Act → Observe cho đến khi tìm đủ ứng viên đa dạng.
+### Solution 1 Form + Free-Text → Two-LLM Pipeline + Guardrail → Top 5 + Explanation
+Ý tưởng chính: LLM được dùng theo pipeline tuần tự có giới hạn, không phải agent tự trị. LLM reasoner gọi tool để lọc dữ liệu và enrich tiện ích khi cần, sau đó guardrail bằng code kiểm tra grounding trước khi LLM explainer sinh giải thích cuối cùng.
 
-Dữ liệu sử dụng: form + nhu cầu thêm làm đầu vào cho agent; relational DB và vector DB làm nguồn tìm kiếm; Map API cho dữ liệu không gian.
+Dữ liệu sử dụng: form + nhu cầu thêm làm đầu vào cho reasoner; relational DB làm nguồn candidate chính; Map/API tool dùng cho tiện ích động khi free-text yêu cầu.
 
-Cách xử lý: LLM nhận input, đọc system prompt (có few-shot examples hướng dẫn cách suy luận), tự lên chiến lược → gọi `sql_filter()` cho hard constraints → gọi `vector_search()` theo nhiều góc diễn giải → gọi `fetch_nearby()` hoặc `get_distance()` khi cần kiểm tra tiện ích → đánh giá sau mỗi tool call → dừng khi đủ đa dạng → chọn Top 5 → sinh giải thích.
+Cách xử lý: hệ thống sinh hard constraints từ form → LLM reasoner bắt buộc gọi `sql_filter()` → nếu cần thì gọi `fetch_nearby_custom()` hoặc `get_distance_to_place()` cho tiện ích động → LLM trả candidates và điểm → guardrail loại property ngoài candidate set, dedupe, sort, cắt Top 5 → LLM explainer sinh giải thích.
 
-Kết quả kỳ vọng: hệ thống linh hoạt, không bị giới hạn bởi pipeline cố định, kết hợp nhiều nguồn dữ liệu trong cùng một phiên suy luận và cải thiện chất lượng liên tục qua system prompt và few-shot.
+Kết quả kỳ vọng: hệ thống linh hoạt với free-text nhưng vẫn kiểm soát được biên dữ liệu; Top 5 luôn thuộc dataset, còn phần giải thích bám vào dữ liệu thật.
 
-Pipeline: `Form + Free-Text → LLM Agent (System Prompt + Tools) → [Reason → Act → Observe]* → Top 5 → LLM Explanation`
+Pipeline: `Form + Free-Text → LLM Reasoner + Tool Use → Guardrail Grounding → Top 5 → LLM Explanation`
 
 ### Solution 2 Form + User Query -> Inference Engine + LLM -> LLM explaination
 Ý tưởng chính: người dùng vừa nhập form cố định vừa nhập thêm nhu cầu đặc biệt bằng ngôn ngữ tự nhiên; LLM xử lý phần nhu cầu bổ sung, còn inference engine giữ vai trò lọc, chấm điểm và tái xếp hạng.

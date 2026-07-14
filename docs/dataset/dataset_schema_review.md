@@ -54,7 +54,7 @@ Tổng số cột hiện có: `32`
 
 ## 3. Danh sách cột bắt buộc cho pipeline
 
-Đây là bộ cột tối thiểu nên khóa lại để cả `Solution 2` và `Solution 1` cùng dùng. `Solution 1` chỉ còn ý nghĩa baseline/historical reference:
+Đây là bộ cột tối thiểu nên khóa lại để cả `Solution 2` và `Solution 1` cùng dùng. Với Solution 1, đây là nhóm tiện ích nền `X`; các tiện ích động `Y` có thể được enrich thêm theo từng nhu cầu free-text:
 
 - `property_id`
 - `title`

@@ -21,7 +21,7 @@ Những cột được xem là cột nền để hai solution chính cùng dùng
 - `distance_to_nearest_supermarket_m`
 - `distance_to_nearest_boulevard_m`
 
-Việc khóa bộ cột này giúp `Solution 2` và `Solution 1` chạy trên cùng một nguồn thông tin. `Solution 1` chỉ còn ý nghĩa baseline/historical reference. Tuy nhiên, ở bộ 100 căn hiện tại, các cột khoảng cách POI vẫn đang là `None`, nên nếu muốn dùng cho ranking có POI thì cần enrich tiếp.
+Việc khóa bộ cột này giúp `Solution 2` và `Solution 1` chạy trên cùng một nguồn thông tin. Với Solution 1, các cột này là nhóm tiện ích nền `X`; nếu free-text yêu cầu tiện ích ngoài nhóm này thì pipeline có thể enrich thêm nhóm thuộc tính động `Y`. Tuy nhiên, ở bộ 100 căn clean ban đầu, các cột khoảng cách POI vẫn đang là `None`, nên nếu muốn dùng cho ranking có POI thì cần enrich tiếp.
 
 ## 3. Thống kê nhanh
 

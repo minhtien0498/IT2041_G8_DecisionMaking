@@ -571,24 +571,24 @@ Metric thêm:
 
 Validation cần kiểm tra:
 
-- TOPSIS ranking có khớp human relevance không.
-- Trọng số AHP/user preference có nhất quán không.
-- Kết quả có ổn định khi trọng số thay đổi không.
-- Tiêu chí nào ảnh hưởng mạnh nhất đến quyết định.
+- Top 5 có luôn thuộc candidate set/database không.
+- LLM reasoner có gọi đúng tool khi free-text yêu cầu enrichment động không.
+- Explanation có bám đúng dữ liệu và thứ hạng thật không.
+- Case nào chỉ dùng tiện ích nền `X`, case nào dùng thêm tiện ích động `Y`.
 
 Metric thêm:
 
 | Metric | Ý nghĩa |
 |---|---|
-| AHP Consistency Ratio | Độ nhất quán của preference |
-| Top-5 Stability | Độ ổn định ranking khi thay đổi trọng số |
-| Critical Criteria Count | Số tiêu chí làm ranking nhạy |
-| Robust Top-1 Rate | Top 1 giữ nguyên trong bao nhiêu lần perturb |
+| Grounding Pass Rate | Tỷ lệ Top 5 thuộc database/candidate set |
+| Tool-call Correctness | LLM gọi đúng tool theo nhu cầu free-text |
+| Dynamic Enrichment Usefulness | Tiện ích động `Y` có cải thiện relevance không |
+| Explanation Faithfulness | Giải thích có bám đúng dữ liệu thật không |
 
 ## 12. Kết luận nên nói với thầy
 
 Nên trình bày validation dataset như sau:
 
 ```text
-Nhóm không tìm thấy public validation dataset có sẵn cho bài toán user preference -> real estate relevance tại TP.HCM. Vì vậy nhóm tự xây dựng validation dataset gồm ba phần: tập listing validation lấy từ dữ liệu BĐS công khai, tập user scenarios từ khảo sát/persona, và tập relevance labels do người đánh giá chấm độc lập. Cách này phù hợp với bài toán DSS vì chất lượng quyết định được đo bằng relevance, constraint satisfaction, ranking quality và sensitivity analysis thay vì accuracy đơn giản.
+Nhóm không tìm thấy public validation dataset có sẵn cho bài toán user preference -> real estate relevance tại TP.HCM. Vì vậy nhóm tự xây dựng validation dataset gồm ba phần: tập listing validation lấy từ dữ liệu BĐS công khai, tập user scenarios từ khảo sát/persona, và tập relevance labels do người đánh giá chấm độc lập. Cách này phù hợp với bài toán DSS vì chất lượng quyết định được đo bằng relevance, constraint satisfaction, ranking quality, grounding, tool-use correctness và explanation faithfulness thay vì accuracy đơn giản.
 ```

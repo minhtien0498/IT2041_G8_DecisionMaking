@@ -44,7 +44,7 @@ Vì vậy, timeline mới nên tách:
 | Thành viên | Phụ trách | Đã hoàn thành | Chưa hoàn thành | Phụ thuộc | Trạng thái |
 | --- | --- | --- | --- | --- | --- |
 | `Quang` | `Solution 2` | Đã có code trong `src/solution2/`, đã có `outputs/solution2_results.json`, output hiện khá gần contract chung | Cần chốt output final để evaluate chính thức, cần chốt slide/report | Cần confirm output cuối với `Ấn` | `tiến độ tốt / gần hoàn thành kỹ thuật` |
-| `Phú` | `Solution 1` | Đã chốt hướng MCDA/TOPSIS là phần phụ trách chính | Chưa thấy output final tương ứng trong repo, cần chốt pipeline, map đúng contract chung, chuẩn bị slide/report | Cần thống nhất contract với `Ấn` và scope demo với cả nhóm | `đang làm / chưa chốt` |
+| `Phú` | `Solution 1` | Đã có pipeline hai LLM có guardrail, output 10 validation case đầu tiên và file explanation sơ bộ | Cần review explanation, giảm/ghi nhận latency, mở rộng hoặc chốt số case final, chuẩn bị slide/report | Cần thống nhất validation X vs X+Y với `Ấn` | `đã có output sơ bộ / cần review` |
 | `Tiến` | Data / Enrich / Dataset | Đã có dataset 100 căn, pipeline API `Overpass` và `Geoapify`, Geoapify đã chạy đủ 100 mẫu, đã có schema doc, curl mẫu, provider comparison, README cập nhật | Cần chốt file dataset final dùng cho demo/report, hỗ trợ ghép slide chung | Phụ thuộc scope demo cuối của cả nhóm | `gần hoàn thành` |
 | `Ấn` | Validation / Evaluation | Đã có `output contract`, `validation set` bản 1, `rubric`, `compare template` | Cần nhận output final từ `Solution 2` và `Solution 1`, chạy evaluation cuối, viết kết luận compare, làm slide validation final | Phụ thuộc output cuối từ `Phú` và `Quang` | `phần độc lập đã xong phần lớn` |
 
@@ -64,7 +64,7 @@ Ghi chú:
 
 | Giai đoạn | Mục tiêu chính | `Phú` | `Quang` | `Tiến` | `Ấn` |
 | --- | --- | --- | --- | --- | --- |
-| `Tuần 1: 11/07 - 13/07` | Khóa scope, khóa dữ liệu, khóa contract, chốt phần việc còn thiếu | Chốt hướng và pipeline cuối của `Solution 1`, map output sang contract chung, chạy thử vài case validation. Trạng thái hiện tại: `chưa xong` | Chốt output gần-final của `Solution 2`, rà lại các case free-text và unsupported requirements. Trạng thái hiện tại: `gần xong phần kỹ thuật` | Khóa dataset/demo source chính, ưu tiên `Geoapify` làm provider demo và `Overpass` làm baseline so sánh, cập nhật note file cũ/outdated. Trạng thái hiện tại: `đã làm gần xong` | Chuẩn bị / mở rộng validation set bằng khảo sát người dùng hoặc LLM sinh scenario theo rule, đồng thời chốt rubric, khung compare và khung evaluation/report. Trạng thái hiện tại: `phần độc lập đã xong phần lớn` |
+| `Tuần 1: 11/07 - 13/07` | Khóa scope, khóa dữ liệu, khóa contract, chốt phần việc còn thiếu | Đã có pipeline hai LLM có guardrail, output 10 case và explanation sơ bộ. Trạng thái hiện tại: `có output sơ bộ / cần review` | Chốt output gần-final của `Solution 2`, rà lại các case free-text và unsupported requirements. Trạng thái hiện tại: `gần xong phần kỹ thuật` | Khóa dataset/demo source chính, ưu tiên `Geoapify` làm provider demo và `Overpass` làm baseline so sánh, cập nhật note file cũ/outdated. Trạng thái hiện tại: `đã làm gần xong` | Chuẩn bị / mở rộng validation set bằng khảo sát người dùng hoặc LLM sinh scenario theo rule, đồng thời chốt rubric, khung compare và khung evaluation/report. Trạng thái hiện tại: `phần độc lập đã xong phần lớn` |
 | `Tuần 1: 14/07 - 17/07` | Hai solution phải ra output đúng contract; mỗi thành viên phải chốt report draft và slide phần mình | Bàn giao output `Solution 1`, fix theo feedback, chốt report draft + slide `Solution 1` | Bàn giao output `Solution 2`, fix theo feedback, chốt report draft + slide `Solution 2` | Chốt file dữ liệu chính cho demo, chốt report dataset + slide dataset, ghép draft slide chung | Nhận output, chạy compare/evaluation chính thức, chốt report validation + slide validation |
 | `Tuần 2: 18/07 - 20/07` | Hoàn tất toàn bộ bài, ghép bản final, xem như xong việc chính trước ngày báo cáo | Rà logic trình bày, chốt nội dung nói, chốt demo case của `Solution 1` | Rà logic trình bày, chốt demo case của `Solution 2`, chuẩn bị backup nếu demo lỗi | Chốt final slide deck, flow trình bày, dữ liệu demo | Chốt final report draft, soát consistency giữa metric, compare, contract và phần trình bày |
 | `Tuần 2: 21/07 - 24/07` | Chỉ ôn tập, rehearsal, chuẩn bị phản biện và báo cáo chính thức | Rehearsal full talk, chuẩn bị câu trả lời ngắn/dài | Rehearsal demo, chuẩn bị phương án backup | Rà visual cuối, thứ tự trình bày, nhịp chuyển slide | Rehearsal phần validation, chốt note câu hỏi phản biện và kết luận compare |
@@ -81,7 +81,7 @@ Ghi chú:
 - Giai đoạn `11/07 - 13/07` hiện được xem là **đã hòm hòm / gần hoàn tất**.
 - Bộ `100` BĐS cho demo về cơ bản đã được khóa.
 - Hướng final cũng đã rõ:
-  - `Solution 1`: MCDA/TOPSIS của `Phú`
+  - `Solution 1`: pipeline hai LLM có guardrail của `Phú`
   - `Solution 2`: hybrid của `Quang`
 - Phần còn cần chốt thêm trong giai đoạn này chủ yếu là:
   - file dataset/enriched file nào sẽ được gọi là file chính cho demo
@@ -109,7 +109,7 @@ Ghi chú:
 ## 8. Khuyến nghị thực tế cho nhóm
 
 1. Chốt ngay rằng `Ấn` được phép tiếp tục làm validation độc lập, không cần đợi full output mới bắt đầu.
-2. `Phú` là điểm cần đẩy mạnh nhất lúc này vì `Solution 1` hiện chưa thấy output final rõ ràng trong repo.
+2. `Phú` đã có output sơ bộ cho `Solution 1`, nhưng cần cả nhóm review explanation và chốt cách validation cho các case có tiện ích động.
 3. `Quang` nên khóa output final của `Solution 2` rất sớm để `Ấn` có mốc compare trước `16/07`.
 4. `Tiến` nên chốt rõ: demo chính dùng `Geoapify`, còn `Overpass` là compare/baseline.
 5. Mốc nhóm cần tự xem là “xong bài” nên là **`20/07/2026`**, không phải sát `24/07`.
