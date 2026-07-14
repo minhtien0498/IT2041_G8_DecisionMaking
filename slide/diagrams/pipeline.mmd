@@ -1,0 +1,7 @@
+flowchart LR
+    B["<b>Nhu cầu thêm</b><br/>free-text"] --> P["<b>1 · Requirement Parsing</b><br/>hard · soft<br/>unsupported · duplicates"]
+    A["<b>Form cố định</b>"] --> C["<b>2 · Rule-based</b><br/>lọc cứng + chấm điểm<br/><i>→ Top 10 (vùng đệm)</i>"]
+    P -. "amenity name" .-> E
+    C --> E["<b>3 · Enrichment</b><br/>Overpass API<br/><i>OSM thật</i>"]
+    E --> R["<b>4 · Post-filter<br/>+ Re-ranking</b><br/>α·base + β·additional<br/><i>→ Top 5</i>"]
+    R --> X["<b>5 · Explanation</b><br/>tiếng Việt<br/><i>→ output contract</i>"]
