@@ -1,0 +1,49 @@
+📂 100 BĐS | 10 validation case
+
+========================================================================
+[V1_001] clear | "Gia dinh co 2 con nho, uu tien gan truong va cong vien."
+  parsed: soft=0 hard=0 unsupported=1 duplicates=2
+  Top5: GV_010 > GV_008 > GV_013 > GV_015 > GV_026
+  → Top 1 là GV_010 (SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN ) với final_score 0.656 (base 0.656, additional 0.000). Không có nhu cầu bổ sung đo lường được; xếp hạng dựa trên form. Một số nhu cầu đã có sẵn trong form nên được hợp nhất: uu tien gan truong, cong vien. Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Gia dinh co 2 con nho.
+========================================================================
+[V1_002] clear | "Muon gia re, de di lam, co sieu thi gan nha."
+  parsed: soft=0 hard=0 unsupported=1 duplicates=1
+  Top5: GV_002 > GV_010 > GV_011 > GV_003 > GV_015
+  → Top 1 là GV_002 (⭐️ Giảm 50tr! Nhà Vuông SHR 2 tầng 26m2 – Quang Tr) với final_score 0.638 (base 0.638, additional 0.000). Không có nhu cầu bổ sung đo lường được; xếp hạng dựa trên form. Một số nhu cầu đã có sẵn trong form nên được hợp nhất: co sieu thi gan nha. Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Muon gia re.
+========================================================================
+[V1_003] clear | "Uu tien don gia tren m2 thap va de cho thue lai."
+  parsed: soft=0 hard=0 unsupported=1 duplicates=0
+  Top5: GV_010 > GV_035 > GV_037 > TB_008 > GV_020
+  → Top 1 là GV_010 (SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN ) với final_score 0.588 (base 0.588, additional 0.000). Không có nhu cầu bổ sung đo lường được; xếp hạng dựa trên form. Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Uu tien don gia tren m2 thap.
+========================================================================
+[V1_004] clear | "Can gan benh vien va cong vien de di bo."
+  parsed: soft=0 hard=0 unsupported=0 duplicates=2
+  Top5: GV_009 > GV_010 > GV_011 > TB_021 > GV_012
+  → Top 1 là GV_009 (⭐️ Nhà Vuông SHR 3 tầng HXH 44m2 – Nguyễn Văn Khối) với final_score 0.794 (base 0.794, additional 0.000). Không có nhu cầu bổ sung đo lường được; xếp hạng dựa trên form. Một số nhu cầu đã có sẵn trong form nên được hợp nhất: Can gan benh vien, cong vien de di bo.
+========================================================================
+[V1_005] clear | "Can nha vua tui tien, gan sieu thi, khong gian du cho 2 vo chong."
+  parsed: soft=0 hard=0 unsupported=1 duplicates=1
+  Top5: GV_002 > GV_010 > GV_011 > GV_008 > GV_015
+  → Top 1 là GV_002 (⭐️ Giảm 50tr! Nhà Vuông SHR 2 tầng 26m2 – Quang Tr) với final_score 0.625 (base 0.625, additional 0.000). Không có nhu cầu bổ sung đo lường được; xếp hạng dựa trên form. Một số nhu cầu đã có sẵn trong form nên được hợp nhất: gan sieu thi. Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Can nha vua tui tien.
+========================================================================
+[V1_006] ambiguous_free_text | "Nha phai co cho trong vong 1km, uu tien gan truong mam non cho con."
+  parsed: soft=1 hard=1 unsupported=0 duplicates=0
+  Top5: GV_008 > TB_006 > GV_010 > TB_021 > GV_026
+  → Top 1 là GV_008 (Nhà Lô góc SHR 2 tầng HXH 33m2 – Quang Trung Gò Vấ) với final_score 0.721 (base 0.632, additional 0.927). Nhu cầu bổ sung (trường mầm non) đã được đưa vào tính điểm và có thể thay đổi thứ hạng so với khi chỉ dùng form. TB_006 phù hợp nhất với nhu cầu bổ sung (additional_score 1.000).
+========================================================================
+[V1_007] ❌ LỖI: Overpass thất bại cho gym @(10.844656,106.674622): HTTP Error 504: Gateway Timeout
+========================================================================
+[V1_008] ❌ LỖI: Overpass thất bại cho market @(10.840283,106.676932): HTTP Error 504: Gateway Timeout
+========================================================================
+[V1_009] unsupported | "Muon noi yen tinh, dan tri cao, hop phong thuy va hang xom than thien."
+  parsed: soft=0 hard=0 unsupported=4 duplicates=0
+  Top5: GV_009 > GV_010 > TB_021 > GV_011 > GV_012
+  → Top 1 là GV_009 (⭐️ Nhà Vuông SHR 3 tầng HXH 44m2 – Nguyễn Văn Khối) với final_score 0.753 (base 0.753, additional 0.000). Không có nhu cầu bổ sung đo lường được; xếp hạng dựa trên form. Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Muon noi yen tinh; dan tri cao; hop phong thuy; hang xom than thien.
+========================================================================
+[V1_010] conflict_tradeoff | "Muon gan duong lon de di lam, nhung cung muon yen tinh va co nhieu quan ca phe."
+  parsed: soft=1 hard=0 unsupported=1 duplicates=1
+  Top5: GV_010 > GV_011 > GV_009 > GV_012 > GV_002
+  → Top 1 là GV_010 (SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN ) với final_score 0.701 (base 0.572, additional 1.000). Nhu cầu bổ sung (quán cà phê) đã được đưa vào tính điểm và có thể thay đổi thứ hạng so với khi chỉ dùng form. GV_010 phù hợp nhất với nhu cầu bổ sung (additional_score 1.000). Một số nhu cầu đã có sẵn trong form nên được hợp nhất: Muon gan duong lon de di lam. Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): nhung cung muon yen tinh.
+
+========================================================================
+✅ Đã lưu 10 kết quả → /Users/ttqteo/Workspaces/mit_mac/IT2041_G8_DecisionMaking/outputs/solution2_results.json

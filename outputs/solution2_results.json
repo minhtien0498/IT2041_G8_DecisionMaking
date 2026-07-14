@@ -1,312 +1,193 @@
 [
   {
-    "case_id": "S2_001",
+    "case_id": "V1_001",
     "solution_id": "solution_2",
     "status": "ok",
     "top5": [
       {
         "rank": 1,
-        "property_id": "GV_008",
-        "total_score": 0.7591,
+        "property_id": "GV_010",
+        "total_score": 0.6558,
         "hard_constraint_pass": true,
         "reason_tags": [
           "good_price",
           "near_school",
           "near_park",
-          "near_supermarket",
-          "good_market"
+          "near_supermarket"
         ],
         "base_score": 0.6558,
-        "additional_score": 1.0,
-        "dynamic_attributes": {
-          "nearby_market_count_within_1000m": {
-            "value": 2,
-            "unit": "place",
-            "source": "map_api",
-            "amenity_name": "market",
-            "radius_m": 1000,
-            "preference_type": "higher_better",
-            "normalized_score": 1.0,
-            "weight_normalized": 1.0,
-            "contribution_score": 1.0
-          }
-        },
+        "additional_score": 0.0,
+        "dynamic_attributes": {},
         "title": "SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN CITYLAND NGUYỄN VĂN LƯỢNG",
         "price_billion_vnd": 4.55
       },
       {
         "rank": 2,
-        "property_id": "GV_036",
-        "total_score": 0.6963,
-        "hard_constraint_pass": true,
-        "reason_tags": [
-          "near_school",
-          "near_park",
-          "near_supermarket",
-          "good_market"
-        ],
-        "base_score": 0.5661,
-        "additional_score": 1.0,
-        "dynamic_attributes": {
-          "nearby_market_count_within_1000m": {
-            "value": 2,
-            "unit": "place",
-            "source": "map_api",
-            "amenity_name": "market",
-            "radius_m": 1000,
-            "preference_type": "higher_better",
-            "normalized_score": 1.0,
-            "weight_normalized": 1.0,
-            "contribution_score": 1.0
-          }
-        },
-        "title": "Nhà Vuông SHR 2 tầng HXH 47m2 – Quang Trung Gò Vấp",
-        "price_billion_vnd": 5.9
-      },
-      {
-        "rank": 3,
-        "property_id": "GV_006",
-        "total_score": 0.6394,
-        "hard_constraint_pass": true,
-        "reason_tags": [
-          "near_school",
-          "good_market"
-        ],
-        "base_score": 0.4848,
-        "additional_score": 1.0,
-        "dynamic_attributes": {
-          "nearby_market_count_within_1000m": {
-            "value": 2,
-            "unit": "place",
-            "source": "map_api",
-            "amenity_name": "market",
-            "radius_m": 1000,
-            "preference_type": "higher_better",
-            "normalized_score": 1.0,
-            "weight_normalized": 1.0,
-            "contribution_score": 1.0
-          }
-        },
-        "title": "HXH PHẠM VĂN CHIÊU GÒ VẤP - 45M² - NGANG 5M - 5 TẦNG - 5PN - SỔ VUÔNG A4 - HOÀN CÔNG - GẦN CHỢ THẠCH",
-        "price_billion_vnd": 5.5
-      },
-      {
-        "rank": 4,
-        "property_id": "GV_035",
-        "total_score": 0.5925,
+        "property_id": "GV_008",
+        "total_score": 0.6322,
         "hard_constraint_pass": true,
         "reason_tags": [
           "good_price",
           "near_school"
         ],
         "base_score": 0.6322,
-        "additional_score": 0.5,
-        "dynamic_attributes": {
-          "nearby_market_count_within_1000m": {
-            "value": 1,
-            "unit": "place",
-            "source": "map_api",
-            "amenity_name": "market",
-            "radius_m": 1000,
-            "preference_type": "higher_better",
-            "normalized_score": 0.5,
-            "weight_normalized": 1.0,
-            "contribution_score": 0.5
-          }
-        },
+        "additional_score": 0.0,
+        "dynamic_attributes": {},
         "title": "Nhà Lô góc SHR 2 tầng HXH 33m2 – Quang Trung Gò Vấp",
         "price_billion_vnd": 4.1
       },
       {
+        "rank": 3,
+        "property_id": "GV_013",
+        "total_score": 0.6261,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "good_price",
+          "near_school",
+          "near_park",
+          "near_supermarket"
+        ],
+        "base_score": 0.6261,
+        "additional_score": 0.0,
+        "dynamic_attributes": {},
+        "title": "Bán nhà đẹp 3 tầng đường Bùi Quang Là, Phường 12, Quận Gò Vấp",
+        "price_billion_vnd": 4.72
+      },
+      {
+        "rank": 4,
+        "property_id": "GV_015",
+        "total_score": 0.6222,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "good_price",
+          "near_school",
+          "near_park",
+          "near_supermarket"
+        ],
+        "base_score": 0.6222,
+        "additional_score": 0.0,
+        "dynamic_attributes": {},
+        "title": "Bán nhà 42.6m² 4.8 tỷ tại 2 Tầng 3PN Phường 12 Quận Gò Vấp",
+        "price_billion_vnd": 4.8
+      },
+      {
         "rank": 5,
-        "property_id": "GV_029",
-        "total_score": 0.5737,
+        "property_id": "GV_026",
+        "total_score": 0.5661,
         "hard_constraint_pass": true,
         "reason_tags": [
           "near_school",
+          "near_park",
           "near_supermarket"
         ],
-        "base_score": 0.6053,
-        "additional_score": 0.5,
-        "dynamic_attributes": {
-          "nearby_market_count_within_1000m": {
-            "value": 1,
-            "unit": "place",
-            "source": "map_api",
-            "amenity_name": "market",
-            "radius_m": 1000,
-            "preference_type": "higher_better",
-            "normalized_score": 0.5,
-            "weight_normalized": 1.0,
-            "contribution_score": 0.5
-          }
-        },
-        "title": "Bán nhà 49m² 2 tầng quang trung 3m5×14m² Phường 14 Quận Gò Vấp",
-        "price_billion_vnd": 5.28
+        "base_score": 0.5661,
+        "additional_score": 0.0,
+        "dynamic_attributes": {},
+        "title": "Nhà Vuông SHR 2 tầng HXH 47m2 – Quang Trung Gò Vấp",
+        "price_billion_vnd": 5.9
       }
     ],
-    "explanation_summary": "Top 1 là GV_008 (SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN ) với final_score 0.759 (base 0.656, additional 1.000). Nhu cầu bổ sung (chợ) đã được đưa vào tính điểm và có thể thay đổi thứ hạng so với khi chỉ dùng form. GV_008 phù hợp nhất với nhu cầu bổ sung (additional_score 1.000).",
-    "unsupported_requirements": [],
-    "latency_ms": 1.4
+    "explanation_summary": "Top 1 là GV_010 (SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN ) với final_score 0.656 (base 0.656, additional 0.000). Không có nhu cầu bổ sung đo lường được; xếp hạng dựa trên form. Một số nhu cầu đã có sẵn trong form nên được hợp nhất: uu tien gan truong, cong vien. Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Gia dinh co 2 con nho.",
+    "unsupported_requirements": [
+      "Gia dinh co 2 con nho"
+    ],
+    "latency_ms": 1.0
   },
   {
-    "case_id": "S2_002",
+    "case_id": "V1_002",
     "solution_id": "solution_2",
     "status": "ok",
     "top5": [
       {
         "rank": 1,
-        "property_id": "GV_037",
-        "total_score": 0.7466,
+        "property_id": "GV_002",
+        "total_score": 0.638,
         "hard_constraint_pass": true,
         "reason_tags": [
           "good_price",
           "near_supermarket",
-          "near_boulevard",
-          "good_cafe"
+          "near_boulevard"
         ],
         "base_score": 0.638,
-        "additional_score": 1.0,
-        "dynamic_attributes": {
-          "nearby_cafe_count_within_1000m": {
-            "value": 2,
-            "unit": "place",
-            "source": "map_api",
-            "amenity_name": "cafe",
-            "radius_m": 1000,
-            "preference_type": "higher_better",
-            "normalized_score": 1.0,
-            "weight_normalized": 1.0,
-            "contribution_score": 1.0
-          }
-        },
+        "additional_score": 0.0,
+        "dynamic_attributes": {},
         "title": "⭐️ Giảm 50tr! Nhà Vuông SHR 2 tầng 26m2 – Quang Trung Gò Vấp",
         "price_billion_vnd": 2.85
       },
       {
         "rank": 2,
-        "property_id": "GV_008",
-        "total_score": 0.6789,
+        "property_id": "GV_010",
+        "total_score": 0.5413,
         "hard_constraint_pass": true,
         "reason_tags": [
           "near_supermarket",
-          "near_boulevard",
-          "good_cafe"
+          "near_boulevard"
         ],
         "base_score": 0.5413,
-        "additional_score": 1.0,
-        "dynamic_attributes": {
-          "nearby_cafe_count_within_1000m": {
-            "value": 2,
-            "unit": "place",
-            "source": "map_api",
-            "amenity_name": "cafe",
-            "radius_m": 1000,
-            "preference_type": "higher_better",
-            "normalized_score": 1.0,
-            "weight_normalized": 1.0,
-            "contribution_score": 1.0
-          }
-        },
+        "additional_score": 0.0,
+        "dynamic_attributes": {},
         "title": "SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN CITYLAND NGUYỄN VĂN LƯỢNG",
         "price_billion_vnd": 4.55
       },
       {
         "rank": 3,
-        "property_id": "GV_034",
-        "total_score": 0.6477,
+        "property_id": "GV_011",
+        "total_score": 0.4967,
         "hard_constraint_pass": true,
         "reason_tags": [
           "near_supermarket",
-          "near_boulevard",
-          "good_cafe"
+          "near_boulevard"
         ],
         "base_score": 0.4967,
-        "additional_score": 1.0,
-        "dynamic_attributes": {
-          "nearby_cafe_count_within_1000m": {
-            "value": 2,
-            "unit": "place",
-            "source": "map_api",
-            "amenity_name": "cafe",
-            "radius_m": 1000,
-            "preference_type": "higher_better",
-            "normalized_score": 1.0,
-            "weight_normalized": 1.0,
-            "contribution_score": 1.0
-          }
-        },
+        "additional_score": 0.0,
+        "dynamic_attributes": {},
         "title": "Giảm 100tr! Nhà Nở hậu SHR 2 tầng HXH 38m2 – Thống Nhất Gò Vấp",
         "price_billion_vnd": 4.55
       },
       {
         "rank": 4,
-        "property_id": "GV_029",
-        "total_score": 0.6175,
+        "property_id": "GV_003",
+        "total_score": 0.4662,
         "hard_constraint_pass": true,
         "reason_tags": [
-          "near_supermarket",
-          "near_boulevard",
-          "good_cafe"
+          "good_price",
+          "near_boulevard"
         ],
-        "base_score": 0.4536,
-        "additional_score": 1.0,
-        "dynamic_attributes": {
-          "nearby_cafe_count_within_1000m": {
-            "value": 2,
-            "unit": "place",
-            "source": "map_api",
-            "amenity_name": "cafe",
-            "radius_m": 1000,
-            "preference_type": "higher_better",
-            "normalized_score": 1.0,
-            "weight_normalized": 1.0,
-            "contribution_score": 1.0
-          }
-        },
-        "title": "Bán nhà 49m² 2 tầng quang trung 3m5×14m² Phường 14 Quận Gò Vấp",
-        "price_billion_vnd": 5.28
+        "base_score": 0.4662,
+        "additional_score": 0.0,
+        "dynamic_attributes": {},
+        "title": "Nhà 2 tầng sàn 52m2, Vuông – Lê Đức Thọ QV",
+        "price_billion_vnd": 3.1
       },
       {
         "rank": 5,
-        "property_id": "GV_030",
-        "total_score": 0.5981,
+        "property_id": "GV_015",
+        "total_score": 0.4551,
         "hard_constraint_pass": true,
         "reason_tags": [
-          "near_supermarket",
-          "good_cafe"
+          "near_supermarket"
         ],
-        "base_score": 0.4258,
-        "additional_score": 1.0,
-        "dynamic_attributes": {
-          "nearby_cafe_count_within_1000m": {
-            "value": 2,
-            "unit": "place",
-            "source": "map_api",
-            "amenity_name": "cafe",
-            "radius_m": 1000,
-            "preference_type": "higher_better",
-            "normalized_score": 1.0,
-            "weight_normalized": 1.0,
-            "contribution_score": 1.0
-          }
-        },
-        "title": "⭐️ Nhà Vuông SHR 3 tầng HXH 44m2 – Nguyễn Văn Khối Gò Vấp",
-        "price_billion_vnd": 4.35
+        "base_score": 0.4551,
+        "additional_score": 0.0,
+        "dynamic_attributes": {},
+        "title": "Bán nhà 42.6m² 4.8 tỷ tại 2 Tầng 3PN Phường 12 Quận Gò Vấp",
+        "price_billion_vnd": 4.8
       }
     ],
-    "explanation_summary": "Top 1 là GV_037 (⭐️ Giảm 50tr! Nhà Vuông SHR 2 tầng 26m2 – Quang Tr) với final_score 0.747 (base 0.638, additional 1.000). Nhu cầu bổ sung (quán cà phê) đã được đưa vào tính điểm và có thể thay đổi thứ hạng so với khi chỉ dùng form. GV_037 phù hợp nhất với nhu cầu bổ sung (additional_score 1.000).",
-    "unsupported_requirements": [],
+    "explanation_summary": "Top 1 là GV_002 (⭐️ Giảm 50tr! Nhà Vuông SHR 2 tầng 26m2 – Quang Tr) với final_score 0.638 (base 0.638, additional 0.000). Không có nhu cầu bổ sung đo lường được; xếp hạng dựa trên form. Một số nhu cầu đã có sẵn trong form nên được hợp nhất: co sieu thi gan nha. Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Muon gia re.",
+    "unsupported_requirements": [
+      "Muon gia re"
+    ],
     "latency_ms": 0.3
   },
   {
-    "case_id": "S2_003",
+    "case_id": "V1_003",
     "solution_id": "solution_2",
     "status": "ok",
     "top5": [
       {
         "rank": 1,
-        "property_id": "GV_008",
+        "property_id": "GV_010",
         "total_score": 0.5875,
         "hard_constraint_pass": true,
         "reason_tags": [
@@ -322,7 +203,7 @@
       },
       {
         "rank": 2,
-        "property_id": "GV_011",
+        "property_id": "GV_035",
         "total_score": 0.5727,
         "hard_constraint_pass": true,
         "reason_tags": [
@@ -337,7 +218,38 @@
       },
       {
         "rank": 3,
-        "property_id": "GV_029",
+        "property_id": "GV_037",
+        "total_score": 0.5669,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "low_price_per_m2",
+          "near_boulevard",
+          "spacious"
+        ],
+        "base_score": 0.5669,
+        "additional_score": 0.0,
+        "dynamic_attributes": {},
+        "title": "🔥 Nhà chợ An Nhơn 169m2, Đ.5m – Lê Đức Thọ GV",
+        "price_billion_vnd": 11.3
+      },
+      {
+        "rank": 4,
+        "property_id": "TB_008",
+        "total_score": 0.5608,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "low_price_per_m2",
+          "near_boulevard"
+        ],
+        "base_score": 0.5608,
+        "additional_score": 0.0,
+        "dynamic_attributes": {},
+        "title": "⭕️HOT - HIẾM - NGỘP⭕️ NGAY CỘNG HOÀ, 4,2x19, TÂN BÌNH, NHỈNH 5TỶ, NỞ HẬU",
+        "price_billion_vnd": 5.4
+      },
+      {
+        "rank": 5,
+        "property_id": "GV_020",
         "total_score": 0.5399,
         "hard_constraint_pass": true,
         "reason_tags": [
@@ -349,61 +261,232 @@
         "dynamic_attributes": {},
         "title": "Bán nhà 49m² 2 tầng quang trung 3m5×14m² Phường 14 Quận Gò Vấp",
         "price_billion_vnd": 5.28
-      },
-      {
-        "rank": 4,
-        "property_id": "GV_003",
-        "total_score": 0.5275,
-        "hard_constraint_pass": true,
-        "reason_tags": [
-          "low_price_per_m2",
-          "near_boulevard"
-        ],
-        "base_score": 0.5275,
-        "additional_score": 0.0,
-        "dynamic_attributes": {},
-        "title": "Bán nhà 3/713 đường Lê Đức Thọ,P16, Quận gò vấp",
-        "price_billion_vnd": 8.95
-      },
-      {
-        "rank": 5,
-        "property_id": "GV_010",
-        "total_score": 0.5261,
-        "hard_constraint_pass": true,
-        "reason_tags": [
-          "near_supermarket"
-        ],
-        "base_score": 0.5261,
-        "additional_score": 0.0,
-        "dynamic_attributes": {},
-        "title": "Bán nhà 3 tầng mt đường số 1 .đường Thống Nhất Gò Vấp giá rẽ",
-        "price_billion_vnd": 13.5
       }
     ],
-    "explanation_summary": "Top 1 là GV_008 (SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN ) với final_score 0.588 (base 0.588, additional 0.000). Không có nhu cầu bổ sung đo lường được; xếp hạng dựa trên form.",
-    "unsupported_requirements": [],
-    "latency_ms": 0.2
+    "explanation_summary": "Top 1 là GV_010 (SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN ) với final_score 0.588 (base 0.588, additional 0.000). Không có nhu cầu bổ sung đo lường được; xếp hạng dựa trên form. Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Uu tien don gia tren m2 thap.",
+    "unsupported_requirements": [
+      "Uu tien don gia tren m2 thap"
+    ],
+    "latency_ms": 0.6
   },
   {
-    "case_id": "S2_004",
+    "case_id": "V1_004",
     "solution_id": "solution_2",
     "status": "ok",
     "top5": [
       {
         "rank": 1,
-        "property_id": "GV_029",
-        "total_score": 0.7237,
+        "property_id": "GV_009",
+        "total_score": 0.7944,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "near_park",
+          "good_price"
+        ],
+        "base_score": 0.7944,
+        "additional_score": 0.0,
+        "dynamic_attributes": {},
+        "title": "⭐️ Nhà Vuông SHR 3 tầng HXH 44m2 – Nguyễn Văn Khối Gò Vấp",
+        "price_billion_vnd": 4.35
+      },
+      {
+        "rank": 2,
+        "property_id": "GV_010",
+        "total_score": 0.7424,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "near_park",
+          "good_price"
+        ],
+        "base_score": 0.7424,
+        "additional_score": 0.0,
+        "dynamic_attributes": {},
+        "title": "SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN CITYLAND NGUYỄN VĂN LƯỢNG",
+        "price_billion_vnd": 4.55
+      },
+      {
+        "rank": 3,
+        "property_id": "GV_011",
+        "total_score": 0.7216,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "near_park",
+          "good_price"
+        ],
+        "base_score": 0.7216,
+        "additional_score": 0.0,
+        "dynamic_attributes": {},
+        "title": "Giảm 100tr! Nhà Nở hậu SHR 2 tầng HXH 38m2 – Thống Nhất Gò Vấp",
+        "price_billion_vnd": 4.55
+      },
+      {
+        "rank": 4,
+        "property_id": "TB_021",
+        "total_score": 0.7208,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "near_park"
+        ],
+        "base_score": 0.7208,
+        "additional_score": 0.0,
+        "dynamic_attributes": {},
+        "title": "Bán nhà 2 tầng sắt Mặt Tiền Trường Chinh p4 Tân Bình",
+        "price_billion_vnd": 7.4
+      },
+      {
+        "rank": 5,
+        "property_id": "GV_012",
+        "total_score": 0.7151,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "near_park",
+          "good_price"
+        ],
+        "base_score": 0.7151,
+        "additional_score": 0.0,
+        "dynamic_attributes": {},
+        "title": "Bán nhà 2 Tầng HXH Thống nhất p16 Gò Vấp",
+        "price_billion_vnd": 4.65
+      }
+    ],
+    "explanation_summary": "Top 1 là GV_009 (⭐️ Nhà Vuông SHR 3 tầng HXH 44m2 – Nguyễn Văn Khối) với final_score 0.794 (base 0.794, additional 0.000). Không có nhu cầu bổ sung đo lường được; xếp hạng dựa trên form. Một số nhu cầu đã có sẵn trong form nên được hợp nhất: Can gan benh vien, cong vien de di bo.",
+    "unsupported_requirements": [],
+    "latency_ms": 0.4
+  },
+  {
+    "case_id": "V1_005",
+    "solution_id": "solution_2",
+    "status": "ok",
+    "top5": [
+      {
+        "rank": 1,
+        "property_id": "GV_002",
+        "total_score": 0.6251,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "good_price",
+          "near_supermarket"
+        ],
+        "base_score": 0.6251,
+        "additional_score": 0.0,
+        "dynamic_attributes": {},
+        "title": "⭐️ Giảm 50tr! Nhà Vuông SHR 2 tầng 26m2 – Quang Trung Gò Vấp",
+        "price_billion_vnd": 2.85
+      },
+      {
+        "rank": 2,
+        "property_id": "GV_010",
+        "total_score": 0.5994,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "near_supermarket",
+          "near_school"
+        ],
+        "base_score": 0.5994,
+        "additional_score": 0.0,
+        "dynamic_attributes": {},
+        "title": "SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN CITYLAND NGUYỄN VĂN LƯỢNG",
+        "price_billion_vnd": 4.55
+      },
+      {
+        "rank": 3,
+        "property_id": "GV_011",
+        "total_score": 0.556,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "near_supermarket",
+          "near_school"
+        ],
+        "base_score": 0.556,
+        "additional_score": 0.0,
+        "dynamic_attributes": {},
+        "title": "Giảm 100tr! Nhà Nở hậu SHR 2 tầng HXH 38m2 – Thống Nhất Gò Vấp",
+        "price_billion_vnd": 4.55
+      },
+      {
+        "rank": 4,
+        "property_id": "GV_008",
+        "total_score": 0.5461,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "near_school"
+        ],
+        "base_score": 0.5461,
+        "additional_score": 0.0,
+        "dynamic_attributes": {},
+        "title": "Nhà Lô góc SHR 2 tầng HXH 33m2 – Quang Trung Gò Vấp",
+        "price_billion_vnd": 4.1
+      },
+      {
+        "rank": 5,
+        "property_id": "GV_015",
+        "total_score": 0.5461,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "near_supermarket",
+          "near_school"
+        ],
+        "base_score": 0.5461,
+        "additional_score": 0.0,
+        "dynamic_attributes": {},
+        "title": "Bán nhà 42.6m² 4.8 tỷ tại 2 Tầng 3PN Phường 12 Quận Gò Vấp",
+        "price_billion_vnd": 4.8
+      }
+    ],
+    "explanation_summary": "Top 1 là GV_002 (⭐️ Giảm 50tr! Nhà Vuông SHR 2 tầng 26m2 – Quang Tr) với final_score 0.625 (base 0.625, additional 0.000). Không có nhu cầu bổ sung đo lường được; xếp hạng dựa trên form. Một số nhu cầu đã có sẵn trong form nên được hợp nhất: gan sieu thi. Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Can nha vua tui tien.",
+    "unsupported_requirements": [
+      "Can nha vua tui tien"
+    ],
+    "latency_ms": 0.3
+  },
+  {
+    "case_id": "V1_006",
+    "solution_id": "solution_2",
+    "status": "ok",
+    "top5": [
+      {
+        "rank": 1,
+        "property_id": "GV_008",
+        "total_score": 0.7207,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "good_price",
+          "near_school",
+          "good_kindergarten"
+        ],
+        "base_score": 0.6322,
+        "additional_score": 0.9273,
+        "dynamic_attributes": {
+          "distance_to_nearest_kindergarten_m": {
+            "value": 266,
+            "unit": "meter",
+            "source": "map_api",
+            "amenity_name": "kindergarten",
+            "radius_m": 1000,
+            "preference_type": "lower_better",
+            "normalized_score": 0.927,
+            "weight_normalized": 1.0,
+            "contribution_score": 0.9273
+          }
+        },
+        "title": "Nhà Lô góc SHR 2 tầng HXH 33m2 – Quang Trung Gò Vấp",
+        "price_billion_vnd": 4.1
+      },
+      {
+        "rank": 2,
+        "property_id": "TB_006",
+        "total_score": 0.6794,
         "hard_constraint_pass": true,
         "reason_tags": [
           "near_school",
-          "near_supermarket",
+          "near_park",
           "good_kindergarten"
         ],
-        "base_score": 0.6053,
+        "base_score": 0.542,
         "additional_score": 1.0,
         "dynamic_attributes": {
           "distance_to_nearest_kindergarten_m": {
-            "value": 197,
+            "value": 130,
             "unit": "meter",
             "source": "map_api",
             "amenity_name": "kindergarten",
@@ -414,13 +497,13 @@
             "contribution_score": 1.0
           }
         },
-        "title": "Bán nhà 49m² 2 tầng quang trung 3m5×14m² Phường 14 Quận Gò Vấp",
-        "price_billion_vnd": 5.28
+        "title": "Bán nhà 3 tầng Nguyễn Hồng Đào 3m5×7m5 Phường 14 Quận Tân Bình",
+        "price_billion_vnd": 5.2
       },
       {
-        "rank": 2,
-        "property_id": "GV_008",
-        "total_score": 0.6449,
+        "rank": 3,
+        "property_id": "GV_010",
+        "total_score": 0.6517,
         "hard_constraint_pass": true,
         "reason_tags": [
           "good_price",
@@ -430,198 +513,94 @@
           "good_kindergarten"
         ],
         "base_score": 0.6558,
-        "additional_score": 0.6195,
+        "additional_score": 0.6422,
         "dynamic_attributes": {
           "distance_to_nearest_kindergarten_m": {
-            "value": 536,
+            "value": 799,
             "unit": "meter",
             "source": "map_api",
             "amenity_name": "kindergarten",
             "radius_m": 1000,
             "preference_type": "lower_better",
-            "normalized_score": 0.62,
+            "normalized_score": 0.642,
             "weight_normalized": 1.0,
-            "contribution_score": 0.6195
+            "contribution_score": 0.6422
           }
         },
         "title": "SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN CITYLAND NGUYỄN VĂN LƯỢNG",
         "price_billion_vnd": 4.55
       },
       {
-        "rank": 3,
-        "property_id": "GV_036",
-        "total_score": 0.5108,
+        "rank": 4,
+        "property_id": "TB_021",
+        "total_score": 0.6495,
         "hard_constraint_pass": true,
         "reason_tags": [
           "near_school",
           "near_park",
-          "near_supermarket"
+          "good_kindergarten"
         ],
-        "base_score": 0.5661,
-        "additional_score": 0.3816,
+        "base_score": 0.5045,
+        "additional_score": 0.9877,
         "dynamic_attributes": {
           "distance_to_nearest_kindergarten_m": {
-            "value": 748,
+            "value": 153,
             "unit": "meter",
             "source": "map_api",
             "amenity_name": "kindergarten",
             "radius_m": 1000,
             "preference_type": "lower_better",
-            "normalized_score": 0.382,
+            "normalized_score": 0.988,
             "weight_normalized": 1.0,
-            "contribution_score": 0.3816
+            "contribution_score": 0.9877
+          }
+        },
+        "title": "Bán nhà 2 tầng sắt Mặt Tiền Trường Chinh p4 Tân Bình",
+        "price_billion_vnd": 7.4
+      },
+      {
+        "rank": 5,
+        "property_id": "GV_026",
+        "total_score": 0.6268,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "near_school",
+          "near_park",
+          "near_supermarket",
+          "good_kindergarten"
+        ],
+        "base_score": 0.5661,
+        "additional_score": 0.7684,
+        "dynamic_attributes": {
+          "distance_to_nearest_kindergarten_m": {
+            "value": 563,
+            "unit": "meter",
+            "source": "map_api",
+            "amenity_name": "kindergarten",
+            "radius_m": 1000,
+            "preference_type": "lower_better",
+            "normalized_score": 0.768,
+            "weight_normalized": 1.0,
+            "contribution_score": 0.7684
           }
         },
         "title": "Nhà Vuông SHR 2 tầng HXH 47m2 – Quang Trung Gò Vấp",
         "price_billion_vnd": 5.9
-      },
-      {
-        "rank": 4,
-        "property_id": "GV_035",
-        "total_score": 0.4425,
-        "hard_constraint_pass": true,
-        "reason_tags": [
-          "good_price",
-          "near_school"
-        ],
-        "base_score": 0.6322,
-        "additional_score": 0.0,
-        "dynamic_attributes": {
-          "distance_to_nearest_kindergarten_m": {
-            "value": 1088,
-            "unit": "meter",
-            "source": "map_api",
-            "amenity_name": "kindergarten",
-            "radius_m": 1000,
-            "preference_type": "lower_better",
-            "normalized_score": 0.0,
-            "weight_normalized": 1.0,
-            "contribution_score": 0.0
-          }
-        },
-        "title": "Nhà Lô góc SHR 2 tầng HXH 33m2 – Quang Trung Gò Vấp",
-        "price_billion_vnd": 4.1
-      },
-      {
-        "rank": 5,
-        "property_id": "GV_033",
-        "total_score": 0.4404,
-        "hard_constraint_pass": true,
-        "reason_tags": [
-          "near_supermarket"
-        ],
-        "base_score": 0.4474,
-        "additional_score": 0.4242,
-        "dynamic_attributes": {
-          "distance_to_nearest_kindergarten_m": {
-            "value": 710,
-            "unit": "meter",
-            "source": "map_api",
-            "amenity_name": "kindergarten",
-            "radius_m": 1000,
-            "preference_type": "lower_better",
-            "normalized_score": 0.424,
-            "weight_normalized": 1.0,
-            "contribution_score": 0.4242
-          }
-        },
-        "title": "Bán nhà Quang Trung Gò Vấp, 3 tầng, 5x12, Hẻm xe hơi thông, 6,x tỷ thương lượng",
-        "price_billion_vnd": 6.5
       }
     ],
-    "explanation_summary": "Top 1 là GV_029 (Bán nhà 49m² 2 tầng quang trung 3m5×14m² Phường 14) với final_score 0.724 (base 0.605, additional 1.000). Nhu cầu bổ sung (trường mầm non) đã được đưa vào tính điểm và có thể thay đổi thứ hạng so với khi chỉ dùng form. GV_029 phù hợp nhất với nhu cầu bổ sung (additional_score 1.000).",
+    "explanation_summary": "Top 1 là GV_008 (Nhà Lô góc SHR 2 tầng HXH 33m2 – Quang Trung Gò Vấ) với final_score 0.721 (base 0.632, additional 0.927). Nhu cầu bổ sung (trường mầm non) đã được đưa vào tính điểm và có thể thay đổi thứ hạng so với khi chỉ dùng form. TB_006 phù hợp nhất với nhu cầu bổ sung (additional_score 1.000).",
     "unsupported_requirements": [],
-    "latency_ms": 0.3
+    "latency_ms": 5.0
   },
   {
-    "case_id": "S2_005",
+    "case_id": "V1_007",
     "solution_id": "solution_2",
     "status": "ok",
     "top5": [
       {
         "rank": 1,
-        "property_id": "GV_008",
-        "total_score": 0.5921,
-        "hard_constraint_pass": true,
-        "reason_tags": [
-          "near_supermarket",
-          "near_boulevard",
-          "good_pharmacy",
-          "good_gym"
-        ],
-        "base_score": 0.5413,
-        "additional_score": 0.7106,
-        "dynamic_attributes": {
-          "distance_to_nearest_pharmacy_m": {
-            "value": 561,
-            "unit": "meter",
-            "source": "map_api",
-            "amenity_name": "pharmacy",
-            "radius_m": 1000,
-            "preference_type": "lower_better",
-            "normalized_score": 0.755,
-            "weight_normalized": 0.5,
-            "contribution_score": 0.3773
-          },
-          "nearby_gym_count_within_1000m": {
-            "value": 2,
-            "unit": "place",
-            "source": "map_api",
-            "amenity_name": "gym",
-            "radius_m": 1000,
-            "preference_type": "higher_better",
-            "normalized_score": 0.667,
-            "weight_normalized": 0.5,
-            "contribution_score": 0.3333
-          }
-        },
-        "title": "SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN CITYLAND NGUYỄN VĂN LƯỢNG",
-        "price_billion_vnd": 4.55
-      },
-      {
-        "rank": 2,
-        "property_id": "GV_034",
-        "total_score": 0.5658,
-        "hard_constraint_pass": true,
-        "reason_tags": [
-          "near_supermarket",
-          "near_boulevard",
-          "good_pharmacy",
-          "good_gym"
-        ],
-        "base_score": 0.4967,
-        "additional_score": 0.727,
-        "dynamic_attributes": {
-          "distance_to_nearest_pharmacy_m": {
-            "value": 512,
-            "unit": "meter",
-            "source": "map_api",
-            "amenity_name": "pharmacy",
-            "radius_m": 1000,
-            "preference_type": "lower_better",
-            "normalized_score": 0.787,
-            "weight_normalized": 0.5,
-            "contribution_score": 0.3937
-          },
-          "nearby_gym_count_within_1000m": {
-            "value": 2,
-            "unit": "place",
-            "source": "map_api",
-            "amenity_name": "gym",
-            "radius_m": 1000,
-            "preference_type": "higher_better",
-            "normalized_score": 0.667,
-            "weight_normalized": 0.5,
-            "contribution_score": 0.3333
-          }
-        },
-        "title": "Giảm 100tr! Nhà Nở hậu SHR 2 tầng HXH 38m2 – Thống Nhất Gò Vấp",
-        "price_billion_vnd": 4.55
-      },
-      {
-        "rank": 3,
-        "property_id": "GV_037",
-        "total_score": 0.5526,
+        "property_id": "GV_002",
+        "total_score": 0.6237,
         "hard_constraint_pass": true,
         "reason_tags": [
           "good_price",
@@ -630,59 +609,61 @@
           "good_pharmacy"
         ],
         "base_score": 0.638,
-        "additional_score": 0.3535,
+        "additional_score": 0.5903,
         "dynamic_attributes": {
           "distance_to_nearest_pharmacy_m": {
-            "value": 632,
+            "value": 520,
             "unit": "meter",
             "source": "map_api",
             "amenity_name": "pharmacy",
             "radius_m": 1000,
             "preference_type": "lower_better",
-            "normalized_score": 0.707,
+            "normalized_score": 0.681,
             "weight_normalized": 0.5,
-            "contribution_score": 0.3535
+            "contribution_score": 0.3403
           },
           "nearby_gym_count_within_1000m": {
-            "value": 0,
+            "value": 1,
             "unit": "place",
             "source": "map_api",
             "amenity_name": "gym",
             "radius_m": 1000,
             "preference_type": "higher_better",
-            "normalized_score": 0.0,
+            "normalized_score": 0.5,
             "weight_normalized": 0.5,
-            "contribution_score": 0.0
+            "contribution_score": 0.25
           }
         },
         "title": "⭐️ Giảm 50tr! Nhà Vuông SHR 2 tầng 26m2 – Quang Trung Gò Vấp",
         "price_billion_vnd": 2.85
       },
       {
-        "rank": 4,
-        "property_id": "GV_030",
-        "total_score": 0.5245,
+        "rank": 2,
+        "property_id": "GV_020",
+        "total_score": 0.6088,
         "hard_constraint_pass": true,
         "reason_tags": [
           "near_supermarket",
+          "near_boulevard",
+          "good_pharmacy",
           "good_gym"
         ],
-        "base_score": 0.4258,
-        "additional_score": 0.7549,
+        "base_score": 0.4536,
+        "additional_score": 0.971,
         "dynamic_attributes": {
           "distance_to_nearest_pharmacy_m": {
-            "value": 926,
+            "value": 155,
             "unit": "meter",
             "source": "map_api",
             "amenity_name": "pharmacy",
             "radius_m": 1000,
             "preference_type": "lower_better",
-            "normalized_score": 0.51,
+            "normalized_score": 0.942,
             "weight_normalized": 0.5,
-            "contribution_score": 0.2549
+            "contribution_score": 0.471
           },
           "nearby_gym_count_within_1000m": {
-            "value": 3,
+            "value": 2,
             "unit": "place",
             "source": "map_api",
             "amenity_name": "gym",
@@ -693,24 +674,102 @@
             "contribution_score": 0.5
           }
         },
-        "title": "⭐️ Nhà Vuông SHR 3 tầng HXH 44m2 – Nguyễn Văn Khối Gò Vấp",
-        "price_billion_vnd": 4.35
+        "title": "Bán nhà 49m² 2 tầng quang trung 3m5×14m² Phường 14 Quận Gò Vấp",
+        "price_billion_vnd": 5.28
       },
       {
-        "rank": 5,
-        "property_id": "GV_029",
-        "total_score": 0.5175,
+        "rank": 3,
+        "property_id": "GV_010",
+        "total_score": 0.5988,
         "hard_constraint_pass": true,
         "reason_tags": [
           "near_supermarket",
           "near_boulevard",
           "good_pharmacy"
         ],
-        "base_score": 0.4536,
-        "additional_score": 0.6667,
+        "base_score": 0.5413,
+        "additional_score": 0.7328,
         "dynamic_attributes": {
           "distance_to_nearest_pharmacy_m": {
-            "value": 195,
+            "value": 122,
+            "unit": "meter",
+            "source": "map_api",
+            "amenity_name": "pharmacy",
+            "radius_m": 1000,
+            "preference_type": "lower_better",
+            "normalized_score": 0.966,
+            "weight_normalized": 0.5,
+            "contribution_score": 0.4828
+          },
+          "nearby_gym_count_within_1000m": {
+            "value": 1,
+            "unit": "place",
+            "source": "map_api",
+            "amenity_name": "gym",
+            "radius_m": 1000,
+            "preference_type": "higher_better",
+            "normalized_score": 0.5,
+            "weight_normalized": 0.5,
+            "contribution_score": 0.25
+          }
+        },
+        "title": "SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN CITYLAND NGUYỄN VĂN LƯỢNG",
+        "price_billion_vnd": 4.55
+      },
+      {
+        "rank": 4,
+        "property_id": "GV_009",
+        "total_score": 0.5911,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "near_supermarket",
+          "good_pharmacy",
+          "good_gym"
+        ],
+        "base_score": 0.4258,
+        "additional_score": 0.9767,
+        "dynamic_attributes": {
+          "distance_to_nearest_pharmacy_m": {
+            "value": 139,
+            "unit": "meter",
+            "source": "map_api",
+            "amenity_name": "pharmacy",
+            "radius_m": 1000,
+            "preference_type": "lower_better",
+            "normalized_score": 0.953,
+            "weight_normalized": 0.5,
+            "contribution_score": 0.4767
+          },
+          "nearby_gym_count_within_1000m": {
+            "value": 2,
+            "unit": "place",
+            "source": "map_api",
+            "amenity_name": "gym",
+            "radius_m": 1000,
+            "preference_type": "higher_better",
+            "normalized_score": 1.0,
+            "weight_normalized": 0.5,
+            "contribution_score": 0.5
+          }
+        },
+        "title": "⭐️ Nhà Vuông SHR 3 tầng HXH 44m2 – Nguyễn Văn Khối Gò Vấp",
+        "price_billion_vnd": 4.35
+      },
+      {
+        "rank": 5,
+        "property_id": "GV_011",
+        "total_score": 0.5727,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "near_supermarket",
+          "near_boulevard",
+          "good_pharmacy"
+        ],
+        "base_score": 0.4967,
+        "additional_score": 0.75,
+        "dynamic_attributes": {
+          "distance_to_nearest_pharmacy_m": {
+            "value": 74,
             "unit": "meter",
             "source": "map_api",
             "amenity_name": "pharmacy",
@@ -727,487 +786,36 @@
             "amenity_name": "gym",
             "radius_m": 1000,
             "preference_type": "higher_better",
-            "normalized_score": 0.333,
+            "normalized_score": 0.5,
             "weight_normalized": 0.5,
-            "contribution_score": 0.1667
-          }
-        },
-        "title": "Bán nhà 49m² 2 tầng quang trung 3m5×14m² Phường 14 Quận Gò Vấp",
-        "price_billion_vnd": 5.28
-      }
-    ],
-    "explanation_summary": "Top 1 là GV_008 (SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN ) với final_score 0.592 (base 0.541, additional 0.711). Nhu cầu bổ sung (nhà thuốc, phòng gym) đã được đưa vào tính điểm và có thể thay đổi thứ hạng so với khi chỉ dùng form. GV_030 phù hợp nhất với nhu cầu bổ sung (additional_score 0.755). Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Khu nhiều tiện ích.",
-    "unsupported_requirements": [
-      "Khu nhiều tiện ích"
-    ],
-    "latency_ms": 0.2
-  },
-  {
-    "case_id": "S2_006",
-    "solution_id": "solution_2",
-    "status": "ok",
-    "top5": [
-      {
-        "rank": 1,
-        "property_id": "GV_008",
-        "total_score": 0.7591,
-        "hard_constraint_pass": true,
-        "reason_tags": [
-          "good_price",
-          "near_school",
-          "near_park",
-          "near_supermarket",
-          "good_market"
-        ],
-        "base_score": 0.6558,
-        "additional_score": 1.0,
-        "dynamic_attributes": {
-          "nearby_market_count_within_1000m": {
-            "value": 2,
-            "unit": "place",
-            "source": "map_api",
-            "amenity_name": "market",
-            "radius_m": 1000,
-            "preference_type": "higher_better",
-            "normalized_score": 1.0,
-            "weight_normalized": 1.0,
-            "contribution_score": 1.0
-          }
-        },
-        "title": "SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN CITYLAND NGUYỄN VĂN LƯỢNG",
-        "price_billion_vnd": 4.55
-      },
-      {
-        "rank": 2,
-        "property_id": "GV_036",
-        "total_score": 0.6963,
-        "hard_constraint_pass": true,
-        "reason_tags": [
-          "near_school",
-          "near_park",
-          "near_supermarket",
-          "good_market"
-        ],
-        "base_score": 0.5661,
-        "additional_score": 1.0,
-        "dynamic_attributes": {
-          "nearby_market_count_within_1000m": {
-            "value": 2,
-            "unit": "place",
-            "source": "map_api",
-            "amenity_name": "market",
-            "radius_m": 1000,
-            "preference_type": "higher_better",
-            "normalized_score": 1.0,
-            "weight_normalized": 1.0,
-            "contribution_score": 1.0
-          }
-        },
-        "title": "Nhà Vuông SHR 2 tầng HXH 47m2 – Quang Trung Gò Vấp",
-        "price_billion_vnd": 5.9
-      },
-      {
-        "rank": 3,
-        "property_id": "GV_006",
-        "total_score": 0.6394,
-        "hard_constraint_pass": true,
-        "reason_tags": [
-          "near_school",
-          "good_market"
-        ],
-        "base_score": 0.4848,
-        "additional_score": 1.0,
-        "dynamic_attributes": {
-          "nearby_market_count_within_1000m": {
-            "value": 2,
-            "unit": "place",
-            "source": "map_api",
-            "amenity_name": "market",
-            "radius_m": 1000,
-            "preference_type": "higher_better",
-            "normalized_score": 1.0,
-            "weight_normalized": 1.0,
-            "contribution_score": 1.0
-          }
-        },
-        "title": "HXH PHẠM VĂN CHIÊU GÒ VẤP - 45M² - NGANG 5M - 5 TẦNG - 5PN - SỔ VUÔNG A4 - HOÀN CÔNG - GẦN CHỢ THẠCH",
-        "price_billion_vnd": 5.5
-      },
-      {
-        "rank": 4,
-        "property_id": "GV_035",
-        "total_score": 0.5925,
-        "hard_constraint_pass": true,
-        "reason_tags": [
-          "good_price",
-          "near_school"
-        ],
-        "base_score": 0.6322,
-        "additional_score": 0.5,
-        "dynamic_attributes": {
-          "nearby_market_count_within_1000m": {
-            "value": 1,
-            "unit": "place",
-            "source": "map_api",
-            "amenity_name": "market",
-            "radius_m": 1000,
-            "preference_type": "higher_better",
-            "normalized_score": 0.5,
-            "weight_normalized": 1.0,
-            "contribution_score": 0.5
-          }
-        },
-        "title": "Nhà Lô góc SHR 2 tầng HXH 33m2 – Quang Trung Gò Vấp",
-        "price_billion_vnd": 4.1
-      },
-      {
-        "rank": 5,
-        "property_id": "GV_029",
-        "total_score": 0.5737,
-        "hard_constraint_pass": true,
-        "reason_tags": [
-          "near_school",
-          "near_supermarket"
-        ],
-        "base_score": 0.6053,
-        "additional_score": 0.5,
-        "dynamic_attributes": {
-          "nearby_market_count_within_1000m": {
-            "value": 1,
-            "unit": "place",
-            "source": "map_api",
-            "amenity_name": "market",
-            "radius_m": 1000,
-            "preference_type": "higher_better",
-            "normalized_score": 0.5,
-            "weight_normalized": 1.0,
-            "contribution_score": 0.5
-          }
-        },
-        "title": "Bán nhà 49m² 2 tầng quang trung 3m5×14m² Phường 14 Quận Gò Vấp",
-        "price_billion_vnd": 5.28
-      }
-    ],
-    "explanation_summary": "Top 1 là GV_008 (SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN ) với final_score 0.759 (base 0.656, additional 1.000). Nhu cầu bổ sung (chợ) đã được đưa vào tính điểm và có thể thay đổi thứ hạng so với khi chỉ dùng form. GV_008 phù hợp nhất với nhu cầu bổ sung (additional_score 1.000). Một số nhu cầu đã có sẵn trong form nên được hợp nhất: gần siêu thị quanh đây. Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Muốn nơi sống tiện nghi.",
-    "unsupported_requirements": [
-      "Muốn nơi sống tiện nghi"
-    ],
-    "latency_ms": 0.2
-  },
-  {
-    "case_id": "S2_007",
-    "solution_id": "solution_2",
-    "status": "ok",
-    "top5": [
-      {
-        "rank": 1,
-        "property_id": "GV_037",
-        "total_score": 0.7591,
-        "hard_constraint_pass": true,
-        "reason_tags": [
-          "good_price",
-          "near_supermarket",
-          "near_boulevard",
-          "good_cafe"
-        ],
-        "base_score": 0.6559,
-        "additional_score": 1.0,
-        "dynamic_attributes": {
-          "nearby_cafe_count_within_1000m": {
-            "value": 2,
-            "unit": "place",
-            "source": "map_api",
-            "amenity_name": "cafe",
-            "radius_m": 1000,
-            "preference_type": "higher_better",
-            "normalized_score": 1.0,
-            "weight_normalized": 1.0,
-            "contribution_score": 1.0
-          }
-        },
-        "title": "⭐️ Giảm 50tr! Nhà Vuông SHR 2 tầng 26m2 – Quang Trung Gò Vấp",
-        "price_billion_vnd": 2.85
-      },
-      {
-        "rank": 2,
-        "property_id": "GV_008",
-        "total_score": 0.6369,
-        "hard_constraint_pass": true,
-        "reason_tags": [
-          "near_supermarket",
-          "near_boulevard",
-          "good_cafe"
-        ],
-        "base_score": 0.4813,
-        "additional_score": 1.0,
-        "dynamic_attributes": {
-          "nearby_cafe_count_within_1000m": {
-            "value": 2,
-            "unit": "place",
-            "source": "map_api",
-            "amenity_name": "cafe",
-            "radius_m": 1000,
-            "preference_type": "higher_better",
-            "normalized_score": 1.0,
-            "weight_normalized": 1.0,
-            "contribution_score": 1.0
-          }
-        },
-        "title": "SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN CITYLAND NGUYỄN VĂN LƯỢNG",
-        "price_billion_vnd": 4.55
-      },
-      {
-        "rank": 3,
-        "property_id": "GV_034",
-        "total_score": 0.6153,
-        "hard_constraint_pass": true,
-        "reason_tags": [
-          "near_supermarket",
-          "near_boulevard",
-          "good_cafe"
-        ],
-        "base_score": 0.4504,
-        "additional_score": 1.0,
-        "dynamic_attributes": {
-          "nearby_cafe_count_within_1000m": {
-            "value": 2,
-            "unit": "place",
-            "source": "map_api",
-            "amenity_name": "cafe",
-            "radius_m": 1000,
-            "preference_type": "higher_better",
-            "normalized_score": 1.0,
-            "weight_normalized": 1.0,
-            "contribution_score": 1.0
+            "contribution_score": 0.25
           }
         },
         "title": "Giảm 100tr! Nhà Nở hậu SHR 2 tầng HXH 38m2 – Thống Nhất Gò Vấp",
         "price_billion_vnd": 4.55
-      },
-      {
-        "rank": 4,
-        "property_id": "GV_030",
-        "total_score": 0.5677,
-        "hard_constraint_pass": true,
-        "reason_tags": [
-          "near_supermarket",
-          "good_cafe"
-        ],
-        "base_score": 0.3825,
-        "additional_score": 1.0,
-        "dynamic_attributes": {
-          "nearby_cafe_count_within_1000m": {
-            "value": 2,
-            "unit": "place",
-            "source": "map_api",
-            "amenity_name": "cafe",
-            "radius_m": 1000,
-            "preference_type": "higher_better",
-            "normalized_score": 1.0,
-            "weight_normalized": 1.0,
-            "contribution_score": 1.0
-          }
-        },
-        "title": "⭐️ Nhà Vuông SHR 3 tầng HXH 44m2 – Nguyễn Văn Khối Gò Vấp",
-        "price_billion_vnd": 4.35
-      },
-      {
-        "rank": 5,
-        "property_id": "GV_020",
-        "total_score": 0.5604,
-        "hard_constraint_pass": true,
-        "reason_tags": [
-          "near_supermarket",
-          "good_cafe"
-        ],
-        "base_score": 0.372,
-        "additional_score": 1.0,
-        "dynamic_attributes": {
-          "nearby_cafe_count_within_1000m": {
-            "value": 2,
-            "unit": "place",
-            "source": "map_api",
-            "amenity_name": "cafe",
-            "radius_m": 1000,
-            "preference_type": "higher_better",
-            "normalized_score": 1.0,
-            "weight_normalized": 1.0,
-            "contribution_score": 1.0
-          }
-        },
-        "title": "Bán nhà 2 Tầng HXH Thống nhất p16 Gò Vấp",
-        "price_billion_vnd": 4.65
       }
     ],
-    "explanation_summary": "Top 1 là GV_037 (⭐️ Giảm 50tr! Nhà Vuông SHR 2 tầng 26m2 – Quang Tr) với final_score 0.759 (base 0.656, additional 1.000). Nhu cầu bổ sung (quán cà phê) đã được đưa vào tính điểm và có thể thay đổi thứ hạng so với khi chỉ dùng form. GV_037 phù hợp nhất với nhu cầu bổ sung (additional_score 1.000). Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): vừa muốn yên tĩnh tránh ồn.",
+    "explanation_summary": "Top 1 là GV_002 (⭐️ Giảm 50tr! Nhà Vuông SHR 2 tầng 26m2 – Quang Tr) với final_score 0.624 (base 0.638, additional 0.590). Nhu cầu bổ sung (nhà thuốc, phòng gym) đã được đưa vào tính điểm và có thể thay đổi thứ hạng so với khi chỉ dùng form. GV_009 phù hợp nhất với nhu cầu bổ sung (additional_score 0.977). Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Khu nhieu tien ich.",
     "unsupported_requirements": [
-      "vừa muốn yên tĩnh tránh ồn"
+      "Khu nhieu tien ich"
     ],
-    "latency_ms": 0.2
+    "latency_ms": 155579.6
   },
   {
-    "case_id": "S2_008",
+    "case_id": "V1_008",
     "solution_id": "solution_2",
     "status": "ok",
     "top5": [
       {
         "rank": 1,
-        "property_id": "GV_008",
-        "total_score": 0.7085,
+        "property_id": "TB_035",
+        "total_score": 0.6743,
         "hard_constraint_pass": true,
         "reason_tags": [
-          "good_price",
-          "near_school",
-          "near_park",
+          "low_price_per_m2",
           "good_market"
         ],
-        "base_score": 0.5835,
-        "additional_score": 1.0,
-        "dynamic_attributes": {
-          "nearby_market_count_within_1000m": {
-            "value": 2,
-            "unit": "place",
-            "source": "map_api",
-            "amenity_name": "market",
-            "radius_m": 1000,
-            "preference_type": "higher_better",
-            "normalized_score": 1.0,
-            "weight_normalized": 1.0,
-            "contribution_score": 1.0
-          }
-        },
-        "title": "SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN CITYLAND NGUYỄN VĂN LƯỢNG",
-        "price_billion_vnd": 4.55
-      },
-      {
-        "rank": 2,
-        "property_id": "GV_036",
-        "total_score": 0.6459,
-        "hard_constraint_pass": true,
-        "reason_tags": [
-          "near_school",
-          "near_park",
-          "good_market"
-        ],
-        "base_score": 0.4942,
-        "additional_score": 1.0,
-        "dynamic_attributes": {
-          "nearby_market_count_within_1000m": {
-            "value": 2,
-            "unit": "place",
-            "source": "map_api",
-            "amenity_name": "market",
-            "radius_m": 1000,
-            "preference_type": "higher_better",
-            "normalized_score": 1.0,
-            "weight_normalized": 1.0,
-            "contribution_score": 1.0
-          }
-        },
-        "title": "Nhà Vuông SHR 2 tầng HXH 47m2 – Quang Trung Gò Vấp",
-        "price_billion_vnd": 5.9
-      },
-      {
-        "rank": 3,
-        "property_id": "GV_006",
-        "total_score": 0.6359,
-        "hard_constraint_pass": true,
-        "reason_tags": [
-          "near_school",
-          "good_market"
-        ],
-        "base_score": 0.4798,
-        "additional_score": 1.0,
-        "dynamic_attributes": {
-          "nearby_market_count_within_1000m": {
-            "value": 2,
-            "unit": "place",
-            "source": "map_api",
-            "amenity_name": "market",
-            "radius_m": 1000,
-            "preference_type": "higher_better",
-            "normalized_score": 1.0,
-            "weight_normalized": 1.0,
-            "contribution_score": 1.0
-          }
-        },
-        "title": "HXH PHẠM VĂN CHIÊU GÒ VẤP - 45M² - NGANG 5M - 5 TẦNG - 5PN - SỔ VUÔNG A4 - HOÀN CÔNG - GẦN CHỢ THẠCH",
-        "price_billion_vnd": 5.5
-      },
-      {
-        "rank": 4,
-        "property_id": "GV_035",
-        "total_score": 0.5661,
-        "hard_constraint_pass": true,
-        "reason_tags": [
-          "good_price",
-          "near_school"
-        ],
-        "base_score": 0.5944,
-        "additional_score": 0.5,
-        "dynamic_attributes": {
-          "nearby_market_count_within_1000m": {
-            "value": 1,
-            "unit": "place",
-            "source": "map_api",
-            "amenity_name": "market",
-            "radius_m": 1000,
-            "preference_type": "higher_better",
-            "normalized_score": 0.5,
-            "weight_normalized": 1.0,
-            "contribution_score": 0.5
-          }
-        },
-        "title": "Nhà Lô góc SHR 2 tầng HXH 33m2 – Quang Trung Gò Vấp",
-        "price_billion_vnd": 4.1
-      },
-      {
-        "rank": 5,
-        "property_id": "GV_029",
-        "total_score": 0.504,
-        "hard_constraint_pass": true,
-        "reason_tags": [
-          "near_school"
-        ],
-        "base_score": 0.5057,
-        "additional_score": 0.5,
-        "dynamic_attributes": {
-          "nearby_market_count_within_1000m": {
-            "value": 1,
-            "unit": "place",
-            "source": "map_api",
-            "amenity_name": "market",
-            "radius_m": 1000,
-            "preference_type": "higher_better",
-            "normalized_score": 0.5,
-            "weight_normalized": 1.0,
-            "contribution_score": 0.5
-          }
-        },
-        "title": "Bán nhà 49m² 2 tầng quang trung 3m5×14m² Phường 14 Quận Gò Vấp",
-        "price_billion_vnd": 5.28
-      }
-    ],
-    "explanation_summary": "Top 1 là GV_008 (SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN ) với final_score 0.709 (base 0.584, additional 1.000). Nhu cầu bổ sung (chợ) đã được đưa vào tính điểm và có thể thay đổi thứ hạng so với khi chỉ dùng form. GV_008 phù hợp nhất với nhu cầu bổ sung (additional_score 1.000). Một số nhu cầu đã có sẵn trong form nên được hợp nhất: Ưu tiên gần công viên cho yên tĩnh.",
-    "unsupported_requirements": [],
-    "latency_ms": 0.2
-  },
-  {
-    "case_id": "S2_009",
-    "solution_id": "solution_2",
-    "status": "ok",
-    "top5": [
-      {
-        "rank": 1,
-        "property_id": "GV_011",
-        "total_score": 0.7082,
-        "hard_constraint_pass": true,
-        "reason_tags": [
-          "near_boulevard",
-          "near_supermarket",
-          "good_market"
-        ],
-        "base_score": 0.5832,
+        "base_score": 0.5347,
         "additional_score": 1.0,
         "dynamic_attributes": {
           "nearby_market_count_within_1000m": {
@@ -1220,29 +828,240 @@
             "normalized_score": 1.0,
             "weight_normalized": 1.0,
             "contribution_score": 1.0
+          }
+        },
+        "title": "Hiếm: Mặt tiền Âu Cơ – Nhà rộng 110m² – 5 phòng ngủ – Giá mềm chỉ 9.4 tỷ",
+        "price_billion_vnd": 9.4
+      },
+      {
+        "rank": 2,
+        "property_id": "GV_010",
+        "total_score": 0.582,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "low_price_per_m2",
+          "near_boulevard",
+          "near_supermarket"
+        ],
+        "base_score": 0.6172,
+        "additional_score": 0.5,
+        "dynamic_attributes": {
+          "nearby_market_count_within_1000m": {
+            "value": 2,
+            "unit": "place",
+            "source": "map_api",
+            "amenity_name": "market",
+            "radius_m": 1000,
+            "preference_type": "higher_better",
+            "normalized_score": 0.5,
+            "weight_normalized": 1.0,
+            "contribution_score": 0.5
+          }
+        },
+        "title": "SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN CITYLAND NGUYỄN VĂN LƯỢNG",
+        "price_billion_vnd": 4.55
+      },
+      {
+        "rank": 3,
+        "property_id": "GV_035",
+        "total_score": 0.5582,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "near_boulevard",
+          "near_supermarket"
+        ],
+        "base_score": 0.5832,
+        "additional_score": 0.5,
+        "dynamic_attributes": {
+          "nearby_market_count_within_1000m": {
+            "value": 2,
+            "unit": "place",
+            "source": "map_api",
+            "amenity_name": "market",
+            "radius_m": 1000,
+            "preference_type": "higher_better",
+            "normalized_score": 0.5,
+            "weight_normalized": 1.0,
+            "contribution_score": 0.5
           }
         },
         "title": "Bán nhà 5 tầng mt đường Thống Nhất. P 11 Gò Vấp giá rẽ",
         "price_billion_vnd": 10.5
       },
       {
-        "rank": 2,
-        "property_id": "GV_034",
-        "total_score": 0.6619,
+        "rank": 4,
+        "property_id": "TB_008",
+        "total_score": 0.4119,
         "hard_constraint_pass": true,
         "reason_tags": [
-          "near_boulevard",
-          "near_supermarket",
-          "good_market"
+          "low_price_per_m2",
+          "near_boulevard"
         ],
-        "base_score": 0.517,
-        "additional_score": 1.0,
+        "base_score": 0.5884,
+        "additional_score": 0.0,
         "dynamic_attributes": {
           "nearby_market_count_within_1000m": {
-            "value": 3,
+            "value": 1,
             "unit": "place",
             "source": "map_api",
             "amenity_name": "market",
+            "radius_m": 1000,
+            "preference_type": "higher_better",
+            "normalized_score": 0.0,
+            "weight_normalized": 1.0,
+            "contribution_score": 0.0
+          }
+        },
+        "title": "⭕️HOT - HIẾM - NGỘP⭕️ NGAY CỘNG HOÀ, 4,2x19, TÂN BÌNH, NHỈNH 5TỶ, NỞ HẬU",
+        "price_billion_vnd": 5.4
+      },
+      {
+        "rank": 5,
+        "property_id": "GV_037",
+        "total_score": 0.4022,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "low_price_per_m2",
+          "near_boulevard",
+          "spacious"
+        ],
+        "base_score": 0.5745,
+        "additional_score": 0.0,
+        "dynamic_attributes": {
+          "nearby_market_count_within_1000m": {
+            "value": 1,
+            "unit": "place",
+            "source": "map_api",
+            "amenity_name": "market",
+            "radius_m": 1000,
+            "preference_type": "higher_better",
+            "normalized_score": 0.0,
+            "weight_normalized": 1.0,
+            "contribution_score": 0.0
+          }
+        },
+        "title": "🔥 Nhà chợ An Nhơn 169m2, Đ.5m – Lê Đức Thọ GV",
+        "price_billion_vnd": 11.3
+      }
+    ],
+    "explanation_summary": "Top 1 là TB_035 (Hiếm: Mặt tiền Âu Cơ – Nhà rộng 110m² – 5 phòng ng) với final_score 0.674 (base 0.535, additional 1.000). Nhu cầu bổ sung (chợ) đã được đưa vào tính điểm và có thể thay đổi thứ hạng so với khi chỉ dùng form. TB_035 phù hợp nhất với nhu cầu bổ sung (additional_score 1.000). Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Muon khu sam uat de cho thue nhung gia tren m2 van phai thap.",
+    "unsupported_requirements": [
+      "Muon khu sam uat de cho thue nhung gia tren m2 van phai thap"
+    ],
+    "latency_ms": 6.2
+  },
+  {
+    "case_id": "V1_009",
+    "solution_id": "solution_2",
+    "status": "ok",
+    "top5": [
+      {
+        "rank": 1,
+        "property_id": "GV_009",
+        "total_score": 0.7531,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "near_park",
+          "good_price"
+        ],
+        "base_score": 0.7531,
+        "additional_score": 0.0,
+        "dynamic_attributes": {},
+        "title": "⭐️ Nhà Vuông SHR 3 tầng HXH 44m2 – Nguyễn Văn Khối Gò Vấp",
+        "price_billion_vnd": 4.35
+      },
+      {
+        "rank": 2,
+        "property_id": "GV_010",
+        "total_score": 0.7162,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "near_park",
+          "good_price"
+        ],
+        "base_score": 0.7162,
+        "additional_score": 0.0,
+        "dynamic_attributes": {},
+        "title": "SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN CITYLAND NGUYỄN VĂN LƯỢNG",
+        "price_billion_vnd": 4.55
+      },
+      {
+        "rank": 3,
+        "property_id": "TB_021",
+        "total_score": 0.6883,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "near_park"
+        ],
+        "base_score": 0.6883,
+        "additional_score": 0.0,
+        "dynamic_attributes": {},
+        "title": "Bán nhà 2 tầng sắt Mặt Tiền Trường Chinh p4 Tân Bình",
+        "price_billion_vnd": 7.4
+      },
+      {
+        "rank": 4,
+        "property_id": "GV_011",
+        "total_score": 0.6882,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "near_park",
+          "good_price"
+        ],
+        "base_score": 0.6882,
+        "additional_score": 0.0,
+        "dynamic_attributes": {},
+        "title": "Giảm 100tr! Nhà Nở hậu SHR 2 tầng HXH 38m2 – Thống Nhất Gò Vấp",
+        "price_billion_vnd": 4.55
+      },
+      {
+        "rank": 5,
+        "property_id": "GV_012",
+        "total_score": 0.6808,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "near_park",
+          "good_price"
+        ],
+        "base_score": 0.6808,
+        "additional_score": 0.0,
+        "dynamic_attributes": {},
+        "title": "Bán nhà 2 Tầng HXH Thống nhất p16 Gò Vấp",
+        "price_billion_vnd": 4.65
+      }
+    ],
+    "explanation_summary": "Top 1 là GV_009 (⭐️ Nhà Vuông SHR 3 tầng HXH 44m2 – Nguyễn Văn Khối) với final_score 0.753 (base 0.753, additional 0.000). Không có nhu cầu bổ sung đo lường được; xếp hạng dựa trên form. Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Muon noi yen tinh; dan tri cao; hop phong thuy; hang xom than thien.",
+    "unsupported_requirements": [
+      "Muon noi yen tinh",
+      "dan tri cao",
+      "hop phong thuy",
+      "hang xom than thien"
+    ],
+    "latency_ms": 0.5
+  },
+  {
+    "case_id": "V1_010",
+    "solution_id": "solution_2",
+    "status": "ok",
+    "top5": [
+      {
+        "rank": 1,
+        "property_id": "GV_010",
+        "total_score": 0.7005,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "near_supermarket",
+          "near_boulevard",
+          "good_cafe"
+        ],
+        "base_score": 0.5722,
+        "additional_score": 1.0,
+        "dynamic_attributes": {
+          "nearby_cafe_count_within_1000m": {
+            "value": 19,
+            "unit": "place",
+            "source": "map_api",
+            "amenity_name": "cafe",
             "radius_m": 1000,
             "preference_type": "higher_better",
             "normalized_score": 1.0,
@@ -1250,339 +1069,124 @@
             "contribution_score": 1.0
           }
         },
+        "title": "SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN CITYLAND NGUYỄN VĂN LƯỢNG",
+        "price_billion_vnd": 4.55
+      },
+      {
+        "rank": 2,
+        "property_id": "GV_011",
+        "total_score": 0.634,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "near_supermarket",
+          "near_boulevard",
+          "good_cafe"
+        ],
+        "base_score": 0.5247,
+        "additional_score": 0.8889,
+        "dynamic_attributes": {
+          "nearby_cafe_count_within_1000m": {
+            "value": 17,
+            "unit": "place",
+            "source": "map_api",
+            "amenity_name": "cafe",
+            "radius_m": 1000,
+            "preference_type": "higher_better",
+            "normalized_score": 0.889,
+            "weight_normalized": 1.0,
+            "contribution_score": 0.8889
+          }
+        },
         "title": "Giảm 100tr! Nhà Nở hậu SHR 2 tầng HXH 38m2 – Thống Nhất Gò Vấp",
         "price_billion_vnd": 4.55
       },
       {
         "rank": 3,
-        "property_id": "GV_008",
-        "total_score": 0.6321,
+        "property_id": "GV_009",
+        "total_score": 0.6156,
         "hard_constraint_pass": true,
         "reason_tags": [
-          "low_price_per_m2",
-          "near_boulevard",
           "near_supermarket",
-          "good_market"
+          "good_cafe"
         ],
-        "base_score": 0.6172,
-        "additional_score": 0.6667,
+        "base_score": 0.4508,
+        "additional_score": 1.0,
         "dynamic_attributes": {
-          "nearby_market_count_within_1000m": {
-            "value": 2,
+          "nearby_cafe_count_within_1000m": {
+            "value": 19,
             "unit": "place",
             "source": "map_api",
-            "amenity_name": "market",
+            "amenity_name": "cafe",
             "radius_m": 1000,
             "preference_type": "higher_better",
-            "normalized_score": 0.667,
+            "normalized_score": 1.0,
             "weight_normalized": 1.0,
-            "contribution_score": 0.6667
+            "contribution_score": 1.0
           }
         },
-        "title": "SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN CITYLAND NGUYỄN VĂN LƯỢNG",
-        "price_billion_vnd": 4.55
-      },
-      {
-        "rank": 4,
-        "property_id": "GV_029",
-        "total_score": 0.4939,
-        "hard_constraint_pass": true,
-        "reason_tags": [
-          "near_boulevard",
-          "near_supermarket"
-        ],
-        "base_score": 0.5627,
-        "additional_score": 0.3333,
-        "dynamic_attributes": {
-          "nearby_market_count_within_1000m": {
-            "value": 1,
-            "unit": "place",
-            "source": "map_api",
-            "amenity_name": "market",
-            "radius_m": 1000,
-            "preference_type": "higher_better",
-            "normalized_score": 0.333,
-            "weight_normalized": 1.0,
-            "contribution_score": 0.3333
-          }
-        },
-        "title": "Bán nhà 49m² 2 tầng quang trung 3m5×14m² Phường 14 Quận Gò Vấp",
-        "price_billion_vnd": 5.28
-      },
-      {
-        "rank": 5,
-        "property_id": "GV_003",
-        "total_score": 0.4806,
-        "hard_constraint_pass": true,
-        "reason_tags": [
-          "low_price_per_m2",
-          "near_boulevard"
-        ],
-        "base_score": 0.5438,
-        "additional_score": 0.3333,
-        "dynamic_attributes": {
-          "nearby_market_count_within_1000m": {
-            "value": 1,
-            "unit": "place",
-            "source": "map_api",
-            "amenity_name": "market",
-            "radius_m": 1000,
-            "preference_type": "higher_better",
-            "normalized_score": 0.333,
-            "weight_normalized": 1.0,
-            "contribution_score": 0.3333
-          }
-        },
-        "title": "Bán nhà 3/713 đường Lê Đức Thọ,P16, Quận gò vấp",
-        "price_billion_vnd": 8.95
-      }
-    ],
-    "explanation_summary": "Top 1 là GV_011 (Bán nhà 5 tầng mt đường Thống Nhất. P 11 Gò Vấp gi) với final_score 0.708 (base 0.583, additional 1.000). Nhu cầu bổ sung (chợ) đã được đưa vào tính điểm và có thể thay đổi thứ hạng so với khi chỉ dùng form. GV_011 phù hợp nhất với nhu cầu bổ sung (additional_score 1.000). Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Muốn khu sầm uất để dễ cho thuê nhưng giá/m² vẫn phải thấp.",
-    "unsupported_requirements": [
-      "Muốn khu sầm uất để dễ cho thuê nhưng giá/m² vẫn phải thấp"
-    ],
-    "latency_ms": 0.3
-  },
-  {
-    "case_id": "S2_010",
-    "solution_id": "solution_2",
-    "status": "ok",
-    "top5": [
-      {
-        "rank": 1,
-        "property_id": "GV_035",
-        "total_score": 0.5275,
-        "hard_constraint_pass": true,
-        "reason_tags": [
-          "good_price",
-          "near_school"
-        ],
-        "base_score": 0.5275,
-        "additional_score": 0.0,
-        "dynamic_attributes": {},
-        "title": "Nhà Lô góc SHR 2 tầng HXH 33m2 – Quang Trung Gò Vấp",
-        "price_billion_vnd": 4.1
-      },
-      {
-        "rank": 2,
-        "property_id": "GV_008",
-        "total_score": 0.5149,
-        "hard_constraint_pass": true,
-        "reason_tags": [
-          "good_price",
-          "near_school"
-        ],
-        "base_score": 0.5149,
-        "additional_score": 0.0,
-        "dynamic_attributes": {},
-        "title": "SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN CITYLAND NGUYỄN VĂN LƯỢNG",
-        "price_billion_vnd": 4.55
-      },
-      {
-        "rank": 3,
-        "property_id": "GV_029",
-        "total_score": 0.497,
-        "hard_constraint_pass": true,
-        "reason_tags": [
-          "near_school"
-        ],
-        "base_score": 0.497,
-        "additional_score": 0.0,
-        "dynamic_attributes": {},
-        "title": "Bán nhà 49m² 2 tầng quang trung 3m5×14m² Phường 14 Quận Gò Vấp",
-        "price_billion_vnd": 5.28
-      },
-      {
-        "rank": 4,
-        "property_id": "GV_006",
-        "total_score": 0.473,
-        "hard_constraint_pass": true,
-        "reason_tags": [
-          "near_school"
-        ],
-        "base_score": 0.473,
-        "additional_score": 0.0,
-        "dynamic_attributes": {},
-        "title": "HXH PHẠM VĂN CHIÊU GÒ VẤP - 45M² - NGANG 5M - 5 TẦNG - 5PN - SỔ VUÔNG A4 - HOÀN CÔNG - GẦN CHỢ THẠCH",
-        "price_billion_vnd": 5.5
-      },
-      {
-        "rank": 5,
-        "property_id": "GV_031",
-        "total_score": 0.4235,
-        "hard_constraint_pass": true,
-        "reason_tags": [
-          "good_price",
-          "near_school"
-        ],
-        "base_score": 0.4235,
-        "additional_score": 0.0,
-        "dynamic_attributes": {},
-        "title": "Bán nhà đẹp 3 tầng đường Bùi Quang Là, Phường 12, Quận Gò Vấp",
-        "price_billion_vnd": 4.72
-      }
-    ],
-    "explanation_summary": "Top 1 là GV_035 (Nhà Lô góc SHR 2 tầng HXH 33m2 – Quang Trung Gò Vấ) với final_score 0.527 (base 0.527, additional 0.000). Không có nhu cầu bổ sung đo lường được; xếp hạng dựa trên form. Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Muốn khu hàng xóm thân thiện; an ninh tốt; hợp phong thủy.",
-    "unsupported_requirements": [
-      "Muốn khu hàng xóm thân thiện",
-      "an ninh tốt",
-      "hợp phong thủy"
-    ],
-    "latency_ms": 0.1
-  },
-  {
-    "case_id": "S2_011",
-    "solution_id": "solution_2",
-    "status": "ok",
-    "top5": [
-      {
-        "rank": 1,
-        "property_id": "GV_037",
-        "total_score": 0.4161,
-        "hard_constraint_pass": true,
-        "reason_tags": [
-          "good_price"
-        ],
-        "base_score": 0.4161,
-        "additional_score": 0.0,
-        "dynamic_attributes": {},
-        "title": "⭐️ Giảm 50tr! Nhà Vuông SHR 2 tầng 26m2 – Quang Trung Gò Vấp",
-        "price_billion_vnd": 2.85
-      },
-      {
-        "rank": 2,
-        "property_id": "GV_008",
-        "total_score": 0.3857,
-        "hard_constraint_pass": true,
-        "reason_tags": [],
-        "base_score": 0.3857,
-        "additional_score": 0.0,
-        "dynamic_attributes": {},
-        "title": "SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN CITYLAND NGUYỄN VĂN LƯỢNG",
-        "price_billion_vnd": 4.55
-      },
-      {
-        "rank": 3,
-        "property_id": "GV_030",
-        "total_score": 0.3143,
-        "hard_constraint_pass": true,
-        "reason_tags": [],
-        "base_score": 0.3143,
-        "additional_score": 0.0,
-        "dynamic_attributes": {},
         "title": "⭐️ Nhà Vuông SHR 3 tầng HXH 44m2 – Nguyễn Văn Khối Gò Vấp",
         "price_billion_vnd": 4.35
       },
       {
         "rank": 4,
-        "property_id": "GV_035",
-        "total_score": 0.2812,
+        "property_id": "GV_012",
+        "total_score": 0.5973,
         "hard_constraint_pass": true,
-        "reason_tags": [],
-        "base_score": 0.2812,
-        "additional_score": 0.0,
-        "dynamic_attributes": {},
-        "title": "Nhà Lô góc SHR 2 tầng HXH 33m2 – Quang Trung Gò Vấp",
-        "price_billion_vnd": 4.1
+        "reason_tags": [
+          "near_supermarket",
+          "good_cafe"
+        ],
+        "base_score": 0.4485,
+        "additional_score": 0.9444,
+        "dynamic_attributes": {
+          "nearby_cafe_count_within_1000m": {
+            "value": 18,
+            "unit": "place",
+            "source": "map_api",
+            "amenity_name": "cafe",
+            "radius_m": 1000,
+            "preference_type": "higher_better",
+            "normalized_score": 0.944,
+            "weight_normalized": 1.0,
+            "contribution_score": 0.9444
+          }
+        },
+        "title": "Bán nhà 2 Tầng HXH Thống nhất p16 Gò Vấp",
+        "price_billion_vnd": 4.65
       },
       {
         "rank": 5,
-        "property_id": "GV_027",
-        "total_score": 0.2604,
+        "property_id": "GV_002",
+        "total_score": 0.5259,
         "hard_constraint_pass": true,
-        "reason_tags": [],
-        "base_score": 0.2604,
-        "additional_score": 0.0,
-        "dynamic_attributes": {},
-        "title": "Bán nhà 2 Tầng quang trung Phường 14 Quận Gò Vấp",
-        "price_billion_vnd": 4.99
+        "reason_tags": [
+          "good_price",
+          "near_supermarket",
+          "near_boulevard"
+        ],
+        "base_score": 0.6322,
+        "additional_score": 0.2778,
+        "dynamic_attributes": {
+          "nearby_cafe_count_within_1000m": {
+            "value": 6,
+            "unit": "place",
+            "source": "map_api",
+            "amenity_name": "cafe",
+            "radius_m": 1000,
+            "preference_type": "higher_better",
+            "normalized_score": 0.278,
+            "weight_normalized": 1.0,
+            "contribution_score": 0.2778
+          }
+        },
+        "title": "⭐️ Giảm 50tr! Nhà Vuông SHR 2 tầng 26m2 – Quang Trung Gò Vấp",
+        "price_billion_vnd": 2.85
       }
     ],
-    "explanation_summary": "Top 1 là GV_037 (⭐️ Giảm 50tr! Nhà Vuông SHR 2 tầng 26m2 – Quang Tr) với final_score 0.416 (base 0.416, additional 0.000). Không có nhu cầu bổ sung đo lường được; xếp hạng dựa trên form. Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Nơi có vibe trẻ trung; view đẹp; thoáng mát.",
+    "explanation_summary": "Top 1 là GV_010 (SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN ) với final_score 0.701 (base 0.572, additional 1.000). Nhu cầu bổ sung (quán cà phê) đã được đưa vào tính điểm và có thể thay đổi thứ hạng so với khi chỉ dùng form. GV_010 phù hợp nhất với nhu cầu bổ sung (additional_score 1.000). Một số nhu cầu đã có sẵn trong form nên được hợp nhất: Muon gan duong lon de di lam. Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): nhung cung muon yen tinh.",
     "unsupported_requirements": [
-      "Nơi có vibe trẻ trung",
-      "view đẹp",
-      "thoáng mát"
+      "nhung cung muon yen tinh"
     ],
-    "latency_ms": 0.1
-  },
-  {
-    "case_id": "S2_012",
-    "solution_id": "solution_2",
-    "status": "ok",
-    "top5": [
-      {
-        "rank": 1,
-        "property_id": "GV_004",
-        "total_score": 0.4989,
-        "hard_constraint_pass": true,
-        "reason_tags": [
-          "low_price_per_m2"
-        ],
-        "base_score": 0.4989,
-        "additional_score": 0.0,
-        "dynamic_attributes": {},
-        "title": "Chính chủ bán nhà 23/1340/12 đường Lê Đức Thọ, P15,Q.Gò Vấp TPhcm",
-        "price_billion_vnd": 5.52
-      },
-      {
-        "rank": 2,
-        "property_id": "GV_001",
-        "total_score": 0.484,
-        "hard_constraint_pass": true,
-        "reason_tags": [],
-        "base_score": 0.484,
-        "additional_score": 0.0,
-        "dynamic_attributes": {},
-        "title": "Biệt Thự Lô Góc 2 Mặt Tiền - DT: 8x15=120m² - giá 12.6 tỷ Phường 15 , Gò Vấp.",
-        "price_billion_vnd": 12.6
-      },
-      {
-        "rank": 3,
-        "property_id": "GV_003",
-        "total_score": 0.4589,
-        "hard_constraint_pass": true,
-        "reason_tags": [
-          "low_price_per_m2"
-        ],
-        "base_score": 0.4589,
-        "additional_score": 0.0,
-        "dynamic_attributes": {},
-        "title": "Bán nhà 3/713 đường Lê Đức Thọ,P16, Quận gò vấp",
-        "price_billion_vnd": 8.95
-      },
-      {
-        "rank": 4,
-        "property_id": "GV_010",
-        "total_score": 0.4574,
-        "hard_constraint_pass": true,
-        "reason_tags": [],
-        "base_score": 0.4574,
-        "additional_score": 0.0,
-        "dynamic_attributes": {},
-        "title": "Bán nhà 3 tầng mt đường số 1 .đường Thống Nhất Gò Vấp giá rẽ",
-        "price_billion_vnd": 13.5
-      },
-      {
-        "rank": 5,
-        "property_id": "GV_008",
-        "total_score": 0.4334,
-        "hard_constraint_pass": true,
-        "reason_tags": [
-          "low_price_per_m2"
-        ],
-        "base_score": 0.4334,
-        "additional_score": 0.0,
-        "dynamic_attributes": {},
-        "title": "SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN CITYLAND NGUYỄN VĂN LƯỢNG",
-        "price_billion_vnd": 4.55
-      }
-    ],
-    "explanation_summary": "Top 1 là GV_004 (Chính chủ bán nhà 23/1340/12 đường Lê Đức Thọ, P15) với final_score 0.499 (base 0.499, additional 0.000). Không có nhu cầu bổ sung đo lường được; xếp hạng dựa trên form. Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Khu đông dân cư; dân trí cao để dễ cho thuê lại.",
-    "unsupported_requirements": [
-      "Khu đông dân cư",
-      "dân trí cao để dễ cho thuê lại"
-    ],
-    "latency_ms": 0.1
+    "latency_ms": 3.8
   }
 ]

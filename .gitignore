@@ -22,3 +22,5 @@ archive/fact_checking_project/
 # API cache
 data/overpass/cache/
 data/geoapify/cache/
+
+local

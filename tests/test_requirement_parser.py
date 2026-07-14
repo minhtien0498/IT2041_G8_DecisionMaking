@@ -1,3 +1,5 @@
+import pytest
+
 from src.solution2 import requirement_parser as rp
 
 # Form mẫu: có school/park/supermarket trong soft_preferences (để test dedup)
@@ -72,3 +74,28 @@ def test_amenity_with_subjective_keeps_measurable():
 def test_kindergarten_priority_over_school():
     parsed = rp.parse(FORM, "Ưu tiên gần trường mầm non.")
     assert parsed.soft[0]["amenity_name"] == "kindergarten"
+
+
+# ── Free-text KHÔNG dấu (validation set dùng chung của nhóm dùng kiểu này) ──
+
+def test_unaccented_text_is_parsed():
+    parsed = rp.parse(FORM, "Nha phai co cho trong vong 1km, uu tien gan truong mam non.")
+    assert [r["amenity_name"] for r in parsed.hard] == ["market"]
+    assert parsed.hard[0]["radius_m"] == 1000
+    assert [r["amenity_name"] for r in parsed.soft] == ["kindergarten"]
+
+
+def test_unaccented_pharmacy_and_gym():
+    parsed = rp.parse(FORM, "Uu tien gan nha thuoc va co phong gym xung quanh.")
+    assert {r["amenity_name"] for r in parsed.soft} == {"pharmacy", "gym"}
+
+
+@pytest.mark.parametrize("text", [
+    "de cho thue lai",          # "cho thuê" != "chợ"
+    "khong gian du cho 2 vo chong",  # "đủ chỗ" != "chợ"
+    "truong mam non cho con",   # "cho con" != "chợ"
+])
+def test_unaccented_false_friends_not_market(text):
+    """Bỏ dấu làm 'chợ'->'cho' trùng giới từ 'cho'/'chỗ' — không được nhận nhầm."""
+    parsed = rp.parse(FORM, text)
+    assert all(r["amenity_name"] != "market" for r in parsed.soft + parsed.hard)
