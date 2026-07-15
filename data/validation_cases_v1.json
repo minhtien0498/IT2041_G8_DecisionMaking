@@ -8,17 +8,49 @@
       "budget_max_million": 8000,
       "min_bedrooms": 3,
       "soft_preferences": {
-        "price": {"weight": 0.25, "direction": "lower_better", "min": 3000, "max": 8000},
-        "distance_to_nearest_school_m": {"weight": 0.25, "direction": "lower_better", "min": 0, "max": 2000},
-        "distance_to_nearest_park_m": {"weight": 0.20, "direction": "lower_better", "min": 0, "max": 2000},
-        "distance_to_nearest_supermarket_m": {"weight": 0.15, "direction": "lower_better", "min": 0, "max": 1500},
-        "area_m2": {"weight": 0.15, "direction": "higher_better", "min": 30, "max": 150}
+        "price": {
+          "weight": 0.25,
+          "direction": "lower_better",
+          "min": 3000,
+          "max": 8000
+        },
+        "distance_to_nearest_school_m": {
+          "weight": 0.25,
+          "direction": "lower_better",
+          "min": 0,
+          "max": 2000
+        },
+        "distance_to_nearest_park_m": {
+          "weight": 0.2,
+          "direction": "lower_better",
+          "min": 0,
+          "max": 2000
+        },
+        "distance_to_nearest_supermarket_m": {
+          "weight": 0.15,
+          "direction": "lower_better",
+          "min": 0,
+          "max": 1500
+        },
+        "area_m2": {
+          "weight": 0.15,
+          "direction": "higher_better",
+          "min": 30,
+          "max": 150
+        }
       },
-      "user_need_text": "Gia dinh co 2 con nho, uu tien gan truong va cong vien."
+      "user_need_text": "Gia đình có 2 con nhỏ, ưu tiên gần trường và công viên."
     },
     "expected": {
-      "hard_constraints": ["price <= 8000", "bedrooms >= 3"],
-      "soft_priorities": ["near school", "near park", "reasonable price"],
+      "hard_constraints": [
+        "price <= 8000",
+        "bedrooms >= 3"
+      ],
+      "soft_priorities": [
+        "near school",
+        "near park",
+        "reasonable price"
+      ],
       "unsupported_requirements": []
     }
   },
@@ -31,16 +63,43 @@
       "budget_max_million": 5500,
       "min_bedrooms": 2,
       "soft_preferences": {
-        "price": {"weight": 0.35, "direction": "lower_better", "min": 2000, "max": 5500},
-        "distance_to_nearest_supermarket_m": {"weight": 0.25, "direction": "lower_better", "min": 0, "max": 1500},
-        "distance_to_nearest_boulevard_m": {"weight": 0.20, "direction": "lower_better", "min": 0, "max": 2000},
-        "area_m2": {"weight": 0.20, "direction": "higher_better", "min": 20, "max": 100}
+        "price": {
+          "weight": 0.35,
+          "direction": "lower_better",
+          "min": 2000,
+          "max": 5500
+        },
+        "distance_to_nearest_supermarket_m": {
+          "weight": 0.25,
+          "direction": "lower_better",
+          "min": 0,
+          "max": 1500
+        },
+        "distance_to_nearest_boulevard_m": {
+          "weight": 0.2,
+          "direction": "lower_better",
+          "min": 0,
+          "max": 2000
+        },
+        "area_m2": {
+          "weight": 0.2,
+          "direction": "higher_better",
+          "min": 20,
+          "max": 100
+        }
       },
-      "user_need_text": "Muon gia re, de di lam, co sieu thi gan nha."
+      "user_need_text": "Muốn giá rẻ, dễ đi làm, có siêu thị gần nhà."
     },
     "expected": {
-      "hard_constraints": ["price <= 5500", "bedrooms >= 2"],
-      "soft_priorities": ["cheap price", "near supermarket", "near boulevard"],
+      "hard_constraints": [
+        "price <= 5500",
+        "bedrooms >= 2"
+      ],
+      "soft_priorities": [
+        "cheap price",
+        "near supermarket",
+        "near boulevard"
+      ],
       "unsupported_requirements": []
     }
   },
@@ -53,16 +112,43 @@
       "budget_max_million": 15000,
       "min_bedrooms": 1,
       "soft_preferences": {
-        "price_per_m2": {"weight": 0.30, "direction": "lower_better", "min": 30, "max": 200},
-        "distance_to_nearest_boulevard_m": {"weight": 0.25, "direction": "lower_better", "min": 0, "max": 2000},
-        "area_m2": {"weight": 0.25, "direction": "higher_better", "min": 30, "max": 250},
-        "distance_to_nearest_supermarket_m": {"weight": 0.20, "direction": "lower_better", "min": 0, "max": 1500}
+        "price_per_m2": {
+          "weight": 0.3,
+          "direction": "lower_better",
+          "min": 30,
+          "max": 200
+        },
+        "distance_to_nearest_boulevard_m": {
+          "weight": 0.25,
+          "direction": "lower_better",
+          "min": 0,
+          "max": 2000
+        },
+        "area_m2": {
+          "weight": 0.25,
+          "direction": "higher_better",
+          "min": 30,
+          "max": 250
+        },
+        "distance_to_nearest_supermarket_m": {
+          "weight": 0.2,
+          "direction": "lower_better",
+          "min": 0,
+          "max": 1500
+        }
       },
-      "user_need_text": "Uu tien don gia tren m2 thap va de cho thue lai."
+      "user_need_text": "Ưu tiên đơn giá trên m2 thấp và dễ cho thuê lại."
     },
     "expected": {
-      "hard_constraints": ["price <= 15000", "bedrooms >= 1"],
-      "soft_priorities": ["low price per m2", "near boulevard", "large area"],
+      "hard_constraints": [
+        "price <= 15000",
+        "bedrooms >= 1"
+      ],
+      "soft_priorities": [
+        "low price per m2",
+        "near boulevard",
+        "large area"
+      ],
       "unsupported_requirements": []
     }
   },
@@ -75,16 +161,43 @@
       "budget_max_million": 10000,
       "min_bedrooms": 2,
       "soft_preferences": {
-        "distance_to_nearest_hospital_m": {"weight": 0.40, "direction": "lower_better", "min": 0, "max": 2500},
-        "distance_to_nearest_park_m": {"weight": 0.30, "direction": "lower_better", "min": 0, "max": 2000},
-        "price": {"weight": 0.20, "direction": "lower_better", "min": 3000, "max": 10000},
-        "area_m2": {"weight": 0.10, "direction": "higher_better", "min": 30, "max": 150}
+        "distance_to_nearest_hospital_m": {
+          "weight": 0.4,
+          "direction": "lower_better",
+          "min": 0,
+          "max": 2500
+        },
+        "distance_to_nearest_park_m": {
+          "weight": 0.3,
+          "direction": "lower_better",
+          "min": 0,
+          "max": 2000
+        },
+        "price": {
+          "weight": 0.2,
+          "direction": "lower_better",
+          "min": 3000,
+          "max": 10000
+        },
+        "area_m2": {
+          "weight": 0.1,
+          "direction": "higher_better",
+          "min": 30,
+          "max": 150
+        }
       },
-      "user_need_text": "Can gan benh vien va cong vien de di bo."
+      "user_need_text": "Cần gần bệnh viện và công viên để đi bộ."
     },
     "expected": {
-      "hard_constraints": ["price <= 10000", "bedrooms >= 2"],
-      "soft_priorities": ["near hospital", "near park", "reasonable price"],
+      "hard_constraints": [
+        "price <= 10000",
+        "bedrooms >= 2"
+      ],
+      "soft_priorities": [
+        "near hospital",
+        "near park",
+        "reasonable price"
+      ],
       "unsupported_requirements": []
     }
   },
@@ -97,16 +210,43 @@
       "budget_max_million": 6000,
       "min_bedrooms": 2,
       "soft_preferences": {
-        "price": {"weight": 0.30, "direction": "lower_better", "min": 2500, "max": 6000},
-        "distance_to_nearest_supermarket_m": {"weight": 0.30, "direction": "lower_better", "min": 0, "max": 1500},
-        "distance_to_nearest_school_m": {"weight": 0.20, "direction": "lower_better", "min": 0, "max": 2000},
-        "area_m2": {"weight": 0.20, "direction": "higher_better", "min": 25, "max": 120}
+        "price": {
+          "weight": 0.3,
+          "direction": "lower_better",
+          "min": 2500,
+          "max": 6000
+        },
+        "distance_to_nearest_supermarket_m": {
+          "weight": 0.3,
+          "direction": "lower_better",
+          "min": 0,
+          "max": 1500
+        },
+        "distance_to_nearest_school_m": {
+          "weight": 0.2,
+          "direction": "lower_better",
+          "min": 0,
+          "max": 2000
+        },
+        "area_m2": {
+          "weight": 0.2,
+          "direction": "higher_better",
+          "min": 25,
+          "max": 120
+        }
       },
-      "user_need_text": "Can nha vua tui tien, gan sieu thi, khong gian du cho 2 vo chong."
+      "user_need_text": "Cần nhà vừa túi tiền, gần siêu thị, không gian đủ cho 2 vợ chồng."
     },
     "expected": {
-      "hard_constraints": ["price <= 6000", "bedrooms >= 2"],
-      "soft_priorities": ["cheap price", "near supermarket", "enough area"],
+      "hard_constraints": [
+        "price <= 6000",
+        "bedrooms >= 2"
+      ],
+      "soft_priorities": [
+        "cheap price",
+        "near supermarket",
+        "enough area"
+      ],
       "unsupported_requirements": []
     }
   },
@@ -119,17 +259,48 @@
       "budget_max_million": 8000,
       "min_bedrooms": 3,
       "soft_preferences": {
-        "price": {"weight": 0.25, "direction": "lower_better", "min": 3000, "max": 8000},
-        "distance_to_nearest_school_m": {"weight": 0.25, "direction": "lower_better", "min": 0, "max": 2000},
-        "distance_to_nearest_park_m": {"weight": 0.20, "direction": "lower_better", "min": 0, "max": 2000},
-        "distance_to_nearest_supermarket_m": {"weight": 0.15, "direction": "lower_better", "min": 0, "max": 1500},
-        "area_m2": {"weight": 0.15, "direction": "higher_better", "min": 30, "max": 150}
+        "price": {
+          "weight": 0.25,
+          "direction": "lower_better",
+          "min": 3000,
+          "max": 8000
+        },
+        "distance_to_nearest_school_m": {
+          "weight": 0.25,
+          "direction": "lower_better",
+          "min": 0,
+          "max": 2000
+        },
+        "distance_to_nearest_park_m": {
+          "weight": 0.2,
+          "direction": "lower_better",
+          "min": 0,
+          "max": 2000
+        },
+        "distance_to_nearest_supermarket_m": {
+          "weight": 0.15,
+          "direction": "lower_better",
+          "min": 0,
+          "max": 1500
+        },
+        "area_m2": {
+          "weight": 0.15,
+          "direction": "higher_better",
+          "min": 30,
+          "max": 150
+        }
       },
-      "user_need_text": "Nha phai co cho trong vong 1km, uu tien gan truong mam non cho con."
+      "user_need_text": "Nhà phải có chợ trong vòng 1km, ưu tiên gần trường mầm non cho con."
     },
     "expected": {
-      "hard_constraints": ["price <= 8000", "bedrooms >= 3", "market within 1km"],
-      "soft_priorities": ["near kindergarten"],
+      "hard_constraints": [
+        "price <= 8000",
+        "bedrooms >= 3",
+        "market within 1km"
+      ],
+      "soft_priorities": [
+        "near kindergarten"
+      ],
       "unsupported_requirements": []
     }
   },
@@ -142,17 +313,45 @@
       "budget_max_million": 5500,
       "min_bedrooms": 2,
       "soft_preferences": {
-        "price": {"weight": 0.35, "direction": "lower_better", "min": 2000, "max": 5500},
-        "distance_to_nearest_supermarket_m": {"weight": 0.25, "direction": "lower_better", "min": 0, "max": 1500},
-        "distance_to_nearest_boulevard_m": {"weight": 0.20, "direction": "lower_better", "min": 0, "max": 2000},
-        "area_m2": {"weight": 0.20, "direction": "higher_better", "min": 20, "max": 100}
+        "price": {
+          "weight": 0.35,
+          "direction": "lower_better",
+          "min": 2000,
+          "max": 5500
+        },
+        "distance_to_nearest_supermarket_m": {
+          "weight": 0.25,
+          "direction": "lower_better",
+          "min": 0,
+          "max": 1500
+        },
+        "distance_to_nearest_boulevard_m": {
+          "weight": 0.2,
+          "direction": "lower_better",
+          "min": 0,
+          "max": 2000
+        },
+        "area_m2": {
+          "weight": 0.2,
+          "direction": "higher_better",
+          "min": 20,
+          "max": 100
+        }
       },
-      "user_need_text": "Khu nhieu tien ich, uu tien gan nha thuoc va co phong gym xung quanh."
+      "user_need_text": "Khu nhiều tiện ích, ưu tiên gần nhà thuốc và có phòng gym xung quanh."
     },
     "expected": {
-      "hard_constraints": ["price <= 5500", "bedrooms >= 2"],
-      "soft_priorities": ["near pharmacy", "many gyms nearby"],
-      "unsupported_requirements": ["khu nhieu tien ich"]
+      "hard_constraints": [
+        "price <= 5500",
+        "bedrooms >= 2"
+      ],
+      "soft_priorities": [
+        "near pharmacy",
+        "many gyms nearby"
+      ],
+      "unsupported_requirements": [
+        "khu nhieu tien ich"
+      ]
     }
   },
   {
@@ -164,17 +363,45 @@
       "budget_max_million": 15000,
       "min_bedrooms": 1,
       "soft_preferences": {
-        "price_per_m2": {"weight": 0.35, "direction": "lower_better", "min": 30, "max": 200},
-        "distance_to_nearest_boulevard_m": {"weight": 0.25, "direction": "lower_better", "min": 0, "max": 2000},
-        "area_m2": {"weight": 0.20, "direction": "higher_better", "min": 30, "max": 250},
-        "distance_to_nearest_supermarket_m": {"weight": 0.20, "direction": "lower_better", "min": 0, "max": 1500}
+        "price_per_m2": {
+          "weight": 0.35,
+          "direction": "lower_better",
+          "min": 30,
+          "max": 200
+        },
+        "distance_to_nearest_boulevard_m": {
+          "weight": 0.25,
+          "direction": "lower_better",
+          "min": 0,
+          "max": 2000
+        },
+        "area_m2": {
+          "weight": 0.2,
+          "direction": "higher_better",
+          "min": 30,
+          "max": 250
+        },
+        "distance_to_nearest_supermarket_m": {
+          "weight": 0.2,
+          "direction": "lower_better",
+          "min": 0,
+          "max": 1500
+        }
       },
-      "user_need_text": "Muon khu sam uat de cho thue nhung gia tren m2 van phai thap, uu tien nhieu cho."
+      "user_need_text": "Muốn khu sầm uất để cho thuê nhưng giá trên m2 vẫn phải thấp, ưu tiên nhiều chợ."
     },
     "expected": {
-      "hard_constraints": ["price <= 15000", "bedrooms >= 1"],
-      "soft_priorities": ["many markets nearby", "low price per m2"],
-      "unsupported_requirements": ["khu sam uat"]
+      "hard_constraints": [
+        "price <= 15000",
+        "bedrooms >= 1"
+      ],
+      "soft_priorities": [
+        "many markets nearby",
+        "low price per m2"
+      ],
+      "unsupported_requirements": [
+        "khu sam uat"
+      ]
     }
   },
   {
@@ -186,17 +413,45 @@
       "budget_max_million": 9500,
       "min_bedrooms": 2,
       "soft_preferences": {
-        "distance_to_nearest_hospital_m": {"weight": 0.40, "direction": "lower_better", "min": 0, "max": 2500},
-        "distance_to_nearest_park_m": {"weight": 0.25, "direction": "lower_better", "min": 0, "max": 2000},
-        "price": {"weight": 0.20, "direction": "lower_better", "min": 3000, "max": 9500},
-        "area_m2": {"weight": 0.15, "direction": "higher_better", "min": 30, "max": 150}
+        "distance_to_nearest_hospital_m": {
+          "weight": 0.4,
+          "direction": "lower_better",
+          "min": 0,
+          "max": 2500
+        },
+        "distance_to_nearest_park_m": {
+          "weight": 0.25,
+          "direction": "lower_better",
+          "min": 0,
+          "max": 2000
+        },
+        "price": {
+          "weight": 0.2,
+          "direction": "lower_better",
+          "min": 3000,
+          "max": 9500
+        },
+        "area_m2": {
+          "weight": 0.15,
+          "direction": "higher_better",
+          "min": 30,
+          "max": 150
+        }
       },
-      "user_need_text": "Muon noi yen tinh, dan tri cao, hop phong thuy va hang xom than thien."
+      "user_need_text": "Muốn nơi yên tĩnh, dân trí cao, hợp phong thủy và hàng xóm thân thiện."
     },
     "expected": {
-      "hard_constraints": ["price <= 9500", "bedrooms >= 2"],
+      "hard_constraints": [
+        "price <= 9500",
+        "bedrooms >= 2"
+      ],
       "soft_priorities": [],
-      "unsupported_requirements": ["noi yen tinh", "dan tri cao", "hop phong thuy", "hang xom than thien"]
+      "unsupported_requirements": [
+        "noi yen tinh",
+        "dan tri cao",
+        "hop phong thuy",
+        "hang xom than thien"
+      ]
     }
   },
   {
@@ -208,17 +463,198 @@
       "budget_max_million": 6200,
       "min_bedrooms": 2,
       "soft_preferences": {
-        "price": {"weight": 0.30, "direction": "lower_better", "min": 2500, "max": 6200},
-        "distance_to_nearest_supermarket_m": {"weight": 0.25, "direction": "lower_better", "min": 0, "max": 1500},
-        "distance_to_nearest_boulevard_m": {"weight": 0.20, "direction": "lower_better", "min": 0, "max": 2000},
-        "area_m2": {"weight": 0.25, "direction": "higher_better", "min": 25, "max": 120}
+        "price": {
+          "weight": 0.3,
+          "direction": "lower_better",
+          "min": 2500,
+          "max": 6200
+        },
+        "distance_to_nearest_supermarket_m": {
+          "weight": 0.25,
+          "direction": "lower_better",
+          "min": 0,
+          "max": 1500
+        },
+        "distance_to_nearest_boulevard_m": {
+          "weight": 0.2,
+          "direction": "lower_better",
+          "min": 0,
+          "max": 2000
+        },
+        "area_m2": {
+          "weight": 0.25,
+          "direction": "higher_better",
+          "min": 25,
+          "max": 120
+        }
       },
-      "user_need_text": "Muon gan duong lon de di lam, nhung cung muon yen tinh va co nhieu quan ca phe."
+      "user_need_text": "Muốn gần đường lớn để đi làm, nhưng cũng muốn yên tĩnh và có nhiều quán cà phê."
     },
     "expected": {
-      "hard_constraints": ["price <= 6200", "bedrooms >= 2"],
-      "soft_priorities": ["near boulevard", "many cafes nearby"],
-      "unsupported_requirements": ["yen tinh"]
+      "hard_constraints": [
+        "price <= 6200",
+        "bedrooms >= 2"
+      ],
+      "soft_priorities": [
+        "near boulevard",
+        "many cafes nearby"
+      ],
+      "unsupported_requirements": [
+        "yen tinh"
+      ]
+    }
+  },
+  {
+    "case_id": "V1_011",
+    "persona": "young_professional",
+    "case_group": "measurable_free_text",
+    "review_note": "Case bo sung cua An: free-text co cafe va gym, dung de test Y ngoai form.",
+    "input": {
+      "budget_max_million": 6500,
+      "min_bedrooms": 2,
+      "soft_preferences": {
+        "price": {
+          "weight": 0.3,
+          "direction": "lower_better",
+          "min": 2500,
+          "max": 6500
+        },
+        "distance_to_nearest_boulevard_m": {
+          "weight": 0.25,
+          "direction": "lower_better",
+          "min": 0,
+          "max": 2000
+        },
+        "distance_to_nearest_supermarket_m": {
+          "weight": 0.2,
+          "direction": "lower_better",
+          "min": 0,
+          "max": 1500
+        },
+        "area_m2": {
+          "weight": 0.25,
+          "direction": "higher_better",
+          "min": 25,
+          "max": 120
+        }
+      },
+      "user_need_text": "Tôi làm việc tự do, muốn có nhiều quán cà phê và phòng gym trong bán kính 1km."
+    },
+    "expected": {
+      "hard_constraints": [
+        "price <= 6500",
+        "bedrooms >= 2"
+      ],
+      "soft_priorities": [
+        "many cafes nearby",
+        "many gyms nearby",
+        "near boulevard"
+      ],
+      "unsupported_requirements": []
+    }
+  },
+  {
+    "case_id": "V1_012",
+    "persona": "family_with_children",
+    "case_group": "measurable_free_text",
+    "review_note": "Case bo sung cua An: mam non va nha thuoc la Y do duoc.",
+    "input": {
+      "budget_max_million": 9000,
+      "min_bedrooms": 3,
+      "soft_preferences": {
+        "price": {
+          "weight": 0.25,
+          "direction": "lower_better",
+          "min": 3000,
+          "max": 9000
+        },
+        "distance_to_nearest_school_m": {
+          "weight": 0.2,
+          "direction": "lower_better",
+          "min": 0,
+          "max": 2000
+        },
+        "distance_to_nearest_park_m": {
+          "weight": 0.2,
+          "direction": "lower_better",
+          "min": 0,
+          "max": 2000
+        },
+        "distance_to_nearest_supermarket_m": {
+          "weight": 0.15,
+          "direction": "lower_better",
+          "min": 0,
+          "max": 1500
+        },
+        "area_m2": {
+          "weight": 0.2,
+          "direction": "higher_better",
+          "min": 35,
+          "max": 160
+        }
+      },
+      "user_need_text": "Gia đình có trẻ nhỏ, cần gần trường mầm non và nhà thuốc để tiện chăm con."
+    },
+    "expected": {
+      "hard_constraints": [
+        "price <= 9000",
+        "bedrooms >= 3"
+      ],
+      "soft_priorities": [
+        "near kindergarten",
+        "near pharmacy",
+        "near park"
+      ],
+      "unsupported_requirements": []
+    }
+  },
+  {
+    "case_id": "V1_013",
+    "persona": "investor",
+    "case_group": "measurable_free_text",
+    "review_note": "Case bo sung cua An: cho va cafe la Y do duoc, de test rental convenience.",
+    "input": {
+      "budget_max_million": 16000,
+      "min_bedrooms": 1,
+      "soft_preferences": {
+        "price_per_m2": {
+          "weight": 0.35,
+          "direction": "lower_better",
+          "min": 30,
+          "max": 200
+        },
+        "distance_to_nearest_boulevard_m": {
+          "weight": 0.25,
+          "direction": "lower_better",
+          "min": 0,
+          "max": 2000
+        },
+        "area_m2": {
+          "weight": 0.2,
+          "direction": "higher_better",
+          "min": 30,
+          "max": 250
+        },
+        "distance_to_nearest_supermarket_m": {
+          "weight": 0.2,
+          "direction": "lower_better",
+          "min": 0,
+          "max": 1500
+        }
+      },
+      "user_need_text": "Ưu tiên căn dễ cho thuê, gần chợ và có nhiều quán cà phê quanh khu vực."
+    },
+    "expected": {
+      "hard_constraints": [
+        "price <= 16000",
+        "bedrooms >= 1"
+      ],
+      "soft_priorities": [
+        "many markets nearby",
+        "many cafes nearby",
+        "low price per m2"
+      ],
+      "unsupported_requirements": []
     }
   }
 ]

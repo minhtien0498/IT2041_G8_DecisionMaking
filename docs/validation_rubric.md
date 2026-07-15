@@ -24,6 +24,25 @@ Rubric này dùng để trả lời 4 câu hỏi:
 5. `Latency`
 
 Neu solution vi pham hard constraints nhieu, khong nen xep tot hon chi vi explanation hay.
+## 2.1. Quy uoc ground truth `X + Y`
+
+Khi case co free-text do duoc, `Ấn` cham ranking theo `X + Y`, khong chi theo `X`.
+
+Trong do:
+- `X` la cac tieu chi nen co san trong form/dataset: gia, dien tich, so phong ngu, truong, cong vien, benh vien, sieu thi, duong lon.
+- `Y` la tieu chi sinh tu `user_need_text` va co the do bang POI/tool: cho, cafe, nha thuoc, gym, mam non.
+- `Y_unsupported` la tieu chi chu quan hoac chua co data: yen tinh, dan tri cao, phong thuy, hang xom than thien, khu sam uat.
+
+Quy tac nhan qua:
+1. Neu case chi co `X`, ground truth dung ranking theo `base_score`/form criteria.
+2. Neu case co `Y` do duoc, ground truth phai tinh ca `Y`, vi solution da co ly do hop le de doi thu hang.
+3. Neu case co `Y_unsupported`, solution tot phai gan co trong `unsupported_requirements`, khong duoc cong diem ngam.
+4. Neu solution dua `Y` vao diem, explanation phai noi ro `Y` lam rank nao thay doi. Neu khong noi, tru explanation quality.
+
+Vi du cu the:
+- `V1_006`: "gan truong mam non" la `Y` do duoc bang `distance_to_nearest_kindergarten_m`. Neu Top 1 doi tu can gan truong pho thong sang can gan mam non hon, day la hop le.
+- `V1_007`: "gan nha thuoc va co phong gym" la `Y` do duoc bang pharmacy distance va gym count. Ranking nao bo qua hai tieu chi nay bi tru ranking quality.
+- `V1_009`: "yen tinh, dan tri cao, phong thuy, hang xom than thien" la `Y_unsupported`. Solution nao van noi chac cac diem nay ma khong co du lieu bi tru nang explanation/unsupported.
 
 ## 3. Metric dinh luong chinh
 
@@ -36,6 +55,8 @@ Neu solution vi pham hard constraints nhieu, khong nen xep tot hon chi vi explan
 | `MAP` | Chat luong ranking tong hop | Cang cao cang tot |
 | `Latency_ms` | Toc do chay | Cang thap cang tot |
 
+Neu output co `base_score` va `additional_score`, diem compare chinh dung `total_score = 0.7 * base_score + 0.3 * additional_score` theo contract demo hien tai. Neu mot solution khong co `additional_score`, xem nhu `additional_score = 0` cho case co `Y` do duoc, tru khi explanation/tool output chung minh no da xu ly `Y` bang cach khac.
+
 ## 4. Rule chot uu tien metric
 
 - `CSR` la gate metric.
@@ -43,6 +64,7 @@ Neu solution vi pham hard constraints nhieu, khong nen xep tot hon chi vi explan
 - Neu `CSR` bang nhau, so tiep `NDCG@5`, sau do `Precision@5`.
 - `MAP` dung cho tong ket toan bo tap case, khong can qua nhan manh tung case.
 - `Latency` chi dung lam tieu chi phu, khong ghi de ket qua recommendation.
+- Voi case `X + Y`, so `NDCG@5` tren relevance sau khi da tinh ca `Y`; khong dung ground truth `X-only`.
 
 ## 5. Nhan xet dinh tinh bat buoc
 
@@ -109,3 +131,4 @@ Dung 3 dong tong hop:
 - Neu dataset chay khac scope (`37` can vs `100` can), phai ghi ro trong bang compare.
 - Voi Solution 1, can ghi ro case nao chi dung tien ich nen `X` va case nao co them tien ich dong `Y`.
 - Voi Solution 1, can cham them grounding, tool-call correctness va explanation faithfulness.
+- Khi viet report, can ghi ro: `X-only` dung cho case baseline; `X + Y` dung cho case free-text do duoc; `unsupported` dung cho case chu quan/khong co data.

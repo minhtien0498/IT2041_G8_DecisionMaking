@@ -27,14 +27,15 @@ Quy ước hiện tại:
 - [ ] Nhận output từ `Phú` (`Solution 1` pipeline hai LLM có guardrail)
   Kỳ vọng: đúng schema contract chung
 
-- [ ] Chạy validation và tổng hợp kết quả
+- [x] Chạy validation và tổng hợp kết quả sơ bộ
   File tham chiếu hiện có:
   - [outputs/validation_report.md](../../outputs/validation_report.md)
   - [outputs/validation_summary.json](../../outputs/validation_summary.json)
+  - [outputs/solution_comparison_v1_preliminary.md](../../outputs/solution_comparison_v1_preliminary.md)
 
-- [ ] Viết phần `Validation / Evaluation / Comparison` cho report
+- [x] Viết phần `Validation / Evaluation / Comparison` cho report draft
 
-- [ ] Chuẩn bị 1-2 slide cho phần `Validation / Evaluation / Comparison`
+- [x] Chuẩn bị slide draft cho phần `Validation / Evaluation / Comparison`
 
 ## Đầu ra cần bàn giao tuần 1
 
@@ -64,3 +65,7 @@ Quy ước hiện tại:
 - [docs/solution_verification_plan.md](../solution_verification_plan.md)
 - [docs/survey_validation_plan.md](../survey_validation_plan.md)
 - [docs/output_contract_shared.md](../output_contract_shared.md)
+
+## Trạng thái chờ team
+
+Phần độc lập của Ấn đã xong. Compare final còn chờ Phú và Quang chạy lại đủ V1_001-V1_013.

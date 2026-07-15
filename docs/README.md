@@ -59,6 +59,8 @@ Index toàn bộ tài liệu trong `docs/`. Đề tài: **Hệ thống tư vấn
 | [source_notes/Validation-Set-Template.md](source_notes/Validation-Set-Template.md) | Mẫu cấu trúc một validation case |
 | [solution_comparison_template.md](solution_comparison_template.md) | Khung bảng compare kết quả giữa các solution |
 | [checklist/member4_validation_checklist.md](checklist/member4_validation_checklist.md) | Checklist đầu ra và đầu việc chính của Ấn |
+| [report/validation_report_draft.md](report/validation_report_draft.md) | Report thô phần validation/evaluation của Ấn |
+| [slide/validation_slide_draft.marp.md](slide/validation_slide_draft.marp.md) | Slide thô phần validation/evaluation của Ấn |
 ## 6. Tài liệu nguồn / nháp
 | Thư mục | Nội dung |
 |---|---|

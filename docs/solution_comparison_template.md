@@ -9,9 +9,10 @@ Quy ước hiện tại:
 
 ## 1. Bảng compare theo case
 
-| case_id | persona | group | solution_2_top1 | solution_1_top1 | csr_s2 | csr_s3 | ndcg5_s2 | ndcg5_s3 | unsupported_note | winner | note |
-|---|---|---|---|---|---:|---:|---:|---:|---|---|---|
-| V1_001 | family_with_children | clear | GV_008 | GV_008 | 1.0 | 1.0 | 0.92 | 0.95 | none | solution_1 | top1 giai thich ro hon |
+| case_id | persona | group | evaluation_scope | solution_2_top1 | solution_1_top1 | csr_s2 | csr_s1 | ndcg5_s2 | ndcg5_s1 | unsupported_note | winner | note |
+|---|---|---|---|---|---|---:|---:|---:|---:|---|---|---|
+| V1_001 | family_with_children | clear | X-only | GV_010 | GV_010 | 1.0 | 1.0 | 1.00 | 1.00 | none | tie | same top1 |
+| V1_007 | young_professional | ambiguous_free_text | X+Y | GV_002 | GV_002 | 1.0 | 1.0 | 0.90 | 0.90 | pharmacy/gym measured | tie | compare must include Y |
 
 ## 2. Bảng compare chi tiet top5
 
@@ -22,7 +23,7 @@ Quy ước hiện tại:
 
 ## 3. Bảng tong hop theo persona
 
-| persona | cases | avg_csr_s2 | avg_csr_s3 | avg_ndcg5_s2 | avg_ndcg5_s3 | winner | note |
+| persona | cases | avg_csr_s2 | avg_csr_s1 | avg_ndcg5_s2 | avg_ndcg5_s1 | winner | note |
 |---|---:|---:|---:|---:|---:|---|---|
 | family_with_children | 2 | 1.00 | 1.00 | 0.88 | 0.94 | solution_1 | free-text giup hon |
 | young_professional | 2 | 1.00 | 1.00 | 0.80 | 0.91 | solution_2 | xu ly amenity moi tot hon |
