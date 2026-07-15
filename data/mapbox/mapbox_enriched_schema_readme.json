@@ -1,0 +1,59 @@
+{
+  "provider": "Mapbox",
+  "input_dataset": "data/go_vap_tan_binh_100.json",
+  "output_dataset": "data/mapbox/go_vap_tan_binh_100_enriched_mapbox_api.json",
+  "checkpoint_file": "data/mapbox/go_vap_tan_binh_100_enriched_mapbox_api_checkpoint.json",
+  "error_log": "data/mapbox/go_vap_tan_binh_100_mapbox_errors.json",
+  "source_api": {
+    "name": "Mapbox Tilequery API",
+    "tileset": "mapbox.mapbox-streets-v8",
+    "layer": "poi_label",
+    "endpoint_template": "https://api.mapbox.com/v4/mapbox.mapbox-streets-v8/tilequery/{lon},{lat}.json"
+  },
+  "default_parameters": {
+    "radius_m": 1000,
+    "limit": 50,
+    "amenities": [
+      "school",
+      "kindergarten",
+      "park",
+      "hospital",
+      "supermarket",
+      "market",
+      "cafe",
+      "pharmacy",
+      "gym"
+    ]
+  },
+  "base_fields_preserved": [
+    "property_id",
+    "title",
+    "district",
+    "ward",
+    "location_raw",
+    "price_million_vnd",
+    "price_billion_vnd",
+    "area_m2",
+    "price_per_m2_million",
+    "bedrooms",
+    "bathrooms",
+    "floors",
+    "latitude",
+    "longitude",
+    "description_snippet"
+  ],
+  "generated_field_pattern": {
+    "distance_to_nearest_{amenity}_m": "Distance in meters to the nearest matched POI. Null if no matched POI is found.",
+    "nearest_{amenity}_name": "Name of the nearest matched POI. Null if no matched POI is found.",
+    "near_{amenity}_count_1km": "Number of matched POIs within 1 km."
+  },
+  "metadata_fields": {
+    "mapbox_enriched_at": "Local timestamp when the property was enriched.",
+    "mapbox_radius_m": "Radius used for Tilequery."
+  },
+  "notes": [
+    "Mapbox Tilequery returns POIs from vector tiles. The pipeline filters POIs by maki/type/class/name metadata, so category matching is best-effort.",
+    "The script is resumable: it writes checkpoint after each successful property.",
+    "Both Solution 1 and Solution 2 can use this Mapbox-enriched dataset as the shared final POI base."
+  ]
+}
