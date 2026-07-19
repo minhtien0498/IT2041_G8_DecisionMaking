@@ -1,0 +1,308 @@
+[
+  {
+    "case_id": "V1_001",
+    "solution_id": "solution_1",
+    "status": "ok",
+    "top5": [
+      {
+        "rank": 1,
+        "property_id": "GV_017",
+        "total_score": 0.69,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "Gần trường học",
+          "Gần công viên",
+          "Giá hợp lý",
+          "Diện tích khá"
+        ],
+        "why_recommended": "Cách trường học chỉ 88m và công viên 385m, rất phù hợp cho 2 con nhỏ. Giá 4.99 tỷ nằm trong ngân sách, diện tích 50m² thoải mái cho gia đình 4 người.",
+        "tradeoff": "Đơn giá m² khá cao (gần 100 triệu), siêu thị cách 333m hơi xa so với một số lựa chọn khác.",
+        "title": "Bán nhà 2 Tầng quang trung Phường 14 Quận Gò Vấp",
+        "price_billion_vnd": 4.99
+      },
+      {
+        "rank": 2,
+        "property_id": "GV_018",
+        "total_score": 0.69,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "Rất gần trường học",
+          "Gần công viên",
+          "Giá hợp lý",
+          "Diện tích khá"
+        ],
+        "why_recommended": "Cách trường học chỉ 66m và công viên 355m - gần nhất trong nhóm. Giá 5.08 tỷ, diện tích 50m², 3 phòng ngủ đáp ứng tốt nhu cầu gia đình 2 con.",
+        "tradeoff": "Đơn giá m² cao (101.6 triệu), siêu thị cách 369m.",
+        "title": "Bán nhà 2 Tầng HXH full NỘI THẤT Quang Trung p14 Gò Vấp",
+        "price_billion_vnd": 5.08
+      },
+      {
+        "rank": 3,
+        "property_id": "GV_008",
+        "total_score": 0.66,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "Giá tốt",
+          "Rất gần trường học",
+          "Diện tích nhỏ"
+        ],
+        "why_recommended": "Giá chỉ 4.1 tỷ - thấp nhất nhóm, cách trường học 80m. Phù hợp ngân sách hạn hẹp nhưng vẫn gần trường.",
+        "tradeoff": "Diện tích chỉ 33m² khá chật cho 4 người, công viên cách 745m xa hơn các lựa chọn khác.",
+        "title": "Nhà Lô góc SHR 2 tầng HXH 33m2 – Quang Trung Gò Vấp",
+        "price_billion_vnd": 4.1
+      },
+      {
+        "rank": 4,
+        "property_id": "TB_006",
+        "total_score": 0.66,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "Rất gần trường học",
+          "Rất gần công viên",
+          "Giá hợp lý"
+        ],
+        "why_recommended": "Cách trường 130m, công viên 133m - cực kỳ gần cả hai. Giá 5.2 tỷ, 3 phòng ngủ.",
+        "tradeoff": "Diện tích chỉ 24m² (dưới mức tối thiểu 30m²), rất chật cho gia đình 4 người.",
+        "title": "Bán nhà 3 tầng Nguyễn Hồng Đào 3m5×7m5 Phường 14 Quận Tân Bình",
+        "price_billion_vnd": 5.2
+      },
+      {
+        "rank": 5,
+        "property_id": "TB_009",
+        "total_score": 0.65,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "Gần trường học",
+          "Gần công viên",
+          "Giá hợp lý",
+          "Gần siêu thị"
+        ],
+        "why_recommended": "Cách trường 124m, công viên 332m, siêu thị 412m - cân bằng tốt các tiện ích. Giá 5.5 tỷ, 4 phòng ngủ.",
+        "tradeoff": "Diện tích 42m² hơi nhỏ, bệnh viện cách xa (1.35km).",
+        "title": "BÁN NHÀ 3 TẦNG HXH NGUYỄN SỸ SÁCH  TÂN BÌNH",
+        "price_billion_vnd": 5.5
+      }
+    ],
+    "explanation_summary": "**TỔNG QUAN**  \nTop 1 – GV_017 – là lựa chọn phù hợp nhất với nhu cầu “gia đình có 2 con nhỏ, ưu tiên gần trường và công viên”. Nó đạt tổng điểm cao nhất (0,69) trong danh sách, nhờ vào sự kết hợp tốt giữa khoảng cách tới trường học (88 m) và công viên (385 m), giá cả nằm trong ngân sách (4,99 tỷ VNĐ) và diện tích 50 m² đủ thoải mái cho 4 thành viên. Mặc dù GV_018 cũng có cùng tổng điểm 0,69 và gần trường hơn (66 m), GV_017 được ưu tiên vì có đơn giá m² thấp hơn (khoảng 100 triệu/m²) và siêu thị cách xa hơn chỉ 333 m, trong khi GV_018 có đơn giá m² cao hơn (101,6 triệu/m²) và siêu thị cách 369 m. Các lựa chọn còn lại có tổng điểm thấp hơn (0,66‑0,65) vì phải trade‑off giữa giá, diện tích và khoảng cách tới tiện ích.\n\n**LẦN LƯỢT TỪNG LỰA CHỌN**\n\n| Rank | Property ID | Điểm mạnh (theo reason_tags & why_recommended) | Điểm hạn chế / trade‑off (theo tradeoff) |\n|------|-------------|-----------------------------------------------|------------------------------------------|\n| 1 | GV_017 | - Gần trường học (88 m) và công viên (385 m) – rất phù hợp cho 2 con.<br>- Giá 4,99 tỷ nằm trong ngân sách tối đa 8 tỷ.<br>- Diện tích 50 m², 3 phòng ngủ đủ cho gia đình 4 người.<br>- Được đánh dấu “Giá hợp lý”, “Diện tích khá”. | - Đơn giá m² khá cao (gần 100 triệu/m²).<br>- Siêu thị cách 333 m, hơi xa hơn một số lựa chọn khác. |\n| 2 | GV_018 | - Rất gần trường học (66 m) và công viên (355 m) – gần nhất trong nhóm.<br>- Giá 5,08 tỷ, diện tích 50 m², 3 phòng ngủ.<br>- Được đánh dấu “Rất gần trường học”, “Gần công viên”, “Giá hợp lý”, “Diện tích khá”. | - Đơn giá m² cao (101,6 triệu/m²).<br>- Siêu thị cách 369 m, xa hơn GV_017. |\n| 3 | GV_008 | - Giá tốt nhất trong danh sách (4,1 tỷ).<br>- Gần trường học (80 m).<br>- Được đánh dấu “Giá tốt”, “Rất gần trường học”. | - Diện tích chỉ 33 m², khá chật cho 4 người.<br>- Công viên cách 745 m, xa hơn các lựa chọn top‑2. |\n| 4 | TB_006 | - Rất gần trường học (130 m) và công viên (133 m) – gần nhất cả hai tiện ích.<br>- Giá 5,2 tỷ, 3 phòng ngủ.<br>- Được đánh dấu “Rất gần trường học”, “Rất gần công viên”, “Giá hợp lý”. | - Diện tích chỉ 24 m², dưới mức tối thiểu 30 m² mà người dùng mong muốn, rất chật cho gia đình 4 người. |\n| 5 | TB_009 | - Cân bằng tốt các tiện ích: trường 124 m, công viên 332 m, siêu thị 412 m.<br>- Giá 5,5 tỷ, 4 phòng ngủ (nhiều phòng nhất trong danh sách).<br>- Được đánh dấu “Gần trường học”, “Gần công viên”, “Giá hợp lý”, “Gần siêu thị”. | - Diện tích 42 m² hơi nhỏ so với mức tối thiểu 30 m² nhưng vẫn lớn hơn TB_006 và GV_008.<br>- Bệnh viện cách xa (1,35 km) – không phải yếu tố ưu tiên nhưng là điểm hạn chế nếu cần thiết y tế. |\n\n**SO SÁNH**  \n\n- **Giá vs. diện tích**: GV_008 có giá thấp nhất (4,1 tỷ) nhưng diện tích nhỏ nhất (33 m²). Ngược lại, TB_009 có giá cao nhất trong top‑5 (5,5 tỷ) nhưng cung cấp 4 phòng ngủ và diện tích 42 m², lớn hơn GV_008 và TB_006. Nếu ưu tiên tiết kiệm chi phí và có thể chấp nhận diện tích hẹp, GV_008 là lựa chọn; nếu muốn nhiều phòng và không ngại chi phí cao hơn, TB_009 phù hợp hơn.  \n\n- **Khoảng cách tới trường vs. công viên**: GV_018 có khoảng cách tới trường ngắn nhất (66 m) nhưng công viên cách xa hơn GV_017 (355 m vs 385 m). GV_017 cân bằng tốt hơn giữa hai khoảng cách (88 m trường, 385 m công viên). TB_006 cung cấp khoảng cách rất gần tới cả trường và công viên (130 m/133 m) nhưng trade‑off là diện tích rất nhỏ (24 m²).  \n\n- **Đơn giá m²**: GV_017 và GV_018 có đơn giá m² cao nhất (~100‑102 triệu/m²) vì diện tích vừa nice (50 m²) nhưng giá tương đối cao. GV_008 có đơn giá m² thấp hơn (khoảng 124 triệu/m²) do diện tích nhỏ, trong khi TB_009 có đơn giá m² khoảng 131 triệu/m² (5,5 tỷ/42 m²). Nếu người dùng quan tâm đến chi phí mỗi mét vuông, GV_008 có lợi thế nhất, nhưng trade‑off là diện tích hạn chế.  \n\n- **Siêu thị**: GV_017 có siêu thị cách gần nhất trong top‑2 (333 m), GV_018 cách 369 m, TB_009 cách 412 m. Nếu việc đi mua sắm hàng ngày là yếu tố quan trọng, GV_017 có lợi hơn GV_018 và TB_009.  \n\nTóm lại, **GV_017** nổi bật vì đạt được sự cân bằng tốt nhất giữa khoảng cách tới trường và công viên, giá trong ngân sách, diện tích đủ lớn và siêu thị ở khoảng cách hợp lý. Tuy nhiên, tùy thuộc vào mức độ ưu tiên cụ thể (giá thấp nhất, diện tích lớn nhất, hoặc nhiều phòng nhất), người dùng có thể xem xét các lựa chọn khác như GV_008 (giá thấp, diện tích nhỏ), TB_009 (4 phòng ngủ, giá cao hơn) hoặc TB_006 (gần nhất cả trường và công viên nhưng diện tích rất hạn chế). Việc so sánh rõ ràng các trade‑off trên sẽ giúp người dùng đưa ra quyết định phù hợp nhất với circunstancia gia đình.",
+    "unsupported_requirements": [],
+    "latency_ms": 225549.6,
+    "models_used": [
+      "nvidia/nemotron-3-ultra-550b-a55b:free[key2]",
+      "nvidia/nemotron-3-ultra-550b-a55b:free[key2]",
+      "nvidia/nemotron-3-ultra-550b-a55b:free[key2]",
+      "nvidia/nemotron-3-super-120b-a12b:free[key2]"
+    ],
+    "tool_calls_summary": [
+      {
+        "turn": 1,
+        "tools": [
+          "sql_filter"
+        ]
+      }
+    ]
+  },
+  {
+    "case_id": "V1_002",
+    "solution_id": "solution_1",
+    "status": "ok",
+    "top5": [
+      {
+        "rank": 1,
+        "property_id": "GV_002",
+        "total_score": 0.67,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "Giá tốt",
+          "Rất gần siêu thị",
+          "Dễ đi lại"
+        ],
+        "why_recommended": "Giá 2.85 tỷ thấp hơn ngân sách, siêu thị chỉ 240m, gần trục đường lớn 243m, phù hợp đi làm và mua sắm.",
+        "tradeoff": "Diện tích 26m² hơi nhỏ, chỉ 1 phòng tắm.",
+        "title": "⭐️ Giảm 50tr! Nhà Vuông SHR 2 tầng 26m2 – Quang Trung Gò Vấp",
+        "price_billion_vnd": 2.85
+      },
+      {
+        "rank": 2,
+        "property_id": "GV_001",
+        "total_score": 0.63,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "Giá rất rẻ",
+          "Gần trục đường lớn",
+          "Đủ 2 phòng ngủ"
+        ],
+        "why_recommended": "Giá chỉ 1.25 tỷ - rẻ nhất danh sách, gần trục đường lớn 171m, thuận tiện đi làm, có 2 phòng ngủ 2 phòng tắm.",
+        "tradeoff": "Diện tích 20m² nhỏ nhất, siêu thị khá xa 934m.",
+        "title": "🔥 Giảm 440tr Nhà Quang Trung P10 GV, 20m2, 3.3x6m",
+        "price_billion_vnd": 1.25
+      },
+      {
+        "rank": 3,
+        "property_id": "TB_008",
+        "total_score": 0.56,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "Diện tích rộng",
+          "Gần siêu thị",
+          "Gần trục đường"
+        ],
+        "why_recommended": "Diện tích 79m² rộng nhất, siêu thị 262m, trục đường 71m, giá 5.4 tỷ trong ngân sách, 2 phòng ngủ 2 phòng tắm.",
+        "tradeoff": "Giá gần ngân sách tối đa, đơn giá m² thấp nhưng tổng giá cao.",
+        "title": "⭕️HOT - HIẾM - NGỘP⭕️ NGAY CỘNG HOÀ, 4,2x19, TÂN BÌNH, NHỈNH 5TỶ, NỞ HẬU",
+        "price_billion_vnd": 5.4
+      },
+      {
+        "rank": 4,
+        "property_id": "TB_002",
+        "total_score": 0.56,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "Gần siêu thị",
+          "Dễ đi lại",
+          "Giá hợp lý"
+        ],
+        "why_recommended": "Siêu thị 321m, trục đường 186m, giá 4.4 tỷ, diện tích 47m², 2 phòng ngủ, phù hợp đi làm và sinh hoạt.",
+        "tradeoff": "Chỉ 1 phòng tắm, đơn giá m² khá cao 93.6 triệu.",
+        "title": "Bán nhà 2 Tầng HXH Nguyễn phúc chu Tân Bình",
+        "price_billion_vnd": 4.4
+      },
+      {
+        "rank": 5,
+        "property_id": "GV_014",
+        "total_score": 0.53,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "Siêu thị ngay cạnh",
+          "Gần trường học",
+          "Diện tích khá"
+        ],
+        "why_recommended": "Siêu thị chỉ 55m - gần nhất danh sách, gần trường 119m, diện tích 40m², giá 4.77 tỷ, 2 phòng ngủ 2 phòng tắm.",
+        "tradeoff": "Giá khá cao, trục đường 326m xa hơn một số lựa chọn khác.",
+        "title": "Bán nhà 2 tầng Phường 6, Đường Phạm Văn Chiêu, Gò Vấp",
+        "price_billion_vnd": 4.77
+      }
+    ],
+    "explanation_summary": "### 1. TỔNG QUAN: TẠI SAO NHÀ GV_002 (QUANG TRUNG GÒ VẤP) LÀ LỰA CHỌN NỔI BẬT NHẤT\n\nTrong 5 lựa chọn được đề xuất, **nhà tại đường Quang Trung, Phường Thông Tây Hội (GV_002)** đạt điểm tổng hợp cao nhất (0.67/1.0) và thực sự là \"điểm cân bằng\" tốt nhất cho bộ ba tiêu chí cốt lõi của bạn: **Giá rẻ – Dễ đi làm – Gần siêu thị**.\n\nCụ thể, căn nhà này có giá **2.85 tỷ**, thấp hơn gần một nửa so với ngân sách tối đa 5.5 tỷ của bạn, giúp bạn tiết kiệm được một khoản lớn để trang trí, chuyển nhà hoặc dự phòng. Về vị trí, nó \"chạm\" ngay vào hai nhu cầu sống còn: siêu thị chỉ cách **240m** (khoảng 3 phút đi bộ) và trục đường lớn (Quang Trung) chỉ **243m** – điều này có nghĩa là bạn ra đường chính ngay lập tức, cực kỳ thuận lợi cho việc đi làm hàng ngày, dù bạn di chuyển bằng xe máy hay ô tô. Dù diện tích chỉ **26m²** (hơi chật so với các lựa chọn khác) và chỉ có **1 phòng tắm**, nhưng với mức giá này tại đoạn đường Quang Trung đắt giá, nó vẫn đảm bảo đủ **2 phòng ngủ** như yêu cầu. Tóm lại, nếu ưu tiên **chi phí thấp nhất** mà vẫn **đủ tiện nghi sinh hoạt, đi lại**, đây là lựa chọn hợp lý nhất.\n\n---\n\n### 2. PHÂN TÍCH CHI TIẾT TỪNG LỰA CHỌN\n\n#### **Hạng 1: GV_002 – Nhà Vuông SHR 2 tầng 26m², Quang Trung Gò Vấp (2.85 tỷ)**\n*   **Điểm mạnh cốt lõi:** Giá cực kỳ mềm (chỉ 2.85 tỷ), siêu thị gần nhất Top 3 (240m), tiếp cận trục đường lớn ngay (243m). Đáp ứng trọn vẹn 3 tiêu chí \"Rẻ – Gần chợ – Dễ đi\" với chi phí thấp nhất.\n*   **Điểm đánh đổi (Trade-off):** Diện tích **26m²** là nhỏ thứ 2 trong danh sách (chỉ lớn hơn GV_001), mặt tiền 3.3m x sâu 6m (theo mô tả GV_001 tương tự, GV_002 mô tả \"Nhà Vuông\" nên có thể vuông hơn) dẫn đến không gian sống hơi chật, chỉ có **1 phòng tắm** cho 2 phòng ngủ – có thể gây bất tiện nếu gia đình 3-4 người. Phù hợp nhất cho cặp đôi trẻ hoặc người đơn thân ưu tiên tiết kiệm chi phí tối đa.\n\n#### **Hạng 2: GV_001 – Nhà Quang Trung P10 GV, 20m² (1.25 tỷ)**\n*   **Điểm mạnh cốt lõi:** **Giá rẻ nhất tuyệt đối** trong toàn bộ danh sách (1.25 tỷ), gần trục đường lớn nhất (171m – ra đường Quang Trung tức thì), đủ **2 phòng ngủ + 2 phòng tắm** (điểm cộng lớn so với GV_002).\n*   **Điểm đánh đổi:** Diện tích **20m² nhỏ nhất** (khoảng 3.3m x 6m), không gian sống rất chật hẹp, khó bố trí nội thất thoáng đãng. Siêu thị khá xa **934m** (khoảng 12 phút đi bộ) – không đáp ứng được tiêu chí \"có siêu thị gần nhà\" như mong muốn. Chỉ nên chọn nếu ngân sách cực kỳ chặt chẽ, ưu tiên tuyệt đối giá rẻ và cần 2 WC, chấp nhận đi chợ xa một chút.\n\n#### **Hạng 3: TB_008 – Nhà Cộng Hòa, Tân Bình, 79m² (5.4 tỷ)**\n*   **Điểm mạnh cốt lõi:** **Diện tích rộng nhất** (79m² – gấp 3-4 lần các nhà Gò Vấp), mặt tiền 4.2m x sâu 19m (nhà ngõ hẻm nhưng sâu), siêu thị gần **262m**, trục đường lớn (Cộng Hòa) siêu gần **71m**. Giá 5.4 tỷ nằm **gần ngân sách tối đa** nhưng vẫn trong vòng cho phép. Có đủ 2 phòng ngủ, 2 phòng tắm.\n*   **Điểm đánh đổi:** Giá **cao nhất danh sách** (5.4 tỷ), ép sát ngân sách. Đơn giá m² thấp nhưng tổng giá cao. Vị trí ngõ hẻm (mặc dù gần đường lớn) có thể khiến xe hơi vào ra phức tạp hơn so với nhà mặt tiền đường chính. Phù hợp nếu bạn **cần không gian rộng, thoáng, đủ chỗ để xe hơi trong nhà** và sẵn sàng chi hầu như hết ngân sách.\n\n#### **Hạng 4: TB_002 – Nhà HXH Nguyễn Phúc Chu, Tân Bình, 47m² (4.4 tỷ)**\n*   **Điểm mạnh cốt lõi:** Cân bằng khá tốt: siêu thị **321m**, trục đường **186m**, diện tích **47m²** (rộng gấp gần 2 lần GV_002), giá **4.4 tỷ** (trung bình). Vị trí Tân Bình thường có giao thông thoáng hơn Gò Vấp. Đủ 2 phòng ngủ.\n*   **Điểm đánh đổi:** Chỉ **1 phòng tắm** (tương tự GV_002 nhưng giá cao gấp 1.5 lần). Đơn giá m² **93.6 triệu** – cao nhất trong 5 lựa chọn này, cho thấy bạn trả giá cho vị trí Tân Bình và mặt tiền đường (HXH) hơn là diện tích sử dụng. Phù hợp nếu muốn **vị trí đẹp, đường rộng, diện tích vừa phải** và ngân sách dao động 4-4.5 tỷ.\n\n#### **Hạng 5: GV_014 – Nhà Phạm Văn Chiêu, Gò Vấp, 40m² (4.77 tỷ)**\n*   **Điểm mạnh cốt lõi:** **Siêu thị gần nhất tuyệt đối** toàn danh sách – chỉ **55m** (xuống ngay chợ/siêu thị). Gần trường học **119m** (tiện con nhỏ sau này). Diện tích **40m²** khá thoáng, đủ **2 phòng ngủ + 2 phòng tắm** (đầy đủ tiện nghi nhất về số lượng WC).\n*   **Điểm đánh đổi:** Giá **4.77 tỷ** – cao thứ 2, đơn giá m² cũng cao. Trục đường lớn cách **326m** – xa hơn so với GV_001, GV_002, TB_002, TB_008, nghĩa là ra đường chính mất thêm 1-2 phút, giờ cao điểm có thể kẹt ở ngõ. Phù hợp nếu **siêu thị/chợ là ưu tiên số 1**, cần 2 WC, chấp nhận giá cao hơn và ra đường hơi xa một chút.\n\n---\n\n### 3. SO SÁNH VÀ ĐÁNH GIÁ ĐÁNH ĐỔI (TRADE-OFF) ĐỂ QUYẾT ĐỊNH\n\nĐể dễ hình dung, bạn hãy chia 5 lựa chọn thành **3 nhóm chiến lược** theo ngân sách và優先级 (priority):\n\n#### **Nhóm A: \"Tiết kiệm tối đa, chấp nhận chật hẹp\" (Dưới 3 tỷ)**\n*   **GV_002 (2.85 tỷ) vs GV_001 (1.25 tỷ)**\n    *   **Chọn GV_002** nếu: Bạn muốn **cân bằng**. Tốn thêm 1.6 tỷ nhưng đổi lấy: siêu thị **gần gấp 4 lần** (240m vs 934m), diện tích **lớn hơn 30%** (26m² vs 20m²), vị trí mặt tiền đường Quang Trung đẹp hơn. 1.6 tỷ chênh lệch này mua được sự tiện lợi hàng ngày rất lớn.\n    *   **Chọn GV_001** chỉ khi: Ngân sách **cứng nhắc 1.3-1.5 tỷ**, bạn **bắt buộc phải có 2 WC**, và chấp nhận đi chợ/xuống siêu thị xa gần 1km.\n\n#### **Nhóm B: \"Cân bằng hợp lý, diện tích vừa phải\" (4 - 4.8 tỷ)**\n*   **TB_002 (4.4 tỷ, 47m², 1 WC) vs GV_014 (4.77 tỷ, 40m², 2 WC)**\n    *   **Chọn TB_002** nếu: Ưu tiên **vị trí giao thông** (Tân Bình, gần đường lớn 186m, đường HXH rộng), diện tích **rộng hơn** (47m²), giá **rẻ hơn 370 triệu**. Chấp nhận chỉ 1 WC và đơn giá m² cao.\n    *   **Chọn GV_014** nếu: Ưu tiên **tiện nghi sinh hoạt cực đại** (siêu thị 55m – \"xuống ngay\", 2 WC, gần trường), chấp nhận **giá cao hơn**, ra đường lớn **xa hơn** (326m), diện tích **nhỏ hơn** 7m². Đây là lựa chọn \"chăm sóc gia đình/nội trợ\" nhất.\n\n#### **Nhóm C: \"Đầu tư không gian sống rộng, ép ngân sách\" (Gần 5.5 tỷ)**\n*   **TB_008 (5.4 tỷ, 79m²)**\n    *   Đây là **lựa chọn duy nhất** cho không gian rộng (gần 80m²). Bạn đổi **toàn bộ ngân sách còn lại** để lấy: không gian thoáng đãng, 2 WC, siêu thị gần (262m), **siêu gần trục đường chính Cộng Hòa (71m)**.\n    *   **Rủi ro:** Gần như không còn tiền dự phòng. Vị trí ngõ hẻm (mặc dù gần đường lớn) cần xem thực tế xe hơi vào ra thế nào. Chỉ chọn nếu **không gian rộng là bắt buộc** (vd: gia đình 4 người, cần làm việc tại nhà, đỗ xe hơi).\n\n---\n\n### **KHUYẾN NGHỊ CUỐI CÙNG**\n\n1.  **Đi xem thực tế GV_002 (Top 1) và TB_002 (Top 4) trước.** GV_002 kiểm chứng xem 26m² có đủ chật không, 1 WC có ổn không. TB_002 kiểm chứng vị trí Tân Bình, đường HXH, đơn giá cao có đáng giá không. Hai cái này đại diện cho 2 triết lý: \"Tiết kiệm thông minh\" vs \"Cân bằng vị trí - diện tích\".\n2.  **Nếu thấy GV_002 quá chật** -> Chuyển sang **TB_002** (thêm 1.55 tỷ lấy thêm 21m², đường rộng, vị trí đẹp hơn, vẫn 1 WC) hoặc **GV_014** (thêm ~1.9 tỷ lấy 2 WC, siêu thị \"cửa nhà\", nhưng ra đường xa hơn).\n3.  **Tuyệt đối không nên chọn TB_008 (5.4 tỷ)** trừ khi bạn đã có sẵn tiền dự phòng riêng biệt hoặc thu nhập rất ổn định, vì nó để bạn \"trắng tay\" sau khi mua.\n4.  **GV_001 (1.25 tỷ)** chỉ dành cho trường hợp \"bắt buộc mua ngay, tiền ít nhất có thể\", không khuyến khích cho đầu tư dài hạn do vị trí siêu thị yếu và diện tích quá nhỏ.",
+    "unsupported_requirements": [],
+    "latency_ms": 227058.4,
+    "models_used": [
+      "nvidia/nemotron-3-ultra-550b-a55b:free[key2]",
+      "nvidia/nemotron-3-ultra-550b-a55b:free[key2]",
+      "nvidia/nemotron-3-ultra-550b-a55b:free[key2]",
+      "nvidia/nemotron-3-ultra-550b-a55b:free[key2]"
+    ],
+    "tool_calls_summary": [
+      {
+        "turn": 1,
+        "tools": [
+          "sql_filter"
+        ]
+      }
+    ]
+  },
+  {
+    "case_id": "V1_003",
+    "solution_id": "solution_1",
+    "status": "ok",
+    "top5": [
+      {
+        "rank": 1,
+        "property_id": "TB_008",
+        "total_score": 0.69,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "Đơn giá thấp",
+          "Gần trục đường lớn",
+          "Gần siêu thị",
+          "Diện tích khá"
+        ],
+        "why_recommended": "Đơn giá trên m2 thấp nhất trong nhóm (68.35 triệu), cách trục đường lớn chỉ 71m và siêu thị 262m, diện tích 79m2 phù hợp cho thuê.",
+        "tradeoff": "Chỉ 2 phòng ngủ, giá tổng 5.4 tỷ có thể cao hơn một số lựa chọn khác.",
+        "title": "⭕️HOT - HIẾM - NGỘP⭕️ NGAY CỘNG HOÀ, 4,2x19, TÂN BÌNH, NHỈNH 5TỶ, NỞ HẬU",
+        "price_billion_vnd": 5.4
+      },
+      {
+        "rank": 2,
+        "property_id": "GV_037",
+        "total_score": 0.67,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "Đơn giá thấp nhất",
+          "Diện tích rất rộng",
+          "Gần trục đường lớn"
+        ],
+        "why_recommended": "Đơn giá trên m2 thấp nhất toàn bộ dữ liệu (66.86 triệu), diện tích 169m2 rất lớn, cách trục đường lớn 90m, phù hợp cho thuê cao cấp.",
+        "tradeoff": "Giá tổng 11.3 tỷ cao, xa siêu thị (1.2km), trường học (754m) và công viên (595m).",
+        "title": "🔥 Nhà chợ An Nhơn 169m2, Đ.5m – Lê Đức Thọ GV",
+        "price_billion_vnd": 11.3
+      },
+      {
+        "rank": 3,
+        "property_id": "GV_041",
+        "total_score": 0.67,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "Đơn giá thấp",
+          "Diện tích rộng",
+          "Gần trục đường lớn",
+          "Gần trường học"
+        ],
+        "why_recommended": "Đơn giá 83.89 triệu/m2, diện tích 149m2, cách trục đường lớn 102m và trường học 161m, 5 phòng ngủ thuận lợi cho thuê gia đình.",
+        "tradeoff": "Giá tổng 12.5 tỷ, xa bệnh viện (1.3km), siêu thị 827m.",
+        "title": "🔥 Giảm 1.5 tỷ! Nhà HXH 2 tầng 149m², Lô góc – Quang Trung, QV",
+        "price_billion_vnd": 12.5
+      },
+      {
+        "rank": 4,
+        "property_id": "GV_023",
+        "total_score": 0.64,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "Đơn giá rất thấp",
+          "Gần trục đường lớn",
+          "Gần trường học",
+          "Gần siêu thị"
+        ],
+        "why_recommended": "Đơn giá 69 triệu/m2, giá tổng chỉ 5.52 tỷ, cách trục đường lớn 140m, trường học 159m, siêu thị 632m, diện tích 80m2 hợp lý.",
+        "tradeoff": "Chỉ 1 phòng ngủ 1 phòng tắm, xa công viên (1.18km).",
+        "title": "Chính chủ bán nhà 23/1340/12 đường Lê Đức Thọ, P15,Q.Gò Vấp TPhcm",
+        "price_billion_vnd": 5.52
+      },
+      {
+        "rank": 5,
+        "property_id": "TB_032",
+        "total_score": 0.63,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "Đơn giá tốt",
+          "Diện tích rộng",
+          "Gần siêu thị",
+          "Gần trường học"
+        ],
+        "why_recommended": "Đơn giá 86.54 triệu/m2, diện tích 104m2, cách siêu thị 447m, trường học 270m, 3 phòng ngủ phù hợp cho thuê.",
+        "tradeoff": "Xa bệnh viện (1.5km), trục đường lớn 369m.",
+        "title": "Bán nhà 2 Tầng 2 Mặt HXH Nguyễn phúc chu p15 TÂN BÌNH",
+        "price_billion_vnd": 9.0
+      }
+    ],
+    "explanation_summary": "### 1. TỔNG QUAN: TẠI SAO TB_008 (Hàng Cổng Hòa, Tân Bình) LÀ LỰA CHỌN HÀNG ĐẦU\n\nTrong bối cảnh bạn **ưu tiên đơn giá m² thấp nhất có thể** và **khả năng cho thuê lại dễ dàng**, bất động sản **TB_008 (Tân Bình)** nổi bật nhất nhờ sự cân bằng \"vàng\" giữa ba yếu tố cốt lõi: **giá nhập cửa hấp dẫn, vị trí đắc địa ngay trục đường lớn, và diện tích phù hợp đối tượng thuê phổ biến**.\n\nCụ thể, TB_008 sở hữu **đơn giá chỉ 68,35 triệu/m²** – mức thấp thứ 2 trong toàn bộ danh sách (chỉ cao hơn GV_037 một chút) nhưng **giá tổng chỉ 5,4 tỷ**, thấp hơn đáng kể so với các lựa chọn diện tích lớn (GV_037: 11,3 tỷ; GV_041: 12,5 tỷ). Điều này giải quyết bài toán \"đơn giá thấp\" mà không gánh nặng tài chính ban đầu. Về mặt cho thuê: căn nhà 79m², 2 phòng ngủ nằm **chỉ 71m đến trục đường lớn (Cộng Hòa)** và **262m đến siêu thị** – vị trí này cực kỳ thuận lợi để thu hút nhóm khách thuê phổ biến nhất hiện nay: cặp đôi trẻ, gia đình nhỏ hoặc nhóm chuyên nghiệp cần đi lại nhanh qua đường lớn, sinh hoạt tiện lợi ngay dưới nhà. So với GV_023 (cũng giá ~5,5 tỷ, đơn giá 69 triệu/m²), TB_008 thắng nhờ **2 phòng ngủ** (linh hoạt cho thuê hơn 1 phòng) và **gần trục đường/siêu thị hơn hẳn** (71m vs 140m; 262m vs 632m). So với TB_032 (Tân Bình, 9 tỷ, 104m²), TB_008 rẻ hơn 3,6 tỷ tổng giá và gần trục đường lớn hơn nhiều (71m vs 369m), dù diện tích nhỏ hơn một chút. Tóm lại, TB_008 là \"điểm ngọt\" hội tụ đủ tiêu chí cứng của bạn: đơn giá thấp, tiền mặt vào cửa vừa phải, vị trí đắt giá cho thuê, diện tích an toàn.\n\n---\n\n### 2. PHÂN TÍCH CHI TIẾT TỪNG LỰA CHỌN THEO THỨ HẠNG\n\n#### **Hạng 1: TB_008 – Nhà mặt tiền Cổng Hòa, Tân Bình (5,4 tỷ – 79m² – 2 PN)**\n*   **Điểm mạnh cốt lõi cho nhu cầu của bạn:**\n    *   **Đơn giá cực kỳ cạnh tranh (68,35 triệu/m²):** Gần như thấp nhất dữ liệu, đáp ứng tuyệt đối tiêu chí \"ưu tiên đơn giá thấp\".\n    *   **Vị trí \"đất vàng\" cho thuê:** Cách trục đường lớn (Cổng Hòa/Cộng Hòa) **chỉ 71m** – nghĩa là ra đường chính tức thì, không kẹt xe ngõ, cực kỳ dễ tìm khách thuê cần di chuyển nhanh (Grab, xe buýt, xe máy). Cách siêu thị **262m** – sinh hoạt cần thiết giải quyết ngay tại chỗ.\n    *   **Diện tích & phân chia an toàn (79m², 2 PN):** Đủ rộng cho gia đình nhỏ/cặp đôi, 2 phòng ngủ cho phép chia sẻ hoặc làm văn phòng tại nhà – đối tượng thuê dồi dào, vòng quay nhanh.\n    *   **Giá tổng 5,4 tỷ:** Mức vốn đầu vào nhẹ nhàng, dòng tiền an toàn, dễ thoát vốn khi cần.\n*   **Điểm cần cân nhắc (Trade-off):**\n    *   Chỉ 2 phòng ngủ – không phù hợp nếu bạn nhắm đến khách thuê gia đình lớn (3-4 thế hệ) hoặc chia phòng trọ (do diện tích 79m² khó chia thêm phòng độc lập).\n    *   Giá tổng 5,4 tỷ tuy thấp nhưng vẫn cao hơn một số lựa chọn diện tích nhỏ hơn (nếu có trong dữ liệu mở rộng), tuy nhiên trong Top 5 này thì mức giá này rất hợp lý so với giá trị vị trí.\n\n#### **Hạng 2: GV_037 – Nhà chợ An Nhơn, Gò Vấp (11,3 tỷ – 169m² – 4 PN)**\n*   **Điểm mạnh cốt lõi:**\n    *   **Đơn giá thấp nhất tuyệt đối toàn dữ liệu (66,86 triệu/m²):** Nếu chỉ nhìn số đơn giá, đây là \"vua\" giá rẻ.\n    *   **Diện tích khổng lồ (169m², 4 PN):** Potential cho thuê cao cấp (gia đình lớn, làm văn phòng, homestay, chia phòng cao cấp) – thuê giá cao, khách ổn định, ít vắng nhà.\n    *   **Gần trục đường lớn (90m đến Lê Đức Thọ):** Vị trí giao thông tốt, dễ tiếp cận.\n*   **Điểm cần cân nhắc (Trade-off lớn):**\n    *   **Giá tổng 11,3 tỷ – GẤP ĐÔI TB_008:** Yêu cầu vốn đầu tư rất lớn, rủi ro dòng tiền cao, khó thoát vốn nhanh khi cần gấp.\n    *   **Xa tiện ích sinh hoạt thiết yếu:** Siêu thị **1,2km**, trường học **754m**, công viên **595m**, bệnh viện xa. Khách thuê gia đình thường ưu tiên gần trường, chợ, bệnh viện – điểm này làm giảm sức hút cho thuê so với TB_008/TB_032.\n    *   Nằm khu chợ An Nhơn – có thể bị ồn, chật hẹp giờ cao điểm, mặt tiền chợ thường kém sang trọng hơn mặt tiền đường lớn như Cổng Hòa.\n\n#### **Hạng 3: GV_041 – Nhà HXH Quang Trung, Gò Vấp (12,5 tỷ – 149m² – 5 PN)**\n*   **Điểm mạnh cốt lõi:**\n    *   **Đơn giá tốt (83,89 triệu/m²):** Vẫn trong nhóm đơn giá thấp của dữ liệu.\n    *   **Diện tích rộng, nhiều phòng (149m², 5 PN):** Rất thích hợp cho thuê gia đình lớn, làm nhà trẻ, văn phòng, hoặc chia phòng trọ cao cấp (5 phòng ngủ = 5 luồng thu nhập tiềm năng).\n    *   **Vị trí đắc địa giao thông & giáo dục:** Cách trục đường lớn (Quang Trung) **102m**, cách trường học **chỉ 161m** – lợi thế lớn cho khách có con học sinh.\n    *   Lô góc, 2 mặt tiền – thoáng, giá trị đất tốt.\n*   **Điểm cần cân nhắc (Trade-off lớn):**\n    *   **Giá tổng cao nhất Top 5 (12,5 tỷ):** Rào cản vốn lớn nhất.\n    *   **Xa tiện ích y tế & mua sắm:** Bệnh viện **1,3km**, siêu thị **827m** – bất tiện cho sinh hoạt hàng ngày của khách thuê.\n    *   Đơn giá (83,89 triệu) cao hơn hẳn TB_008 (68,35 triệu) và GV_023 (69 triệu) – nếu tiêu chí #1 là \"đơn giá thấp nhất\" thì lựa chọn này kém tối ưu hơn.\n\n#### **Hạng 4: GV_023 – Nhà Lê Đức Thọ, Gò Vấp (5,52 tỷ – 80m² – 1 PN)**\n*   **Điểm mạnh cốt lõi:**\n    *   **Đơn giá rất thấp (69 triệu/m²)** – gần như ngang TB_008.\n    *   **Giá tổng thấp (5,52 tỷ)** – tương đương TB_008, vốn vào cửa nhẹ.\n    *   **Vị trí cân bằng khá tốt:** Cách trục đường lớn (Lê Đức Thọ) **140m**, trường học **159m**, siêu thị **632m** – đủ tiện ích cơ bản, gần trường học là điểm cộng cho gia đình nhỏ.\n*   **Điểm cần cân nhắc (Trade-off quan trọng):**\n    *   **Chỉ 1 phòng ngủ, 1 phòng tắm (80m²):** **Hạn chế lớn nhất cho cho thuê.** Khó thuê cho gia đình (cần 2 PN), khó chia phòng trọ (chỉ 1 WC), chủ yếu chỉ thuê được cho đơn thân/cặp đôi không con – nhóm khách này thường di động nhiều, vòng quay nhanh, rủi ro vắng nhà cao.\n    *   Xa công viên **1,18km**.\n    *   So với TB_008 (cùng giá, cùng đơn giá, cùng khu vực giá): TB_008 thắng ở **2 PN, gần trục đường hơn (71m vs 140m), gần siêu thị hơn (262m vs 632m)**. GV_023 chỉ thắng ở gần trường học hơn (159m vs TB_008 không có data trường học gần – nhưng TB_008 ở Tân Bình trung tâm trường học cũng nhiều).\n\n#### **Hạng 5: TB_032 – Nhà Nguyễn Phúc Chu, Tân Bình (9 tỷ – 104m² – 3 PN)**\n*   **Điểm mạnh cốt lõi:**\n    *   **Đơn giá tốt (86,54 triệu/m²)** – trong nhóm trung bình khá.\n    *   **Diện tích cân đối (104m², 3 PN):** Rất \"chuẩn\" cho thuê gia đình trẻ 1-2 con, hoặc chia 2 phòng cho 2 nhóm khách – linh hoạt, dễ cho thuê, giá thuê ổn định.\n    *   **Tiện ích sinh hoạt gần:** Siêu thị **447m**, trường học **270m** – rất tiện cho gia đình.\n    *   2 mặt tiền, HXH – thoáng, giá trị đất bền vững.\n*   **Điểm cần cân nhắc (Trade-off):**\n    *   **Giá tổng 9 tỷ – cao hơn TB_008/GV_023 gần 3,5-4 tỷ:** Cần vốn lớn hơn.\n    *   **Xa trục đường lớn (369m):** Ra đường chính phải đi qua đoạn ngõ/đường trong – kẹt xe giờ cao điểm, ít tiện hơn TB_008 (71m) và GV_037/GV_041/GV_023 (cả 4 đều <150m). Đây là điểm yếu lớn nhất về \"dễ cho thuê\" vì khách thuê TP.HCM cực kỳ sợ kẹt xe ngõ.\n    *   Xa bệnh viện **1,5km**.\n    *   Đơn giá (86,54 triệu) cao hơn nhóm \"đơn giá siêu rẻ\" (TB_008, GV_037, GV_023).\n\n---\n\n### 3. SO SÁNH & ĐÁNH GIÁ ĐÁNH ĐỔI (TRADE-OFF) ĐỂ RA QUYẾT ĐỊNH\n\nĐể bạn dễ dàng \"cân đo đong đếm\", hãy hình dung 3 nhóm lựa chọn rõ rệt sau dựa trên **ngân sách 15 tỷ** và **tiêu chí \"Đơn giá thấp + Dễ cho thuê\"**:\n\n#### **Nhóm A: \"Vua giá rẻ & Dễ cho thuê nhất\" – TB_008 (5,4 tỷ) & GV_023 (5,52 tỷ)**\n*   **Điểm chung:** Đơn giá ~68-69 triệu/m² (thấp nhất), giá tổng ~5,5 tỷ (vốn nhẹ), gần trục đường lớn (<150m).\n*   **Sự khác biệt quyết định:** **TB_008 (2 PN) >> GV_023 (1 PN) về khả năng cho thuê.** 2 phòng ngủ mở ra file khách lớn gấp nhiều lần (gia đình nhỏ, chia sẻ, làm việc tại nhà). TB_008 còn gần siêu thị hơn hẳn (262m vs 632m). **→ Nếu ngân sách ~5,5 tỷ: Chọn TB_008 mà không cần suy nghĩ.**\n\n#### **Nhóm B: \"Diện tích lớn – Cho thuê cao cấp/Chia phòng – Nhưng tốn vốn & Xa tiện ích\" – GV_037 (11,3 tỷ) & GV_041 (12,5 tỷ)**\n*   **Điểm chung:** Diện tích 149-169m², 4-5 PN, đơn giá thấp (66-83 triệu/m²), gần trục đường lớn (~90-100m).\n*   **Sự khác biệt:** GV_037 rẻ hơn 1,2 tỷ, rộng hơn 20m², đơn giá thấp hơn; GV_041 gần trường học hơn (161m vs 754m), lô góc 2 mặt tiền.\n*   **Đánh đổi lớn:** **Vốn gấp đôi Nhóm A (11-12,5 tỷ vs 5,5 tỷ). Xa siêu thị/bệnh viện (800m-1,3km).** Phù hợp nếu bạn: (1) Có sẵn vốn 12 tỷ không lo dòng tiền, (2) Nhắm khách thuê gia đình lớn/doanh nghiệp/chia phòng trọ cao cấp tại Gò Vấp, (3) Chấp nhận khách thuê phải đi xe máy/ô tô ra chợ/bệnh viện.\n*   **So với TB_032 (9 tỷ, 104m², Tân Bình):** TB_032 cân bằng hơn: gần siêu thị/trường hơn, đơn giá vẫn tốt, giá tổng 9 tỷ (giữa 2 nhóm), 3 PN dễ cho thuê gia đình tiêu chuẩn. **TB_032 là \"cầu nối\" an toàn giữa Nhóm A và Nhóm B.**\n\n#### **Nhóm C: \"Cân bằng toàn diện tại Tân Bình\" – TB_032 (9 tỷ)**\n*   Nếu bạn thấy TB_008 hơi nhỏ (79m², 2 PN) mà GV_037/GV_041 quá to/quá xa tiện ích/quá đắt → **TB_032 là lựa chọn \"vừa vặn\" nhất:** 104m², 3 PN, đơn giá 86,5 triệu (vẫn tốt), gần siêu thị/trường học, 2 mặt tiền thoáng. Chỉ nhược điểm: **xa trục đường lớn 369m (kẹt xe ngõ)** và giá tổng 9 tỷ.\n\n---\n\n### **KHUYẾN NGHỊ CUỐI CÙNG THEO TỪNG KỊCH BẢN:**\n\n1.  **Ưu tiên tuyệt đối: Đơn giá thấp nhất + Vốn ít + Cho thuê nhanh, khách nhiều, ít rủi ro → CHỌN TB_008 (Hạng 1).** Đây là lựa chọn \"an toàn, hiệu quả, đúng trọng tâm nhu cầu\" nhất.\n2.  **Có vốn ~9-10 tỷ, muốn căn nhà \"chuẩn gia đình\" 3 PN, tiện sinh hoạt, chấp nhận kẹt xe ngõ một chút → CHỌN TB_032 (Hạng 5).**\n3.  **Có vốn lớn (>11 tỷ), nhắm cho thuê cao cấp/chia phòng tại Gò Vấp, chấp nhận xa chợ/bệnh viện → CHỌN GV_037 (Hạng 2 - đơn giá rẻ nhất, diện tích lớn nhất) hoặc GV_041 (Hạng 3 - lô góc, gần trường, 5 PN).**\n4.  **Tuyệt đối KHÔNG nên chọn GV_023 (Hạng 4) nếu mục tiêu là \"dễ cho thuê lại\" – 1 phòng ngủ/1 WC là nút thắt cổ chai lớn nhất cho việc cho thuê bền vững tại TP.HCM hiện nay, dù đơn giá và giá tổng rất hấp dẫn.**",
+    "unsupported_requirements": [
+      "Đánh giá tiềm năng cho thuê lại (cần dữ liệu thị trường cho thuê, yield, mật độ dân cư, v.v.)"
+    ],
+    "latency_ms": 197374.7,
+    "models_used": [
+      "nvidia/nemotron-3-ultra-550b-a55b:free[key2]",
+      "nvidia/nemotron-3-ultra-550b-a55b:free[key2]",
+      "nvidia/nemotron-3-ultra-550b-a55b:free[key2]",
+      "nvidia/nemotron-3-ultra-550b-a55b:free[key2]"
+    ],
+    "tool_calls_summary": [
+      {
+        "turn": 1,
+        "tools": [
+          "sql_filter"
+        ]
+      }
+    ]
+  }
+]
