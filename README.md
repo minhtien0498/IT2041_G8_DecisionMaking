@@ -26,7 +26,8 @@ IT2041_G8_DecisionMaking/
 │   │   ├── __init__.py
 │   │   ├── prepare_data.py   # Script legacy cho bộ Gò Vấp cũ
 │   │   ├── prepare_gv_tb_100.py # Tạo bộ clean dataset 100 căn
-│   │   └── enrich_gv_tb_100.py  # Enrich POI cho bộ 100 căn
+│   │   ├── enrich_gv_tb_100.py  # Enrich POI thủ công cho bộ 100 căn
+│   │   └── enrich_gv_tb_100_overpass_api.py # Resume enrich bằng Overpass API
 │   ├── demo/                 # Modules chạy kịch bản & giao diện demo
 │   │   ├── __init__.py
 │   │   └── run_solution2.py  # Demo hiện tại cho Solution 2
@@ -117,6 +118,14 @@ Ghi chú định hướng hiện tại: `Mapbox` là provider được ưu tiên
 
 Notebook:
 - [notebooks/enrich_gv_tb_100_overpass_pipeline.ipynb](notebooks/enrich_gv_tb_100_overpass_pipeline.ipynb)
+
+Script resume/checkpoint:
+- [src/data/enrich_gv_tb_100_overpass_api.py](src/data/enrich_gv_tb_100_overpass_api.py)
+
+Chạy tiếp các mẫu còn thiếu từ checkpoint:
+```bash
+python3 src/data/enrich_gv_tb_100_overpass_api.py
+```
 
 Thư mục output:
 - [data/overpass](data/overpass)
@@ -228,7 +237,7 @@ Hoặc mở trực tiếp bằng Jupyter và chạy theo cell.
 ### 7. So sánh provider
 
 File tổng hợp hiện tại:
-- [docs/provider_comparison_overpass_vs_geoapify.md](docs/provider_comparison_overpass_vs_geoapify.md)
+- [docs/provider_comparison_overpass_geoapify_mapbox.md](docs/provider_comparison_overpass_geoapify_mapbox.md)
 
 File này so sánh nhanh:
 - giá cả / quota / limit
