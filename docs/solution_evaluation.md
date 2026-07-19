@@ -13,7 +13,7 @@ Ghi chú cập nhật:
 | Solution | Short name | Core idea | Recommendation |
 |---|---|---|---|
 | Solution 1 | Two-LLM + Guardrail | Form + free-text -> LLM reasoner gọi tool -> guardrail grounding -> LLM explainer | Một hướng final chính, mạnh về reasoning có kiểm soát |
-| Solution 2 | Hybrid LLM + Map enrichment | Form + free-text -> LLM parser -> enrich POI -> deterministic re-rank -> explanation | Một hướng final chính, mạnh về scoring rõ ràng và cá nhân hóa |
+| Solution 2 | Hybrid LLM + Mapbox enrichment | Form + free-text -> LLM parser -> enrich POI bằng Mapbox -> deterministic re-rank -> explanation | Một hướng final chính, mạnh về scoring rõ ràng và cá nhân hóa |
 
 ## 2. Solution 1 Evaluation
 
