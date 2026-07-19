@@ -1,0 +1,859 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IT2041 G8 DSS Web</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --bg: #f6f7f3;
+      --panel: #ffffff;
+      --panel-soft: #f1f5f9;
+      --ink: #172026;
+      --muted: #667085;
+      --line: #d8ded6;
+      --green: #177245;
+      --green-soft: #e5f4ec;
+      --blue: #2364aa;
+      --blue-soft: #e7f0fb;
+      --orange: #b85c00;
+      --orange-soft: #fff1df;
+      --red: #c03221;
+      --shadow: 0 12px 32px rgba(23, 32, 38, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      border-radius: 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 40px;
+      padding: 0 14px;
+      font-weight: 700;
+    }
+
+    button:disabled {
+      cursor: wait;
+      opacity: 0.65;
+    }
+
+    .app {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 360px minmax(0, 1fr);
+    }
+
+    .sidebar {
+      background: #172026;
+      color: #f8fafc;
+      padding: 24px;
+      position: sticky;
+      top: 0;
+      min-height: 100vh;
+      align-self: start;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
+      background: #f7c948;
+      color: #172026;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+    }
+
+    .brand h1 {
+      font-size: 18px;
+      margin: 0;
+      letter-spacing: 0;
+    }
+
+    .brand p {
+      color: #b8c3cf;
+      margin: 2px 0 0;
+      font-size: 13px;
+    }
+
+    .main {
+      padding: 24px;
+      display: grid;
+      gap: 20px;
+      align-content: start;
+    }
+
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .toolbar h2 {
+      margin: 0;
+      font-size: 24px;
+      letter-spacing: 0;
+    }
+
+    .toolbar p {
+      color: var(--muted);
+      margin: 4px 0 0;
+      max-width: 760px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .panel-head {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .panel-head h3 {
+      margin: 0;
+      font-size: 16px;
+      letter-spacing: 0;
+    }
+
+    .panel-body {
+      padding: 18px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    label {
+      display: grid;
+      gap: 7px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      min-height: 40px;
+      padding: 9px 11px;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 96px;
+      resize: vertical;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(35, 100, 170, 0.14);
+    }
+
+    .span-2 {
+      grid-column: 1 / -1;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .primary { background: var(--green); color: white; }
+    .secondary { background: var(--blue-soft); color: var(--blue); }
+    .warning { background: var(--orange-soft); color: var(--orange); }
+
+    .segmented {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: #26323b;
+      border-radius: 8px;
+      padding: 4px;
+      gap: 4px;
+      margin-bottom: 18px;
+    }
+
+    .segmented button {
+      background: transparent;
+      color: #b8c3cf;
+      min-height: 36px;
+      padding: 0 8px;
+    }
+
+    .segmented button.active {
+      background: #f8fafc;
+      color: #172026;
+    }
+
+    .weights {
+      display: grid;
+      gap: 12px;
+    }
+
+    .weight-row {
+      display: grid;
+      grid-template-columns: 106px 1fr 46px;
+      align-items: center;
+      gap: 10px;
+      color: #d8dee6;
+      font-size: 13px;
+    }
+
+    .weight-row input {
+      accent-color: #f7c948;
+      padding: 0;
+      min-height: 24px;
+    }
+
+    .weight-row output {
+      text-align: right;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .sidebar-block {
+      border-top: 1px solid #34434f;
+      padding-top: 18px;
+      margin-top: 18px;
+    }
+
+    .sidebar-block h3 {
+      font-size: 14px;
+      margin: 0 0 12px;
+      color: #f8fafc;
+    }
+
+    .solution-info {
+      border: 1px solid #34434f;
+      background: #202b33;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 18px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .solution-info strong {
+      font-size: 13px;
+      color: #ffffff;
+    }
+
+    .solution-info p {
+      margin: 0;
+      color: #c8d2dc;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .solution-info ul {
+      margin: 0;
+      padding-left: 18px;
+      color: #c8d2dc;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .status {
+      min-height: 24px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .result-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .result-top {
+      padding: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      gap: 12px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .ok { background: var(--green-soft); color: var(--green); }
+    .err { background: #fee4df; color: var(--red); }
+    .info { background: var(--blue-soft); color: var(--blue); }
+
+    .listing {
+      padding: 14px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .listing h4 {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      background: var(--panel-soft);
+      color: #475467;
+      border-radius: 999px;
+      padding: 3px 8px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .empty {
+      color: var(--muted);
+      padding: 18px;
+      text-align: center;
+      border: 1px dashed var(--line);
+      border-radius: 8px;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .metric {
+      background: var(--panel-soft);
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .metric strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 20px;
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .compare-table th, .compare-table td {
+      border-bottom: 1px solid var(--line);
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .compare-table th {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    @media (max-width: 980px) {
+      .app { grid-template-columns: 1fr; }
+      .sidebar { position: static; min-height: auto; }
+      .result-grid, .form-grid { grid-template-columns: 1fr; }
+      .span-2 { grid-column: auto; }
+      .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 560px) {
+      .main, .sidebar { padding: 16px; }
+      .metrics { grid-template-columns: 1fr; }
+      .weight-row { grid-template-columns: 92px 1fr 42px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">G8</div>
+        <div>
+          <h1>Real Estate DSS</h1>
+          <p>Solution 1 / Solution 2 Comparator</p>
+        </div>
+      </div>
+
+      <div class="segmented" aria-label="Chọn solution">
+        <button class="active" data-solution="solution2" title="Chạy Solution 2"><i data-lucide="workflow"></i>S2</button>
+        <button data-solution="solution1" title="Chạy Solution 1"><i data-lucide="bot"></i>S1</button>
+        <button data-solution="both" title="Chạy cả hai"><i data-lucide="split"></i>Cả hai</button>
+      </div>
+
+      <div class="solution-info" id="solutionInfo"></div>
+
+      <label>
+        Top X kết quả
+        <input id="topX" type="number" min="1" max="20" value="5">
+      </label>
+
+      <div class="sidebar-block">
+        <h3>Trọng số xếp hạng</h3>
+        <div class="weights" id="weights"></div>
+      </div>
+
+      <div class="sidebar-block">
+        <h3>Validation set</h3>
+        <label>
+          Dataset
+          <select id="validationDataset">
+            <option value="validation_cases_v1">validation_cases_v1</option>
+            <option value="validation_50_scenarios">validation_50_scenarios</option>
+          </select>
+        </label>
+        <label style="margin-top: 12px;">
+          Số case batch
+          <input id="batchLimit" type="number" min="1" max="50" value="5">
+        </label>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="toolbar">
+        <div>
+          <h2>Tư vấn chọn bất động sản</h2>
+          <p>Nhập form nhu cầu, chọn solution, lấy Top X và đánh giá kết quả bằng validation set hoặc tiêu chí thủ công.</p>
+        </div>
+        <div class="status" id="status">Sẵn sàng</div>
+      </div>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h3>Input người dùng</h3>
+          <button class="secondary" id="loadCaseBtn" title="Nạp case validation"><i data-lucide="file-input"></i>Nạp case</button>
+        </div>
+        <div class="panel-body">
+          <div class="form-grid">
+            <label>
+              Ngân sách tối đa (triệu VND)
+              <input id="budget" type="number" value="8000" min="0" step="100">
+            </label>
+            <label>
+              Số phòng ngủ tối thiểu
+              <input id="bedrooms" type="number" value="3" min="0" step="1">
+            </label>
+            <label>
+              Diện tích kỳ vọng min (m2)
+              <input id="areaMin" type="number" value="30" min="0" step="1">
+            </label>
+            <label>
+              Diện tích kỳ vọng max (m2)
+              <input id="areaMax" type="number" value="150" min="1" step="1">
+            </label>
+            <label class="span-2">
+              Nhu cầu tự do
+              <textarea id="freeText">Gia đình có 2 con nhỏ, ưu tiên gần trường và công viên.</textarea>
+            </label>
+          </div>
+          <div class="actions">
+            <button class="primary" id="runBtn"><i data-lucide="play"></i>Chạy recommendation</button>
+            <button class="warning" id="validateBtn"><i data-lucide="clipboard-check"></i>Đánh giá kết quả này</button>
+            <button class="secondary" id="batchBtn"><i data-lucide="bar-chart-3"></i>Batch validation</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h3>Kết quả Top X</h3>
+          <span class="badge info" id="caseBadge">WEB</span>
+        </div>
+        <div class="panel-body">
+          <div class="result-grid" id="results">
+            <div class="empty span-2">Chưa có kết quả. Nhấn chạy recommendation để bắt đầu.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h3>Đánh giá</h3>
+          <span class="badge info">CSR, P@K, NDCG, MAP, human rubric</span>
+        </div>
+        <div class="panel-body" id="evaluation">
+          <div class="empty">Chạy validation để xem metric.</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const state = {
+      solution: "solution2",
+      selectedCase: null,
+      lastPayload: null,
+      weights: {
+        price: { label: "Giá", value: 0.25, min: 1000, max: 12000, direction: "lower_better" },
+        distance_to_nearest_school_m: { label: "Trường", value: 0.25, min: 0, max: 2000, direction: "lower_better" },
+        distance_to_nearest_park_m: { label: "Công viên", value: 0.20, min: 0, max: 2000, direction: "lower_better" },
+        distance_to_nearest_supermarket_m: { label: "Siêu thị", value: 0.15, min: 0, max: 1500, direction: "lower_better" },
+        distance_to_nearest_boulevard_m: { label: "Đường lớn", value: 0.10, min: 0, max: 2000, direction: "lower_better" },
+        area_m2: { label: "Diện tích", value: 0.05, min: 30, max: 150, direction: "higher_better" }
+      }
+    };
+
+    const solutionInfo = {
+      solution1: {
+        title: "Solution 1: Two-LLM pipeline + guardrail",
+        body: "Phân tích nhu cầu bằng LLM, chọn ứng viên phù hợp, kiểm tra ràng buộc bằng guardrail và sinh giải thích cho kết quả.",
+        notes: []
+      },
+      solution2: {
+        title: "Solution 2: Rule-based hybrid + POI enrichment",
+        body: "Chấm điểm theo tiêu chí form, phân tích nhu cầu tự do có thể đo lường, bổ sung thông tin tiện ích xung quanh và xếp hạng lại.",
+        notes: []
+      },
+      both: {
+        title: "Compare: Solution 1 vs Solution 2",
+        body: "Chạy cùng một input qua cả hai solution để so sánh danh sách đề xuất, điểm số và phần đánh giá.",
+        notes: []
+      }
+    };
+
+    const $ = (id) => document.getElementById(id);
+
+    function setStatus(message) {
+      $("status").textContent = message;
+    }
+
+    function renderWeights() {
+      const container = $("weights");
+      container.innerHTML = Object.entries(state.weights).map(([key, item]) => `
+        <div class="weight-row">
+          <span>${item.label}</span>
+          <input type="range" min="0" max="1" step="0.05" value="${item.value}" data-weight="${key}">
+          <output>${item.value.toFixed(2)}</output>
+        </div>
+      `).join("");
+      container.querySelectorAll("input").forEach((input) => {
+        input.addEventListener("input", () => {
+          state.weights[input.dataset.weight].value = Number(input.value);
+          input.nextElementSibling.textContent = Number(input.value).toFixed(2);
+        });
+      });
+    }
+
+    function renderSolutionInfo() {
+      const info = solutionInfo[state.solution];
+      $("solutionInfo").innerHTML = `
+        <strong>${info.title}</strong>
+        <p>${info.body}</p>
+        ${info.notes.length ? `<ul>${info.notes.map((note) => `<li>${note}</li>`).join("")}</ul>` : ""}
+      `;
+    }
+
+    function currentForm() {
+      const areaMin = Number($("areaMin").value);
+      const areaMax = Number($("areaMax").value);
+      const soft_preferences = {};
+      for (const [key, item] of Object.entries(state.weights)) {
+        if (item.value <= 0) continue;
+        soft_preferences[key] = {
+          weight: item.value,
+          direction: item.direction,
+          min: key === "area_m2" ? areaMin : item.min,
+          max: key === "area_m2" ? areaMax : item.max
+        };
+      }
+      return {
+        budget_max_million: Number($("budget").value),
+        min_bedrooms: Number($("bedrooms").value),
+        soft_preferences,
+        user_need_text: $("freeText").value.trim()
+      };
+    }
+
+    async function postJson(url, body) {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+      });
+      if (!response.ok) throw new Error(await response.text());
+      return response.json();
+    }
+
+    function badgeClass(status) {
+      return status === "ok" ? "ok" : "err";
+    }
+
+    function renderResults(payload) {
+      state.lastPayload = payload;
+      $("caseBadge").textContent = payload.case_id || "WEB";
+      const results = payload.results || {};
+      const html = Object.entries(results).map(([key, result]) => {
+        const top = result.top5 || [];
+        const rows = top.length ? top.map((item) => `
+          <article class="listing">
+            <div>
+              <div class="meta">
+                <strong>#${item.rank}</strong>
+                <span>${item.property_id || ""}</span>
+                <span>score ${Number(item.total_score || 0).toFixed(4)}</span>
+                <span>${item.price_billion_vnd ? item.price_billion_vnd + " tỷ" : ""}</span>
+              </div>
+              <h4>${item.title || "Không có tiêu đề"}</h4>
+            </div>
+            <div class="tags">${(item.reason_tags || []).map((tag) => `<span class="tag">${tag}</span>`).join("")}</div>
+          </article>
+        `).join("") : `<div class="empty">${result.explanation_summary || "Không có kết quả."}</div>`;
+        return `
+          <div class="result-card">
+            <div class="result-top">
+              <strong>${key.toUpperCase()}</strong>
+              <span class="badge ${badgeClass(result.status)}">${result.status}</span>
+            </div>
+            ${rows}
+            <div class="listing">
+              <div class="meta">${Number(result.latency_ms || 0).toFixed(1)} ms</div>
+              <div>${result.explanation_summary || ""}</div>
+            </div>
+          </div>
+        `;
+      }).join("");
+      $("results").innerHTML = html || `<div class="empty span-2">Không có response.</div>`;
+      lucide.createIcons();
+    }
+
+    function pct(value) {
+      if (value === null || value === undefined) return "N/A";
+      return `${Math.round(Number(value) * 100)}%`;
+    }
+
+    function renderEvaluation(payload) {
+      const evaluations = payload.evaluations || {};
+      const html = Object.entries(evaluations).map(([key, item]) => {
+        const ir = item.ir_metrics;
+        return `
+          <div class="result-card">
+            <div class="result-top">
+              <strong>${key.toUpperCase()}</strong>
+              <span class="badge ${badgeClass(item.status)}">${item.status}</span>
+            </div>
+            <div class="listing">
+              <div class="metrics">
+                <div class="metric"><span>Hard pass</span><strong>${pct(item.hard_constraints.pass_rate)}</strong></div>
+                <div class="metric"><span>Priority coverage</span><strong>${pct(item.expected_priority_coverage.coverage)}</strong></div>
+                <div class="metric"><span>Precision@K</span><strong>${ir ? pct(ir.precision_at_k) : "N/A"}</strong></div>
+                <div class="metric"><span>NDCG@K</span><strong>${ir ? Number(ir.ndcg_at_k).toFixed(3) : "N/A"}</strong></div>
+              </div>
+              <div class="meta">Human rubric: relevance, constraint_fit, explainability, diversity, trust. Chấm 0-5 khi không có ground truth.</div>
+            </div>
+          </div>
+        `;
+      }).join("");
+      $("evaluation").innerHTML = `<div class="result-grid">${html}</div>`;
+      lucide.createIcons();
+    }
+
+    function renderBatch(payload) {
+      const summaryRows = Object.entries(payload.summary || {}).map(([key, value]) => `
+        <tr><td>${key}</td><td>${Number(value).toFixed(4)}</td></tr>
+      `).join("");
+      const caseRows = (payload.rows || []).map((row) => `
+        <tr>
+          <td>${row.case_id}</td>
+          <td>${Object.entries(row.evaluations).map(([key, val]) => `${key}: ${pct(val.hard_constraints.pass_rate)}`).join("<br>")}</td>
+          <td>${Object.entries(row.evaluations).map(([key, val]) => `${key}: ${(val.recommended_ids || []).join(", ")}`).join("<br>")}</td>
+        </tr>
+      `).join("");
+      $("evaluation").innerHTML = `
+        <div class="metrics">${Object.entries(payload.summary || {}).slice(0, 4).map(([key, value]) => `
+          <div class="metric"><span>${key}</span><strong>${Number(value).toFixed(3)}</strong></div>
+        `).join("")}</div>
+        <table class="compare-table" style="margin-top:16px">
+          <thead><tr><th>Metric</th><th>Value</th></tr></thead>
+          <tbody>${summaryRows || `<tr><td colspan="2">Không có summary.</td></tr>`}</tbody>
+        </table>
+        <table class="compare-table" style="margin-top:16px">
+          <thead><tr><th>Case</th><th>Hard pass</th><th>Top IDs</th></tr></thead>
+          <tbody>${caseRows}</tbody>
+        </table>
+      `;
+    }
+
+    async function loadValidationCase() {
+      setStatus("Đang nạp validation case...");
+      const dataset = $("validationDataset").value;
+      const data = await fetch(`/api/validation-cases?dataset=${encodeURIComponent(dataset)}`).then((r) => r.json());
+      const chosen = data.cases[0];
+      state.selectedCase = chosen;
+      const input = chosen.input || {};
+      $("budget").value = input.budget_max_million || 8000;
+      $("bedrooms").value = input.min_bedrooms || 2;
+      $("freeText").value = input.user_need_text || "";
+      const prefs = input.soft_preferences || {};
+      for (const [key, item] of Object.entries(state.weights)) {
+        if (prefs[key]) item.value = Number(prefs[key].weight || item.value);
+      }
+      renderWeights();
+      $("caseBadge").textContent = chosen.id;
+      setStatus(`Đã nạp ${chosen.id}`);
+    }
+
+    async function runRecommendation() {
+      setBusy(true);
+      setStatus("Đang chạy recommendation...");
+      try {
+        const form = currentForm();
+        const payload = await postJson("/api/recommend", {
+          form,
+          free_text: form.user_need_text,
+          solution: state.solution,
+          top_x: Number($("topX").value)
+        });
+        renderResults(payload);
+        setStatus("Hoàn tất recommendation");
+      } catch (error) {
+        setStatus("Lỗi khi chạy recommendation");
+        $("results").innerHTML = `<div class="empty span-2">${error.message}</div>`;
+      } finally {
+        setBusy(false);
+      }
+    }
+
+    async function validateCurrent() {
+      setBusy(true);
+      setStatus("Đang đánh giá kết quả...");
+      try {
+        const form = currentForm();
+        const payload = await postJson("/api/validate", {
+          form,
+          free_text: form.user_need_text,
+          solution: state.solution,
+          top_x: Number($("topX").value),
+          case_id: state.selectedCase?.id,
+          expected: state.selectedCase?.expected,
+          ground_truth_top5: state.selectedCase?.ground_truth_top5
+        });
+        renderResults(payload);
+        renderEvaluation(payload);
+        setStatus("Hoàn tất đánh giá");
+      } catch (error) {
+        setStatus("Lỗi khi đánh giá");
+        $("evaluation").innerHTML = `<div class="empty">${error.message}</div>`;
+      } finally {
+        setBusy(false);
+      }
+    }
+
+    async function runBatch() {
+      setBusy(true);
+      setStatus("Đang chạy batch validation...");
+      try {
+        const payload = await postJson("/api/validate-batch", {
+          solution: state.solution,
+          dataset: $("validationDataset").value,
+          limit: Number($("batchLimit").value),
+          top_x: Number($("topX").value)
+        });
+        renderBatch(payload);
+        setStatus("Hoàn tất batch validation");
+      } catch (error) {
+        setStatus("Lỗi batch validation");
+        $("evaluation").innerHTML = `<div class="empty">${error.message}</div>`;
+      } finally {
+        setBusy(false);
+      }
+    }
+
+    function setBusy(isBusy) {
+      document.querySelectorAll("button").forEach((button) => button.disabled = isBusy);
+    }
+
+    document.querySelectorAll("[data-solution]").forEach((button) => {
+      button.addEventListener("click", () => {
+        state.solution = button.dataset.solution;
+        document.querySelectorAll("[data-solution]").forEach((item) => item.classList.toggle("active", item === button));
+        renderSolutionInfo();
+      });
+    });
+
+    $("runBtn").addEventListener("click", runRecommendation);
+    $("validateBtn").addEventListener("click", validateCurrent);
+    $("batchBtn").addEventListener("click", runBatch);
+    $("loadCaseBtn").addEventListener("click", loadValidationCase);
+
+    renderWeights();
+    renderSolutionInfo();
+    lucide.createIcons();
+  </script>
+</body>
+</html>
