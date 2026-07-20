@@ -126,7 +126,7 @@ Thao tác trên UI:
 - Top X = `5`.
 - Ngân sách = `8000`.
 - Phòng ngủ tối thiểu = `3`.
-- Nhu cầu tự do: `Gia dinh co 2 con nho, uu tien gan truong va cong vien.`
+- Nhu cầu tự do: `Gia đình có 2 con nhỏ, ưu tiên gần trường và công viên.`
 - Nhấn `Chạy recommendation`.
 
 Kỳ vọng:
@@ -186,9 +186,9 @@ curl -s http://127.0.0.1:8001/api/recommend \
       "soft_preferences": {
         "price": {"weight": 1.0, "direction": "lower_better", "min": 0, "max": 1}
       },
-      "user_need_text": "Case test DB: khong co nha nao phu hop."
+      "user_need_text": "Case test DB: không có nhà nào phù hợp."
     },
-    "free_text": "Case test DB: khong co nha nao phu hop.",
+    "free_text": "Case test DB: không có nhà nào phù hợp.",
     "solution": "solution1",
     "top_x": 3
   }'
@@ -242,9 +242,9 @@ Payload tối thiểu cho `POST /api/recommend`:
       "price": {"weight": 0.25, "direction": "lower_better", "min": 3000, "max": 8000},
       "distance_to_nearest_school_m": {"weight": 0.25, "direction": "lower_better", "min": 0, "max": 2000}
     },
-    "user_need_text": "Gia dinh uu tien gan truong."
+    "user_need_text": "Gia đình ưu tiên gần trường."
   },
-  "free_text": "Gia dinh uu tien gan truong.",
+  "free_text": "Gia đình ưu tiên gần trường.",
   "solution": "solution2",
   "top_x": 5
 }

@@ -90,6 +90,22 @@ Kết luận tạm:
 
 ---
 
+## Provider Sensitivity - Solution 1
+
+| Metric | Geoapify vs Overpass |
+|---|---:|
+| Compared cases | 10 |
+| Same Top 1 | 4/10 |
+| Average Top5 overlap | 3.20/5 |
+| Avg latency Geoapify | 317.4s |
+| Avg latency Overpass | 529.2s |
+
+<div class="box">
+Provider đổi -> POI distance/count đổi -> ranking đổi. Vì vậy validation final phải ghi rõ provider.
+</div>
+
+---
+
 ## Trạng Thái Bàn Giao
 
 Đã xong phần độc lập của Ấn:
@@ -102,6 +118,6 @@ Kết luận tạm:
 
 Còn chờ:
 
-- Phú chạy lại Solution 1 đủ 13 case
+- Phú đã có Geoapify/Overpass 10 case; còn Mapbox và đủ 13 case
 - Quang chạy lại Solution 2 đủ 13 case
 - Sau đó cập nhật compare final và kết luận winner

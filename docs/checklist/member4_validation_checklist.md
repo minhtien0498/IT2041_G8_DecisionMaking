@@ -24,14 +24,16 @@ Quy ước hiện tại:
 - [ ] Nhận output từ `Quang` (`Solution 2`)
   Kỳ vọng: đúng schema contract chung
 
-- [ ] Nhận output từ `Phú` (`Solution 1` pipeline hai LLM có guardrail)
-  Kỳ vọng: đúng schema contract chung
+- [x] Nhận output từ `Phú` (`Solution 1` pipeline hai LLM có guardrail)
+  Đã có: Geoapify và Overpass cho `V1_001`-`V1_010`.
+  Còn thiếu: Mapbox và `V1_011`-`V1_013`.
 
 - [x] Chạy validation và tổng hợp kết quả sơ bộ
   File tham chiếu hiện có:
   - [outputs/validation_report.md](../../outputs/validation_report.md)
   - [outputs/validation_summary.json](../../outputs/validation_summary.json)
   - [outputs/solution_comparison_v1_preliminary.md](../../outputs/solution_comparison_v1_preliminary.md)
+  - [outputs/solution1_provider_comparison_geoapify_overpass.md](../../outputs/solution1_provider_comparison_geoapify_overpass.md)
 
 - [x] Viết phần `Validation / Evaluation / Comparison` cho report draft
 
@@ -68,4 +70,4 @@ Quy ước hiện tại:
 
 ## Trạng thái chờ team
 
-Phần độc lập của Ấn đã xong. Compare final còn chờ Phú và Quang chạy lại đủ V1_001-V1_013.
+Phần độc lập của Ấn đã xong. Đã cập nhật compare provider cho Solution 1 Geoapify vs Overpass. Compare final còn chờ Mapbox, Solution 2 theo provider final và đủ V1_001-V1_013.

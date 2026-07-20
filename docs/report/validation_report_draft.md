@@ -70,7 +70,41 @@ Diễn giải:
 - `V1_008` và `V1_010` cần manual review vì Top 1 khác nhau.
 - Latency của Solution 1 cao hơn rõ rệt vì pipeline gọi nhiều lượt LLM/tool hơn, còn Solution 2 chạy nhanh hơn trên nhiều case.
 
-## 5. Case cần review kỹ
+
+## 5. Compare Provider Solution 1
+
+File compare provider mới: `outputs/solution1_provider_comparison_geoapify_overpass.md`.
+
+Sau khi Phú push output mới, Solution 1 đã có kết quả riêng cho `Geoapify` và `Overpass` trên 10 case `V1_001` - `V1_010`.
+
+| Chỉ số | Giá trị |
+|---|---:|
+| Geoapify coverage | 10/10 |
+| Overpass coverage | 10/10 |
+| Same Top 1 | 4/10 |
+| Average Top5 overlap | 3.20/5 |
+| Avg latency Geoapify | 317,397.1 ms |
+| Avg latency Overpass | 529,236.6 ms |
+
+Cause-effect:
+
+1. `SOLUTION1_ENRICHMENT_PROVIDER` chọn provider cho cả file dataset nạp vào DB và tool map động.
+2. Provider khác nhau trả về POI distance/count khác nhau.
+3. POI khác nhau làm Top 1 và Top 5 thay đổi.
+4. Vì vậy kết quả Solution 1 phải ghi rõ provider, không nên gộp Geoapify và Overpass thành một kết quả chung.
+
+Case lệch mạnh cần review thêm:
+
+- `V1_006`: Geoapify Top 1 `GV_008`, Overpass Top 1 `GV_018`, Top5 overlap `0/5`.
+- `V1_007`: Geoapify Top 1 `GV_009`, Overpass Top 1 `GV_002`, Top5 overlap `1/5`.
+
+Hiện vẫn thiếu:
+
+- Output Solution 1 Mapbox cho validation.
+- Output `V1_011` - `V1_013` cho các provider.
+- Output Solution 2 chạy lại theo cùng provider final.
+
+## 6. Case cần review kỹ
 
 ### V1_008 - Investor, nhiều chợ
 
@@ -100,7 +134,7 @@ Cause-effect:
 4. Solution 1 chọn `GV_002` vì giá rẻ và gần đường lớn hơn.
 5. Case này cần so explanation: solution nào giải thích rõ trade-off giữa cafe, đường lớn, yên tĩnh và diện tích tốt hơn.
 
-## 6. Phần còn chờ thành viên khác
+## 7. Phần còn chờ thành viên khác
 
 Phần độc lập của `Ấn` đã hoàn thành ở mức framework:
 
@@ -111,10 +145,10 @@ Phần độc lập của `Ấn` đã hoàn thành ở mức framework:
 
 Phần final còn chờ:
 
-1. `Phú` chạy lại Solution 1 trên đủ 13 case.
+1. `Phú` đã push Solution 1 cho Geoapify và Overpass trên 10 case; còn cần Mapbox và đủ 13 case.
 2. `Quang` chạy lại Solution 2 trên đủ 13 case.
 3. Sau khi có đủ output, `Ấn` cập nhật compare final và kết luận winner theo từng case.
 
-## 7. Kết luận tạm thời
+## 8. Kết luận tạm thời
 
 Ở trạng thái hiện tại, chưa nên kết luận solution nào thắng chung cuộc vì còn thiếu 3 case mới và 2 case cần manual review. Tuy nhiên, phần validation framework đã đủ để nhóm tiếp tục: mọi case đã có scope chấm rõ ràng, ground truth không còn bị lệch giữa `X-only` và `X + Y`, và các yêu cầu unsupported đã có cách xử lý minh bạch.
