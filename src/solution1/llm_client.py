@@ -18,6 +18,13 @@ import os
 
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 
+# Timeout tổng cho mỗi request (giây). SDK openai mặc định KHÔNG set timeout (chờ vô hạn
+# theo giới hạn của httpx/OS) — quan sát thực tế 1 request bị treo >40 phút (không lỗi,
+# không trả lời) làm cả case bị "kẹt" vô thời hạn thay vì fallback sang model/key khác.
+# Set timeout rõ ràng để request treo sẽ raise lỗi (timeout exception, không phải
+# _RETRYABLE_KEY_STATUS_CODES) và rớt sang model kế tiếp trong pool thay vì treo mãi.
+_REQUEST_TIMEOUT_S = float(os.environ.get("SOLUTION1_LLM_TIMEOUT_S", "120"))
+
 # nvidia/nemotron-3-ultra-550b-a55b:free (550B tham số, 55B active - MoE) được chọn làm
 # mặc định cho stage "reasoning": model nhiều tham số nhất trong pool free, kỳ vọng suy
 # luận/chấm điểm chính xác hơn. openai/gpt-oss-120b:free (nhỏ hơn) dùng cho stage
@@ -90,7 +97,10 @@ class OpenRouterLLMClient:
         self.last_model_used = None
         self.last_key_label_used = None
 
-        self._clients = [OpenAI(base_url=OPENROUTER_BASE_URL, api_key=k) for k in api_keys]
+        self._clients = [
+            OpenAI(base_url=OPENROUTER_BASE_URL, api_key=k, timeout=_REQUEST_TIMEOUT_S, max_retries=0)
+            for k in api_keys
+        ]
         self._key_labels = [f"key{i + 1}" for i in range(len(api_keys))]
         # Key "đang tốt" gần nhất — mỗi lần gọi mới bắt đầu thử từ đây trước, tránh lãng
         # phí request vào key đã biết là hết quota trong cùng 1 lần chạy pipeline.

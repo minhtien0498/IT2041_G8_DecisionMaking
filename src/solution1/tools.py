@@ -2,14 +2,27 @@
 
 3 tool cho LLM #1 (`reasoner.py`):
 - `sql_filter` — bắt buộc turn 1, lọc cứng qua Postgres (`db.py`).
-- `fetch_nearby_custom` — tùy chọn, tiện ích + bán kính tùy chỉnh qua Mapbox Tilequery.
-- `get_distance_to_place` — tùy chọn, khoảng cách tới 1 địa điểm cụ thể (Mapbox Geocoding).
+- `fetch_nearby_custom` — tùy chọn, tiện ích + bán kính tùy chỉnh qua client thật
+  (mapbox/geoapify/overpass, chọn qua `SOLUTION1_ENRICHMENT_PROVIDER`).
+- `get_distance_to_place` — tùy chọn, khoảng cách tới 1 địa điểm cụ thể (geocode qua
+  cùng client thật ở trên).
 
 Cả 2 tool enrichment đều batched theo `candidate_ids` (tiết kiệm turn budget) và chỉ
-tra cứu trong candidate set đã có từ `sql_filter` (không tự ý mở rộng ra ngoài).
+tra cứu trong candidate set đã có từ `sql_filter` (không tự ý mở rộng ra ngoài). Xem
+`enrichment_provider.py` để biết cách chọn provider — đổi 1 biến môi trường là tool
+chuyển hẳn sang API thật tương ứng, output/schema của tool không đổi.
 """
 
-from . import db, mapbox_client, schema
+from . import db, enrichment_provider, schema
+
+# 9 loại tiện ích "generic" mà fetch_nearby_custom hỗ trợ — không đổi theo provider,
+# vì cả 3 client (mapbox_client/geoapify_client/overpass_client) đều implement cùng
+# 1 tập amenity này (xem enrichment_provider.py). Đổi provider chỉ đổi API thật đứng
+# sau, không đổi danh sách amenity mà LLM được phép hỏi.
+AMENITY_TYPES = [
+    "cafe", "gym", "hospital", "kindergarten", "market",
+    "park", "pharmacy", "school", "supermarket",
+]
 
 TOOL_SCHEMAS = [
     {
@@ -48,8 +61,9 @@ TOOL_SCHEMAS = [
             "name": "fetch_nearby_custom",
             "description": (
                 "Tìm tiện ích quanh MỖI candidate trong bán kính radius_m tùy chỉnh, dùng "
-                "Mapbox Tilequery thật. Chỉ dùng khi free_text yêu cầu bán kính khác mặc "
-                "định 1km, hoặc loại tiện ích không có sẵn trong cột dữ liệu."
+                "API bản đồ thật (mapbox/geoapify/overpass tùy cấu hình). Chỉ dùng khi "
+                "free_text yêu cầu bán kính khác mặc định 1km, hoặc loại tiện ích không "
+                "có sẵn trong cột dữ liệu."
             ),
             "parameters": {
                 "type": "object",
@@ -58,7 +72,7 @@ TOOL_SCHEMAS = [
                         "type": "array", "items": {"type": "string"},
                         "description": "Danh sách property_id lấy từ kết quả sql_filter.",
                     },
-                    "amenity": {"type": "string", "enum": sorted(mapbox_client.AMENITY_KEYWORDS.keys())},
+                    "amenity": {"type": "string", "enum": AMENITY_TYPES},
                     "radius_m": {"type": "integer", "description": "Bán kính tìm kiếm, đơn vị mét."},
                 },
                 "required": ["candidate_ids", "amenity", "radius_m"],
@@ -71,9 +85,9 @@ TOOL_SCHEMAS = [
             "name": "get_distance_to_place",
             "description": (
                 "Tính khoảng cách từ MỖI candidate tới 1 địa điểm/địa chỉ cụ thể (vd 'chỗ "
-                "làm ở 123 Nguyễn Oanh', 'Chung cư Landmark 81'), dùng Mapbox Geocoding + "
-                "haversine thật. Chỉ dùng khi free_text nhắc địa điểm cụ thể, không phải "
-                "loại tiện ích chung."
+                "làm ở 123 Nguyễn Oanh', 'Chung cư Landmark 81'), dùng geocoding + haversine "
+                "thật (mapbox/geoapify/overpass tùy cấu hình). Chỉ dùng khi free_text nhắc "
+                "địa điểm cụ thể, không phải loại tiện ích chung."
             ),
             "parameters": {
                 "type": "object",
@@ -105,6 +119,9 @@ class ToolExecutor:
         # kể cả khi free model tính sai/bỏ sót lúc dịch form -> điều kiện SQL.
         self.required_conditions = required_conditions or []
         self.candidates_by_id = {}
+        # Client enrichment thật (mapbox/geoapify/overpass) theo
+        # SOLUTION1_ENRICHMENT_PROVIDER — luôn cùng nguồn với dataset đã nạp vào DB.
+        self.client = enrichment_provider.get_client()
 
     def sql_filter(self, conditions):
         merged = list(self.required_conditions) + list(conditions or [])
@@ -133,12 +150,12 @@ class ToolExecutor:
             prop = self.candidates_by_id.get(pid)
             if not prop:
                 continue
-            r = mapbox_client.fetch_nearby_one(prop["latitude"], prop["longitude"], amenity, radius_m)
+            r = self.client.fetch_nearby_one(prop["latitude"], prop["longitude"], amenity, radius_m)
             results.append({"property_id": pid, **r})
         return results
 
     def get_distance_to_place(self, candidate_ids, place_query_or_address):
-        geo = mapbox_client.geocode_address(place_query_or_address)
+        geo = self.client.geocode_address(place_query_or_address)
         if not geo:
             return {"error": "Không tìm thấy địa điểm.", "results": []}
         results = []
@@ -146,7 +163,7 @@ class ToolExecutor:
             prop = self.candidates_by_id.get(pid)
             if not prop:
                 continue
-            d = mapbox_client.get_distance_m(prop["latitude"], prop["longitude"], geo["lat"], geo["lon"])
+            d = self.client.get_distance_m(prop["latitude"], prop["longitude"], geo["lat"], geo["lon"])
             results.append({"property_id": pid, "distance_m": round(d)})
         return {"place_name": geo["place_name"], "results": results}
 
