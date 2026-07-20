@@ -26,7 +26,8 @@ IT2041_G8_DecisionMaking/
 │   │   ├── __init__.py
 │   │   ├── prepare_data.py   # Script legacy cho bộ Gò Vấp cũ
 │   │   ├── prepare_gv_tb_100.py # Tạo bộ clean dataset 100 căn
-│   │   └── enrich_gv_tb_100.py  # Enrich POI cho bộ 100 căn
+│   │   ├── enrich_gv_tb_100.py  # Enrich POI thủ công cho bộ 100 căn
+│   │   └── enrich_gv_tb_100_overpass_api.py # Resume enrich bằng Overpass API
 │   ├── demo/                 # Modules chạy kịch bản & giao diện demo
 │   │   ├── __init__.py
 │   │   └── run_solution2.py  # Demo hiện tại cho Solution 2
@@ -117,6 +118,14 @@ Ghi chú định hướng hiện tại: `Mapbox` là provider được ưu tiên
 
 Notebook:
 - [notebooks/enrich_gv_tb_100_overpass_pipeline.ipynb](notebooks/enrich_gv_tb_100_overpass_pipeline.ipynb)
+
+Script resume/checkpoint:
+- [src/data/enrich_gv_tb_100_overpass_api.py](src/data/enrich_gv_tb_100_overpass_api.py)
+
+Chạy tiếp các mẫu còn thiếu từ checkpoint:
+```bash
+python3 src/data/enrich_gv_tb_100_overpass_api.py
+```
 
 Thư mục output:
 - [data/overpass](data/overpass)
@@ -228,7 +237,7 @@ Hoặc mở trực tiếp bằng Jupyter và chạy theo cell.
 ### 7. So sánh provider
 
 File tổng hợp hiện tại:
-- [docs/provider_comparison_overpass_vs_geoapify.md](docs/provider_comparison_overpass_vs_geoapify.md)
+- [docs/provider_comparison_overpass_geoapify_mapbox.md](docs/provider_comparison_overpass_geoapify_mapbox.md)
 
 File này so sánh nhanh:
 - giá cả / quota / limit
@@ -346,3 +355,50 @@ Lưu ý:
   - `data/go_vap_tan_binh_100.json`
   - `data/go_vap_tan_binh_100_enriched.json`
 - Khi migrate xong pipeline/validation sang bộ mới, nhóm nên tạo một báo cáo kết quả mới thay cho baseline midterm này.
+
+---
+
+## 🌐 Web demo recommendation + validation
+
+Repo có FastAPI backend tại `web/app.py` và frontend tại `web/index.html`.
+
+Checklist chạy demo và kịch bản test chi tiết:
+- [web/README.md](web/README.md)
+- [web/web_demo_steps.ipynb](web/web_demo_steps.ipynb)
+
+### 1. Cấu hình key
+
+File `.env` ở root được app tự load:
+
+```bash
+GEOAPIFY_API_KEY=your_geoapify_api_key
+MAPBOX_TOKEN=your_mapbox_public_token
+OPENROUTER_API_KEYS=your_openrouter_key
+SOLUTION1_DB_DSN=postgresql://solution1:solution1@localhost:5433/solution1
+```
+
+Lưu ý:
+- `Solution 2` chạy được với JSON dataset local; nếu free-text yêu cầu tiện ích động thì pipeline có thể gọi Overpass API/cache.
+- `Solution 1` cần Postgres và `OPENROUTER_API_KEYS` vì đây là pipeline 2-LLM.
+
+### 2. Chạy web
+
+```bash
+pip install -r requirements.txt
+docker compose up -d solution1_db
+uvicorn web.app:app --reload --port 8000
+```
+
+Mở:
+
+```text
+http://127.0.0.1:8000
+```
+
+### 3. Tính năng chính
+
+- Nhập ngân sách, số phòng ngủ, khoảng diện tích, nhu cầu tự do và trọng số tiêu chí.
+- Chọn `Solution 1`, `Solution 2` hoặc chạy cả hai, sau đó trả về Top X kết quả.
+- Đánh giá kết quả hiện tại bằng hard-constraint pass rate, expected priority coverage, và IR metrics nếu case có `ground_truth_top5`.
+- Chạy batch validation trên `validation_cases_v1` hoặc `validation_50_scenarios`.
+- Khi không có ground truth, UI hiển thị rubric chấm tay: relevance, constraint fit, explainability, diversity, trust.
