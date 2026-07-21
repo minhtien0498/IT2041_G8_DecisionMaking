@@ -87,11 +87,28 @@
         "price_billion_vnd": 5.9
       }
     ],
-    "explanation_summary": "Top 1 là GV_010 (SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN ) với final_score 0.656 (base 0.656, additional 0.000). Không có nhu cầu bổ sung đo lường được; xếp hạng dựa trên form. Một số nhu cầu đã có sẵn trong form nên được hợp nhất: uu tien gan truong, cong vien. Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Gia dinh co 2 con nho.",
+    "explanation_summary": "Top 1 là GV_010 (SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN ) với final_score 0.656 (base 0.656, additional 0.000). Không có nhu cầu bổ sung đo lường được; xếp hạng dựa trên form. Một số nhu cầu đã có sẵn trong form nên được hợp nhất: ưu tiên gần trường, công viên. Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Gia đình có 2 con nhỏ.",
     "unsupported_requirements": [
-      "Gia dinh co 2 con nho"
+      "Gia đình có 2 con nhỏ"
     ],
-    "latency_ms": 1.0
+    "latency_ms": 1.0,
+    "parsed_requirements": {
+      "hard": [],
+      "soft": [],
+      "duplicates": [
+        {
+          "raw_phrase": "ưu tiên gần trường",
+          "form_field": "distance_to_nearest_school_m"
+        },
+        {
+          "raw_phrase": "công viên",
+          "form_field": "distance_to_nearest_park_m"
+        }
+      ],
+      "unsupported": [
+        "Gia đình có 2 con nhỏ"
+      ]
+    }
   },
   {
     "case_id": "V1_002",
@@ -174,11 +191,24 @@
         "price_billion_vnd": 4.8
       }
     ],
-    "explanation_summary": "Top 1 là GV_002 (⭐️ Giảm 50tr! Nhà Vuông SHR 2 tầng 26m2 – Quang Tr) với final_score 0.638 (base 0.638, additional 0.000). Không có nhu cầu bổ sung đo lường được; xếp hạng dựa trên form. Một số nhu cầu đã có sẵn trong form nên được hợp nhất: co sieu thi gan nha. Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Muon gia re.",
+    "explanation_summary": "Top 1 là GV_002 (⭐️ Giảm 50tr! Nhà Vuông SHR 2 tầng 26m2 – Quang Tr) với final_score 0.638 (base 0.638, additional 0.000). Không có nhu cầu bổ sung đo lường được; xếp hạng dựa trên form. Một số nhu cầu đã có sẵn trong form nên được hợp nhất: có siêu thị gần nhà. Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Muốn giá rẻ.",
     "unsupported_requirements": [
-      "Muon gia re"
+      "Muốn giá rẻ"
     ],
-    "latency_ms": 0.3
+    "latency_ms": 0.3,
+    "parsed_requirements": {
+      "hard": [],
+      "soft": [],
+      "duplicates": [
+        {
+          "raw_phrase": "có siêu thị gần nhà",
+          "form_field": "distance_to_nearest_supermarket_m"
+        }
+      ],
+      "unsupported": [
+        "Muốn giá rẻ"
+      ]
+    }
   },
   {
     "case_id": "V1_003",
@@ -263,11 +293,19 @@
         "price_billion_vnd": 5.28
       }
     ],
-    "explanation_summary": "Top 1 là GV_010 (SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN ) với final_score 0.588 (base 0.588, additional 0.000). Không có nhu cầu bổ sung đo lường được; xếp hạng dựa trên form. Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Uu tien don gia tren m2 thap.",
+    "explanation_summary": "Top 1 là GV_010 (SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN ) với final_score 0.588 (base 0.588, additional 0.000). Không có nhu cầu bổ sung đo lường được; xếp hạng dựa trên form. Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Ưu tiên đơn giá trên m2 thấp.",
     "unsupported_requirements": [
-      "Uu tien don gia tren m2 thap"
+      "Ưu tiên đơn giá trên m2 thấp"
     ],
-    "latency_ms": 0.6
+    "latency_ms": 0.6,
+    "parsed_requirements": {
+      "hard": [],
+      "soft": [],
+      "duplicates": [],
+      "unsupported": [
+        "Ưu tiên đơn giá trên m2 thấp"
+      ]
+    }
   },
   {
     "case_id": "V1_004",
@@ -349,9 +387,24 @@
         "price_billion_vnd": 4.65
       }
     ],
-    "explanation_summary": "Top 1 là GV_009 (⭐️ Nhà Vuông SHR 3 tầng HXH 44m2 – Nguyễn Văn Khối) với final_score 0.794 (base 0.794, additional 0.000). Không có nhu cầu bổ sung đo lường được; xếp hạng dựa trên form. Một số nhu cầu đã có sẵn trong form nên được hợp nhất: Can gan benh vien, cong vien de di bo.",
+    "explanation_summary": "Top 1 là GV_009 (⭐️ Nhà Vuông SHR 3 tầng HXH 44m2 – Nguyễn Văn Khối) với final_score 0.794 (base 0.794, additional 0.000). Không có nhu cầu bổ sung đo lường được; xếp hạng dựa trên form. Một số nhu cầu đã có sẵn trong form nên được hợp nhất: Cần gần bệnh viện, công viên để đi bộ.",
     "unsupported_requirements": [],
-    "latency_ms": 0.4
+    "latency_ms": 0.4,
+    "parsed_requirements": {
+      "hard": [],
+      "soft": [],
+      "duplicates": [
+        {
+          "raw_phrase": "Cần gần bệnh viện",
+          "form_field": "distance_to_nearest_hospital_m"
+        },
+        {
+          "raw_phrase": "công viên để đi bộ",
+          "form_field": "distance_to_nearest_park_m"
+        }
+      ],
+      "unsupported": []
+    }
   },
   {
     "case_id": "V1_005",
@@ -433,11 +486,24 @@
         "price_billion_vnd": 4.8
       }
     ],
-    "explanation_summary": "Top 1 là GV_002 (⭐️ Giảm 50tr! Nhà Vuông SHR 2 tầng 26m2 – Quang Tr) với final_score 0.625 (base 0.625, additional 0.000). Không có nhu cầu bổ sung đo lường được; xếp hạng dựa trên form. Một số nhu cầu đã có sẵn trong form nên được hợp nhất: gan sieu thi. Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Can nha vua tui tien.",
+    "explanation_summary": "Top 1 là GV_002 (⭐️ Giảm 50tr! Nhà Vuông SHR 2 tầng 26m2 – Quang Tr) với final_score 0.625 (base 0.625, additional 0.000). Không có nhu cầu bổ sung đo lường được; xếp hạng dựa trên form. Một số nhu cầu đã có sẵn trong form nên được hợp nhất: gần siêu thị. Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Cần nhà vừa túi tiền.",
     "unsupported_requirements": [
-      "Can nha vua tui tien"
+      "Cần nhà vừa túi tiền"
     ],
-    "latency_ms": 0.3
+    "latency_ms": 0.3,
+    "parsed_requirements": {
+      "hard": [],
+      "soft": [],
+      "duplicates": [
+        {
+          "raw_phrase": "gần siêu thị",
+          "form_field": "distance_to_nearest_supermarket_m"
+        }
+      ],
+      "unsupported": [
+        "Cần nhà vừa túi tiền"
+      ]
+    }
   },
   {
     "case_id": "V1_006",
@@ -590,7 +656,31 @@
     ],
     "explanation_summary": "Top 1 là GV_008 (Nhà Lô góc SHR 2 tầng HXH 33m2 – Quang Trung Gò Vấ) với final_score 0.721 (base 0.632, additional 0.927). Nhu cầu bổ sung (trường mầm non) đã được đưa vào tính điểm và có thể thay đổi thứ hạng so với khi chỉ dùng form. TB_006 phù hợp nhất với nhu cầu bổ sung (additional_score 1.000).",
     "unsupported_requirements": [],
-    "latency_ms": 5.0
+    "latency_ms": 4.9,
+    "parsed_requirements": {
+      "hard": [
+        {
+          "raw_phrase": "Nhà phải có chợ trong vòng 1km",
+          "amenity_name": "market",
+          "derived_attribute": "distance_to_nearest_market_m",
+          "agg": "nearest_distance",
+          "radius_m": 1000,
+          "direction": "lower_better"
+        }
+      ],
+      "soft": [
+        {
+          "raw_phrase": "ưu tiên gần trường mầm non cho con",
+          "amenity_name": "kindergarten",
+          "derived_attribute": "distance_to_nearest_kindergarten_m",
+          "agg": "nearest_distance",
+          "radius_m": 1000,
+          "direction": "lower_better"
+        }
+      ],
+      "duplicates": [],
+      "unsupported": []
+    }
   },
   {
     "case_id": "V1_007",
@@ -795,11 +885,36 @@
         "price_billion_vnd": 4.55
       }
     ],
-    "explanation_summary": "Top 1 là GV_002 (⭐️ Giảm 50tr! Nhà Vuông SHR 2 tầng 26m2 – Quang Tr) với final_score 0.624 (base 0.638, additional 0.590). Nhu cầu bổ sung (nhà thuốc, phòng gym) đã được đưa vào tính điểm và có thể thay đổi thứ hạng so với khi chỉ dùng form. GV_009 phù hợp nhất với nhu cầu bổ sung (additional_score 0.977). Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Khu nhieu tien ich.",
+    "explanation_summary": "Top 1 là GV_002 (⭐️ Giảm 50tr! Nhà Vuông SHR 2 tầng 26m2 – Quang Tr) với final_score 0.624 (base 0.638, additional 0.590). Nhu cầu bổ sung (nhà thuốc, phòng gym) đã được đưa vào tính điểm và có thể thay đổi thứ hạng so với khi chỉ dùng form. GV_009 phù hợp nhất với nhu cầu bổ sung (additional_score 0.977). Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Khu nhiều tiện ích.",
     "unsupported_requirements": [
-      "Khu nhieu tien ich"
+      "Khu nhiều tiện ích"
     ],
-    "latency_ms": 155579.6
+    "latency_ms": 6.9,
+    "parsed_requirements": {
+      "hard": [],
+      "soft": [
+        {
+          "raw_phrase": "ưu tiên gần nhà thuốc",
+          "amenity_name": "pharmacy",
+          "derived_attribute": "distance_to_nearest_pharmacy_m",
+          "agg": "nearest_distance",
+          "radius_m": 1000,
+          "direction": "lower_better"
+        },
+        {
+          "raw_phrase": "có phòng gym xung quanh",
+          "amenity_name": "gym",
+          "derived_attribute": "nearby_gym_count_within_1000m",
+          "agg": "count",
+          "radius_m": 1000,
+          "direction": "higher_better"
+        }
+      ],
+      "duplicates": [],
+      "unsupported": [
+        "Khu nhiều tiện ích"
+      ]
+    }
   },
   {
     "case_id": "V1_008",
@@ -944,11 +1059,28 @@
         "price_billion_vnd": 11.3
       }
     ],
-    "explanation_summary": "Top 1 là TB_035 (Hiếm: Mặt tiền Âu Cơ – Nhà rộng 110m² – 5 phòng ng) với final_score 0.674 (base 0.535, additional 1.000). Nhu cầu bổ sung (chợ) đã được đưa vào tính điểm và có thể thay đổi thứ hạng so với khi chỉ dùng form. TB_035 phù hợp nhất với nhu cầu bổ sung (additional_score 1.000). Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Muon khu sam uat de cho thue nhung gia tren m2 van phai thap.",
+    "explanation_summary": "Top 1 là TB_035 (Hiếm: Mặt tiền Âu Cơ – Nhà rộng 110m² – 5 phòng ng) với final_score 0.674 (base 0.535, additional 1.000). Nhu cầu bổ sung (chợ) đã được đưa vào tính điểm và có thể thay đổi thứ hạng so với khi chỉ dùng form. TB_035 phù hợp nhất với nhu cầu bổ sung (additional_score 1.000). Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Muốn khu sầm uất để cho thuê nhưng giá trên m2 vẫn phải thấp.",
     "unsupported_requirements": [
-      "Muon khu sam uat de cho thue nhung gia tren m2 van phai thap"
+      "Muốn khu sầm uất để cho thuê nhưng giá trên m2 vẫn phải thấp"
     ],
-    "latency_ms": 6.2
+    "latency_ms": 3.2,
+    "parsed_requirements": {
+      "hard": [],
+      "soft": [
+        {
+          "raw_phrase": "ưu tiên nhiều chợ",
+          "amenity_name": "market",
+          "derived_attribute": "nearby_market_count_within_1000m",
+          "agg": "count",
+          "radius_m": 1000,
+          "direction": "higher_better"
+        }
+      ],
+      "duplicates": [],
+      "unsupported": [
+        "Muốn khu sầm uất để cho thuê nhưng giá trên m2 vẫn phải thấp"
+      ]
+    }
   },
   {
     "case_id": "V1_009",
@@ -1030,14 +1162,25 @@
         "price_billion_vnd": 4.65
       }
     ],
-    "explanation_summary": "Top 1 là GV_009 (⭐️ Nhà Vuông SHR 3 tầng HXH 44m2 – Nguyễn Văn Khối) với final_score 0.753 (base 0.753, additional 0.000). Không có nhu cầu bổ sung đo lường được; xếp hạng dựa trên form. Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Muon noi yen tinh; dan tri cao; hop phong thuy; hang xom than thien.",
+    "explanation_summary": "Top 1 là GV_009 (⭐️ Nhà Vuông SHR 3 tầng HXH 44m2 – Nguyễn Văn Khối) với final_score 0.753 (base 0.753, additional 0.000). Không có nhu cầu bổ sung đo lường được; xếp hạng dựa trên form. Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Muốn nơi yên tĩnh; dân trí cao; hợp phong thủy; hàng xóm thân thiện.",
     "unsupported_requirements": [
-      "Muon noi yen tinh",
-      "dan tri cao",
-      "hop phong thuy",
-      "hang xom than thien"
+      "Muốn nơi yên tĩnh",
+      "dân trí cao",
+      "hợp phong thủy",
+      "hàng xóm thân thiện"
     ],
-    "latency_ms": 0.5
+    "latency_ms": 0.5,
+    "parsed_requirements": {
+      "hard": [],
+      "soft": [],
+      "duplicates": [],
+      "unsupported": [
+        "Muốn nơi yên tĩnh",
+        "dân trí cao",
+        "hợp phong thủy",
+        "hàng xóm thân thiện"
+      ]
+    }
   },
   {
     "case_id": "V1_010",
@@ -1183,10 +1326,737 @@
         "price_billion_vnd": 2.85
       }
     ],
-    "explanation_summary": "Top 1 là GV_010 (SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN ) với final_score 0.701 (base 0.572, additional 1.000). Nhu cầu bổ sung (quán cà phê) đã được đưa vào tính điểm và có thể thay đổi thứ hạng so với khi chỉ dùng form. GV_010 phù hợp nhất với nhu cầu bổ sung (additional_score 1.000). Một số nhu cầu đã có sẵn trong form nên được hợp nhất: Muon gan duong lon de di lam. Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): nhung cung muon yen tinh.",
+    "explanation_summary": "Top 1 là GV_010 (SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN ) với final_score 0.701 (base 0.572, additional 1.000). Nhu cầu bổ sung (quán cà phê) đã được đưa vào tính điểm và có thể thay đổi thứ hạng so với khi chỉ dùng form. GV_010 phù hợp nhất với nhu cầu bổ sung (additional_score 1.000). Một số nhu cầu đã có sẵn trong form nên được hợp nhất: Muốn gần đường lớn để đi làm. Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): nhưng cũng muốn yên tĩnh.",
     "unsupported_requirements": [
-      "nhung cung muon yen tinh"
+      "nhưng cũng muốn yên tĩnh"
     ],
-    "latency_ms": 3.8
+    "latency_ms": 3.8,
+    "parsed_requirements": {
+      "hard": [],
+      "soft": [
+        {
+          "raw_phrase": "có nhiều quán cà phê",
+          "amenity_name": "cafe",
+          "derived_attribute": "nearby_cafe_count_within_1000m",
+          "agg": "count",
+          "radius_m": 1000,
+          "direction": "higher_better"
+        }
+      ],
+      "duplicates": [
+        {
+          "raw_phrase": "Muốn gần đường lớn để đi làm",
+          "form_field": "distance_to_nearest_boulevard_m"
+        }
+      ],
+      "unsupported": [
+        "nhưng cũng muốn yên tĩnh"
+      ]
+    }
+  },
+  {
+    "case_id": "V1_011",
+    "solution_id": "solution_2",
+    "status": "ok",
+    "top5": [
+      {
+        "rank": 1,
+        "property_id": "GV_010",
+        "total_score": 0.6643,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "near_boulevard",
+          "near_supermarket",
+          "good_cafe",
+          "good_gym"
+        ],
+        "base_score": 0.5727,
+        "additional_score": 0.8779,
+        "dynamic_attributes": {
+          "nearby_cafe_count_within_1000m": {
+            "value": 19,
+            "unit": "place",
+            "source": "map_api",
+            "amenity_name": "cafe",
+            "radius_m": 1000,
+            "preference_type": "higher_better",
+            "normalized_score": 1.0,
+            "weight_normalized": 0.5,
+            "contribution_score": 0.5
+          },
+          "distance_to_nearest_gym_m": {
+            "value": 772,
+            "unit": "meter",
+            "source": "map_api",
+            "amenity_name": "gym",
+            "radius_m": 1000,
+            "preference_type": "lower_better",
+            "normalized_score": 0.756,
+            "weight_normalized": 0.5,
+            "contribution_score": 0.3779
+          }
+        },
+        "title": "SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN CITYLAND NGUYỄN VĂN LƯỢNG",
+        "price_billion_vnd": 4.55
+      },
+      {
+        "rank": 2,
+        "property_id": "GV_009",
+        "total_score": 0.617,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "near_supermarket",
+          "good_cafe",
+          "good_gym"
+        ],
+        "base_score": 0.4529,
+        "additional_score": 1.0,
+        "dynamic_attributes": {
+          "nearby_cafe_count_within_1000m": {
+            "value": 19,
+            "unit": "place",
+            "source": "map_api",
+            "amenity_name": "cafe",
+            "radius_m": 1000,
+            "preference_type": "higher_better",
+            "normalized_score": 1.0,
+            "weight_normalized": 0.5,
+            "contribution_score": 0.5
+          },
+          "distance_to_nearest_gym_m": {
+            "value": 399,
+            "unit": "meter",
+            "source": "map_api",
+            "amenity_name": "gym",
+            "radius_m": 1000,
+            "preference_type": "lower_better",
+            "normalized_score": 1.0,
+            "weight_normalized": 0.5,
+            "contribution_score": 0.5
+          }
+        },
+        "title": "⭐️ Nhà Vuông SHR 3 tầng HXH 44m2 – Nguyễn Văn Khối Gò Vấp",
+        "price_billion_vnd": 4.35
+      },
+      {
+        "rank": 3,
+        "property_id": "GV_011",
+        "total_score": 0.6093,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "near_boulevard",
+          "near_supermarket",
+          "good_cafe",
+          "good_gym"
+        ],
+        "base_score": 0.525,
+        "additional_score": 0.806,
+        "dynamic_attributes": {
+          "nearby_cafe_count_within_1000m": {
+            "value": 17,
+            "unit": "place",
+            "source": "map_api",
+            "amenity_name": "cafe",
+            "radius_m": 1000,
+            "preference_type": "higher_better",
+            "normalized_score": 0.889,
+            "weight_normalized": 0.5,
+            "contribution_score": 0.4444
+          },
+          "distance_to_nearest_gym_m": {
+            "value": 822,
+            "unit": "meter",
+            "source": "map_api",
+            "amenity_name": "gym",
+            "radius_m": 1000,
+            "preference_type": "lower_better",
+            "normalized_score": 0.723,
+            "weight_normalized": 0.5,
+            "contribution_score": 0.3616
+          }
+        },
+        "title": "Giảm 100tr! Nhà Nở hậu SHR 2 tầng HXH 38m2 – Thống Nhất Gò Vấp",
+        "price_billion_vnd": 4.55
+      },
+      {
+        "rank": 4,
+        "property_id": "GV_002",
+        "total_score": 0.5917,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "good_price",
+          "near_boulevard",
+          "near_supermarket",
+          "good_gym"
+        ],
+        "base_score": 0.6315,
+        "additional_score": 0.4988,
+        "dynamic_attributes": {
+          "nearby_cafe_count_within_1000m": {
+            "value": 6,
+            "unit": "place",
+            "source": "map_api",
+            "amenity_name": "cafe",
+            "radius_m": 1000,
+            "preference_type": "higher_better",
+            "normalized_score": 0.278,
+            "weight_normalized": 0.5,
+            "contribution_score": 0.1389
+          },
+          "distance_to_nearest_gym_m": {
+            "value": 827,
+            "unit": "meter",
+            "source": "map_api",
+            "amenity_name": "gym",
+            "radius_m": 1000,
+            "preference_type": "lower_better",
+            "normalized_score": 0.72,
+            "weight_normalized": 0.5,
+            "contribution_score": 0.3599
+          }
+        },
+        "title": "⭐️ Giảm 50tr! Nhà Vuông SHR 2 tầng 26m2 – Quang Trung Gò Vấp",
+        "price_billion_vnd": 2.85
+      },
+      {
+        "rank": 5,
+        "property_id": "GV_012",
+        "total_score": 0.5701,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "near_supermarket",
+          "good_cafe",
+          "good_gym"
+        ],
+        "base_score": 0.4535,
+        "additional_score": 0.8423,
+        "dynamic_attributes": {
+          "nearby_cafe_count_within_1000m": {
+            "value": 18,
+            "unit": "place",
+            "source": "map_api",
+            "amenity_name": "cafe",
+            "radius_m": 1000,
+            "preference_type": "higher_better",
+            "normalized_score": 0.944,
+            "weight_normalized": 0.5,
+            "contribution_score": 0.4722
+          },
+          "distance_to_nearest_gym_m": {
+            "value": 796,
+            "unit": "meter",
+            "source": "map_api",
+            "amenity_name": "gym",
+            "radius_m": 1000,
+            "preference_type": "lower_better",
+            "normalized_score": 0.74,
+            "weight_normalized": 0.5,
+            "contribution_score": 0.3701
+          }
+        },
+        "title": "Bán nhà 2 Tầng HXH Thống nhất p16 Gò Vấp",
+        "price_billion_vnd": 4.65
+      }
+    ],
+    "explanation_summary": "Top 1 là GV_010 (SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN ) với final_score 0.664 (base 0.573, additional 0.878). Nhu cầu bổ sung (quán cà phê, phòng gym) đã được đưa vào tính điểm và có thể thay đổi thứ hạng so với khi chỉ dùng form. GV_009 phù hợp nhất với nhu cầu bổ sung (additional_score 1.000).",
+    "unsupported_requirements": [],
+    "latency_ms": 2.7,
+    "parsed_requirements": {
+      "hard": [],
+      "soft": [
+        {
+          "raw_phrase": "muốn có nhiều quán cà phê",
+          "amenity_name": "cafe",
+          "derived_attribute": "nearby_cafe_count_within_1000m",
+          "agg": "count",
+          "radius_m": 1000,
+          "direction": "higher_better"
+        },
+        {
+          "raw_phrase": "phòng gym trong bán kính 1km",
+          "amenity_name": "gym",
+          "derived_attribute": "distance_to_nearest_gym_m",
+          "agg": "nearest_distance",
+          "radius_m": 1000,
+          "direction": "lower_better"
+        }
+      ],
+      "duplicates": [],
+      "unsupported": []
+    }
+  },
+  {
+    "case_id": "V1_012",
+    "solution_id": "solution_2",
+    "status": "ok",
+    "top5": [
+      {
+        "rank": 1,
+        "property_id": "GV_010",
+        "total_score": 0.692,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "good_price",
+          "near_school",
+          "near_park",
+          "near_supermarket",
+          "good_kindergarten",
+          "good_pharmacy"
+        ],
+        "base_score": 0.6366,
+        "additional_score": 0.8211,
+        "dynamic_attributes": {
+          "distance_to_nearest_kindergarten_m": {
+            "value": 799,
+            "unit": "meter",
+            "source": "map_api",
+            "amenity_name": "kindergarten",
+            "radius_m": 1000,
+            "preference_type": "lower_better",
+            "normalized_score": 0.642,
+            "weight_normalized": 0.5,
+            "contribution_score": 0.3211
+          },
+          "distance_to_nearest_pharmacy_m": {
+            "value": 122,
+            "unit": "meter",
+            "source": "map_api",
+            "amenity_name": "pharmacy",
+            "radius_m": 1000,
+            "preference_type": "lower_better",
+            "normalized_score": 1.0,
+            "weight_normalized": 0.5,
+            "contribution_score": 0.5
+          }
+        },
+        "title": "SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN CITYLAND NGUYỄN VĂN LƯỢNG",
+        "price_billion_vnd": 4.55
+      },
+      {
+        "rank": 2,
+        "property_id": "GV_008",
+        "total_score": 0.6907,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "good_price",
+          "near_school",
+          "good_kindergarten",
+          "good_pharmacy"
+        ],
+        "base_score": 0.5904,
+        "additional_score": 0.9247,
+        "dynamic_attributes": {
+          "distance_to_nearest_kindergarten_m": {
+            "value": 266,
+            "unit": "meter",
+            "source": "map_api",
+            "amenity_name": "kindergarten",
+            "radius_m": 1000,
+            "preference_type": "lower_better",
+            "normalized_score": 0.927,
+            "weight_normalized": 0.5,
+            "contribution_score": 0.4636
+          },
+          "distance_to_nearest_pharmacy_m": {
+            "value": 227,
+            "unit": "meter",
+            "source": "map_api",
+            "amenity_name": "pharmacy",
+            "radius_m": 1000,
+            "preference_type": "lower_better",
+            "normalized_score": 0.922,
+            "weight_normalized": 0.5,
+            "contribution_score": 0.4611
+          }
+        },
+        "title": "Nhà Lô góc SHR 2 tầng HXH 33m2 – Quang Trung Gò Vấp",
+        "price_billion_vnd": 4.1
+      },
+      {
+        "rank": 3,
+        "property_id": "TB_006",
+        "total_score": 0.6369,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "good_price",
+          "near_school",
+          "near_park",
+          "good_kindergarten",
+          "good_pharmacy"
+        ],
+        "base_score": 0.5248,
+        "additional_score": 0.8984,
+        "dynamic_attributes": {
+          "distance_to_nearest_kindergarten_m": {
+            "value": 130,
+            "unit": "meter",
+            "source": "map_api",
+            "amenity_name": "kindergarten",
+            "radius_m": 1000,
+            "preference_type": "lower_better",
+            "normalized_score": 1.0,
+            "weight_normalized": 0.5,
+            "contribution_score": 0.5
+          },
+          "distance_to_nearest_pharmacy_m": {
+            "value": 396,
+            "unit": "meter",
+            "source": "map_api",
+            "amenity_name": "pharmacy",
+            "radius_m": 1000,
+            "preference_type": "lower_better",
+            "normalized_score": 0.797,
+            "weight_normalized": 0.5,
+            "contribution_score": 0.3984
+          }
+        },
+        "title": "Bán nhà 3 tầng Nguyễn Hồng Đào 3m5×7m5 Phường 14 Quận Tân Bình",
+        "price_billion_vnd": 5.2
+      },
+      {
+        "rank": 4,
+        "property_id": "GV_026",
+        "total_score": 0.6303,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "near_school",
+          "near_park",
+          "near_supermarket",
+          "good_kindergarten",
+          "good_pharmacy"
+        ],
+        "base_score": 0.5484,
+        "additional_score": 0.8215,
+        "dynamic_attributes": {
+          "distance_to_nearest_kindergarten_m": {
+            "value": 563,
+            "unit": "meter",
+            "source": "map_api",
+            "amenity_name": "kindergarten",
+            "radius_m": 1000,
+            "preference_type": "lower_better",
+            "normalized_score": 0.768,
+            "weight_normalized": 0.5,
+            "contribution_score": 0.3842
+          },
+          "distance_to_nearest_pharmacy_m": {
+            "value": 291,
+            "unit": "meter",
+            "source": "map_api",
+            "amenity_name": "pharmacy",
+            "radius_m": 1000,
+            "preference_type": "lower_better",
+            "normalized_score": 0.875,
+            "weight_normalized": 0.5,
+            "contribution_score": 0.4373
+          }
+        },
+        "title": "Nhà Vuông SHR 2 tầng HXH 47m2 – Quang Trung Gò Vấp",
+        "price_billion_vnd": 5.9
+      },
+      {
+        "rank": 5,
+        "property_id": "GV_020",
+        "total_score": 0.6154,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "good_price",
+          "near_school",
+          "near_supermarket",
+          "good_kindergarten",
+          "good_pharmacy"
+        ],
+        "base_score": 0.5331,
+        "additional_score": 0.8075,
+        "dynamic_attributes": {
+          "distance_to_nearest_kindergarten_m": {
+            "value": 804,
+            "unit": "meter",
+            "source": "map_api",
+            "amenity_name": "kindergarten",
+            "radius_m": 1000,
+            "preference_type": "lower_better",
+            "normalized_score": 0.64,
+            "weight_normalized": 0.5,
+            "contribution_score": 0.3198
+          },
+          "distance_to_nearest_pharmacy_m": {
+            "value": 155,
+            "unit": "meter",
+            "source": "map_api",
+            "amenity_name": "pharmacy",
+            "radius_m": 1000,
+            "preference_type": "lower_better",
+            "normalized_score": 0.976,
+            "weight_normalized": 0.5,
+            "contribution_score": 0.4878
+          }
+        },
+        "title": "Bán nhà 49m² 2 tầng quang trung 3m5×14m² Phường 14 Quận Gò Vấp",
+        "price_billion_vnd": 5.28
+      }
+    ],
+    "explanation_summary": "Top 1 là GV_010 (SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN ) với final_score 0.692 (base 0.637, additional 0.821). Nhu cầu bổ sung (trường mầm non, nhà thuốc) đã được đưa vào tính điểm và có thể thay đổi thứ hạng so với khi chỉ dùng form. GV_008 phù hợp nhất với nhu cầu bổ sung (additional_score 0.925). Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Gia đình có trẻ nhỏ.",
+    "unsupported_requirements": [
+      "Gia đình có trẻ nhỏ"
+    ],
+    "latency_ms": 2.9,
+    "parsed_requirements": {
+      "hard": [],
+      "soft": [
+        {
+          "raw_phrase": "cần gần trường mầm non",
+          "amenity_name": "kindergarten",
+          "derived_attribute": "distance_to_nearest_kindergarten_m",
+          "agg": "nearest_distance",
+          "radius_m": 1000,
+          "direction": "lower_better"
+        },
+        {
+          "raw_phrase": "nhà thuốc để tiện chăm con",
+          "amenity_name": "pharmacy",
+          "derived_attribute": "distance_to_nearest_pharmacy_m",
+          "agg": "nearest_distance",
+          "radius_m": 1000,
+          "direction": "lower_better"
+        }
+      ],
+      "duplicates": [],
+      "unsupported": [
+        "Gia đình có trẻ nhỏ"
+      ]
+    }
+  },
+  {
+    "case_id": "V1_013",
+    "solution_id": "solution_2",
+    "status": "ok",
+    "top5": [
+      {
+        "rank": 1,
+        "property_id": "TB_035",
+        "total_score": 0.6034,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "low_price_per_m2",
+          "good_market"
+        ],
+        "base_score": 0.5347,
+        "additional_score": 0.7638,
+        "dynamic_attributes": {
+          "distance_to_nearest_market_m": {
+            "value": 147,
+            "unit": "meter",
+            "source": "map_api",
+            "amenity_name": "market",
+            "radius_m": 1000,
+            "preference_type": "lower_better",
+            "normalized_score": 0.956,
+            "weight_normalized": 0.5,
+            "contribution_score": 0.4781
+          },
+          "nearby_cafe_count_within_1000m": {
+            "value": 13,
+            "unit": "place",
+            "source": "map_api",
+            "amenity_name": "cafe",
+            "radius_m": 1000,
+            "preference_type": "higher_better",
+            "normalized_score": 0.571,
+            "weight_normalized": 0.5,
+            "contribution_score": 0.2857
+          }
+        },
+        "title": "Hiếm: Mặt tiền Âu Cơ – Nhà rộng 110m² – 5 phòng ngủ – Giá mềm chỉ 9.4 tỷ",
+        "price_billion_vnd": 9.4
+      },
+      {
+        "rank": 2,
+        "property_id": "GV_010",
+        "total_score": 0.5903,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "low_price_per_m2",
+          "near_boulevard",
+          "near_supermarket",
+          "good_cafe"
+        ],
+        "base_score": 0.6172,
+        "additional_score": 0.5277,
+        "dynamic_attributes": {
+          "distance_to_nearest_market_m": {
+            "value": 847,
+            "unit": "meter",
+            "source": "map_api",
+            "amenity_name": "market",
+            "radius_m": 1000,
+            "preference_type": "lower_better",
+            "normalized_score": 0.055,
+            "weight_normalized": 0.5,
+            "contribution_score": 0.0277
+          },
+          "nearby_cafe_count_within_1000m": {
+            "value": 19,
+            "unit": "place",
+            "source": "map_api",
+            "amenity_name": "cafe",
+            "radius_m": 1000,
+            "preference_type": "higher_better",
+            "normalized_score": 1.0,
+            "weight_normalized": 0.5,
+            "contribution_score": 0.5
+          }
+        },
+        "title": "SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN CITYLAND NGUYỄN VĂN LƯỢNG",
+        "price_billion_vnd": 4.55
+      },
+      {
+        "rank": 3,
+        "property_id": "GV_043",
+        "total_score": 0.5721,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "near_supermarket",
+          "good_cafe"
+        ],
+        "base_score": 0.5314,
+        "additional_score": 0.667,
+        "dynamic_attributes": {
+          "distance_to_nearest_market_m": {
+            "value": 575,
+            "unit": "meter",
+            "source": "map_api",
+            "amenity_name": "market",
+            "radius_m": 1000,
+            "preference_type": "lower_better",
+            "normalized_score": 0.405,
+            "weight_normalized": 0.5,
+            "contribution_score": 0.2027
+          },
+          "nearby_cafe_count_within_1000m": {
+            "value": 18,
+            "unit": "place",
+            "source": "map_api",
+            "amenity_name": "cafe",
+            "radius_m": 1000,
+            "preference_type": "higher_better",
+            "normalized_score": 0.929,
+            "weight_normalized": 0.5,
+            "contribution_score": 0.4643
+          }
+        },
+        "title": "Bán nhà 3 tầng mt đường số 1 .đường Thống Nhất Gò Vấp giá rẽ",
+        "price_billion_vnd": 13.5
+      },
+      {
+        "rank": 4,
+        "property_id": "GV_037",
+        "total_score": 0.5522,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "low_price_per_m2",
+          "near_boulevard",
+          "spacious",
+          "good_market"
+        ],
+        "base_score": 0.5745,
+        "additional_score": 0.5,
+        "dynamic_attributes": {
+          "distance_to_nearest_market_m": {
+            "value": 113,
+            "unit": "meter",
+            "source": "map_api",
+            "amenity_name": "market",
+            "radius_m": 1000,
+            "preference_type": "lower_better",
+            "normalized_score": 1.0,
+            "weight_normalized": 0.5,
+            "contribution_score": 0.5
+          },
+          "nearby_cafe_count_within_1000m": {
+            "value": 5,
+            "unit": "place",
+            "source": "map_api",
+            "amenity_name": "cafe",
+            "radius_m": 1000,
+            "preference_type": "higher_better",
+            "normalized_score": 0.0,
+            "weight_normalized": 0.5,
+            "contribution_score": 0.0
+          }
+        },
+        "title": "🔥 Nhà chợ An Nhơn 169m2, Đ.5m – Lê Đức Thọ GV",
+        "price_billion_vnd": 11.3
+      },
+      {
+        "rank": 5,
+        "property_id": "GV_031",
+        "total_score": 0.5488,
+        "hard_constraint_pass": true,
+        "reason_tags": [
+          "low_price_per_m2",
+          "near_boulevard",
+          "good_market"
+        ],
+        "base_score": 0.5438,
+        "additional_score": 0.5605,
+        "dynamic_attributes": {
+          "distance_to_nearest_market_m": {
+            "value": 352,
+            "unit": "meter",
+            "source": "map_api",
+            "amenity_name": "market",
+            "radius_m": 1000,
+            "preference_type": "lower_better",
+            "normalized_score": 0.692,
+            "weight_normalized": 0.5,
+            "contribution_score": 0.3462
+          },
+          "nearby_cafe_count_within_1000m": {
+            "value": 11,
+            "unit": "place",
+            "source": "map_api",
+            "amenity_name": "cafe",
+            "radius_m": 1000,
+            "preference_type": "higher_better",
+            "normalized_score": 0.429,
+            "weight_normalized": 0.5,
+            "contribution_score": 0.2143
+          }
+        },
+        "title": "Bán nhà 3/713 đường Lê Đức Thọ,P16, Quận gò vấp",
+        "price_billion_vnd": 8.95
+      }
+    ],
+    "explanation_summary": "Top 1 là TB_035 (Hiếm: Mặt tiền Âu Cơ – Nhà rộng 110m² – 5 phòng ng) với final_score 0.603 (base 0.535, additional 0.764). Nhu cầu bổ sung (chợ, quán cà phê) đã được đưa vào tính điểm và có thể thay đổi thứ hạng so với khi chỉ dùng form. TB_035 phù hợp nhất với nhu cầu bổ sung (additional_score 0.764). Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Ưu tiên căn dễ cho thuê.",
+    "unsupported_requirements": [
+      "Ưu tiên căn dễ cho thuê"
+    ],
+    "latency_ms": 3.3,
+    "parsed_requirements": {
+      "hard": [],
+      "soft": [
+        {
+          "raw_phrase": "gần chợ",
+          "amenity_name": "market",
+          "derived_attribute": "distance_to_nearest_market_m",
+          "agg": "nearest_distance",
+          "radius_m": 1000,
+          "direction": "lower_better"
+        },
+        {
+          "raw_phrase": "có nhiều quán cà phê quanh khu vực",
+          "amenity_name": "cafe",
+          "derived_attribute": "nearby_cafe_count_within_1000m",
+          "agg": "count",
+          "radius_m": 1000,
+          "direction": "higher_better"
+        }
+      ],
+      "duplicates": [],
+      "unsupported": [
+        "Ưu tiên căn dễ cho thuê"
+      ]
+    }
   }
 ]

@@ -1,0 +1,71 @@
+📂 100 BĐS | 13 validation case
+
+========================================================================
+[V1_001] clear | "Gia đình có 2 con nhỏ, ưu tiên gần trường và công viên."
+  parsed: soft=0 hard=0 unsupported=1 duplicates=2
+  Top5: GV_010 > GV_008 > GV_013 > GV_015 > GV_026
+  → Top 1 là GV_010 (SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN ) với final_score 0.656 (base 0.656, additional 0.000). Không có nhu cầu bổ sung đo lường được; xếp hạng dựa trên form. Một số nhu cầu đã có sẵn trong form nên được hợp nhất: ưu tiên gần trường, công viên. Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Gia đình có 2 con nhỏ.
+========================================================================
+[V1_002] clear | "Muốn giá rẻ, dễ đi làm, có siêu thị gần nhà."
+  parsed: soft=0 hard=0 unsupported=1 duplicates=1
+  Top5: GV_002 > GV_010 > GV_011 > GV_003 > GV_015
+  → Top 1 là GV_002 (⭐️ Giảm 50tr! Nhà Vuông SHR 2 tầng 26m2 – Quang Tr) với final_score 0.638 (base 0.638, additional 0.000). Không có nhu cầu bổ sung đo lường được; xếp hạng dựa trên form. Một số nhu cầu đã có sẵn trong form nên được hợp nhất: có siêu thị gần nhà. Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Muốn giá rẻ.
+========================================================================
+[V1_003] clear | "Ưu tiên đơn giá trên m2 thấp và dễ cho thuê lại."
+  parsed: soft=0 hard=0 unsupported=1 duplicates=0
+  Top5: GV_010 > GV_035 > GV_037 > TB_008 > GV_020
+  → Top 1 là GV_010 (SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN ) với final_score 0.588 (base 0.588, additional 0.000). Không có nhu cầu bổ sung đo lường được; xếp hạng dựa trên form. Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Ưu tiên đơn giá trên m2 thấp.
+========================================================================
+[V1_004] clear | "Cần gần bệnh viện và công viên để đi bộ."
+  parsed: soft=0 hard=0 unsupported=0 duplicates=2
+  Top5: GV_009 > GV_010 > GV_011 > TB_021 > GV_012
+  → Top 1 là GV_009 (⭐️ Nhà Vuông SHR 3 tầng HXH 44m2 – Nguyễn Văn Khối) với final_score 0.794 (base 0.794, additional 0.000). Không có nhu cầu bổ sung đo lường được; xếp hạng dựa trên form. Một số nhu cầu đã có sẵn trong form nên được hợp nhất: Cần gần bệnh viện, công viên để đi bộ.
+========================================================================
+[V1_005] clear | "Cần nhà vừa túi tiền, gần siêu thị, không gian đủ cho 2 vợ chồng."
+  parsed: soft=0 hard=0 unsupported=1 duplicates=1
+  Top5: GV_002 > GV_010 > GV_011 > GV_008 > GV_015
+  → Top 1 là GV_002 (⭐️ Giảm 50tr! Nhà Vuông SHR 2 tầng 26m2 – Quang Tr) với final_score 0.625 (base 0.625, additional 0.000). Không có nhu cầu bổ sung đo lường được; xếp hạng dựa trên form. Một số nhu cầu đã có sẵn trong form nên được hợp nhất: gần siêu thị. Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Cần nhà vừa túi tiền.
+========================================================================
+[V1_006] ambiguous_free_text | "Nhà phải có chợ trong vòng 1km, ưu tiên gần trường mầm non cho con."
+  parsed: soft=1 hard=1 unsupported=0 duplicates=0
+  Top5: GV_008 > TB_006 > GV_010 > TB_021 > GV_026
+  → Top 1 là GV_008 (Nhà Lô góc SHR 2 tầng HXH 33m2 – Quang Trung Gò Vấ) với final_score 0.721 (base 0.632, additional 0.927). Nhu cầu bổ sung (trường mầm non) đã được đưa vào tính điểm và có thể thay đổi thứ hạng so với khi chỉ dùng form. TB_006 phù hợp nhất với nhu cầu bổ sung (additional_score 1.000).
+========================================================================
+[V1_007] ambiguous_free_text | "Khu nhiều tiện ích, ưu tiên gần nhà thuốc và có phòng gym xung quanh."
+  parsed: soft=2 hard=0 unsupported=1 duplicates=0
+  Top5: GV_002 > GV_020 > GV_010 > GV_009 > GV_011
+  → Top 1 là GV_002 (⭐️ Giảm 50tr! Nhà Vuông SHR 2 tầng 26m2 – Quang Tr) với final_score 0.624 (base 0.638, additional 0.590). Nhu cầu bổ sung (nhà thuốc, phòng gym) đã được đưa vào tính điểm và có thể thay đổi thứ hạng so với khi chỉ dùng form. GV_009 phù hợp nhất với nhu cầu bổ sung (additional_score 0.977). Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Khu nhiều tiện ích.
+========================================================================
+[V1_008] conflict_tradeoff | "Muốn khu sầm uất để cho thuê nhưng giá trên m2 vẫn phải thấp, ưu tiên nhiều chợ."
+  parsed: soft=1 hard=0 unsupported=1 duplicates=0
+  Top5: TB_035 > GV_010 > GV_035 > TB_008 > GV_037
+  → Top 1 là TB_035 (Hiếm: Mặt tiền Âu Cơ – Nhà rộng 110m² – 5 phòng ng) với final_score 0.674 (base 0.535, additional 1.000). Nhu cầu bổ sung (chợ) đã được đưa vào tính điểm và có thể thay đổi thứ hạng so với khi chỉ dùng form. TB_035 phù hợp nhất với nhu cầu bổ sung (additional_score 1.000). Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Muốn khu sầm uất để cho thuê nhưng giá trên m2 vẫn phải thấp.
+========================================================================
+[V1_009] unsupported | "Muốn nơi yên tĩnh, dân trí cao, hợp phong thủy và hàng xóm thân thiện."
+  parsed: soft=0 hard=0 unsupported=4 duplicates=0
+  Top5: GV_009 > GV_010 > TB_021 > GV_011 > GV_012
+  → Top 1 là GV_009 (⭐️ Nhà Vuông SHR 3 tầng HXH 44m2 – Nguyễn Văn Khối) với final_score 0.753 (base 0.753, additional 0.000). Không có nhu cầu bổ sung đo lường được; xếp hạng dựa trên form. Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Muốn nơi yên tĩnh; dân trí cao; hợp phong thủy; hàng xóm thân thiện.
+========================================================================
+[V1_010] conflict_tradeoff | "Muốn gần đường lớn để đi làm, nhưng cũng muốn yên tĩnh và có nhiều quán cà phê."
+  parsed: soft=1 hard=0 unsupported=1 duplicates=1
+  Top5: GV_010 > GV_011 > GV_009 > GV_012 > GV_002
+  → Top 1 là GV_010 (SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN ) với final_score 0.701 (base 0.572, additional 1.000). Nhu cầu bổ sung (quán cà phê) đã được đưa vào tính điểm và có thể thay đổi thứ hạng so với khi chỉ dùng form. GV_010 phù hợp nhất với nhu cầu bổ sung (additional_score 1.000). Một số nhu cầu đã có sẵn trong form nên được hợp nhất: Muốn gần đường lớn để đi làm. Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): nhưng cũng muốn yên tĩnh.
+========================================================================
+[V1_011] measurable_free_text | "Tôi làm việc tự do, muốn có nhiều quán cà phê và phòng gym trong bán kính 1km."
+  parsed: soft=2 hard=0 unsupported=0 duplicates=0
+  Top5: GV_010 > GV_009 > GV_011 > GV_002 > GV_012
+  → Top 1 là GV_010 (SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN ) với final_score 0.664 (base 0.573, additional 0.878). Nhu cầu bổ sung (quán cà phê, phòng gym) đã được đưa vào tính điểm và có thể thay đổi thứ hạng so với khi chỉ dùng form. GV_009 phù hợp nhất với nhu cầu bổ sung (additional_score 1.000).
+========================================================================
+[V1_012] measurable_free_text | "Gia đình có trẻ nhỏ, cần gần trường mầm non và nhà thuốc để tiện chăm con."
+  parsed: soft=2 hard=0 unsupported=1 duplicates=0
+  Top5: GV_010 > GV_008 > TB_006 > GV_026 > GV_020
+  → Top 1 là GV_010 (SIÊU PHẨM TRUNG TÂM GÒ VẤP - NHÀ MỚI Ở NGAY - GẦN ) với final_score 0.692 (base 0.637, additional 0.821). Nhu cầu bổ sung (trường mầm non, nhà thuốc) đã được đưa vào tính điểm và có thể thay đổi thứ hạng so với khi chỉ dùng form. GV_008 phù hợp nhất với nhu cầu bổ sung (additional_score 0.925). Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Gia đình có trẻ nhỏ.
+========================================================================
+[V1_013] measurable_free_text | "Ưu tiên căn dễ cho thuê, gần chợ và có nhiều quán cà phê quanh khu vực."
+  parsed: soft=2 hard=0 unsupported=1 duplicates=0
+  Top5: TB_035 > GV_010 > GV_043 > GV_037 > GV_031
+  → Top 1 là TB_035 (Hiếm: Mặt tiền Âu Cơ – Nhà rộng 110m² – 5 phòng ng) với final_score 0.603 (base 0.535, additional 0.764). Nhu cầu bổ sung (chợ, quán cà phê) đã được đưa vào tính điểm và có thể thay đổi thứ hạng so với khi chỉ dùng form. TB_035 phù hợp nhất với nhu cầu bổ sung (additional_score 0.764). Các nhu cầu chưa hỗ trợ đo lường (đã gắn cờ): Ưu tiên căn dễ cho thuê.
+
+========================================================================
+✅ Đã lưu 13 kết quả → /Users/ttqteo/Workspaces/mit_mac/IT2041_G8_DecisionMaking/outputs/solution2_results.json
+📝 Log → /Users/ttqteo/Workspaces/mit_mac/IT2041_G8_DecisionMaking/logs/solution2/run_shared_20260721_101834.log

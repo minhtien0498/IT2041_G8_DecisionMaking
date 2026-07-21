@@ -28,7 +28,8 @@ def to_contract(case_id, internal, latency_ms):
             "price_billion_vnd": prop.get("price_billion_vnd"),
         })
 
-    unsupported = list(getattr(internal.get("parsed"), "unsupported", []) or [])
+    parsed = internal.get("parsed")
+    unsupported = list(getattr(parsed, "unsupported", []) or [])
 
     return {
         "case_id": case_id,
@@ -38,4 +39,32 @@ def to_contract(case_id, internal, latency_ms):
         "explanation_summary": internal.get("explanation", ""),
         "unsupported_requirements": unsupported,
         "latency_ms": latency_ms,
+        # ── field mở rộng ──
+        # Hệ thống hiểu gì từ free-text. Cần cho UI/report vì `hard` chỉ dùng để
+        # lọc ứng viên nên không xuất hiện trong `dynamic_attributes`, dẫn tới
+        # ràng buộc cứng có tác dụng thật nhưng lại vô hình với người xem.
+        "parsed_requirements": _parsed_summary(parsed),
+    }
+
+
+def _parsed_summary(parsed):
+    """Tóm tắt kết quả parse free-text để hiển thị/đối chiếu."""
+    if parsed is None:
+        return {"hard": [], "soft": [], "duplicates": [], "unsupported": []}
+
+    def brief(req):
+        return {
+            "raw_phrase": req["raw_phrase"],
+            "amenity_name": req["amenity_name"],
+            "derived_attribute": req["derived_attribute"],
+            "agg": req["agg"],
+            "radius_m": req["radius_m"],
+            "direction": req["direction"],
+        }
+
+    return {
+        "hard": [brief(r) for r in getattr(parsed, "hard", [])],
+        "soft": [brief(r) for r in getattr(parsed, "soft", [])],
+        "duplicates": list(getattr(parsed, "duplicates", []) or []),
+        "unsupported": list(getattr(parsed, "unsupported", []) or []),
     }

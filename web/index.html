@@ -196,6 +196,56 @@
       grid-column: 1 / -1;
     }
 
+    /* chú thích phụ dưới ô nhập, diễn giải con số vừa nhập */
+    .field-note {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--blue);
+      margin-top: -2px;
+      min-height: 16px;
+    }
+    .field-note.warn { color: var(--orange); }
+
+    /* ---- badge gợi ý điền nhanh dưới mỗi ô ---- */
+    .hints {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 5px;
+      margin-top: -1px;
+    }
+    .hints b {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .4px;
+      color: var(--muted);
+      font-weight: 800;
+      margin-right: 2px;
+    }
+    .hints b:not(:first-child) { margin-left: 8px; }
+    .hints button {
+      min-height: 0;
+      padding: 3px 9px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--muted);
+      font-size: 11.5px;
+      font-weight: 600;
+    }
+    .hints button:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      background: var(--blue-soft);
+    }
+    .hints button.hard:hover  { border-color: var(--orange); color: var(--orange); background: var(--orange-soft); }
+    .hints button.unsup:hover { border-color: var(--red); color: var(--red); background: #fff7f6; }
+    .hints button.on {
+      border-color: var(--green);
+      color: var(--green);
+      background: var(--green-soft);
+    }
+
     .actions {
       display: flex;
       gap: 10px;
@@ -305,7 +355,9 @@
 
     .result-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      /* auto-fit: 1 solution thì card chiếm hết bề ngang,
+         2 solution thì tự chia đôi để so sánh cạnh nhau */
+      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
       gap: 16px;
     }
 
@@ -352,6 +404,110 @@
       line-height: 1.35;
     }
 
+    /* ---- Card BĐS: rank | nội dung | điểm ---- */
+    .lst {
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr) auto;
+      gap: 14px;
+      align-items: start;
+      padding: 16px 18px;
+      border-top: 1px solid var(--line);
+    }
+    .lst:hover { background: #fcfdfc; }
+
+    .lst-rank {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px; height: 34px;
+      border-radius: 10px;
+      background: var(--panel-soft);
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 800;
+    }
+    .lst-rank.top { background: var(--green); color: #fff; }
+
+    .lst-title {
+      margin: 0 0 4px;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.35;
+      color: var(--ink);
+    }
+    .lst-sub {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .lst-sub b { color: var(--ink); font-weight: 700; }
+
+    .lst-score { text-align: right; min-width: 84px; }
+    .lst-score .val {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+    .lst-score .cap {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      color: var(--muted);
+      font-weight: 700;
+      margin-top: 3px;
+    }
+
+    /* ---- chân card: giải thích ---- */
+    .explain {
+      padding: 14px 18px 16px;
+      border-top: 1px solid var(--line);
+      background: var(--panel-soft);
+    }
+    .explain-cap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      font-weight: 800;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .explain-cap span {
+      text-transform: none;
+      letter-spacing: 0;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+    .explain p {
+      margin: 0;
+      font-size: 12.5px;
+      line-height: 1.55;
+      color: #3d4a54;
+    }
+
+    /* lý do phụ, giữ nhẹ để không át phần tiện ích */
+    .why {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 9px;
+    }
+    .why span {
+      font-size: 11px;
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      padding: 2px 7px;
+    }
+
     .meta {
       display: flex;
       flex-wrap: wrap;
@@ -382,6 +538,97 @@
       border: 1px dashed var(--line);
       border-radius: 8px;
     }
+
+    /* ---- Solution 2: breakdown điểm X + Y ---- */
+    .score-bar {
+      display: flex;
+      height: 8px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: var(--panel-soft);
+      margin: 8px 0 6px;
+    }
+    .score-bar span { display: block; height: 100%; }
+    .score-bar .base { background: var(--blue); }
+    .score-bar .add { background: var(--green); }
+
+    .score-legend {
+      display: flex;
+      gap: 14px;
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .score-legend i {
+      width: 8px; height: 8px; border-radius: 2px;
+      display: inline-block; margin-right: 5px;
+    }
+    .score-legend .base i { background: var(--blue); }
+    .score-legend .add i { background: var(--green); }
+
+    /* ---- tiện ích tìm được qua API ---- */
+    .amenities {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .amenity {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--green-soft);
+      color: var(--green);
+      border: 1px solid rgba(23, 114, 69, 0.18);
+      border-radius: 6px;
+      padding: 3px 8px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .amenity b { font-weight: 800; }
+
+    /* ---- dải "hệ thống hiểu gì từ free-text" ---- */
+    .parsed {
+      padding: 12px 18px 14px;
+      background: var(--panel-soft);
+      border-bottom: 1px solid var(--line);
+    }
+    .parsed-cap {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      color: var(--muted);
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .parsed-row { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .pill {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 6px;
+      border-radius: 6px;
+      padding: 4px 9px;
+      font-size: 12px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+    .pill em {
+      font-style: normal;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .3px;
+    }
+    .pill.hard  { border-color: rgba(184,92,0,.35); }
+    .pill.hard em  { color: var(--orange); }
+    .pill.soft  { border-color: rgba(23,114,69,.35); }
+    .pill.soft em  { color: var(--green); }
+    .pill.dup   { border-color: rgba(35,100,170,.35); }
+    .pill.dup em   { color: var(--blue); }
+    .pill.unsup { border-color: rgba(192,50,33,.35); background: #fff7f6; }
+    .pill.unsup em { color: var(--red); }
+
 
     .metrics {
       display: grid;
@@ -502,24 +749,59 @@
         <div class="panel-body">
           <div class="form-grid">
             <label>
-              Ngân sách tối đa (triệu VND)
-              <input id="budget" type="number" value="8000" min="0" step="100">
+              Ngân sách tối đa (VND)
+              <input id="budget" type="text" inputmode="numeric" value="8,000,000,000" data-num>
+              <span class="field-note" id="budgetNote"></span>
+              <span class="hints" data-fill="budget">
+                <button type="button" data-v="3000000000">3 tỷ</button>
+                <button type="button" data-v="5000000000">5 tỷ</button>
+                <button type="button" data-v="8000000000">8 tỷ</button>
+                <button type="button" data-v="15000000000">15 tỷ</button>
+              </span>
             </label>
             <label>
               Số phòng ngủ tối thiểu
               <input id="bedrooms" type="number" value="3" min="0" step="1">
+              <span class="hints" data-fill="bedrooms">
+                <button type="button" data-v="1">1</button>
+                <button type="button" data-v="2">2</button>
+                <button type="button" data-v="3">3</button>
+                <button type="button" data-v="4">4</button>
+              </span>
             </label>
             <label>
               Diện tích kỳ vọng min (m2)
-              <input id="areaMin" type="number" value="30" min="0" step="1">
+              <input id="areaMin" type="text" inputmode="numeric" value="30" data-num>
+              <span class="hints" data-fill="areaMin">
+                <button type="button" data-v="20">20</button>
+                <button type="button" data-v="30">30</button>
+                <button type="button" data-v="50">50</button>
+              </span>
             </label>
             <label>
               Diện tích kỳ vọng max (m2)
-              <input id="areaMax" type="number" value="150" min="1" step="1">
+              <input id="areaMax" type="text" inputmode="numeric" value="150" data-num>
+              <span class="hints" data-fill="areaMax">
+                <button type="button" data-v="80">80</button>
+                <button type="button" data-v="150">150</button>
+                <button type="button" data-v="300">300</button>
+              </span>
             </label>
             <label class="span-2">
               Nhu cầu tự do
               <textarea id="freeText">Gia đình có 2 con nhỏ, ưu tiên gần trường và công viên.</textarea>
+              <span class="hints wide" data-append="freeText">
+                <b>Đo được:</b>
+                <button type="button" data-v="ưu tiên nhiều chợ xung quanh">nhiều chợ</button>
+                <button type="button" data-v="gần trường mầm non">mầm non</button>
+                <button type="button" data-v="ưu tiên gần nhà thuốc">nhà thuốc</button>
+                <button type="button" data-v="muốn nhiều quán cà phê quanh nhà">quán cà phê</button>
+                <button type="button" data-v="có phòng gym xung quanh">phòng gym</button>
+                <button type="button" data-v="nhà phải có chợ trong vòng 1km" class="hard">bắt buộc có chợ 1km</button>
+                <b>Chưa đo được:</b>
+                <button type="button" data-v="muốn khu yên tĩnh" class="unsup">yên tĩnh</button>
+                <button type="button" data-v="hợp phong thủy" class="unsup">phong thủy</button>
+              </span>
             </label>
           </div>
           <div class="actions">
@@ -620,8 +902,8 @@
     }
 
     function currentForm() {
-      const areaMin = Number($("areaMin").value);
-      const areaMax = Number($("areaMax").value);
+      const areaMin = numVal("areaMin");
+      const areaMax = numVal("areaMax");
       const soft_preferences = {};
       for (const [key, item] of Object.entries(state.weights)) {
         if (item.value <= 0) continue;
@@ -633,7 +915,7 @@
         };
       }
       return {
-        budget_max_million: Number($("budget").value),
+        budget_max_million: Math.round(numVal("budget") / 1e6),
         min_bedrooms: Number($("bedrooms").value),
         soft_preferences,
         user_need_text: $("freeText").value.trim()
@@ -654,6 +936,221 @@
       return status === "ok" ? "ok" : "err";
     }
 
+    // Tên tiếng Việt cho amenity, để chip đọc được ngay khi demo
+    const AMENITY_VI = {
+      market: "chợ", cafe: "quán cà phê", kindergarten: "mầm non",
+      pharmacy: "nhà thuốc", gym: "phòng gym", school: "trường học",
+      supermarket: "siêu thị", park: "công viên", hospital: "bệnh viện",
+      boulevard: "trục đường lớn",
+    };
+
+    // ---- Số có dấu phẩy ngăn cách hàng nghìn ----
+    // Các input này là type="text" (type="number" không cho hiển thị dấu phẩy),
+    // nên phải tự format khi hiện và bỏ dấu phẩy khi đọc giá trị.
+    function fmtNum(value) {
+      const n = Number(value);
+      return isFinite(n) ? n.toLocaleString("en-US") : "";
+    }
+
+    function numVal(id) {
+      const raw = String($(id).value || "").replace(/,/g, "").trim();
+      const n = Number(raw);
+      return isFinite(n) ? n : 0;
+    }
+
+    function setNum(id, value) {
+      $(id).value = fmtNum(value);
+    }
+
+    // Format ngay khi gõ. Vì chèn dấu phẩy làm đổi độ dài chuỗi, phải tự đặt lại
+    // con trỏ: đếm số CHỮ SỐ bên trái con trỏ rồi khôi phục đúng vị trí đó.
+    function bindNumberInputs() {
+      document.querySelectorAll("input[data-num]").forEach((input) => {
+        input.addEventListener("input", () => {
+          const caret = input.selectionStart;
+          const before = input.value;
+          const digitsBeforeCaret = before.slice(0, caret).replace(/\D/g, "").length;
+
+          const digits = before.replace(/\D/g, "");
+          if (digits === "") { input.value = ""; return; }
+          const formatted = Number(digits).toLocaleString("en-US");
+          if (formatted === before) return;
+          input.value = formatted;
+
+          // đặt con trỏ sau đúng chữ số thứ `digitsBeforeCaret`
+          let seen = 0, pos = formatted.length;
+          for (let i = 0; i < formatted.length; i++) {
+            if (/\d/.test(formatted[i])) seen++;
+            if (seen === digitsBeforeCaret) { pos = i + 1; break; }
+          }
+          if (digitsBeforeCaret === 0) pos = 0;
+          input.setSelectionRange(pos, pos);
+          if (input.id === "budget") updateBudgetNote();
+        });
+      });
+    }
+
+    // ---- Diễn giải số tiền ----
+    // Ô ngân sách nhập bằng VND đầy đủ cho dễ đọc, nhưng backend nhận đơn vị
+    // TRIỆU VND (`budget_max_million`), nên phải quy đổi khi gửi/nhận.
+    function vndText(vnd) {
+      if (!isFinite(vnd) || vnd <= 0) return "";
+      if (vnd >= 1e9) {
+        const ty = vnd / 1e9;
+        return `${Number(ty.toFixed(2))} tỷ đồng`;
+      }
+      if (vnd >= 1e6) {
+        const tr = vnd / 1e6;
+        return `${Number(tr.toFixed(2))} triệu đồng`;
+      }
+      return `${fmtNum(vnd)} đồng`;
+    }
+
+    function updateBudgetNote() {
+      const vnd = numVal("budget");
+      const note = $("budgetNote");
+      note.textContent = vndText(vnd);
+      // dưới 100 triệu gần như chắc chắn là gõ thiếu số 0
+      note.classList.toggle("warn", vnd > 0 && vnd < 1e8);
+    }
+
+    // Đồng bộ trạng thái badge theo giá trị thật của ô, để gõ tay cũng
+    // sáng đúng badge (và tắt badge cũ) thay vì giữ trạng thái đã lỗi thời.
+    function syncHints(box, input) {
+      const cur = String(input.value || "").replace(/,/g, "").trim();
+      box.querySelectorAll("button").forEach((b) => {
+        b.classList.toggle("on", b.dataset.v === cur);
+      });
+    }
+
+    // ---- Badge gợi ý ----
+    // data-fill  : bấm là THAY giá trị ô (ngân sách, phòng ngủ, diện tích).
+    // data-append: bấm là THÊM/BỎ mệnh đề trong ô nhu cầu tự do, cho phép ghép nhiều ý.
+    function bindHints() {
+      document.querySelectorAll(".hints[data-fill]").forEach((box) => {
+        const input = $(box.dataset.fill);
+        box.addEventListener("click", (e) => {
+          const btn = e.target.closest("button");
+          if (!btn) return;
+          input.value = input.hasAttribute("data-num")
+            ? fmtNum(btn.dataset.v)
+            : btn.dataset.v;
+          syncHints(box, input);
+          if (input.id === "budget") updateBudgetNote();
+        });
+        // gõ tay cũng phải cập nhật lại badge đang sáng
+        input.addEventListener("input", () => syncHints(box, input));
+        syncHints(box, input);
+      });
+
+      document.querySelectorAll(".hints[data-append]").forEach((box) => {
+        const field = $(box.dataset.append);
+        box.addEventListener("click", (e) => {
+          const btn = e.target.closest("button");
+          if (!btn) return;
+          const phrase = btn.dataset.v;
+          // bỏ dấu chấm cuối mỗi mệnh đề, nếu không dấu chấm sẽ dồn vào giữa câu
+          // và làm phép so sánh khi bấm lại bị trượt.
+          const parts = field.value
+            .split(",")
+            .map((s) => s.trim().replace(/\.+$/, ""))
+            .filter(Boolean);
+          const at = parts.findIndex((s) => s.toLowerCase() === phrase.toLowerCase());
+          if (at >= 0) parts.splice(at, 1);        // bấm lại thì bỏ ra
+          else parts.push(phrase);
+          field.value = parts.length ? parts.join(", ") + "." : "";
+          btn.classList.toggle("on", at < 0);
+        });
+      });
+    }
+
+    // reason_tags từ backend là snake_case tiếng Anh và lặp nhiều giữa các card.
+    // Dịch sang tiếng Việt và giữ nhẹ để không át phần tiện ích tìm được.
+    const TAG_VI = {
+      good_price: "giá tốt", low_price_per_m2: "giá/m² thấp", spacious: "diện tích rộng",
+      near_school: "gần trường", near_park: "gần công viên",
+      near_supermarket: "gần siêu thị", near_boulevard: "gần đường lớn",
+      near_hospital: "gần bệnh viện",
+    };
+    function reasonTags(item) {
+      const tags = (item.reason_tags || [])
+        .filter((t) => !t.startsWith("good_") || TAG_VI[t])  // bỏ good_<amenity> vì đã có chip riêng
+        .map((t) => TAG_VI[t] || t.replace(/_/g, " "));
+      return tags.length
+        ? `<div class="why">${tags.map((t) => `<span>${t}</span>`).join("")}</div>`
+        : "";
+    }
+
+    // Thanh chia điểm nền (form) và điểm cộng thêm (nhu cầu free-text).
+    // Đây là phần thể hiện rõ nhất cách Solution 2 kết hợp X + Y.
+    function scoreBreakdown(item) {
+      const base = Number(item.base_score);
+      const add = Number(item.additional_score);
+      if (!isFinite(base) || !isFinite(add) || add === 0) return "";
+      const total = Number(item.total_score) || (base + add);
+      const basePart = (0.7 * base / total) * 100;
+      const addPart = (0.3 * add / total) * 100;
+      return `
+        <div class="score-bar">
+          <span class="base" style="width:${basePart.toFixed(1)}%"></span>
+          <span class="add" style="width:${addPart.toFixed(1)}%"></span>
+        </div>
+        <div class="score-legend">
+          <span class="base"><i></i>form ${base.toFixed(3)}</span>
+          <span class="add"><i></i>nhu cầu thêm ${add.toFixed(3)}</span>
+        </div>`;
+    }
+
+    // Chip tiện ích lấy được từ map API cho riêng BĐS này.
+    function amenityChips(item) {
+      const dyn = item.dynamic_attributes || {};
+      const chips = Object.values(dyn).map((d) => {
+        const name = AMENITY_VI[d.amenity_name] || d.amenity_name;
+        const val = d.unit === "place"
+          ? `<b>${d.value}</b> trong ${d.radius_m}m`
+          : `<b>${d.value}m</b>`;
+        return `<span class="amenity">${name} ${val}</span>`;
+      });
+      return chips.length ? `<div class="amenities">${chips.join("")}</div>` : "";
+    }
+
+    // Hệ thống hiểu gì từ free-text: bắt buộc / ưu tiên / trùng form / chưa hỗ trợ.
+    // Chỉ hiện những nhóm thực sự có nội dung, tránh 4 hộp rỗng chiếm chỗ.
+    function parsedPanel(result) {
+      const p = result.parsed_requirements;
+      const unsupFallback = result.unsupported_requirements || [];
+      if (!p) {
+        return unsupFallback.length
+          ? `<div class="parsed"><div class="parsed-box unsup">
+               <h5>Chưa hỗ trợ đo</h5>
+               <ul>${unsupFallback.map((x) => `<li>${x}</li>`).join("")}</ul>
+             </div></div>`
+          : "";
+      }
+
+      const label = (r) => {
+        const name = AMENITY_VI[r.amenity_name] || r.amenity_name;
+        return r.agg === "count"
+          ? `${name} — đếm trong ${r.radius_m}m`
+          : `${name} — khoảng cách gần nhất`;
+      };
+      const groups = [
+        ["hard",  "bắt buộc",  (p.hard || []).map(label)],
+        ["soft",  "ưu tiên",   (p.soft || []).map(label)],
+        ["dup",   "đã có form",(p.duplicates || []).map((d) => d.raw_phrase)],
+        ["unsup", "chưa hỗ trợ", p.unsupported || unsupFallback],
+      ].filter(([, , items]) => items.length);
+
+      if (!groups.length) return "";
+      const pills = groups.flatMap(([cls, tag, items]) =>
+        items.map((x) => `<span class="pill ${cls}"><em>${tag}</em>${x}</span>`)
+      ).join("");
+      return `<div class="parsed">
+        <div class="parsed-cap">Hệ thống hiểu gì từ nhu cầu tự do</div>
+        <div class="parsed-row">${pills}</div>
+      </div>`;
+    }
+
     function renderResults(payload) {
       state.lastPayload = payload;
       $("caseBadge").textContent = payload.case_id || "WEB";
@@ -661,17 +1158,22 @@
       const html = Object.entries(results).map(([key, result]) => {
         const top = result.top5 || [];
         const rows = top.length ? top.map((item) => `
-          <article class="listing">
+          <article class="lst">
+            <div class="lst-rank ${item.rank === 1 ? "top" : ""}">${item.rank}</div>
             <div>
-              <div class="meta">
-                <strong>#${item.rank}</strong>
+              <h4 class="lst-title">${item.title || "Không có tiêu đề"}</h4>
+              <div class="lst-sub">
                 <span>${item.property_id || ""}</span>
-                <span>score ${Number(item.total_score || 0).toFixed(4)}</span>
-                <span>${item.price_billion_vnd ? item.price_billion_vnd + " tỷ" : ""}</span>
+                ${item.price_billion_vnd ? `<span><b>${item.price_billion_vnd}</b> tỷ</span>` : ""}
               </div>
-              <h4>${item.title || "Không có tiêu đề"}</h4>
+              ${amenityChips(item)}
+              ${scoreBreakdown(item)}
+              ${reasonTags(item)}
             </div>
-            <div class="tags">${(item.reason_tags || []).map((tag) => `<span class="tag">${tag}</span>`).join("")}</div>
+            <div class="lst-score">
+              <div class="val">${Number(item.total_score || 0).toFixed(3)}</div>
+              <div class="cap">điểm</div>
+            </div>
           </article>
         `).join("") : `<div class="empty">${result.explanation_summary || "Không có kết quả."}</div>`;
         return `
@@ -680,10 +1182,14 @@
               <strong>${key.toUpperCase()}</strong>
               <span class="badge ${badgeClass(result.status)}">${result.status}</span>
             </div>
+            ${parsedPanel(result)}
             ${rows}
-            <div class="listing">
-              <div class="meta">${Number(result.latency_ms || 0).toFixed(1)} ms</div>
-              <div>${result.explanation_summary || ""}</div>
+            <div class="explain">
+              <div class="explain-cap">
+                Giải thích
+                <span>${(Number(result.latency_ms || 0) / 1000).toFixed(1)}s</span>
+              </div>
+              <p>${result.explanation_summary || ""}</p>
             </div>
           </div>
         `;
@@ -756,7 +1262,8 @@
       const chosen = data.cases[0];
       state.selectedCase = chosen;
       const input = chosen.input || {};
-      $("budget").value = input.budget_max_million || 8000;
+      setNum("budget", (input.budget_max_million || 8000) * 1e6);
+      updateBudgetNote();
       $("bedrooms").value = input.min_bedrooms || 2;
       $("freeText").value = input.user_need_text || "";
       const prefs = input.soft_preferences || {};
@@ -853,6 +1360,9 @@
 
     renderWeights();
     renderSolutionInfo();
+    bindNumberInputs();
+    bindHints();
+    updateBudgetNote();
     lucide.createIcons();
   </script>
 </body>
