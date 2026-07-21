@@ -598,31 +598,30 @@ Hệ thống phải nói rõ giới hạn của mình. Gắn cờ "chưa hỗ tr
 <div class="grid2">
 <div>
 
-**Mức đồng thuận Top 5**
+**Mức đồng thuận trên 10 case chạy chung**
 
 <div class="tight">
 
-| Số BĐS trùng | Số case |
+| Chỉ số | Kết quả |
 |---|---|
-| 5/5 (giống hệt) | **5** |
-| 4/5 | 2 |
-| 3/5 | 2 |
-| 1/5 | 1 |
+| Cùng Top 1 | **8/10** |
+| Top 5 trùng trung bình | **4.0/5** |
+| Trùng hoàn toàn (5/5) | 5 case |
 
 </div>
 
 </div>
 <div>
 
-**Solution 2**
+**Solution 2 trên 13 case**
 
 <div class="tight">
 
 | Chỉ số | Kết quả |
 |---|---|
-| Case chạy thành công | 10/10 |
-| `hard_constraint_pass` | 50/50 |
-| Gắn cờ `unsupported` | 8/10 |
+| Case chạy thành công | 13/13 |
+| `hard_constraint_pass` | 65/65 |
+| Gắn cờ `unsupported` | 10/13 |
 
 </div>
 
@@ -631,11 +630,11 @@ Hệ thống phải nói rõ giới hạn của mình. Gắn cờ "chưa hỗ tr
 
 <div class="box">
 
-5 case trùng hoàn toàn đều là case free-text **không thêm tiêu chí đo được**. Hai bên chỉ lệch ở `V1_006`, `V1_007`, `V1_008`, `V1_010`, đúng các case có nhu cầu thêm đo được.
+Hai bên lệch nhau đúng ở các case có nhu cầu thêm **đo được** (`V1_006`–`V1_008`, `V1_010`). Các case free-text chỉ nhắc lại tiêu chí đã có trong form thì cho kết quả gần như trùng khớp.
 
 </div>
 
-<span class="caption">Phần nền rule-based của hai solution nhất quán; khác biệt xuất hiện đúng chỗ hai bên xử lý nhu cầu thêm theo cách khác nhau.</span>
+<span class="caption">Phần nền rule-based nhất quán giữa hai solution; khác biệt xuất hiện đúng chỗ hai bên xử lý nhu cầu thêm theo cách khác nhau. Solution 1 hiện mới chạy 10/13 case.</span>
 
 ---
 
@@ -659,10 +658,11 @@ Hệ thống phải nói rõ giới hạn của mình. Gắn cờ "chưa hỗ tr
 |---|---|---|
 | Nơi ra quyết định | LLM chấm điểm, xếp hạng | Rule-based xếp hạng |
 | Hiểu ngôn ngữ tự nhiên | Tốt, kể cả không dấu | Theo từ khoá, có giới hạn |
+| Chất lượng giải thích | **Như tư vấn viên thật**, có bảng trade-off | Theo template, khô hơn |
 | Tính tái lập | Lệch giữa các lần chạy | Cùng input, cùng output |
-| Minh bạch điểm số | Khó truy vết | Truy vết từng tiêu chí |
-| Chi phí, tốc độ | Tốn quota, chậm | Không tốn LLM |
-| Phụ thuộc ngoài | OpenRouter, Mapbox, PostgreSQL | Overpass API (có cache) |
+| Tuân thủ ràng buộc cứng | Có case lọt ứng viên trượt | `hard_pass` 65/65 |
+| Tốc độ (trung bình/case) | **~239 s** | **~15 s** |
+| Phụ thuộc ngoài | OpenRouter, Map API, PostgreSQL | Overpass API (có cache) |
 
 <div class="box">
 
