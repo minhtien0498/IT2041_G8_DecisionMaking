@@ -60,27 +60,27 @@ Ví dụ cause-effect:
 
 ---
 
-## Compare Sơ Bộ 10 Case
+## Compare Hiện Tại
 
 | Metric | Value |
 |---|---:|
-| Compared cases | 10 |
-| Same Top 1 | 8/10 |
-| Average Top5 overlap | 4.00/5 |
-| Avg latency Solution 2 | 15,559.8 ms |
-| Avg latency Solution 1 | 239,221.0 ms |
+| Common cases | 10 |
+| S1 Mapbox coverage | 10/10 |
+| S2 coverage | 13/13 |
+| Same Top 1 | 4/10 |
+| Average Top5 overlap | 2.50/5 |
 
 <div class="box">
-File: outputs/solution_comparison_v1_preliminary.md
+S1 đã có Mapbox 10 case. S2 đã có đủ 13 case. Final vẫn chờ S1 chạy V1_011-V1_013.
 </div>
 
 ---
 
 ## Case Cần Manual Review
 
-| Case | Solution 2 Top1 | Solution 1 Top1 | Vì sao cần review |
+| Case | Solution 2 Top1 | Solution 1 Mapbox Top1 | Vì sao cần review |
 |---|---|---|---|
-| V1_008 | TB_035 | GV_010 | User cần nhiều chợ; phải xét Y = market count |
+| V1_008 | TB_035 | GV_037 | User cần nhiều chợ; phải xét Y = market count |
 | V1_010 | GV_010 | GV_002 | User cần cafe + đường lớn, nhưng yên tĩnh unsupported |
 
 Kết luận tạm:
@@ -92,16 +92,15 @@ Kết luận tạm:
 
 ## Provider Sensitivity - Solution 1
 
-| Metric | Geoapify vs Overpass |
+| Metric | Value |
 |---|---:|
-| Compared cases | 10 |
-| Same Top 1 | 4/10 |
-| Average Top5 overlap | 3.20/5 |
-| Avg latency Geoapify | 317.4s |
-| Avg latency Overpass | 529.2s |
+| Same Top 1 cả 3 provider | 2/10 |
+| M-G Top5 overlap | 2.30/5 |
+| M-O Top5 overlap | 2.00/5 |
+| G-O Top5 overlap | 3.20/5 |
 
 <div class="box">
-Provider đổi -> POI distance/count đổi -> ranking đổi. Vì vậy validation final phải ghi rõ provider.
+Provider đổi -> POI distance/count đổi -> ranking đổi. Validation final phải ghi rõ provider.
 </div>
 
 ---
@@ -113,11 +112,11 @@ Provider đổi -> POI distance/count đổi -> ranking đổi. Vì vậy valida
 - Validation set 13 case
 - Rubric `X-only / X + Y / unsupported`
 - Compare template Solution 1 vs Solution 2
-- Compare sơ bộ 10 case
-- Report draft validation
+- Compare hiện tại S1 Mapbox vs S2
+- Report draft validation + provider sensitivity
 
 Còn chờ:
 
-- Phú đã có Geoapify/Overpass 10 case; còn Mapbox và đủ 13 case
-- Quang chạy lại Solution 2 đủ 13 case
+- Phú đã có Mapbox/Geoapify/Overpass 10 case; còn S1 V1_011-V1_013
+- Quang đã có Solution 2 đủ 13 case
 - Sau đó cập nhật compare final và kết luận winner

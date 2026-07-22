@@ -47,42 +47,53 @@ Ví dụ cụ thể:
 - `V1_007`: user muốn `nhà thuốc` và `phòng gym`. Ranking bỏ qua hai tiêu chí này là chưa phản ánh đủ free-text.
 - `V1_009`: user muốn `yên tĩnh`, `dân trí cao`, `phong thủy`, `hàng xóm thân thiện`. Đây là nhóm chưa có dữ liệu đo trực tiếp, nên phải gắn cờ unsupported.
 
-## 4. Compare sơ bộ hiện có
+## 4. Compare hiện tại: Solution 1 Mapbox vs Solution 2
 
-File compare sơ bộ: `outputs/solution_comparison_v1_preliminary.md`.
+File compare mới: `outputs/solution_comparison_mapbox_v1.md`.
 
-Bảng này chỉ dùng 10 case đang có output từ cả hai solution. Ba case mới `V1_011` - `V1_013` chưa có output nên chưa đưa vào kết luận cuối.
+Sau khi pull main ngày `2026-07-22`, repo đã có:
 
-Kết quả sơ bộ:
+- Solution 1 Mapbox: 10 case `V1_001` - `V1_010`.
+- Solution 2: 13 case `V1_001` - `V1_013`.
+
+Bảng này compare 10 case chung vì Solution 1 chưa có `V1_011` - `V1_013`.
 
 | Chỉ số | Giá trị |
 |---|---:|
 | Số case đã compare | 10 |
-| Case còn thiếu output | 3 (`V1_011`, `V1_012`, `V1_013`) |
-| Same Top 1 | 8/10 |
-| Average Top5 overlap | 4.00/5 |
-| Avg latency Solution 2 | 15,559.8 ms |
-| Avg latency Solution 1 | 239,221.0 ms |
+| Solution 1 Mapbox coverage | 10/10 |
+| Solution 2 coverage | 13/13 |
+| Same Top 1 | 4/10 |
+| Average Top5 overlap | 2.50/5 |
+| Avg latency Solution 1 Mapbox | 481,044.9 ms |
+| Avg latency Solution 2 | 2.2 ms |
 
-Diễn giải:
+Cause-effect:
 
-- Hai solution hiện khá đồng nhất ở các case nền `X-only`: nhiều case cùng Top 1 và Top 5 trùng cao.
-- `V1_008` và `V1_010` cần manual review vì Top 1 khác nhau.
-- Latency của Solution 1 cao hơn rõ rệt vì pipeline gọi nhiều lượt LLM/tool hơn, còn Solution 2 chạy nhanh hơn trên nhiều case.
+1. Mapbox là provider final được ghi trong docs.
+2. Solution 1 Mapbox giờ có output thật, nên compare chính nên dùng bản Mapbox thay vì file Solution 1 cũ.
+3. Solution 2 đã chạy đủ 13 case, nhưng Solution 1 mới có 10 case.
+4. Vì vậy kết luận final vẫn phải chờ Solution 1 chạy thêm `V1_011` - `V1_013`.
 
+## 5. Provider Sensitivity của Solution 1
 
-## 5. Compare Provider Solution 1
+File compare provider mới: `outputs/solution1_provider_comparison_mapbox_geoapify_overpass.md`.
 
-File compare provider mới: `outputs/solution1_provider_comparison_geoapify_overpass.md`.
-
-Sau khi Phú push output mới, Solution 1 đã có kết quả riêng cho `Geoapify` và `Overpass` trên 10 case `V1_001` - `V1_010`.
+Solution 1 hiện đã có kết quả riêng cho cả 3 provider trên 10 case `V1_001` - `V1_010`.
 
 | Chỉ số | Giá trị |
 |---|---:|
+| Mapbox coverage | 10/10 |
 | Geoapify coverage | 10/10 |
 | Overpass coverage | 10/10 |
-| Same Top 1 | 4/10 |
-| Average Top5 overlap | 3.20/5 |
+| Same Top 1 cả 3 provider | 2/10 |
+| Same Top 1 Mapbox vs Geoapify | 4/10 |
+| Same Top 1 Mapbox vs Overpass | 2/10 |
+| Same Top 1 Geoapify vs Overpass | 4/10 |
+| Avg Top5 overlap Mapbox vs Geoapify | 2.30/5 |
+| Avg Top5 overlap Mapbox vs Overpass | 2.00/5 |
+| Avg Top5 overlap Geoapify vs Overpass | 3.20/5 |
+| Avg latency Mapbox | 481,044.9 ms |
 | Avg latency Geoapify | 317,397.1 ms |
 | Avg latency Overpass | 529,236.6 ms |
 
@@ -91,18 +102,18 @@ Cause-effect:
 1. `SOLUTION1_ENRICHMENT_PROVIDER` chọn provider cho cả file dataset nạp vào DB và tool map động.
 2. Provider khác nhau trả về POI distance/count khác nhau.
 3. POI khác nhau làm Top 1 và Top 5 thay đổi.
-4. Vì vậy kết quả Solution 1 phải ghi rõ provider, không nên gộp Geoapify và Overpass thành một kết quả chung.
+4. Vì vậy kết quả Solution 1 phải ghi rõ provider, không nên gộp Mapbox, Geoapify và Overpass thành một kết quả chung.
 
 Case lệch mạnh cần review thêm:
 
-- `V1_006`: Geoapify Top 1 `GV_008`, Overpass Top 1 `GV_018`, Top5 overlap `0/5`.
-- `V1_007`: Geoapify Top 1 `GV_009`, Overpass Top 1 `GV_002`, Top5 overlap `1/5`.
+- `V1_004`: Mapbox Top 1 `GV_010`, Geoapify Top 1 `TB_015`, Overpass Top 1 `GV_003`.
+- `V1_006`: Mapbox/Geoapify Top 1 `GV_008`, Overpass Top 1 `GV_018`, Mapbox-Overpass overlap `0/5`.
+- `V1_007`: Mapbox Top 1 `GV_003`, Geoapify Top 1 `GV_009`, Overpass Top 1 `GV_002`.
 
 Hiện vẫn thiếu:
 
-- Output Solution 1 Mapbox cho validation.
-- Output `V1_011` - `V1_013` cho các provider.
-- Output Solution 2 chạy lại theo cùng provider final.
+- Output Solution 1 cho `V1_011` - `V1_013`.
+- Compare final 13 case giữa Solution 1 Mapbox và Solution 2.
 
 ## 6. Case cần review kỹ
 
@@ -117,13 +128,13 @@ Cause-effect:
 1. User muốn đầu tư, giá/m2 thấp, gần đường lớn, nhiều chợ.
 2. `nhiều chợ` là `Y` đo được.
 3. Solution 2 đưa `TB_035` lên Top 1 vì có `nearby_market_count_within_1000m = 3` và `additional_score = 1.0`.
-4. Solution 1 vẫn chọn `GV_010`, nghiêng về tiêu chí nền hơn.
+4. Solution 1 Mapbox chọn `GV_037`, lệch khỏi Solution 2 và cần kiểm tra lại explanation theo tiêu chí market/price_per_m2.
 5. Vì vậy case này phải review theo rule `X + Y`, không được dùng ground truth `X-only`.
 
 ### V1_010 - Couple, cafe và đường lớn
 
 - Solution 2 Top 1: `GV_010`
-- Solution 1 Top 1: `GV_002`
+- Solution 1 Mapbox Top 1: `GV_002`
 - Top5 overlap: `4/5`
 
 Cause-effect:
@@ -131,7 +142,7 @@ Cause-effect:
 1. User muốn gần đường lớn, nhiều quán cà phê, nhưng cũng muốn yên tĩnh.
 2. `quán cà phê` là `Y` đo được; `yên tĩnh` là unsupported.
 3. Solution 2 chọn `GV_010` vì cafe count cao và vẫn cân bằng tiện ích nền.
-4. Solution 1 chọn `GV_002` vì giá rẻ và gần đường lớn hơn.
+4. Solution 1 Mapbox chọn `GV_002` vì giá rẻ và gần đường lớn hơn.
 5. Case này cần so explanation: solution nào giải thích rõ trade-off giữa cafe, đường lớn, yên tĩnh và diện tích tốt hơn.
 
 ## 7. Phần còn chờ thành viên khác
@@ -141,12 +152,12 @@ Phần độc lập của `Ấn` đã hoàn thành ở mức framework:
 - Validation set đã mở rộng lên 13 case.
 - Rubric đã chốt cách chấm `X-only`, `X + Y`, `unsupported`.
 - Template compare đã cập nhật đúng Solution 1 vs Solution 2.
-- Compare sơ bộ 10 case đã có sẵn.
+- Compare hiện tại S1 Mapbox vs S2 và provider sensitivity đã có sẵn.
 
 Phần final còn chờ:
 
-1. `Phú` đã push Solution 1 cho Geoapify và Overpass trên 10 case; còn cần Mapbox và đủ 13 case.
-2. `Quang` chạy lại Solution 2 trên đủ 13 case.
+1. `Phú` đã push Solution 1 cho Mapbox, Geoapify và Overpass trên 10 case; còn cần `V1_011` - `V1_013`.
+2. `Quang` đã có Solution 2 đủ 13 case trong `outputs/solution2_results.json`.
 3. Sau khi có đủ output, `Ấn` cập nhật compare final và kết luận winner theo từng case.
 
 ## 8. Kết luận tạm thời
