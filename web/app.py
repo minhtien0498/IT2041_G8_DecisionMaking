@@ -29,9 +29,23 @@ except Exception:  # noqa: BLE001
 ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "data"
 WEB_DIR = ROOT / "web"
+OUTPUTS_DIR = ROOT / "outputs"
 PROPERTIES_FILE = DATA_DIR / "go_vap_tan_binh_100_enriched.json"
 VALIDATION_V1_FILE = DATA_DIR / "validation_cases_v1.json"
 VALIDATION_50_FILE = DATA_DIR / "validation_50_scenarios.json"
+
+# --- Chế độ demo -----------------------------------------------------------
+# Mặc định BẬT (demo). Khi bật, app KHÔNG chạy pipeline thật (Solution 1 cần
+# Postgres + OpenRouter và mất vài phút/case) mà đọc kết quả đã tính sẵn trong
+# outputs/, giả lập một khoảng "đang phân tích" ~2.5 giây rồi trả về. Phù hợp
+# để trình chiếu, không cần mạng hay Docker.
+# Muốn chạy pipeline THẬT thì đặt biến môi trường DEMO_MODE=0.
+DEMO_MODE = os.environ.get("DEMO_MODE", "1") == "1"
+DEMO_DELAY_SECONDS = float(os.environ.get("DEMO_DELAY_SECONDS", "2.5"))
+DEMO_S1_PROVIDER = os.environ.get("DEMO_S1_PROVIDER", "mapbox")  # mapbox|overpass|geoapify
+# File kết quả dựng sẵn cho từng solution.
+DEMO_S1_FILE = OUTPUTS_DIR / f"solution1_{DEMO_S1_PROVIDER}_results.json"
+DEMO_S2_FILE = OUTPUTS_DIR / "solution2_results.json"
 
 load_dotenv(ROOT / ".env")
 
@@ -47,6 +61,7 @@ class RecommendationRequest(BaseModel):
     free_text: str = ""
     solution: str = Field(default="solution2", pattern="^(solution1|solution2|both)$")
     top_x: int = Field(default=5, ge=1, le=20)
+    case_id: str | None = None  # dùng để tra kết quả dựng sẵn trong chế độ demo
 
 
 class ValidationRequest(BaseModel):
@@ -146,7 +161,71 @@ def solution_error(solution_id: str, error: Exception, case_id: str) -> dict[str
     }
 
 
-def run_selected_solutions(form: dict[str, Any], free_text: str, solution: str, top_x: int, case_id: str) -> dict[str, Any]:
+_precomputed_cache: dict[str, dict[str, dict[str, Any]]] | None = None
+
+
+def _index_by_case(path: Path, solution_key: str) -> dict[str, dict[str, Any]]:
+    if not path.exists():
+        return {}
+    with open(path, encoding="utf-8") as file:
+        data = json.load(file)
+    cases = data if isinstance(data, list) else next((v for v in data.values() if isinstance(v, list)), [])
+    return {case.get("case_id"): case for case in cases if case.get("case_id")}
+
+
+def load_precomputed() -> dict[str, dict[str, dict[str, Any]]]:
+    """Gom kết quả dựng sẵn của 2 solution thành {case_id: {solution1, solution2}}."""
+    global _precomputed_cache
+    if _precomputed_cache is None:
+        s1 = _index_by_case(DEMO_S1_FILE, "solution1")
+        s2 = _index_by_case(DEMO_S2_FILE, "solution2")
+        merged: dict[str, dict[str, dict[str, Any]]] = {}
+        for case_id in sorted(set(s1) | set(s2)):
+            merged[case_id] = {}
+            if case_id in s1:
+                merged[case_id]["solution1"] = s1[case_id]
+            if case_id in s2:
+                merged[case_id]["solution2"] = s2[case_id]
+        _precomputed_cache = merged
+    return _precomputed_cache
+
+
+def demo_default_case() -> str | None:
+    """Case mặc định khi người dùng chưa nạp case nào (ưu tiên case có nhu cầu thêm đo được)."""
+    precomputed = load_precomputed()
+    for preferred in ("V1_006", "V1_001"):
+        if preferred in precomputed:
+            return preferred
+    return next(iter(precomputed), None)
+
+
+def run_demo_solutions(solution: str, top_x: int, case_id: str | None, delay: bool = True) -> dict[str, Any]:
+    """Trả kết quả dựng sẵn theo case_id, giả lập thời gian phân tích ~DEMO_DELAY_SECONDS."""
+    precomputed = load_precomputed()
+    resolved = case_id if case_id in precomputed else demo_default_case()
+    if delay:
+        time.sleep(DEMO_DELAY_SECONDS)  # giả lập bước "đang phân tích"
+    selected = ["solution1", "solution2"] if solution == "both" else [solution]
+    entry = precomputed.get(resolved, {})
+    results: dict[str, Any] = {}
+    for item in selected:
+        contract = entry.get(item)
+        if contract is None:
+            solution_id = "solution_1" if item == "solution1" else "solution_2"
+            label = "Solution 1" if item == "solution1" else "Solution 2"
+            results[item] = solution_error(
+                solution_id,
+                RuntimeError(f"[DEMO] {label} chưa có kết quả dựng sẵn cho case {resolved}."),
+                resolved or "DEMO",
+            )
+        else:
+            results[item] = trim_top(contract, top_x)
+    return results
+
+
+def run_selected_solutions(form: dict[str, Any], free_text: str, solution: str, top_x: int, case_id: str, demo_delay: bool = True) -> dict[str, Any]:
+    if DEMO_MODE:
+        return run_demo_solutions(solution, top_x, case_id, delay=demo_delay)
     selected = ["solution1", "solution2"] if solution == "both" else [solution]
     results = {}
     for item in selected:
@@ -301,6 +380,25 @@ def index() -> FileResponse:
     return FileResponse(WEB_DIR / "index.html")
 
 
+@app.get("/api/config")
+def config() -> dict[str, Any]:
+    """Cho frontend biết đang chạy demo hay chạy thật, và các case có kết quả sẵn."""
+    info: dict[str, Any] = {"demo": DEMO_MODE, "demo_delay_seconds": DEMO_DELAY_SECONDS}
+    if DEMO_MODE:
+        precomputed = load_precomputed()
+        info["s1_provider"] = DEMO_S1_PROVIDER
+        info["default_case"] = demo_default_case()
+        info["cases"] = [
+            {
+                "case_id": case_id,
+                "has_solution1": "solution1" in entry,
+                "has_solution2": "solution2" in entry,
+            }
+            for case_id, entry in precomputed.items()
+        ]
+    return info
+
+
 @app.get("/api/validation-cases")
 def validation_cases(dataset: str = "validation_cases_v1") -> dict[str, Any]:
     path = VALIDATION_50_FILE if dataset == "validation_50_scenarios" else VALIDATION_V1_FILE
@@ -323,9 +421,10 @@ def validation_cases(dataset: str = "validation_cases_v1") -> dict[str, Any]:
 
 @app.post("/api/recommend")
 def recommend(request: RecommendationRequest) -> dict[str, Any]:
-    case_id = f"WEB_{int(time.time())}"
+    case_id = request.case_id if (DEMO_MODE and request.case_id) else f"WEB_{int(time.time())}"
     return {
         "case_id": case_id,
+        "demo": DEMO_MODE,
         "results": run_selected_solutions(request.form, request.free_text, request.solution, request.top_x, case_id),
     }
 
@@ -338,7 +437,7 @@ def validate(request: ValidationRequest) -> dict[str, Any]:
         key: evaluate_contract(value, request.form, request.expected, request.ground_truth_top5, request.top_x, request.manual_scores)
         for key, value in results.items()
     }
-    return {"case_id": case_id, "results": results, "evaluations": evaluations}
+    return {"case_id": case_id, "demo": DEMO_MODE, "results": results, "evaluations": evaluations}
 
 
 @app.post("/api/validate-batch")
@@ -349,7 +448,7 @@ def validate_batch(request: BatchValidationRequest) -> dict[str, Any]:
     aggregate: dict[str, list[float]] = {}
     for scenario in cases:
         form, free_text, expected, ground_truth, case_id = scenario_to_input(scenario)
-        results = run_selected_solutions(form, free_text, request.solution, request.top_x, case_id)
+        results = run_selected_solutions(form, free_text, request.solution, request.top_x, case_id, demo_delay=False)
         evaluations = {
             key: evaluate_contract(value, form, expected, ground_truth, request.top_x)
             for key, value in results.items()
@@ -365,4 +464,4 @@ def validate_batch(request: BatchValidationRequest) -> dict[str, Any]:
                 aggregate.setdefault(f"{key}_priority_coverage", []).append(coverage)
         rows.append({"case_id": case_id, "results": results, "evaluations": evaluations})
     summary = {key: round(sum(values) / len(values), 4) for key, values in aggregate.items() if values}
-    return {"dataset": request.dataset, "limit": request.limit, "summary": summary, "rows": rows}
+    return {"dataset": request.dataset, "limit": request.limit, "demo": DEMO_MODE, "summary": summary, "rows": rows}

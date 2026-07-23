@@ -250,8 +250,12 @@
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
+      justify-content: center;
       margin-top: 16px;
     }
+    .head-actions { display: flex; align-items: center; gap: 10px; }
+    .btn-sm { min-height: 34px; padding: 0 12px; font-size: 13px; }
+    .btn-sm i { width: 15px; height: 15px; }
 
     .primary { background: var(--green); color: white; }
     .secondary { background: var(--blue-soft); color: var(--blue); }
@@ -491,6 +495,25 @@
       line-height: 1.55;
       color: #3d4a54;
     }
+    /* --- Markdown trong khung giải thích --- */
+    .md { font-size: 12.5px; line-height: 1.6; color: #3d4a54; }
+    .md > *:first-child { margin-top: 0; }
+    .md > *:last-child { margin-bottom: 0; }
+    .md p { margin: 0 0 8px; }
+    .md h1, .md h2, .md h3, .md h4, .md h5, .md h6 {
+      margin: 12px 0 6px; line-height: 1.35; color: #1d2b36; font-weight: 800;
+    }
+    .md h1 { font-size: 15px; } .md h2 { font-size: 14px; }
+    .md h3 { font-size: 13px; } .md h4, .md h5, .md h6 { font-size: 12.5px; }
+    .md strong { color: #1d2b36; font-weight: 700; }
+    .md em { font-style: italic; }
+    .md code {
+      background: #eef2f6; border-radius: 4px; padding: 1px 5px;
+      font-size: 11.5px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    .md ul, .md ol { margin: 4px 0 8px; padding-left: 20px; }
+    .md li { margin: 3px 0; }
+    .md hr { border: none; border-top: 1px solid var(--line); margin: 10px 0; }
 
     /* lý do phụ, giữ nhẹ để không át phần tiện ích */
     .why {
@@ -685,6 +708,62 @@
       .metrics { grid-template-columns: 1fr; }
       .weight-row { grid-template-columns: 92px 1fr 42px; }
     }
+    /* --- Badge CHẾ ĐỘ DEMO ở góc phải trên + popup khi hover --- */
+    #demoBadge {
+      position: fixed; top: 14px; right: 16px; z-index: 200;
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 12px; border-radius: 999px; cursor: default;
+      background: #fff8ec; border: 1px solid #f3dca6;
+      color: #7a5c12; font-size: 13px; font-weight: 600;
+      box-shadow: 0 2px 10px rgba(15,29,56,.10);
+    }
+    #demoBadge i { width: 15px; height: 15px; }
+    #demoBadge .demo-pop {
+      position: absolute; top: calc(100% + 8px); right: 0; width: 280px;
+      padding: 11px 14px; border-radius: 12px;
+      background: #fff8ec; border: 1px solid #f3dca6; border-left: 5px solid #e0a51e;
+      color: #7a5c12; font-size: 13px; font-weight: 400; line-height: 1.5;
+      box-shadow: 0 6px 20px rgba(15,29,56,.16);
+      opacity: 0; visibility: hidden; transform: translateY(-4px);
+      transition: opacity .15s ease, transform .15s ease, visibility .15s;
+    }
+    #demoBadge:hover .demo-pop { opacity: 1; visibility: visible; transform: translateY(0); }
+    #demoBadge.sticky-hidden { display: none; }
+    /* --- Nút lên đầu trang --- */
+    #scrollTopBtn {
+      position: fixed; right: 20px; bottom: 20px; z-index: 200;
+      width: 44px; height: 44px; border-radius: 50%; border: none; cursor: pointer;
+      background: var(--navy, #1F3A68); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 18px rgba(15,29,56,.28);
+      opacity: 0; transform: translateY(8px); transition: opacity .18s ease, transform .18s ease;
+    }
+    #scrollTopBtn.show { opacity: 1; transform: translateY(0); }
+    #scrollTopBtn:hover { background: #16294d; }
+    #scrollTopBtn i { width: 20px; height: 20px; }
+    /* --- Quick view sticky: tóm tắt form khi cuộn xuống --- */
+    #quickView {
+      position: sticky; top: 0; z-index: 150;
+      margin: -24px -24px 20px -24px; padding: 0;  /* tràn hết bề ngang main, sát mép trên */
+      display: none;
+    }
+    #quickView.show { display: block; }
+    #quickView .qv-bar {
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+      padding: 11px 24px;
+      background: #ffffff; border: none; border-bottom: 1px solid var(--line);
+      box-shadow: 0 4px 16px rgba(15,29,56,.08);
+    }
+    .qv-chip {
+      font-size: 12px; color: #3d4a54; background: var(--panel-soft, #f2f6fa);
+      border: 1px solid var(--line); border-radius: 999px; padding: 4px 11px; white-space: nowrap;
+    }
+    .qv-chip b { color: #1d2b36; font-weight: 700; }
+    .qv-chip.qv-sol { background: var(--navy, #1F3A68); color: #fff; border-color: transparent; font-weight: 700; }
+    .qv-chip.qv-case { background: #eef3fb; color: var(--navy, #1F3A68); border-color: #cdd9ec; font-weight: 700; }
+    .qv-chip.qv-need {
+      white-space: normal; font-style: italic; flex: 1 1 100%;
+    }
   </style>
 </head>
 <body>
@@ -725,6 +804,10 @@
             <option value="validation_50_scenarios">validation_50_scenarios</option>
           </select>
         </label>
+        <label style="margin-top: 12px;" id="casePickerWrap" hidden>
+          Chọn case demo
+          <select id="casePicker"></select>
+        </label>
         <label style="margin-top: 12px;">
           Số case batch
           <input id="batchLimit" type="number" min="1" max="50" value="5">
@@ -741,7 +824,19 @@
         <div class="status" id="status">Sẵn sàng</div>
       </div>
 
-      <section class="panel">
+      <div id="quickView"></div>
+
+      <div id="demoBadge" hidden>
+        <i data-lucide="flask-conical"></i>
+        <b>CHẾ ĐỘ DEMO</b>
+        <div class="demo-pop">
+          Kết quả lấy từ lần chạy đã lưu (<span id="demoProvider">mapbox</span>),
+          giả lập ~<span id="demoDelay">2.5</span>s phân tích.
+          Không gọi LLM hay Postgres thật.
+        </div>
+      </div>
+
+      <section class="panel" id="inputPanel">
         <div class="panel-head">
           <h3>Input người dùng</h3>
           <button class="secondary" id="loadCaseBtn" title="Nạp case validation"><i data-lucide="file-input"></i>Nạp case</button>
@@ -806,8 +901,7 @@
           </div>
           <div class="actions">
             <button class="primary" id="runBtn"><i data-lucide="play"></i>Chạy recommendation</button>
-            <button class="warning" id="validateBtn"><i data-lucide="clipboard-check"></i>Đánh giá kết quả này</button>
-            <button class="secondary" id="batchBtn"><i data-lucide="bar-chart-3"></i>Batch validation</button>
+            <button class="warning" id="validateBtn"><i data-lucide="clipboard-check"></i>Đánh giá case này</button>
           </div>
         </div>
       </section>
@@ -815,7 +909,10 @@
       <section class="panel">
         <div class="panel-head">
           <h3>Kết quả Top X</h3>
-          <span class="badge info" id="caseBadge">WEB</span>
+          <div class="head-actions">
+            <button class="primary btn-sm" id="runBtn2"><i data-lucide="play"></i>Chạy</button>
+            <span class="badge info" id="caseBadge">WEB</span>
+          </div>
         </div>
         <div class="panel-body">
           <div class="result-grid" id="results">
@@ -826,21 +923,39 @@
 
       <section class="panel">
         <div class="panel-head">
-          <h3>Đánh giá</h3>
-          <span class="badge info">CSR, P@K, NDCG, MAP, human rubric</span>
+          <h3>Đánh giá 1 case đang chọn</h3>
+          <div class="head-actions">
+            <button class="warning btn-sm" id="validateBtn2"><i data-lucide="clipboard-check"></i>Đánh giá case này</button>
+            <span class="badge info">CSR, P@K, NDCG, MAP, human rubric</span>
+          </div>
         </div>
         <div class="panel-body" id="evaluation">
-          <div class="empty">Chạy validation để xem metric.</div>
+          <div class="empty">Bấm <b>“Đánh giá case này”</b> để chấm metric cho Top X vừa chạy.</div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h3>Chấm điểm cả bộ case</h3>
+          <button class="secondary" id="batchBtn"><i data-lucide="bar-chart-3"></i>Chấm cả bộ</button>
+        </div>
+        <div class="panel-body" id="batchPanel">
+          <div class="empty">Chạy đánh giá trên toàn bộ case (theo <b>“Số case batch”</b> ở sidebar) để ra số trung bình. Không phụ thuộc case đang mở.</div>
         </div>
       </section>
     </main>
   </div>
+
+  <button id="scrollTopBtn" title="Lên đầu trang" aria-label="Lên đầu trang">
+    <i data-lucide="arrow-up"></i>
+  </button>
 
   <script>
     const state = {
       solution: "solution2",
       selectedCase: null,
       lastPayload: null,
+      hasResults: false,
       weights: {
         price: { label: "Giá", value: 0.25, min: 1000, max: 12000, direction: "lower_better" },
         distance_to_nearest_school_m: { label: "Trường", value: 0.25, min: 0, max: 2000, direction: "lower_better" },
@@ -1151,6 +1266,41 @@
       </div>`;
     }
 
+    // Markdown renderer gọn, đủ cho explanation (đậm, tiêu đề, list, gạch ngang).
+    // Không dùng thư viện ngoài để demo chạy được cả khi offline.
+    function mdToHtml(src) {
+      if (!src) return "";
+      const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      const inline = (s) =>
+        esc(s)
+          .replace(/`([^`]+)`/g, "<code>$1</code>")
+          .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+          .replace(/(^|[^*])\*([^*\n]+)\*(?!\*)/g, "$1<em>$2</em>");
+      const lines = String(src).replace(/\r\n/g, "\n").split("\n");
+      let html = "";
+      let list = null; // 'ul' | 'ol'
+      const closeList = () => { if (list) { html += `</${list}>`; list = null; } };
+      let para = [];
+      const flushPara = () => {
+        if (para.length) { html += `<p>${para.map(inline).join("<br>")}</p>`; para = []; }
+      };
+      for (const raw of lines) {
+        const line = raw.trim();
+        if (!line) { flushPara(); closeList(); continue; }
+        if (/^---+$/.test(line) || /^___+$/.test(line)) { flushPara(); closeList(); html += "<hr>"; continue; }
+        const h = line.match(/^(#{1,6})\s+(.*)$/);
+        if (h) { flushPara(); closeList(); const lv = h[1].length; html += `<h${lv}>${inline(h[2])}</h${lv}>`; continue; }
+        const ol = line.match(/^\d+[.)]\s+(.*)$/);
+        const ul = line.match(/^[-*•]\s+(.*)$/);
+        if (ol) { flushPara(); if (list !== "ol") { closeList(); list = "ol"; html += "<ol>"; } html += `<li>${inline(ol[1])}</li>`; continue; }
+        if (ul) { flushPara(); if (list !== "ul") { closeList(); list = "ul"; html += "<ul>"; } html += `<li>${inline(ul[1])}</li>`; continue; }
+        closeList();
+        para.push(line);
+      }
+      flushPara(); closeList();
+      return html;
+    }
+
     function renderResults(payload) {
       state.lastPayload = payload;
       $("caseBadge").textContent = payload.case_id || "WEB";
@@ -1175,7 +1325,7 @@
               <div class="cap">điểm</div>
             </div>
           </article>
-        `).join("") : `<div class="empty">${result.explanation_summary || "Không có kết quả."}</div>`;
+        `).join("") : `<div class="empty">${mdToHtml(result.explanation_summary) || "Không có kết quả."}</div>`;
         return `
           <div class="result-card">
             <div class="result-top">
@@ -1189,12 +1339,14 @@
                 Giải thích
                 <span>${(Number(result.latency_ms || 0) / 1000).toFixed(1)}s</span>
               </div>
-              <p>${result.explanation_summary || ""}</p>
+              <div class="md">${mdToHtml(result.explanation_summary) || "<p></p>"}</div>
             </div>
           </div>
         `;
       }).join("");
       $("results").innerHTML = html || `<div class="empty span-2">Không có response.</div>`;
+      state.hasResults = Object.values(results).some((r) => (r.top5 || []).length);
+      refreshSticky();
       lucide.createIcons();
     }
 
@@ -1240,7 +1392,7 @@
           <td>${Object.entries(row.evaluations).map(([key, val]) => `${key}: ${(val.recommended_ids || []).join(", ")}`).join("<br>")}</td>
         </tr>
       `).join("");
-      $("evaluation").innerHTML = `
+      $("batchPanel").innerHTML = `
         <div class="metrics">${Object.entries(payload.summary || {}).slice(0, 4).map(([key, value]) => `
           <div class="metric"><span>${key}</span><strong>${Number(value).toFixed(3)}</strong></div>
         `).join("")}</div>
@@ -1259,7 +1411,8 @@
       setStatus("Đang nạp validation case...");
       const dataset = $("validationDataset").value;
       const data = await fetch(`/api/validation-cases?dataset=${encodeURIComponent(dataset)}`).then((r) => r.json());
-      const chosen = data.cases[0];
+      const wantedId = $("casePicker").value;
+      const chosen = data.cases.find((c) => c.id === wantedId) || data.cases[0];
       state.selectedCase = chosen;
       const input = chosen.input || {};
       setNum("budget", (input.budget_max_million || 8000) * 1e6);
@@ -1275,23 +1428,41 @@
       setStatus(`Đã nạp ${chosen.id}`);
     }
 
+    const ANALYZE_STEPS = [
+      "Đang đọc form và nhu cầu tự do...",
+      "Đang phân tích nhu cầu, ánh xạ tiêu chí...",
+      "Đang chấm điểm và xếp hạng ứng viên...",
+      "Đang tổng hợp giải thích..."
+    ];
+
+    function startAnalyzing() {
+      let i = 0;
+      setStatus(ANALYZE_STEPS[0]);
+      return setInterval(() => {
+        i = (i + 1) % ANALYZE_STEPS.length;
+        setStatus(ANALYZE_STEPS[i]);
+      }, 700);
+    }
+
     async function runRecommendation() {
       setBusy(true);
-      setStatus("Đang chạy recommendation...");
+      const ticker = startAnalyzing();
       try {
         const form = currentForm();
         const payload = await postJson("/api/recommend", {
           form,
           free_text: form.user_need_text,
           solution: state.solution,
-          top_x: Number($("topX").value)
+          top_x: Number($("topX").value),
+          case_id: state.selectedCase?.id
         });
         renderResults(payload);
-        setStatus("Hoàn tất recommendation");
+        setStatus(payload.demo ? `Hoàn tất (demo · ${payload.case_id})` : "Hoàn tất recommendation");
       } catch (error) {
         setStatus("Lỗi khi chạy recommendation");
         $("results").innerHTML = `<div class="empty span-2">${error.message}</div>`;
       } finally {
+        clearInterval(ticker);
         setBusy(false);
       }
     }
@@ -1335,7 +1506,7 @@
         setStatus("Hoàn tất batch validation");
       } catch (error) {
         setStatus("Lỗi batch validation");
-        $("evaluation").innerHTML = `<div class="empty">${error.message}</div>`;
+        $("batchPanel").innerHTML = `<div class="empty">${error.message}</div>`;
       } finally {
         setBusy(false);
       }
@@ -1354,15 +1525,79 @@
     });
 
     $("runBtn").addEventListener("click", runRecommendation);
+    $("runBtn2").addEventListener("click", runRecommendation);
     $("validateBtn").addEventListener("click", validateCurrent);
+    $("validateBtn2").addEventListener("click", validateCurrent);
     $("batchBtn").addEventListener("click", runBatch);
     $("loadCaseBtn").addEventListener("click", loadValidationCase);
+
+    async function initConfig() {
+      try {
+        const cfg = await fetch("/api/config").then((r) => r.json());
+        if (!cfg.demo) return;
+        $("demoBadge").hidden = false;
+        $("demoProvider").textContent = cfg.s1_provider || "mapbox";
+        $("demoDelay").textContent = (cfg.demo_delay_seconds ?? 2.5);
+        const picker = $("casePicker");
+        picker.innerHTML = "";
+        (cfg.cases || []).forEach((c) => {
+          const opt = document.createElement("option");
+          const flags = [c.has_solution1 ? "S1" : null, c.has_solution2 ? "S2" : null].filter(Boolean).join("+");
+          opt.value = c.case_id;
+          opt.textContent = `${c.case_id} (${flags})`;
+          picker.appendChild(opt);
+        });
+        if (cfg.default_case) picker.value = cfg.default_case;
+        $("casePickerWrap").hidden = false;
+        // Nạp sẵn case mặc định để bấm Chạy là có kết quả ngay.
+        await loadValidationCase();
+      } catch (error) {
+        // Không có /api/config (bản cũ) thì bỏ qua, chạy như thường.
+      }
+    }
+
+    function updateQuickView() {
+      const budget = numVal("budget");
+      const bedrooms = $("bedrooms").value;
+      const areaMin = numVal("areaMin");
+      const areaMax = numVal("areaMax");
+      const need = $("freeText").value.trim();
+      const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+      $("quickView").innerHTML = `
+        <div class="qv-bar">
+          <span class="qv-chip"><b>Ngân sách</b> ≤ ${vndText(budget) || "chưa đặt"}</span>
+          <span class="qv-chip"><b>Phòng ngủ</b> ≥ ${bedrooms}</span>
+          ${(areaMin || areaMax) ? `<span class="qv-chip"><b>Diện tích</b> ${areaMin || 0} tới ${areaMax || "?"} m²</span>` : ""}
+          ${need ? `<span class="qv-chip qv-need" title="${esc(need)}">"${esc(need)}"</span>` : ""}
+        </div>
+      `;
+    }
+
+    const scrollTopBtn = $("scrollTopBtn");
+    scrollTopBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+    let stickyShown = false;
+    function refreshSticky() {
+      // Chỉ hiện quick-view khi ĐÃ có kết quả và card form đã trôi khỏi màn hình.
+      const panel = $("inputPanel");
+      const formGone = panel ? panel.getBoundingClientRect().bottom < 8 : window.scrollY > 300;
+      const show = state.hasResults && formGone;
+      scrollTopBtn.classList.toggle("show", state.hasResults && formGone);
+      if (show !== stickyShown) {
+        stickyShown = show;
+        if (show) updateQuickView();  // chụp giá trị form mới nhất khi hiện
+        $("quickView").classList.toggle("show", show);
+        $("demoBadge").classList.toggle("sticky-hidden", show);  // tránh đè lên sticky
+      }
+    }
+    window.addEventListener("scroll", refreshSticky, { passive: true });
+    refreshSticky();
 
     renderWeights();
     renderSolutionInfo();
     bindNumberInputs();
     bindHints();
     updateBudgetNote();
+    initConfig();
     lucide.createIcons();
   </script>
 </body>
